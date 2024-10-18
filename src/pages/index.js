@@ -15,6 +15,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("testing...")
     const fetchAppDetail = async () => {
       const token = get_token();
       const formData = { domain: "https://educrypt.netlify.app" };
@@ -22,7 +23,9 @@ export default function Home() {
         const response_content_service = await getAppDetial(
           encrypt(JSON.stringify(formData), token)
         );
+        console.log("response_content_service...",response_content_service)
         const app_detail_data = decrypt(response_content_service.data, token);
+        console.log("app_detail_data...",app_detail_data)
         if (app_detail_data.status) {
           const data = app_detail_data.data;
           console.log('appData', data)
@@ -119,9 +122,7 @@ export default function Home() {
         {/* <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> */}
       </Head>
-      {console.log("appIdFetched",appIdFetched)}
-      
-    <RoutePage /> {/* Only render RoutePage after app ID is fetched */}
+      {appIdFetched && <RoutePage />} {/* Only render RoutePage after app ID is fetched */}
     </>
   );
 }
