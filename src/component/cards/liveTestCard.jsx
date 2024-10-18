@@ -114,6 +114,7 @@ const LiveTestCard = ({testData, value}) => {
           firstAttempt = "0";
       }
     const formData = {
+      appid:150,
       jwt : localStorage.getItem('jwt'),
       user_id: localStorage.getItem('user_id'),
       course_id: val?.course_id,
