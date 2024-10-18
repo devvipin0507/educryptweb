@@ -102,14 +102,14 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Reddit+Sans+Condensed:wght@200..900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet" />
 
         {/* <!-- Font Awesome CDN --> */}
-        {/* <link
+        <link
           rel="stylesheet"
           href="path/to/font-awesome/css/font-awesome.min.css"
-        /> */}
-        {/* <link
+        />
+        <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        /> */}
+        />
 
         {/* <!-- Owl-Carousel --> */}
         <link
