@@ -119,7 +119,9 @@ export default function Home() {
         {/* <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> */}
       </Head>
-      {appIdFetched && <RoutePage />} {/* Only render RoutePage after app ID is fetched */}
+      {console.log("appIdFetched",appIdFetched)}
+
+      {appIdFetched && "<RoutePage />"} {/* Only render RoutePage after app ID is fetched */}
     </>
   );
 }
