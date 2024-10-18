@@ -15,20 +15,16 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("testing...")
     const fetchAppDetail = async () => {
       const token = get_token();
-      const formData = { domain: "https://educrypt.netlify.app" };
+      const formData = { domain: "https://educryptnetlify.videocrypt.in" };
       try {
         const response_content_service = await getAppDetial(
           encrypt(JSON.stringify(formData), token)
         );
-        console.log("response_content_service...",response_content_service)
         const app_detail_data = decrypt(response_content_service.data, token);
-        console.log("app_detail_data...",app_detail_data)
         if (app_detail_data.status) {
           const data = app_detail_data.data;
-          console.log('appData', data)
           localStorage.setItem('appId', data.id);
           localStorage.setItem('logo', data.web_logo);
           dispatch(app_detailAction(data));
