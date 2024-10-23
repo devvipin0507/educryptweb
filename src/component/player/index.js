@@ -5,6 +5,7 @@ import { decrypt, encrypt, get_token } from "@/utils/helpers";
 import Loader from "../loader";
 
 export default function VideoPlayerDRM({ vdc_id, media_id, NonDRMVideourl, item, title, videoMetaData }) {
+  console.log("videoMetaData",videoMetaData)
   const [source, setSource] = useState(null);
   const [loading, setLoading] = useState(true);
   const [dType, setDType] = useState();
