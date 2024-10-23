@@ -308,7 +308,21 @@ const Inquiry = () => {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       <div className="container-fluid p-0">
         {convoDetail && (
           <div className="col-md-12 p-0">

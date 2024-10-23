@@ -66,7 +66,21 @@ const Blogs = () => {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+    <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <div className="container-fluid">
         <div className="row mt-2">
           {!isShowBlogDetail ? (

@@ -399,7 +399,7 @@ const PurchaseHistory = () => {
         // toast.success(response_ConfirmPayment_data.message);
         setThankYouModalShow(true)
         fetchMyOrders();
-        //   if (titleName == "Bookstore" || titleName == "e-Book") {
+        //   if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
         //     router.push("/private/myProfile/ourCourse");
         //   } else {
         //     router.push("/private/myProfile/MyCourse");
@@ -649,7 +649,7 @@ const PurchaseHistory = () => {
         setThankYouModalShow(true);
         // setGetCourse(data.payid)
         fetchMyOrders();
-        //   if (titleName == "Bookstore" || titleName == "e-Book") {
+        //   if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
         //     router.push("/private/myProfile/ourCourse");
         //   } else {
         //     router.push("/private/myProfile/MyCourse");
@@ -672,7 +672,21 @@ const PurchaseHistory = () => {
   };
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"

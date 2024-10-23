@@ -26,6 +26,7 @@ const Header = ({ search }) => {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [logo, setLogo] = useState('')
   const [userData, setUserData] = useState("");
+  const [appId, setAppId] = useState('');
   const state = useSelector((state) => state?.appDetail?.app_detail);
   const router = useRouter();
   const token = get_token();
@@ -36,11 +37,13 @@ const Header = ({ search }) => {
   const dispatch = useDispatch()
 
   const userName = useSelector((state) => state?.allCategory?.profileDetail)
+  
 
 
   // console.log('userName', userName)
 
   useEffect(() => {
+    setAppId(localStorage.getItem('appId'))
     const login = localStorage.getItem("jwt");
     login && setIsLoggedIn(true);
     login && fetchMyProfile();
@@ -237,11 +240,11 @@ const Header = ({ search }) => {
         <a className="m-0">
           {/* {logo && ( */}
           <img
-            className="logoImg"
+            className={appId != 655 ? "logoImg" : "logoImg2"}
             src={logo ? logo : state.logo}
             alt=""
             onClick={handleRedirect}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer"}}
           />
           {/* )} */}
         </a>

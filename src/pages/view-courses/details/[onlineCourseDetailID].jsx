@@ -29,6 +29,7 @@ const ViewOnlineCourseDetail = () => {
   const [modalShow, setModalShow] = useState(false);
   const [thankYouModalShow, setThankYouModalShow] = useState(false)
   const [showError, setShowError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [tiles, setTiles] = useState([]);
   const [key, setKey] = useState(null);
   const [onlineCourseAry, setOnlineCourseAry] = useState("");
@@ -44,9 +45,11 @@ const ViewOnlineCourseDetail = () => {
   const resetLayerRef = useRef();
   const router = useRouter();
   const { onlineCourseDetailID } = router.query;
+  console.log("onlineCourseDetailID",onlineCourseDetailID)
   const token = get_token();
   const reviewData = useSelector((state) => state.allCategory?.review)
   const displayTabData = useSelector((state) => state.allCategory?.tabName)
+  const versionData = useSelector((state) => state.allCategory?.versionData);
   
   // console.log("onlineCourseDetailID============", onlineCourseDetailID);
   // const id = onlineCourseDetailID?.slice(onlineCourseDetailID.indexOf(':') +1, onlineCourseDetailID.length)
@@ -54,7 +57,52 @@ const ViewOnlineCourseDetail = () => {
   let courseCombo = onlineCourseDetailID?.slice(onlineCourseDetailID?.indexOf("&") + 1, onlineCourseDetailID?.indexOf("parent:"))
   let parentId = onlineCourseDetailID?.slice(onlineCourseDetailID?.indexOf("parent:") + 7, onlineCourseDetailID?.length)
 
-  console.log('parentId',parentId)
+  // console.log('parentId',parentId)
+
+  const [classSet, setClass] = useState("");
+  // const [courseCombo, setCourseCombo] = useState("");
+
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    setScrollY(currentScrollY);
+    // console.log("key=========================", key);
+
+    if (
+      currentScrollY >= 300 &&
+      key == tiles?.find((item) => (item.type = "overview"))?.tile_name
+    ) {
+      setClass(true);
+    } else {
+      setClass(false);
+    }
+  };
+
+    // UseEffect to check when query is ready
+    useEffect(() => {
+      console.log("onlineCourseDetailID 66",onlineCourseDetailID)
+      if (router.isReady && onlineCourseDetailID) {
+        const courseID = onlineCourseDetailID?.slice(
+          onlineCourseDetailID.indexOf(":") + 1,
+          onlineCourseDetailID.indexOf("&")
+        );
+        const title = onlineCourseDetailID?.slice(0, onlineCourseDetailID.indexOf(":"));
+          console.log("title",title)
+        setId(courseID);
+        setTitleName(title);
+  
+        fetchCourseDetail(courseID); // Call the API or function to fetch the course details
+      }
+    }, [router.isReady, onlineCourseDetailID]);
+  
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [key]);
 
   useEffect(() => {
     setShowError(false);
@@ -105,13 +153,13 @@ const ViewOnlineCourseDetail = () => {
 
   const fetchCourseDetail = async (id) => {
     try{
-      console.log('idddddd', courseCombo)
+      // console.log('idddddd', courseCombo)
       const formData = {
         course_id: id,
         page: 1,
         parent_id: courseCombo ? "" : (parentId ? parentId : id),
       };
-      console.log('formaData', formData)
+      // console.log('formData', formData)
       const response_getCourseDetail_service = await getCourseDetail_Service(
         encrypt(JSON.stringify(formData), token)
       );
@@ -141,6 +189,7 @@ const ViewOnlineCourseDetail = () => {
     } catch (error) {
       console.log("error found: ", error)
       // router.push('/')
+      setServerError(true)
     }
   };
 
@@ -181,10 +230,10 @@ const ViewOnlineCourseDetail = () => {
           // console.log('response_AddtoMyCourse_data', response_AddtoMyCourse_data)
           if (response_ConfirmPayment_data.status) {
             toast.success("Added Successfully");
-            if (titleName == "Bookstore" || titleName == "e-Book") {
+            if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
               router.push("/private/myProfile/ourCourse");
             } else {
-              router.push("/private/myProfile/MyCourse");
+              router.push("/private/myProfile/myCourse");
             }
           } else {
             toast.error(response_ConfirmPayment_data.message);
@@ -210,16 +259,41 @@ const ViewOnlineCourseDetail = () => {
   };
 
   const handleBuy = () => {
+    const currentPath = router.asPath;
+    localStorage.setItem("redirectAfterLogin", currentPath);
     localStorage.setItem('previousTab', router.pathname);
     router.push(`/view-courses/course-order/${titleName + ":" + onlineCourseAry.id + "&" + courseCombo}`)
   }
 
   const OverView = tiles.find(item => item.type = "overview")
-  console.log('key', key)
+  // console.log('key', key)
+
+  const handleBackdetails =()=>{
+    const back = localStorage.getItem('redirectdetails')
+    if(back){
+      router.push(back)
+    }else{
+      router.back()
+    }
+  }
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       <LoginModal
         show={modalShow}
         onHide={() => {
@@ -250,7 +324,7 @@ const ViewOnlineCourseDetail = () => {
                     titleName && 
                     <li
                       className="breadcrumb-item"
-                      onClick={() => router.back()}
+                      onClick={handleBackdetails}
                     >
                       {`${titleName}`}
                       <i className="bi bi-chevron-right"></i>
@@ -305,13 +379,15 @@ const ViewOnlineCourseDetail = () => {
               {onlineCourseAry.mrp != 0 && (
                 <div className="gap-2 d-flex flex-wrap flex-sm-nowrap align-items-center button_price">
                   <div className="gap-2 share d-flex align-items-center">
-                    <button className="button1_share">
-                      <FaShare />
-                    </button>
+                    {versionData?.share_content == 1 && 
+                      <button className="button1_share">
+                        <FaShare />
+                      </button>
+                    }
                     {onlineCourseAry.is_purchased == 0 &&
                     <p className="m-0 detailBbuyNow">
                       <Button1
-                        value={"Buy Now"}
+                        value={"Bu  y Now"}
                         handleClick={handleBuy}
                       />
                     </p>
@@ -345,7 +421,11 @@ const ViewOnlineCourseDetail = () => {
                   }
                 </div>
               )}
-              <div className="d-none d-md-none d-lg-block MainCourseCard">
+               <div
+                  className={`d-none d-md-none d-lg-block MainCourseCard ${
+                    classSet ? "MainCourseCardAB" : "MainCourseCardFX"
+                  }`}
+                >
                 <Card3
                   value={onlineCourseAry}
                   titleName={titleName}
@@ -411,7 +491,7 @@ const ViewOnlineCourseDetail = () => {
                     key={index}
                     // propsValue={isValidData(item) && item.tiles}
                     >
-                    {console.log('item', item)}
+                    {/* {console.log('item', item)} */}
                     {/* {item.tile_name == "Course Overview" && (
                       <CourseDetail
                         title={item.tile_name}
@@ -455,6 +535,7 @@ const ViewOnlineCourseDetail = () => {
                       CourseID={id}
                       tabName={item.tile_name}
                       keyValue={key}
+                      onlineCourseAry = {onlineCourseAry}
                       // propsValue={isValidData(pdfData) && pdfData}
                     />
                     }
@@ -484,7 +565,15 @@ const ViewOnlineCourseDetail = () => {
         <h4>No Data found!</h4>
       </div>
       :
-      <Loader />
+      serverError ? 
+        <section className="detailTopContainer">
+          <div className="mb-4 container-fluid p-0">
+            <div className="d-flex justify-content-center align-item-center">
+              <h1 className="text-danger">Internal Server Error ....</h1>
+            </div>
+          </div>
+        </section> 
+        : <Loader />
     }
     </>  
     }
@@ -494,6 +583,3 @@ const ViewOnlineCourseDetail = () => {
 };
 
 export default ViewOnlineCourseDetail;
-
-const course_detail =
-  "In this course, Talvir Singh will cover the syllabus of Communication. All the topics will be discussed in detail which will be helpful for all aspirants preparing for the NTA UGC-NET exam. Learners at any stage will be benefited from the course. The course will be conducted in Hindi and the notes will be provided in Hindi. In this course, Talvir Singh will cover the syllabus of Communication. All the topics will be discussed in detail which will be helpful for all aspirants preparing for the NTA UGC-NET exam. Learners at any stage will be benefited from the course. The course will be conducted in Hindi and the notes will be provided in Hindi. In this course, Talvir Singh will cover the syllabus of Communication. All the topics will be discussed in detail which will be helpful for all aspirants preparing for the NTA UGC-NET exam. Learners at any stage will be benefited from the course. The course will be conducted in Hindi and the notes will be provided in Hindi.";

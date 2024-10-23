@@ -24,6 +24,7 @@ const OurCourses = () => {
   const router = useRouter();
 
   const contentData = useSelector((state) => state?.allCategory?.content);
+  // console.log('contentData', contentData)
   useEffect(() => {
     if (contentData?.banner_list_web?.length > 0) {
       setBanner(contentData.banner_list_web[0]?.banner_url);
@@ -31,15 +32,17 @@ const OurCourses = () => {
     if (contentData?.course_type_master) {
       // localStorage.setItem('tab_id', contentData?.course_type_master[0].name)
       setTabData(contentData?.course_type_master);
-      setCatId(contentData?.course_type_master[0].id)
-      console.log('localStorage', localStorage.getItem('mainTab'))
-      if(localStorage.getItem('mainTab')){
-        setKey(localStorage.getItem('mainTab'))
+      // console.log('localStorage', localStorage.getItem('mainTab'))
+      const getTabName = localStorage.getItem('mainTab');
+      if(getTabName){
+        setKey(getTabName)
+        setCatId(contentData?.course_type_master?.filter(item => item.name == getTabName)[0]?.id)
         setTimeout(() => {
           localStorage.setItem('mainTab', "")
         }, [2000])  
       }
       else{
+        setCatId(contentData?.course_type_master[0].id)
         setKey(contentData?.course_type_master[0].name);
       }
     }
@@ -95,7 +98,7 @@ const OurCourses = () => {
         main_cat: 0,
         // 'course_ids': id
       };
-      
+      console.log('formDAta', formData)
       const response_getCourse_service = await getCourse_service(
         encrypt(JSON.stringify(formData), token)
       );

@@ -17,6 +17,7 @@ const MyCourse = () => {
   const [showError, setShowError] = useState(false)
   const [getCourse, setGetCourse] = useState("");
   const [myCourseData, setMyCourseData] = useState([]);
+  const [FreeCourseData, setFreeCourseData] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +42,10 @@ const MyCourse = () => {
         if(response_MyCourse_data?.data?.length < 0) {
           setShowError(true)
         }
-        else setMyCourseData(response_MyCourse_data.data);
+        else {
+          setMyCourseData(response_MyCourse_data.data.filter((item) => item?.mrp != 0));
+          setFreeCourseData(response_MyCourse_data.data.filter((item) => item?.mrp == 0))
+        }
       } else if (response_MyCourse_data.message == msg) {
         setShowError(true)
         if(response_MyCourse_data.message){
@@ -79,7 +83,21 @@ const MyCourse = () => {
   // console.log('showDetail', showDetail)
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       {/* <SearchCourses /> */}
       <section className="container-fluid">
         <div className="row">
@@ -92,6 +110,7 @@ const MyCourse = () => {
               <Tab eventKey="PAID COURSES" title="PAID COURSES">
                 <div className="container-fluid">
                   <div className="row">
+                    {/* {console.log('myCourseData', FreeCourseData)} */}
                     {myCourseData?.length > 0 ?
                       myCourseData.map((item, index) => {
                         return (
@@ -114,7 +133,7 @@ const MyCourse = () => {
                       })
                       :
                       <>
-                        {showError ?
+                        {(showError || myCourseData?.length == 0) ?
                         <ErrorPageAfterLogin />
                         :
                         <LoaderAfterLogin />}
@@ -126,7 +145,8 @@ const MyCourse = () => {
               <Tab eventKey="FREE COURSES" title="FREE COURSES">
                 <div className="container-fluid">
                   <div className="row">
-                    {myCourseData?.length > 0 ? myCourseData.map((item, index) => {
+                    {/* {console.log()} */}
+                    {FreeCourseData?.length > 0 ? FreeCourseData.map((item, index) => {
                       return (
                         item.mrp == 0 && (
                           <div
@@ -147,7 +167,7 @@ const MyCourse = () => {
                     :
                     <>
                       <>
-                        {showError ?
+                        {(showError || FreeCourseData?.length == 0) ?
                         <ErrorPageAfterLogin />
                         :
                         <LoaderAfterLogin />}

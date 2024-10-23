@@ -100,6 +100,7 @@ const OurProduct = ({ value, data }) => {
       const token = get_token()
       const formData = new FormData();
       const response_faculty_service = await getFaculty_Service(formData);
+      console.log('response_faculty_service', response_faculty_service)
       const faculty_service_Data = decrypt(response_faculty_service.data, token)
       // console.log('faculty', faculty_service_Data)
       if(faculty_service_Data.status) {

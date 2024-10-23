@@ -17,16 +17,20 @@ export default function Home() {
   useEffect(() => {
     const fetchAppDetail = async () => {
       const token = get_token();
-      const formData = { domain: "https://educryptnetlify.videocrypt.in" };
+      // const formData = { domain: "https://educryptnetlify.videocrypt.in" };    //dev data
+      const formData = { domain: "https://lab.live" };   // lab data
       try {
         const response_content_service = await getAppDetial(
           encrypt(JSON.stringify(formData), token)
         );
         const app_detail_data = decrypt(response_content_service.data, token);
+        console.log('app_detail_data', app_detail_data)
         if (app_detail_data.status) {
           const data = app_detail_data.data;
-          localStorage.setItem('appId', data.id);
-          localStorage.setItem('logo', data.web_logo);
+          console.log('appData', data)
+          localStorage.setItem('appId', data?.id);
+          localStorage.setItem('logo', data?.web_logo);
+          localStorage.setItem('domain', data?.domain)
           dispatch(app_detailAction(data));
           setColor(data);
           setAppIdFetched(true);  // Mark app ID as fetched
@@ -37,12 +41,12 @@ export default function Home() {
     };
 
     // Check if appId is already in localStorage
-    if (!localStorage.getItem('appId')) {
+    // if (!localStorage.getItem('appId')) {
       fetchAppDetail();
-    } else {
-      setAppIdFetched(true);  // If already exists, mark it as fetched
-    }
-  }, [dispatch]);
+    // } else {
+    //   setAppIdFetched(true);  // If already exists, mark it as fetched
+    // }
+  }, []);
 
   useEffect(() => {
     if (typeof document !== "undefined" && color) {

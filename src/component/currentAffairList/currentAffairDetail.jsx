@@ -50,7 +50,21 @@ const CurrentAffairDetail = ({ id, handleShow }) => {
     }
   return (
     <div>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       <section>
       <nav aria-label="breadcrumb ">
         <ol className="breadcrumb mb-4 cursor">

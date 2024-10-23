@@ -279,7 +279,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
         setThankYouModalShow(true);
         setGetCourse(data.payid)
         // fetchMyOrders();
-        //   if (titleName == "Bookstore" || titleName == "e-Book") {
+        //   if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
         //     router.push("/private/myProfile/ourCourse");
         //   } else {
         //     router.push("/private/myProfile/MyCourse");
@@ -302,6 +302,8 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
   };
 
   const handleBuy = () => {
+    const currentPath = router.asPath;
+    localStorage.setItem("redirectAfterLogin", currentPath);
     localStorage.setItem('previousTab', router.pathname);
     router.push(
       `/view-courses/course-order/${
@@ -332,7 +334,21 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
     <Script 
       src="https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/v2.0.0/easebuzz-checkout-v2.min.js" 
     />
-    <Toaster position="top-right" reverseOrder={false} />
+    {/* <Toaster position="top-right" reverseOrder={false} /> */}
+    <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
     <div
       className={`card border-0 mb-3 ${
         titleName != "detail"
@@ -345,7 +361,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
         <img
           style={{ borderRadius: "10px" }}
           src={value.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
-          className={` ${(titleName == "Bookstore" || titleName == "e-BOOK") ? 'book_course_img' : 'course_img flex-fill'}`}
+          className={` ${(titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books") ? 'book_course_img' : 'course_img flex-fill'}`}
           alt="..."
         />
         </div>
@@ -407,15 +423,16 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
                     <span className="remaining_date">{`Remaining ${remainingDays(value.expiry_date)} Days`}</span>
                   </p>
                 }
-                {titleId != "PAID COURSES" && (
+                {/* {titleId != "PAID COURSES"  && (
                   <p className="m-0 freeStripe">Free</p>
-                )}
+                )} */}
+                {value.mrp == 0 && <p className="m-0 freeStripe">Free</p>}
               </div>
             </div>
             <hr className="dotted-divider" />
           </>
         )}
-        {console.log(value)}
+        {/* {console.log(value)} */}
         {value.is_purchased != 0 ? <>
         {!router.pathname.startsWith("/private/myProfile/detail") && ((!router.pathname.startsWith("/private/myProfile/detail") && value.mrp != 0) || titleName != "detail") ? (
           <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">

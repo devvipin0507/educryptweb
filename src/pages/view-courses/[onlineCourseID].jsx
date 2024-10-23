@@ -35,6 +35,8 @@ const OnlineCourse = () => {
   // localStorage.setItem()
 
   useEffect(() => {
+    const currentPath = Router.asPath;
+    localStorage.setItem("redirectdetails", currentPath);
     setShowError(false)
     if (onlineCourseID) {
       // window.scrollTo(0, 0);
@@ -87,7 +89,7 @@ const OnlineCourse = () => {
       <div className="container-fluid p-0 mt-5">
         <div 
           className={
-            titleName && (titleName == "Bookstore" || titleName == "e-BOOK")
+            titleName && (titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books")
               ? `bookStoreContainer row`
               : `course_Container row`
           }
@@ -118,7 +120,7 @@ const OnlineCourse = () => {
             <div 
               className={`col-sm-12 col-md-8
                 ${
-                  titleName && (titleName == "Bookstore" || titleName == "e-BOOK")
+                  titleName && (titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books")
                     ? `col-lg-6`
                     : `col-lg-8`
                 }`}
@@ -133,14 +135,14 @@ const OnlineCourse = () => {
           </div>
           <div 
             className={`col-sm-12 col-md-4 d-none d-sm-none d-md-none d-lg-block course_imageContainer  ${
-              titleName && (titleName == "Bookstore" || titleName == "e-BOOK")
+              titleName && (titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books")
                 ? `col-lg-6`
                 : `col-lg-4`
             }`}
           >
             <div className="imgContainer">
             {titleName &&
-              (titleName == "Bookstore" || titleName == "e-BOOK") ? (
+              (titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books") ? (
                 <img
                   className="bookImg pb-4"
                   src="/assets/images/bookStoreRightImg.svg"

@@ -61,7 +61,21 @@ const LogoutModal = (props) => {
             centered
             className="logOutModal"
         >
-        <Toaster position="top-right" reverseOrder={false} />
+        {/* <Toaster position="top-right" reverseOrder={false} /> */}
+        <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
             <h4 className='LogOutTitle'>Log Out</h4>
             <p className='logout_text'>Are you sure you want to Log out <br/> from this account?</p>
             <div className="gap-2 d-flex align-items-center">

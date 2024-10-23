@@ -66,7 +66,8 @@ body {
   --bs-secondary-bg-subtle: #e2e3e5;
   --bs-success-bg-subtle: #d1e7dd;
   --bs-border-width: 0px;
-  --btnDeafult: #ff7246;
+  /* --btnDeafult: #ff7246; */
+  --btnDeafult: #212529;
 }
 
 /* ======================== Button1 CSS Starts ===================================*/
@@ -77,7 +78,7 @@ body {
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
   width: auto !important;
-  padding: 7px 34px !important;
+  padding: 7px 25px !important;
   border: 1px solid var(--btnDeafult) !important;
   white-space: nowrap !important;
 }
@@ -188,6 +189,10 @@ nav #eduNav {
   width: 150px !important;
 }
 
+.logoImg2 {
+  width: 80px !important;
+}
+
 .userBtn {
   color: #fff !important;
   background: var(--btnDeafult) !important;
@@ -274,7 +279,7 @@ input.searchBar {
   border-radius: 10px !important;
 }
 .profile_cont .dropdown-toggle::after {
-  color: #ff9153 !important;
+  color: var(--btnDeafult) !important;
 }
 h4.LogOutTitle {
   text-align: center !important;
@@ -783,8 +788,10 @@ select::placeholder {
   width: 22px !important;
   height: 4px !important;
   border-radius: 25px !important;
-  border: 2px solid rgb(255, 112, 3) !important;
-  background-color: rgb(255, 112, 3) !important;
+  /* border: 2px solid rgb(255, 112, 3) !important;
+  background-color: rgb(255, 112, 3) !important; */
+  border: 2px solid #212529 !important;
+  background-color: #212529 !important;
 }
 .carousel-indicators .active {
   /* margin-top: 8px  !important; */
@@ -1099,14 +1106,16 @@ h1 {
 } */
 .freeTC_container .nav-tabs .nav-item.show .nav-link,
 .freeTC_container .nav-tabs .nav-link.active {
-  color: rgb(255, 112, 3) !important;
+  /* color: rgb(255, 112, 3) !important; */
+  color: #212529 !important;
   background-color: var(--bs-nav-tabs-link-active-bg) !important;
   border-color: var(--bs-nav-tabs-link-active-border-color) !important;
   font-weight: 800 !important;
 
   font-size: 24px !important;
   border: none !important;
-  border-bottom: 3px solid rgb(255, 112, 3) !important;
+  /* border-bottom: 3px solid rgb(255, 112, 3) !important; */
+  border-bottom: 3px solid #212529 !important;
   outline: none !important;
 }
 
@@ -1127,9 +1136,11 @@ h1 {
 }
 
 .freeTC_container .nav-link.active:hover {
-  color: rgb(255, 112, 3) !important;
+  /* color: rgb(255, 112, 3) !important; */
+  color: #212529 !important;
   border: none !important;
-  border-bottom: 3px solid rgb(255, 112, 3) !important;
+  /* border-bottom: 3px solid rgb(255, 112, 3) !important; */
+  border-bottom: 3px solid #212529 !important;
   font-weight: 800 !important;
   font-size: 24px !important;
 }
@@ -2011,7 +2022,8 @@ p.detailStripe {
 }
 
 .breadcrumb-item.active {
-  color: rgb(255, 112, 3) !important;
+  /* color: rgb(255, 112, 3) !important; */
+  color: var(--btnDeafult) !important;
   font-style: italic !important;
   font-size: 12px !important;
   font-weight: 600 !important;
@@ -2097,6 +2109,9 @@ p.detailStripe {
 }
 
 /* ====================== detail right card starts ======================== */
+
+.MainCourseCardAB {position: absolute !important;}
+.MainCourseCardFX {position: fixed !important;}
 
 .MainCourseCard {
   position: absolute !important;
@@ -2526,10 +2541,17 @@ p.detailStripe {
 }
 
 .sub_name {
+  font-size: 16px !important;
   font-weight: 700 !important;
-  color: #363a3d !important;
-
-  font-size: 18px !important;
+  color: #2d2d2d !important;
+  text-transform: capitalize !important;
+  -webkit-line-clamp: 2 !important;
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  -webkit-box-orient: vertical !important;
+  height: 45px !important;
+  line-height: 24px !important;
+  padding: 3px 5px !important;
 }
 
 .sub_topics {
@@ -2780,8 +2802,12 @@ p.detailStripe {
   color: #282828 !important;
 
   font-weight: 700 !important;
-  font-size: 20px !important;
+  font-size: 16px !important;
 }
+
+.coursePrice .Cost_Price svg{
+  font-size: 16px !important;
+} 
 
 .course_card .Card-OffPrice {
   position: relative !important;

@@ -177,7 +177,21 @@ const GetInTouch = () => {
 
   return (
     <>
-    <Toaster position="top-right" reverseOrder={false} />
+    {/* <Toaster position="top-right" reverseOrder={false} /> */}
+    <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
     <div className='container px-0 px-md-0 px-lg-5 mb-3 git_container'>
         <div className='row px-5 px-sm-0'>
             <div className='col-md-12 col-lg-6 col-sm-12 mb-5 mb-lg-0'>

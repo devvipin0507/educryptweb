@@ -64,7 +64,21 @@ const Notification = () => {
   };
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       {/* <div>Notification</div> */}
       <section className="container-fluid mt-3">
         <div className="row">

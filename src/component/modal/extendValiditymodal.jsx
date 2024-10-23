@@ -41,10 +41,11 @@ const ExtendValiditymodal = (props) => {
           {priceList?.length > 0 && priceList.map((item, index) => {
           return <>
           <li
+             key={index}
             className={`mb-3 p-3 rounded card coupon_listCard ${
               isChecked.id == item.id ? "active" : ""
             }`}
-            onClick={() => handleOptionChange(item)} style={{cursor: 'pointer'}} key={index}>
+            onClick={() => handleOptionChange(item)} style={{cursor: 'pointer'}}>
             <p className="m-0 d-flex justify-content-between align-items-center">{`${item.price}/- For ${item.validity} days`} 
             <input
               className="couponRadio form-check-input"

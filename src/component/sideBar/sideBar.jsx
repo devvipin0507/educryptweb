@@ -21,7 +21,7 @@ const SideBar = () => {
   };
 
   const dispatch = useDispatch();
-  // console.log(router.asPath)
+  // console.log('tab', tab)
   // console.log('statusTab', router.asPath.substring((router.asPath.lastIndexOf('detail/')) +7, router.asPath.lastIndexOf(':')))
 
   useEffect(() => {
@@ -32,9 +32,9 @@ const SideBar = () => {
     if (tab) {
       setStatusTab(tab);
     } else {
-      const nameTab = router.asPath.substring(
-        router.asPath.lastIndexOf("detail/") + 7,
-        router.asPath.indexOf(":")
+      const nameTab = localStorage.getItem('redirectdetails').substring(
+        localStorage.getItem('redirectdetails').lastIndexOf("myProfile/") + 10,
+        localStorage.getItem('redirectdetails').length
       );
       // console.log("nameTab", nameTab);
       if (
@@ -58,18 +58,18 @@ const SideBar = () => {
       const response_content_service = await getCourse_Catergory_Service(
         formData
       );
-      // console.log(
-      //   "bannerResponse1",
-      //   decrypt(response_content_service.data, token)
-      // );
+      console.log(
+        "bannerResponse1",
+        decrypt(response_content_service.data, token)
+      );
       const content_service_Data = decrypt(
         response_content_service.data,
         token
       );
       console.log("content_service_Data", content_service_Data);
-      if (content_service_Data.status) {
-        dispatch(all_content(content_service_Data.data));
-        setSideBarTabs(content_service_Data.data.bottom_bar_web);
+      if (content_service_Data?.status) {
+        dispatch(all_content(content_service_Data?.data));
+        setSideBarTabs(content_service_Data?.data?.bottom_bar_web);
       }
     } catch (error) {
       console.log("error found: ", error);
@@ -101,7 +101,7 @@ const SideBar = () => {
                 &times;
               </button>
             </div>
-            {sideBarTabs &&
+            {sideBarTabs?.length > 0 &&
               sideBarTabs.map((value, index) => {
                 if (value.title == "Feeds") {
                   return (
@@ -167,9 +167,9 @@ const SideBar = () => {
               })}
             <Nav.Item
               // onClick={() => setStatusTab("Notification")}
-              onClick={() => router.push("/private/myProfile/Notification")}
+              onClick={() => router.push("/private/myProfile/notification")}
               className={`m-0 ${
-                statusTab && (statusTab == "Notification" ? "active" : "")
+                statusTab && (statusTab == "notification" ? "active" : "")
               }`}
             >
               <Nav.Link className="m-0">
@@ -182,9 +182,9 @@ const SideBar = () => {
             </div>
             <Nav.Item
               // onClick={() => setStatusTab("MyCourse")}
-              onClick={() => router.push("/private/myProfile/MyCourse")}
+              onClick={() => router.push("/private/myProfile/myCourse")}
               className={`m-0 ${
-                statusTab && (statusTab == "MyCourse" ? "active" : "")
+                statusTab && (statusTab == "myCourse" ? "active" : "")
               }`}
             >
               <Nav.Link className="m-0">
@@ -193,9 +193,9 @@ const SideBar = () => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item
-              onClick={() => router.push("/private/myProfile/Purchase_History")}
+              onClick={() => router.push("/private/myProfile/purchase-history")}
               className={`m-0 ${
-                statusTab && (statusTab == "Purchase History" ? "active" : "")
+                statusTab && (statusTab == "purchase-history" ? "active" : "")
               }`}
             >
               <Nav.Link className="m-0">

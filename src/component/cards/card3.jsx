@@ -20,6 +20,9 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
   };
 
   const handleBuy = () => {
+    const currentPath = router.asPath;
+    localStorage.setItem("redirectAfterLogin", currentPath);
+    
     localStorage.setItem('previousTab', router.pathname);
     router.push(
       `/view-courses/course-order/${
@@ -35,7 +38,7 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
         <img
           style={{ borderRadius: "10px" }}
           src={value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
-          className={`${(titleName == "Bookstore" || titleName == "e-BOOK") ? 'book_course_img' : 'course_img'}`}
+          className={`${(titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books") ? 'book_course_img' : 'course_img'}`}
           alt="..."
         />
         </div>

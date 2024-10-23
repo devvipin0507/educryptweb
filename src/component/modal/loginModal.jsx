@@ -35,7 +35,7 @@ const LoginModal = (props) => {
   const [withEmail, setWithEmail] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [signUpWithOTP, setSignUpWithOTP] = useState(false);
-  const initialTime = 60; // 3 minutes in seconds
+  const initialTime = 60; // 1 minutes in seconds
   const [timeRemaining, setTimeRemaining] = useState(initialTime);
   const [deviceToken, setDeviceToken] = useState(0)
   const [jwt, setJwt] = useState('')
@@ -243,8 +243,8 @@ const LoginModal = (props) => {
           location.reload();
         }
         else {
-          // window.location.href = '/private/myProfile/MyCourse';
-          router.push('/private/myProfile/MyCourse')
+          // window.location.href = '/private/myProfile/myCourse';
+          router.push('/private/myProfile/myCourse')
         }
       }, 1000)
       props.onHide();
@@ -358,7 +358,7 @@ const LoginModal = (props) => {
             location.reload();
           }
           else {
-            router.push('/private/myProfile/MyCourse')
+            router.push('/private/myProfile/myCourse')
           }
         }, 1000)
         props.onHide();
@@ -873,7 +873,21 @@ const LoginModal = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-      <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/>
+      {/* <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
         {!forgetPassword ? (
           <div className="row">
             {!isRegisterPage ? (

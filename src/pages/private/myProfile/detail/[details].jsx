@@ -26,6 +26,7 @@ const Details = ({ value }) => {
   const [key, setKey] = useState(null);
   const [onlineCourseAry, setOnlineCourseAry] = useState('');
   const [showError, setShowError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [relateCourseAry, setRelateCourseAry] = useState([]);
   const [pdfData, setPdfData] = useState([]);
   const [courseDetail, setCourseDetail] = useState([]);
@@ -40,9 +41,37 @@ const Details = ({ value }) => {
   const router = useRouter();
   const { details } = router.query;
   const reviewData = useSelector((state) => state.allCategory?.review)
+  const versionData = useSelector((state) => state.allCategory?.versionData);
 
   let courseCombo = details?.slice(details?.indexOf("&") + 1, details?.indexOf("parent:"))
   let parentId = details?.slice(details?.indexOf("parent:") + 7, details?.length)
+
+  const [classSet, setClass] = useState("");
+  // const [courseCombo, setCourseCombo] = useState("");
+
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    setScrollY(currentScrollY);
+    // console.log("key=========================", key);
+
+    if (
+      currentScrollY >= 300 &&
+      key == tiles?.find((item) => (item.type = "overview"))?.tile_name
+    ) {
+      setClass(true);
+    } else {
+      setClass(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [key]);
 
   useEffect(() => {
     if (details) {
@@ -109,7 +138,7 @@ const Details = ({ value }) => {
         setShowError(true)
       }
     } catch (error) {
-      setShowError(true)
+      setServerError(true)
       console.log("error found: ", error)
     }
   };
@@ -122,7 +151,30 @@ const Details = ({ value }) => {
       resetLayerRef.current.click();
     }
   };
-  console.log('tiles', tiles)
+
+  const handleBackdetails =()=>{
+    const back = localStorage.getItem('redirectdetails')
+    if(back){
+      router.push(back)
+    }else{
+      router.back()
+    }
+  }
+
+  const handleBuyNow = () => {
+    const currentPath = router.asPath;
+    localStorage.setItem("redirectAfterLogin", currentPath);
+    router.push(
+      `/view-courses/course-order/${
+        titleName +
+        ":" +
+        onlineCourseAry.id +
+        "&" +
+        courseCombo
+      }`
+    )
+  }
+  // console.log('tiles', tiles)
 
   const OverView = tiles.find(item => item.type == "overview")
   return (
@@ -141,7 +193,7 @@ const Details = ({ value }) => {
                     <ol className="m-0 breadcrumb cursor">
                       <li
                         className="breadcrumb-item"
-                        onClick={() => router.back()}
+                        onClick={handleBackdetails}
                       >
                         {titleName ? (titleName == "MyCourse" ? 'My Courses' : titleName) : 
                           `My Courses`}
@@ -205,25 +257,17 @@ const Details = ({ value }) => {
                   {onlineCourseAry.mrp != 0 && (
                     <div className="gap-2 flex-wrap flex-sm-nowrap d-flex align-items-center button_price">
                       <div className="gap-2 share d-flex align-items-center">
+                        {versionData?.share_content == 1 &&
                         <button className="button1_share">
                           <FaShare />
                         </button>
+                        }
                         {/* {console.log(onlineCourseAry)} */}
                         {onlineCourseAry.is_purchased == 0 && (
                           <p className="m-0 detailBbuyNow">
                             <Button1
                               value={"Buy Now"}
-                              handleClick={() =>
-                                router.push(
-                                  `/view-courses/course-order/${
-                                    titleName +
-                                    ":" +
-                                    onlineCourseAry.id +
-                                    "&" +
-                                    courseCombo
-                                  }`
-                                )
-                              }
+                              handleClick={handleBuyNow}
                             />
                           </p>
                         )}
@@ -256,7 +300,11 @@ const Details = ({ value }) => {
                       )}
                     </div>
                   )}
-                  <div className="d-none d-md-none d-lg-block MainCourseCard">
+                   <div
+                      className={`d-none d-md-none d-lg-block MainCourseCard ${
+                        classSet ? "MainCourseCardAB" : "MainCourseCardFX"
+                      }`}
+                    >
                     <Card4
                       value={onlineCourseAry}
                       titleName={titleName ? titleName : "detail"}
@@ -367,6 +415,7 @@ const Details = ({ value }) => {
                               CourseID={id}
                               tabName={item.tile_name}
                               keyValue={key}
+                              onlineCourseAry = {onlineCourseAry}
                               // propsValue={isValidData(pdfData) && pdfData}
                             />
                           }
@@ -400,10 +449,19 @@ const Details = ({ value }) => {
               </div>
             </>
             :
-            <>
-              {/* <div className="spinner-border" role="status" /> */}
-              <LoaderAfterLogin />
-            </>
+            serverError ? 
+              <section className="detailTopContainer">
+                <div className="mb-4 container-fluid p-0">
+                  <div className="d-flex justify-content-center align-item-center">
+                    <h1 className="text-danger">Internal Server Error ....</h1>
+                  </div>
+                </div>
+              </section>
+              :
+              <>
+                {/* <div className="spinner-border" role="status" /> */}
+                <LoaderAfterLogin />
+              </>
           }
           </main>
       </div>

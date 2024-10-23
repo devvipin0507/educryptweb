@@ -32,6 +32,8 @@ const Index = ({ initialTab }) => {
   }, [router.query.tab]); // Dependency array with router.query.tab
 
   useEffect(() => {
+    const currentPath = router.asPath;
+    localStorage.setItem("redirectdetails", currentPath);
     const isLoggedIn = userLoggedIn()
     if(router.pathname.startsWith("/private") && !isLoggedIn){
       router.push('/')
@@ -56,11 +58,11 @@ const Index = ({ initialTab }) => {
         return <Testimonial />;
       case "Bookstore":
         return <Bookstore />;
-      case "Notification":
+      case "notification":
         return <Notification />;
-      case "MyCourse":
+      case "myCourse":
         return <MyCourse />;
-      case "Purchase_History":
+      case "purchase-history":
         return <PurchaseHistory />;
       case "Inquiry":
         return <Inquiry />;
@@ -95,9 +97,9 @@ export const getStaticPaths = async () => {
     { params: { tab: "Current_affairs" } },
     { params: { tab: "Testimonial" } },
     { params: { tab: "Bookstore" } },
-    { params: { tab: "Notification" } },
-    { params: { tab: "MyCourse" } },
-    { params: { tab: "Purchase_History" } },
+    { params: { tab: "notification" } },
+    { params: { tab: "myCourse" } },
+    { params: { tab: "purchase-history" } },
     { params: { tab: "Inquiry" } },
     { params: { tab: "profile" } },
   ];

@@ -55,7 +55,21 @@ const BlogDetail = ({ id, handleShow }) => {
   };
   return (
     <div>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       <section className="container-fluid">
         <div className="row">
           <div className="col-md-12 p-0">

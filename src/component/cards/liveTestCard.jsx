@@ -2,16 +2,37 @@ import React, { useEffect, useState } from 'react'
 import Button1 from '../buttons/button1/button1';
 import { FaShare } from "react-icons/fa";
 import { format } from "date-fns";
+import { useSelector } from 'react-redux';
+import { Router } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const LiveTestCard = ({testData, value}) => {
   // const targetTimestamp = 1727270640;
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [BaseURL, setBaseURL] = useState('');
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight
   });
 
+  const versionData = useSelector((state) => state.allCategory?.versionData);
+  const router = useRouter()
+
+  useEffect(() => {
+    let domain = localStorage.getItem('domain')
+    if(process.env.NEXT_PUBLIC_TEST_URL) {
+      setBaseURL(process.env.NEXT_PUBLIC_TEST_URL)
+    }
+    else {
+      setBaseURL(domain.split(',')[0])
+    }
+  }, [])
+
+  console.log('BaseURL', BaseURL)
+
+  // let domain = localStorage.getItem('domain')
+  // const BaseURL = process.env.NEXT_PUBLIC_TEST_URL ? process.env.NEXT_PUBLIC_TEST_URL : domain.split(',')[0]
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
@@ -89,14 +110,16 @@ const LiveTestCard = ({testData, value}) => {
       lang: val?.lang_used ? val?.lang_used : 1,
       state: val?.state ? val?.state : 0,
       test_type: val?.test_type,
-      first_attempt: firstAttempt
+      first_attempt: firstAttempt,
+      appid: localStorage.getItem('appId')
     }
   
     console.log("formData",formData)
     const encryptData = btoa(JSON.stringify(formData))
     console.log('encryptData',encryptData)
     // const encryptData = encrypt(JSON.stringify(formData));
-    window.open(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/learn_result_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
+    // Router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/learn_result_window?data=${encryptData}`)
+    window.open(`${BaseURL}/web/LiveTest/learn_result_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
   }
 
   const handleTakeTest = (val) => {
@@ -122,14 +145,17 @@ const LiveTestCard = ({testData, value}) => {
       lang: val?.lang_used ? val?.lang_used : 1,
       state: val?.state ? val?.state : 0,
       test_type: val?.test_type,
-      first_attempt: firstAttempt
+      first_attempt: firstAttempt,
+      appid: localStorage.getItem('appId')
     }
 
     console.log("formData",formData)
     const encryptData = btoa(JSON.stringify(formData))
     console.log('encryptData',encryptData)
-
-    window.open(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
+    console.log("https:}",`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
+    
+    // router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
+    window.open(`${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
   }
 
   const handleRankTest = (val) => {
@@ -141,13 +167,14 @@ const LiveTestCard = ({testData, value}) => {
       lang: val?.lang_used ? val?.lang_used : 1,
       state: val?.state ? val?.state : 0,
       test_type: val?.test_type,
-      first_attempt: 1
+      first_attempt: 1,
+      appid: localStorage.getItem('appId')
     }
     console.log("formData",formData)
     const encryptData = btoa(JSON.stringify(formData))
     console.log('encryptData',encryptData)
 
-    window.open(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/result_window?data=${encryptData}`, 'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
+    window.open(`${BaseURL}/web/LiveTest/result_window?data=${encryptData}`, 'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
   }
 
   return (
@@ -208,9 +235,11 @@ const LiveTestCard = ({testData, value}) => {
               data={0}
             />
             }
-            <button className="btn_detailShare">
-              <FaShare />
-            </button>
+            {versionData?.share_content == 1 &&
+              <button className="btn_detailShare">
+                <FaShare />
+              </button>
+            }
             {/* <Button2 value="Extend Validity" handleClick={handleExplore} /> */}
           </div>
       </div>

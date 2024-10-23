@@ -134,7 +134,7 @@ const CourseOrderID = () => {
   }, [])
 
   useEffect(() => {
-    if(titleName == "Bookstore"){
+    if(titleName == "Bookstore" || titleName == "Books"){
       setIsAddressShow(true)
     }
   }, [titleName])
@@ -401,6 +401,7 @@ const CourseOrderID = () => {
             token
           );
           let key = response_getPayGateway_data?.data?.easebuzz?.mid;
+          // console.log('formDataPayment', formDataPayment)
           console.log("response_getFPayment_data", response_getFPayment_data);
           if (response_getFPayment_data.status) {
             
@@ -453,6 +454,7 @@ const CourseOrderID = () => {
               }
             }
             else if(response_getPayGateway_data?.data?.easebuzz?.status == 1){
+              console.log('keyyyy',response_getFPayment_data?.data?.txnToken, key)
               paymentGateWay(response_getFPayment_data?.data?.txnToken, key);
             }
           } else {
@@ -560,17 +562,18 @@ const CourseOrderID = () => {
       if (response_ConfirmPayment_data.status) {
         // showSuccessToast(response_ConfirmPayment_data.message);
         setThankYouModalShow(true);
-        if (titleName == "Bookstore" || titleName == "e-Book") {
+        if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
           router.push("/private/myProfile/ourCourse");
         } else {
           router.push("/private/myProfile/MyCourse");
         }
       } else {
         if(response_ConfirmPayment_data.message != "The transaction_status field must be one of: 1,2."){
-          showErrorToast(response_ConfirmPayment_data.message);
+          // showErrorToast(response_ConfirmPayment_data.message);
+          showErrorToast("Transaction Failed, Your payment couldn’t be processed.")
         }
         else{
-          showErrorToast("Payment Cancelled!")
+          showErrorToast("Transaction Cancelled, Your payment was canceled. Please try again if needed.")
         }
       }
     } catch (error) {
@@ -976,11 +979,44 @@ const CourseOrderID = () => {
       country: "+91-"
     })
   }
+  
+  const handleBack =()=>{
+    const getbackpath = localStorage.getItem('redirectAfterLogin')
+    console.log("getbackpath",getbackpath)
+    if(getbackpath){
+      router.push(getbackpath)
+    }else{
+      router.back()
+    }
+  }
+
+  const handleBackdetails =()=>{
+    const back = localStorage.getItem('redirectdetails')
+    if(back){
+      router.push(back)
+    }else{
+      router.back()
+    }
+  }
 
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              opacity:'1'
+            },
+          },
+          error: {
+            style: {
+             opacity:'1'
+            },
+          },
+        }}
+      />
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
@@ -1023,12 +1059,12 @@ const CourseOrderID = () => {
                   <i className="bi bi-chevron-right"></i>
                 </li>
                 }
-                <li className="breadcrumb-item" onClick={() => router.back()}>
+                <li className="breadcrumb-item" onClick={handleBackdetails}>
                   {/* {console.log(titleName)} */}
                   {`${titleName}`}
                   <i className="bi bi-chevron-right"></i>
                 </li>
-                <li className="breadcrumb-item" onClick={() => router.back()}>
+                <li className="breadcrumb-item" onClick={handleBack}>
                   {`Details`}
                   <i className="bi bi-chevron-right"></i>
                 </li>
@@ -1549,7 +1585,7 @@ const CourseOrderID = () => {
                         </td>
                       )}
                     </tr>
-                    {(titleName == "Bookstore" && courseData?.delivery_charge) && 
+                    {((titleName == "Bookstore" || titleName == "Books") && courseData?.delivery_charge) && 
                     <tr>
                       <td>
                         <p className="m-0 payTitle">Delivery Charge</p>
@@ -1644,7 +1680,7 @@ const CourseOrderID = () => {
                     )
                   }
                   disable={isProcessing}
-                  handleClick={titleName == "Bookstore" ? handleBookPayment : handlePayment}
+                  handleClick={(titleName == "Bookstore" || titleName == "Books") ? handleBookPayment : handlePayment}
                 />
               </div>
             </div>

@@ -18,16 +18,19 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
     console.log('helll')
     router.push(
       `/view-courses/details/${
-        titleName + ":" + value.id + "&" + value.combo_course_ids + 'parent:'
+        titleName?.split(" ").join("_") + ":" + value.id + "&" + value.combo_course_ids + 'parent:'
       }`
     );
   };
 
   const handleBuy = () => {
+    const currentPath = router.asPath;
+    console.log("currentPath",currentPath)
+    localStorage.setItem("redirectAfterLogin", currentPath);
     localStorage.setItem('previousTab', router.pathname);
     router.push(
       `/view-courses/course-order/${
-        titleName + ":" + value.id + "&" + value.combo_course_ids
+        titleName?.split(" ").join("_") + ":" + value.id + "&" + value.combo_course_ids
       }`
     );
   };
@@ -41,7 +44,7 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
     <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0">
       <div className="card border-0 shadow b-radius course_card m-0">
         {value.mrp == 0 && <p className="m-0 course-badge">FREE</p>}
-        {(titleName == "Bookstore" || titleName == "e-BOOK" ? (
+        {(titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books" ? (
             <div className="w-100 imgBorder d-flex align-items-center justify-content-center">
             <img
               style={{ borderRadius: "10px" }}
@@ -113,7 +116,7 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
               </p>
             </div>
           }
-          {titleName == "Bookstore" ? 
+          {(titleName == "Bookstore" || titleName == "Books") ? 
             <div className="courseBtn gap-2 d-flex">
             <Button2 value="Explore" handleClick={() => 
               router.pathname.startsWith('/private') ? handleDetail(value, titleName, keyValue) : handleExplore()} />
@@ -128,8 +131,8 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
               </div>
             ) : (
               <div className="position-relative">
-                  <div className="gap-2 d-flex flex-wrap flex-md-wrap flex-lg-nowrap justify-content-between onlineCourseButtons">
-                  {titleName == "e-BOOK" || titleName == "Bookstore" ? (
+                  <div className="gap-2 d-flex flex-lg-nowrap justify-content-between onlineCourseButtons">
+                  {(titleName == "e-BOOK" || titleName == "Bookstore" || titleName == "Books") ? (
                     <Button2 value="Explore" handleClick={() => 
                       router.pathname.startsWith('/private') ? handleDetail(value, titleName, keyValue) : handleExplore()} />
                   ) : (
