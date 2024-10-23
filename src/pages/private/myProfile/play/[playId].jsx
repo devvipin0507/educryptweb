@@ -2,15 +2,16 @@ import dynamic from 'next/dynamic';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const VideoPlayerDRM = dynamic(() => import('@/component/player'), { ssr: false });
+// Import VideoPlayerDRM without disabling SSR
+const VideoPlayerDRM = dynamic(() => import('@/component/player'));
 
-const PlayId = () => {
+const PlayId = ({ videoType, vdc_id, file_url, title }) => {
     const [windowSize, setWindowSize] = useState({
         width: 0,
         height: 0,
     });
-    const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
+
     const router = useRouter();
 
     useEffect(() => {
@@ -35,28 +36,15 @@ const PlayId = () => {
     }, []);
 
     useEffect(() => {
-        // Check if router is ready and has query params
-        if (router.isReady) {
-            const { video_type, vdc_id, file_url, title } = router.query;
-
-            // Check if essential params are available
-            if (!video_type || !vdc_id || !file_url || !title) {
-                setHasError(true); // Set error state if parameters are missing
-            }
-
-            setIsLoading(false); // Set loading to false once router is ready
+        // Check for errors if videoType is not provided
+        if (!videoType) {
+            setHasError(true);
         }
-    }, [router.isReady, router.query]);
+    }, [videoType]);
 
     const renderPlayer = () => {
-        const videoType = parseInt(router.query.video_type, 10);
-
         if (hasError) {
             return <p>No Data found! Unable to locate data, seeking alternative methods for retrieval.</p>;
-        }
-
-        if (isLoading) {
-            return <p>Loading...</p>;
         }
 
         switch (videoType) {
@@ -64,10 +52,10 @@ const PlayId = () => {
             case 8:
                 return (
                     <VideoPlayerDRM
-                        vdc_id={router.query.vdc_id}
-                        NonDRMVideourl={router.query.file_url}
+                        vdc_id={vdc_id}
+                        NonDRMVideourl={file_url}
                         item={null}
-                        title={router.query.title}
+                        title={title}
                         videoMetaData={null}
                     />
                 );
@@ -78,7 +66,7 @@ const PlayId = () => {
                         id="youtubePlayer"
                         width={windowSize.width}
                         height={windowSize.height - 10}
-                        src={`https://www.youtube.com/embed/${router.query.file_url}`}
+                        src={`https://www.youtube.com/embed/${file_url}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -90,6 +78,32 @@ const PlayId = () => {
     };
 
     return <>{renderPlayer()}</>;
+};
+
+// Get parameters from the request and pass them as props
+export const getServerSideProps = async (context) => {
+    const { video_type, vdc_id, file_url, title } = context.query;
+
+    // Ensure all required parameters are present
+    if (!video_type || !vdc_id || !file_url || !title) {
+        return {
+            props: {
+                videoType: null,
+                vdc_id: null,
+                file_url: null,
+                title: null,
+            },
+        };
+    }
+
+    return {
+        props: {
+            videoType: parseInt(video_type, 10),
+            vdc_id,
+            file_url,
+            title,
+        },
+    };
 };
 
 export default PlayId;
