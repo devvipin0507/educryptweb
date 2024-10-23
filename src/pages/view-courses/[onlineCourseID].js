@@ -1,3 +1,4 @@
+"use client"
 import dynamic from 'next/dynamic';
 import React, { useState, useEffect, useRef } from "react"; 
 import Header from "../../component/header/header";
@@ -20,7 +21,8 @@ const OnlineCourse = dynamic(() => {
   return Promise.resolve(OriginalOnlineCourse);
 }, { ssr: false });
 
-const OriginalOnlineCourse = () => {
+const OriginalOnlineCourse = ({params}) => {
+  console.log("params",params)
   const [showError, setShowError] = useState(false);
   const [onlineCourse, setOnlineCourse] = useState([]);
   const [id, setId] = useState('');
