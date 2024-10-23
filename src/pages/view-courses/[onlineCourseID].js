@@ -175,7 +175,23 @@ const OnlineCourse = () => {
   );
 };
 
-export default OnlineCourse;
+export const getStaticPaths = async () => {
+  const paths = [
+    { params: { onlineCourseID: "Live Course:6244" } },
+  ];
 
-const course_detail =
-  "In this course, Talvir Singh will cover the syllabus of Communication . All the topics will be discussed in detail which will be helpful for all aspirants preparing for the NTA UGC-NET exam. Learners at any stage will be benefited from the course. The course will be conducted in Hindi and the notes will be provided in Hindi. In this course, Talvir Singh will cover the syllabus of Communication . All the topics will be discussed in detail which will be helpful for all aspirants preparing for the NTA UGC-NET exam. Learners at any stage will be benefited from the course. The course will be conducted in Hindi and the notes will be provided in Hindi.In this course, Talvir Singh will cover the syllabus of Communication . All the topics will be discussed in detail which will be helpful for all aspirants preparing for the NTA UGC-NET exam. Learners at any stage will be benefited from the course. The course will be conducted in Hindi and the notes will be provided in Hindi..";
+  return { paths, fallback: false };
+};
+
+
+export const getStaticProps = async ({ params }) => {
+  const { onlineCourseID } = params;
+
+  return {
+    props: {
+      initialTab: onlineCourseID || null,
+    },
+  };
+};
+
+export default OnlineCourse;
