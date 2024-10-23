@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 const VideoPlayerDRM = dynamic(() => import('@/component/player'), { ssr: false });
