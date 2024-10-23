@@ -119,7 +119,7 @@ const Footer = () => {
               <ul className="list-unstyled">
                 {footerData && footerData.map((item, index) => {
                   return <li className="mb-2" key={index}>
-                    <Link className="text-decoration-none" href={`/view-courses/${item.name + ':' + item.id}`}>
+                    <Link key={item.id} className="text-decoration-none" href={`/view-courses/${encodeURIComponent(item.name)}:${item.id}`}>
                       {item.name}
                     </Link>
                   </li>
