@@ -7,11 +7,9 @@ const PlayId = () => {
         width: 0,
         height: 0,
     });
-    const [isLoading, setIsLoading] = useState(true); // Loading state
     const router = useRouter();
 
     useEffect(() => {
-        // Ensure this code runs only on the client side
         if (typeof window !== 'undefined') {
             setWindowSize({
                 width: window.innerWidth,
@@ -26,27 +24,28 @@ const PlayId = () => {
             };
 
             window.addEventListener('resize', handleResize);
-
-            // Clean up the event listener on component unmount
             return () => {
                 window.removeEventListener('resize', handleResize);
             };
         }
     }, []);
 
-    useEffect(() => {
-        // Check if router is ready
-        if (router.isReady) {
-            // Ensure to set loading to false when the router is ready
-            setIsLoading(false);
-        }
-    }, [router.isReady]);
-
     const renderPlayer = () => {
-        const videoType = parseInt(router?.query?.video_type);
+        if (!router.isReady) {
+            return <p>Loading...</p>;
+        }
 
-        if (isLoading) {
-            return <p>Loading...</p>; // Display loading state
+        const videoType = parseInt(router.query.video_type);
+        const vdcId = router.query.vdc_id;
+        const fileUrl = router.query.file_url;
+        const title = router.query.title;
+
+        // Debugging logs
+        console.log('Router query:', router.query);
+        console.log('Parsed values:', { videoType, vdcId, fileUrl, title });
+
+        if (!vdcId || !fileUrl) {
+            return <p>No Data found! Unable to locate data, seeking alternative methods for retrieval.</p>;
         }
 
         switch (videoType) {
@@ -54,10 +53,10 @@ const PlayId = () => {
             case 8:
                 return (
                     <VideoPlayerDRM
-                        vdc_id={router?.query?.vdc_id}
-                        NonDRMVideourl={router?.query?.file_url}
+                        vdc_id={vdcId}
+                        NonDRMVideourl={fileUrl}
                         item={null}
-                        title={router?.query?.title}
+                        title={title}
                         videoMetaData={null}
                     />
                 );
@@ -68,7 +67,7 @@ const PlayId = () => {
                         id="youtubePlayer"
                         width={windowSize.width}
                         height={windowSize.height - 10}
-                        src={`https://www.youtube.com/embed/${router?.query?.file_url}`}
+                        src={`https://www.youtube.com/embed/${fileUrl}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -79,11 +78,7 @@ const PlayId = () => {
         }
     };
 
-    return (
-        <>
-            {renderPlayer()}
-        </>
-    );
+    return <>{renderPlayer()}</>;
 };
 
 export default PlayId;
