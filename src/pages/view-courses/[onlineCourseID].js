@@ -191,7 +191,7 @@ export const getStaticPaths = async () => {
   }
 
   const paths = response_getCourse_data.data.map(course => ({
-    params: { onlineCourseID: `${course.title}:${course.id}` }, // Adjust according to your data structure
+    params: { onlineCourseID: `${item.name} + ':' + ${item.id}` }, // Adjust according to your data structure
   }));
 
   return { paths, fallback: false }; // `false` means 404 for unmatched paths
