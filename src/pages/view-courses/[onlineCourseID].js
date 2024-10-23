@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React, { useState, useEffect, useRef } from "react"; 
 import Header from "../../component/header/header";
 import Footer from "../../component/footer/footer";
@@ -14,7 +15,12 @@ import Loader from "@/component/loader";
 
 const OC_image = "/assets/images/courseRightImg.svg";
 
-const OnlineCourse = () => {
+// Dynamically import OnlineCourse component without server-side rendering
+const OnlineCourse = dynamic(() => {
+  return Promise.resolve(OriginalOnlineCourse);
+}, { ssr: false });
+
+const OriginalOnlineCourse = () => {
   const [showError, setShowError] = useState(false);
   const [onlineCourse, setOnlineCourse] = useState([]);
   const [id, setId] = useState('');
@@ -30,7 +36,7 @@ const OnlineCourse = () => {
   useEffect(() => {
     // Check if there is a saved state in localStorage
     const savedData = localStorage.getItem("onlineCourseID");
-    console.log("savedData",savedData)
+    console.log("savedData", savedData)
     if (savedData) {
       // If there's saved data, use it
       const [savedTitle, savedId] = savedData.split(":");
