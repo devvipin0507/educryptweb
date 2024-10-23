@@ -1,50 +1,52 @@
-import dynamic from 'next/dynamic';
 import React, { useState, useEffect } from 'react';
+import VideoPlayerDRM from '@/component/player';
 import { useRouter } from 'next/router';
 
-// Import VideoPlayerDRM without disabling SSR
-const VideoPlayerDRM = dynamic(() => import('@/component/player'));
-
-const PlayId = ({ videoType, vdc_id, file_url, title }) => {
+const PlayId = () => {
     const [windowSize, setWindowSize] = useState({
         width: 0,
         height: 0,
     });
-    const [hasError, setHasError] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true); // Loading state
     const router = useRouter();
 
     useEffect(() => {
-        // Update window size
-        const handleResize = () => {
+        // Ensure this code runs only on the client side
+        if (typeof window !== 'undefined') {
             setWindowSize({
                 width: window.innerWidth,
                 height: window.innerHeight,
             });
-        };
 
-        // Call handleResize once to set initial size
-        handleResize();
+            const handleResize = () => {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                });
+            };
 
-        // Listen for window resize events
-        window.addEventListener('resize', handleResize);
+            window.addEventListener('resize', handleResize);
 
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+            // Clean up the event listener on component unmount
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }
     }, []);
 
     useEffect(() => {
-        // Check for errors if videoType is not provided
-        if (!videoType) {
-            setHasError(true);
+        // Check if router is ready
+        if (router.isReady) {
+            // Ensure to set loading to false when the router is ready
+            setIsLoading(false);
         }
-    }, [videoType]);
+    }, [router.isReady]);
 
     const renderPlayer = () => {
-        if (hasError) {
-            return <p>No Data found! Unable to locate data, seeking alternative methods for retrieval.</p>;
+        const videoType = parseInt(router?.query?.video_type);
+
+        if (isLoading) {
+            return <p>Loading...</p>; // Display loading state
         }
 
         switch (videoType) {
@@ -52,10 +54,10 @@ const PlayId = ({ videoType, vdc_id, file_url, title }) => {
             case 8:
                 return (
                     <VideoPlayerDRM
-                        vdc_id={vdc_id}
-                        NonDRMVideourl={file_url}
+                        vdc_id={router?.query?.vdc_id}
+                        NonDRMVideourl={router?.query?.file_url}
                         item={null}
-                        title={title}
+                        title={router?.query?.title}
                         videoMetaData={null}
                     />
                 );
@@ -66,7 +68,7 @@ const PlayId = ({ videoType, vdc_id, file_url, title }) => {
                         id="youtubePlayer"
                         width={windowSize.width}
                         height={windowSize.height - 10}
-                        src={`https://www.youtube.com/embed/${file_url}`}
+                        src={`https://www.youtube.com/embed/${router?.query?.file_url}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -77,33 +79,11 @@ const PlayId = ({ videoType, vdc_id, file_url, title }) => {
         }
     };
 
-    return <>{renderPlayer()}</>;
-};
-
-// Get parameters from the request and pass them as props
-export const getServerSideProps = async (context) => {
-    const { video_type, vdc_id, file_url, title } = context.query;
-
-    // Ensure all required parameters are present
-    if (!video_type || !vdc_id || !file_url || !title) {
-        return {
-            props: {
-                videoType: null,
-                vdc_id: null,
-                file_url: null,
-                title: null,
-            },
-        };
-    }
-
-    return {
-        props: {
-            videoType: parseInt(video_type, 10),
-            vdc_id,
-            file_url,
-            title,
-        },
-    };
+    return (
+        <>
+            {renderPlayer()}
+        </>
+    );
 };
 
 export default PlayId;

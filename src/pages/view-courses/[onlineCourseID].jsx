@@ -25,9 +25,10 @@ const OnlineCourse = () => {
   const resetPdfLayerRef = useRef();
   const resetCourseCurriculumLayerRef = useRef();
   const Router = useRouter();
-  const { onlineCourseID } = Router.query;
+  const { onlineCourseID } = Router.query || "Live Course:6244";
   const courseTypeData = useSelector((state) => state.allCategory?.allCategory?.course_type_master)
 
+  console.log("onlineCourseID",onlineCourseID)
   console.log('courseTypeData', courseTypeData)
 
   // const id = onlineCourseID.slice(onlineCourseID.indexOf(':') +1, onlineCourseID.length)
