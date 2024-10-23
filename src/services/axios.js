@@ -1,39 +1,35 @@
+// axiosClient.js
 import axios from "axios";
-
-let appIdStore = null;
+import { parseCookies } from 'nookies';
 
 const axiosClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-  })
-
-// export const setAppId = (appId) => {
-//     appIdStore = appId;
-//     console.log('appIdStore', appIdStore)
-// };
+});
 
 axiosClient.interceptors.request.use((req) => {
-    const jwt = localStorage.getItem('jwt')
-    const user_id = localStorage.getItem('user_id')
-    const app_id = localStorage.getItem('appId')
+    // Attempt to get cookies in a server-side context
+    const cookies = parseCookies();
 
+    // If in client-side context, use localStorage as a fallback
+    const jwt = (typeof window !== "undefined") ? localStorage.getItem('jwt') : cookies.jwt || "defaultJwt";
+    const user_id = (typeof window !== "undefined") ? localStorage.getItem('user_id') : cookies.user_id || 0;
+    const app_id = (typeof window !== "undefined") ? localStorage.getItem('appId') : cookies.appId || '';
 
     const headers = {
-            'Jwt': jwt ? jwt : "jwt",
-            'Userid': user_id ? user_id : 0,
-            'Devicetype': 4,
-            'Version': 1,
-            'Lang': 1,
-            // 'Centerid:'.$Centerid,
-            'Content-Type': 'application/json',
-            "Authorization": "Bearer 01*#NerglnwwebOI)30@I*Dm'@@",
-            "Appid": app_id ? app_id : '' ,
-            // "User-Agent":'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
-            "User-Agent": navigator.userAgent
-    }
+        'Jwt': jwt,
+        'Userid': user_id,
+        'Devicetype': 4,
+        'Version': 1,
+        'Lang': 1,
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer 01*#NerglnwwebOI)30@I*Dm'@@",
+        "Appid": app_id,
+        "User-Agent": typeof window !== "undefined" ? navigator.userAgent : "Server-Side User-Agent",
+    };
 
-    req.headers = headers
+    req.headers = headers;
 
-    return req
-}, (error) => Promise.reject(error))
+    return req;
+}, (error) => Promise.reject(error));
 
-export default axiosClient
+export default axiosClient;

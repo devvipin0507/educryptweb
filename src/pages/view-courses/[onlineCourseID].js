@@ -14,7 +14,7 @@ import Loader from "@/component/loader";
 
 const OC_image = "/assets/images/courseRightImg.svg";
 
-const OnlineCourse = () => {
+const OnlineCourse = ({initialTab}) => {
   const [showError, setShowError] = useState(false);
   const [key, setKey] = useState("Course Detail");
   const [onlineCourse, setOnlineCourse] = useState('')
@@ -176,13 +176,26 @@ const OnlineCourse = () => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = [
-    { params: { onlineCourseID: "Live Course:6244" } },
-  ];
+  const token = get_token();
+  const formData = {
+    page: 1,
+    sub_cat: 1,
+    main_cat: 0,
+  };
+  
+  const response_getCourse_service = await getCourse_service(encrypt(JSON.stringify(formData), token));
+  const response_getCourse_data = decrypt(response_getCourse_service.data, token);
 
-  return { paths, fallback: false };
+  if (!response_getCourse_data || !response_getCourse_data.data) {
+    return { paths: [], fallback: false }; 
+  }
+
+  const paths = response_getCourse_data.data.map(course => ({
+    params: { onlineCourseID: `${course.title}:${course.id}` }, // Adjust according to your data structure
+  }));
+
+  return { paths, fallback: false }; // `false` means 404 for unmatched paths
 };
-
 
 export const getStaticProps = async ({ params }) => {
   const { onlineCourseID } = params;
@@ -193,5 +206,6 @@ export const getStaticProps = async ({ params }) => {
     },
   };
 };
+
 
 export default OnlineCourse;
