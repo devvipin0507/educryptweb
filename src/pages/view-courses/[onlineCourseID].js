@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react"; 
 import Header from "../../component/header/header";
 import Footer from "../../component/footer/footer";
 import { useRouter } from "next/router";
@@ -28,17 +28,26 @@ const OnlineCourse = () => {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    const currentPath = Router.asPath;
-    localStorage.setItem("redirectdetails", currentPath);
-    setShowError(false);
-    
-    if (onlineCourseID) {
+    // Check if there is a saved state in localStorage
+    const savedData = localStorage.getItem("onlineCourseID");
+    console.log("savedData",savedData)
+    if (savedData) {
+      // If there's saved data, use it
+      const [savedTitle, savedId] = savedData.split(":");
+      setTitleName(savedTitle);
+      setId(savedId);
+      fetchCourseDetail(savedId); // Fetch data using saved ID
+    } else if (onlineCourseID) {
+      // If there are new route query parameters, save them
       const courseId = onlineCourseID.slice(onlineCourseID.indexOf(':') + 1);
       const courseTitle = onlineCourseID.slice(0, onlineCourseID.indexOf(':'));
-      fetchCourseDetail(courseId);
-      setId(courseId);
       setTitleName(courseTitle);
+      setId(courseId);
+      localStorage.setItem("onlineCourseID", onlineCourseID); // Save to localStorage
+      fetchCourseDetail(courseId); // Fetch data using the new ID
     }
+    
+    setShowError(false);
   }, [onlineCourseID, courseTypeData]);
 
   useEffect(() => {
@@ -87,11 +96,7 @@ const OnlineCourse = () => {
     <>
       <Header />
       <div className="container-fluid p-0 mt-5">
-        <div className={
-            titleName && (titleName === "Bookstore" || titleName === "e-BOOK" || titleName === "Books")
-              ? `bookStoreContainer row`
-              : `course_Container row`
-          }>
+        <div className={titleName && (titleName === "Bookstore" || titleName === "e-BOOK" || titleName === "Books") ? `bookStoreContainer row` : `course_Container row`}>
           <div className="col-md-12 m-0" style={{ paddingTop: "15px" }}>
             <nav aria-label="breadcrumb ">
               <ol className="breadcrumb mb-0 cursor">
