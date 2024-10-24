@@ -5,8 +5,8 @@
 // };
 
 const nextConfig = {
-  reactStrictMode: true,
-  output: 'export',  // Enable static export
+  // reactStrictMode: true,
+  // output: 'export',  // Enable static export
 };
 
 export default nextConfig;
