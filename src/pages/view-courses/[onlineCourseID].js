@@ -177,39 +177,53 @@ const OnlineCourse = ({onlineCourseID}) => {
 export const getStaticPaths = async () => {
   try {
     const token = get_token();
-    const formData = {
-      // Your form data for the request (if required)
-    };
+    const formData = {};
 
+    // Fetch course category data
     const response_getCourse_service = await getCourse_Catergory_Service(encrypt(JSON.stringify(formData), token));
     const response_getCourse_data = decrypt(response_getCourse_service.data, token);
-    const paths = response_getCourse_data?.data?.course_type_master.map((item) => {
+
+    // Log the response to check the data structure
+    console.log("response_getCourse_data:", response_getCourse_data);
+
+    // Ensure we have the expected data
+    const courseTypeMaster = response_getCourse_data?.data?.course_type_master || [];
+    
+    // Limit to the first 10 unique items based on ID
+    const uniqueItems = Array.from(
+      new Set(courseTypeMaster.map(item => item.id))
+    ).map(id => {
+      return courseTypeMaster.find(item => item.id === id);
+    });
+
+    // Generate paths for the first 10 unique items
+    const paths = uniqueItems.slice(0, 10).map(item => {
       return {
-        params: { 
-          onlineCourseID: `${encodeURIComponent(item.name)}:${item.id}` // Use name and ID for the dynamic segment
-        }
+        params: {
+          onlineCourseID: `${encodeURIComponent(item.name)}:${item.id}`, // Use name and ID for the dynamic segment
+        },
       };
     });
 
-    console.log("paths_", paths);
+    console.log("Generated paths:", paths); // Log the generated paths
 
     return {
-      paths, // Return all the dynamic paths
-      fallback: 'blocking', // Use blocking for non-generated paths
+      paths,
+      fallback: 'blocking', // or 'false' depending on your needs
     };
   } catch (error) {
     console.error("Error in getStaticPaths:", error);
     return {
       paths: [],
-      fallback: false, // Return an empty array in case of failure
+      fallback: false, // No fallback if an error occurs
     };
   }
 };
 
 
+
 export const getStaticProps = async ({ params }) => {
   const { onlineCourseID } = params;
-
   return {
     props: {
       onlineCourseID: onlineCourseID || null, // Provide initialTab as a prop
