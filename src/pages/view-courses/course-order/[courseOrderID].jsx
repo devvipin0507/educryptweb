@@ -8,6 +8,7 @@ import Button2 from "@/component/buttons/button2/button2";
 import { get_token, encrypt, decrypt, isValidData, userLoggedIn } from "@/utils/helpers";
 import {
   couponVerifyService,
+  deleteAddressService,
   districtListService,
   getCoupon_service,
   getCourseDetail_Service,
@@ -121,6 +122,15 @@ const CourseOrderID = () => {
       fetchStateList();
     }
   }, [isAddressShow])
+
+  useEffect(() => {
+    if(savedAddress?.length == 0) {
+      setIsAddressSave(false)
+    }
+    else{
+      setIsAddressSave(true)
+    }
+  }, [savedAddress])
 
   useEffect(() => {
     const isPrivate = localStorage.getItem('previousTab')
@@ -912,6 +922,7 @@ const CourseOrderID = () => {
         setIsAddressSave(true);
       }
       else {
+        setSavedAddress([])
         if (response_getUserAddress_data.message == msg) {
           toast.error(response_getUserAddress_data.message);
           setTimeout(() => {
@@ -931,7 +942,7 @@ const CourseOrderID = () => {
   }
 
   useEffect(() => {
-    if(savedAddress) {
+    if(savedAddress?.length > 0) {
       savedAddress.map((item) => {
         if(item.is_default) {
           setIsChecked(item.id);
@@ -986,6 +997,45 @@ const CourseOrderID = () => {
       pincode: userAddress.pincode,
       country: "+91-"
     })
+  }
+
+  const handleDeleteAddress = async (userAddress, id) => {
+    try{
+      console.log('userAddress', userAddress)
+      const formAddress = {
+        state: userAddress?.state,
+        city: userAddress?.city,
+        pincode: userAddress?.pincode,
+        address: userAddress?.address,
+        name: userAddress?.name 
+      }
+      const formData = {
+        address: JSON.stringify(formAddress),
+        id: id
+      }
+      const response_deleteAddress_service = await deleteAddressService(encrypt(JSON.stringify(formData), token));
+      const response_deleteAddress_data = decrypt(response_deleteAddress_service.data, token);
+      console.log('response_deleteAddress_data', response_deleteAddress_data)
+      if(response_deleteAddress_data.status) {
+        showSuccessToast(response_deleteAddress_data.message);
+        fetchUserAddress()
+        setUserData({
+          name: "",
+          mobile: "",
+          address: "",
+          landmark: "",
+          state: "",
+          district: "",
+          pincode: "",
+          country: "+91-"
+        })
+      }
+      else{
+        showErrorToast(response_deleteAddress_data.message)
+      }
+    } catch (error) {
+      console.log('error ', error)
+    }
   }
   
   const handleBack =()=>{
@@ -1267,7 +1317,7 @@ const CourseOrderID = () => {
                         isSearchable
                       />
                     </div>
-                    {console.log('distric', districtOption)}
+                    {/* {console.log('distric', districtOption)} */}
                     <div className="col-md-6 mb-3">
                       <Select
                         name="district"
@@ -1329,7 +1379,7 @@ const CourseOrderID = () => {
                   </div>
                   {savedAddress?.length > 0 && savedAddress.map((item, index) => {
                     let userAddress = JSON.parse(item.address);
-                    // console.log(userAddress)
+                    // console.log('userAddress', item)
                     return <div className="card addressCard mb-2" key={index}>
                     <label>
                       <div className="mb-2 d-flex gap-1 justify-content-between align-items-center">
@@ -1346,6 +1396,7 @@ const CourseOrderID = () => {
                           </h4>
                         </div>
                         <p className="m-0 editBtn" style={{cursor: 'pointer'}} onClick={() => handleEditAddress(userAddress, item.is_default)}><i className="bi bi-pencil"></i> Edit</p>
+                        <img className="m-0 editBtn" style={{cursor: 'pointer'}} src="/assets/images/deleteLogo.svg" alt="" onClick={() => handleDeleteAddress(userAddress, item?.id)} />
                       </div>
                     </label>
                     <p className="mb-2 adTitle">
@@ -1609,7 +1660,7 @@ const CourseOrderID = () => {
                                 installment?.amount_description?.delivery_charge
                               ).toFixed(2)}
                             {paymentMode == "One Time Payment" &&
-                              parseFloat(couponData ? couponData?.delivery_charge : courseData?.delivery_charge).toFixed(2)}
+                              parseFloat(couponData?.delivery_charge ? couponData?.delivery_charge : courseData?.delivery_charge).toFixed(2)}
                           </p>
                         </td>
                     </tr>

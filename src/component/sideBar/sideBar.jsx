@@ -32,7 +32,7 @@ const SideBar = () => {
     if (tab) {
       setStatusTab(tab);
     } else {
-      const nameTab = localStorage.getItem('redirectdetails').substring(
+      const nameTab = localStorage.getItem('redirectdetails')?.substring(
         localStorage.getItem('redirectdetails').lastIndexOf("myProfile/") + 10,
         localStorage.getItem('redirectdetails').length
       );

@@ -134,8 +134,6 @@ const CourseReview = ({courseDetail}) => {
 
   const handleAddReview = () => {
     const isLoggedIn = userLoggedIn();
-    console.log('hhhh', courseDetail)
-    toast.success("buy")
     if(isLoggedIn) {
       if(courseDetail.is_purchased == 1) {
         setReviewModalShow(true);
@@ -145,7 +143,6 @@ const CourseReview = ({courseDetail}) => {
       }
     }
     else {
-      console.log('popup')
       setModalShow(true)
     }
   }

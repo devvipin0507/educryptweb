@@ -63,7 +63,7 @@ const LiveClassCard = ({courseData, value}) => {
       setModalShow(true);
     }
     else {
-      if(courseData?.is_live == 1) {
+      // if(courseData?.is_live == 1) {
         // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
         router.push({
           pathname: `/private/myProfile/play/${courseData.id}`,
@@ -71,8 +71,8 @@ const LiveClassCard = ({courseData, value}) => {
         });
         // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
         // console.log('watch')
-      }
-      toast.error('Live class is not started yet')
+      // }
+      // toast.error('Live class is not started yet')
     }
   }
 
@@ -100,10 +100,10 @@ const LiveClassCard = ({courseData, value}) => {
     }
   }
 
-  console.log('vvvvvvvvvv', courseData)
+  // console.log('vvvvvvvvvv', courseData)
   
   return (<>
-    <Toaster position="top-right" reverseOrder={false} />
+    {/* <Toaster position="top-right" reverseOrder={false} /> */}
     <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0">
       <div className="card border-0 shadow b-radius course_card m-0">
         {value == 'LIVE' && <p className={`m-0 course-badge ${value}`}>Live</p>}
@@ -155,14 +155,14 @@ const LiveClassCard = ({courseData, value}) => {
             {(value == 'LIVE' || value == 'COMPLETED') &&
             <Button1
               value="Watch"
-              handleClick={handleWatch}
+              handleClick={()=>handleWatch()}
               data= {0}
             />
             }
             {value == 'UPCOMING' &&
             <Button1
               value={isTimeUp ? `Watch` : `Started In- ${String(timeLeft.hours).padStart(2, '0')}:${String(timeLeft.minutes).padStart(2, '0')}:${String(timeLeft.seconds).padStart(2, '0')}`}
-              handleClick={isTimeUp && handleWatch}
+              handleClick={() => isTimeUp && handleWatch()}
               data= {0}
             />
             }

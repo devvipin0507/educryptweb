@@ -124,7 +124,7 @@ const LiveTestCard = ({testData, value}) => {
   }
 
   const handleTakeTest = (val) => {
-    if(val.is_live == 1){
+    // if(val.is_live == 1){
     let firstAttempt = "0";
     if (val.state == "")
       {
@@ -158,10 +158,10 @@ const LiveTestCard = ({testData, value}) => {
     
     // router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
     window.open(`${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
-  }
-  else{
-    toast.error('Live class is not started yet')
-  }
+  // }
+  // else{
+  //   toast.error('Live test is not started yet')
+  // }
   }
 
   const handleRankTest = (val) => {

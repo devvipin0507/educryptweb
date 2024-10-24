@@ -393,7 +393,7 @@ const Inquiry = () => {
                         }
                         onChange={handleIssueType}
                         options={InquiryType && InquiryType}
-                        placeholder="Select Issue"
+                        placeholder="Select Issue*"
                         isSearchable
                       />
                     </div>
