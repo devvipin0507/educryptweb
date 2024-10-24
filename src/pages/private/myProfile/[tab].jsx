@@ -26,10 +26,11 @@ const Index = ({ initialTab }) => {
   useEffect(() => {
     // Update statusTab whenever the router.query.tab changes
     const { tab } = router.query;
+    console.log('tab', tab)
     if (tab) {
       setStatusTab(tab);
     }
-  }, [router.query.tab]); // Dependency array with router.query.tab
+  }, [router.query]); // Dependency array with router.query.tab
 
   useEffect(() => {
     const currentPath = router.asPath;
@@ -49,14 +50,19 @@ const Index = ({ initialTab }) => {
       case "live_Test":
         return <LiveTest />;
       case "live_Classes":
+      case "8":
+        return <LiveTest />;
+      case "9":
         return <LiveClass />;
-      case "blog":
+      case "29":
         return <Blogs />;
       case "current_affairs":
+      case "17":
         return <CurrentAffairList />;
       case "testimonial":
         return <Testimonial />;
       case "bookstore":
+      case "14":
         return <Bookstore />;
       case "notification":
         return <Notification />;
@@ -65,6 +71,7 @@ const Index = ({ initialTab }) => {
       case "purchase-history":
         return <PurchaseHistory />;
       case "inquiry":
+      case "12":
         return <Inquiry />;
       case "profile":
         return <Profile />;
@@ -93,7 +100,7 @@ const Index = ({ initialTab }) => {
 //     { params: { tab: "ourCourse" } },
 //     { params: { tab: "live_Test" } },
 //     { params: { tab: "live_Classes" } },
-//     { params: { tab: "blog" } },
+//     { params: { tab: "29" } },
 //     { params: { tab: "current_affairs" } },
 //     { params: { tab: "testimonial" } },
 //     { params: { tab: "bookstore" } },
@@ -101,6 +108,16 @@ const Index = ({ initialTab }) => {
 //     { params: { tab: "myCourse" } },
 //     { params: { tab: "purchase-history" } },
 //     { params: { tab: "inquiry" } },
+//     { params: { tab: "8" } },
+//     { params: { tab: "9" } },
+//     { params: { tab: "29" } },
+//     { params: { tab: "17" } },
+//     { params: { tab: "Testimonial" } },
+//     { params: { tab: "14" } },
+//     { params: { tab: "notification" } },
+//     { params: { tab: "myCourse" } },
+//     { params: { tab: "purchase-history" } },
+//     { params: { tab: "12" } },
 //     { params: { tab: "profile" } },
 //   ];
 
