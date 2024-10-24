@@ -151,10 +151,10 @@ const SideBar = () => {
                     <Nav.Item
                       key={index}
                       onClick={() =>
-                        router.push(`/private/myProfile/${value?.title?.split(" ").join("_")}`)
+                        router.push(`/private/myProfile/${value?.type}`)
                       }
                       className={`m-0 ${
-                        statusTab && (statusTab == value?.title?.split(" ").join("_") ? "active" : "")
+                        statusTab && (statusTab == value?.type ? "active" : "")
                       }`}
                     >
                       <Nav.Link className="m-0">
@@ -205,15 +205,15 @@ const SideBar = () => {
             </Nav.Item>
             {sideBarTabs &&
               sideBarTabs.map((value, index) => {
-                if (value.title == "Inquiry") {
+                if (value?.type == "12") {
                   return (
                     <Nav.Item
                       key={index}
                       onClick={() =>
-                        router.push(`/private/myProfile/${value?.title?.split(" ").join("_")}`)
+                        router.push(`/private/myProfile/${value?.type}`)
                       }
                       className={`m-0 ${
-                        statusTab && (statusTab == value?.title?.split(" ").join("_") ? "active" : "")
+                        statusTab && (statusTab == value?.type ? "active" : "")
                       }`}
                     >
                       <Nav.Link className="m-0">
