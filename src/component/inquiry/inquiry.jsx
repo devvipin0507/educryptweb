@@ -477,164 +477,172 @@ const Inquiry = () => {
                     )
                   ) : (
                     <>
-                      <div className="row">
-                        {/* <div className="col-md-12">
-                        <div className="card chatCard">
-                          <div className="chat-conversation">
-                            <div className="simplebar-content-wrapper">
-                              <div className="simplebar-content">
-                                <ul
-                                  className="list-unstyled chat-conversation-list"
-                                  id="chat-conversation-list"
-                                >
-                                  <li className="chat-list left">
-                                    <div className="conversation-list">
-                                      <div className="user-chat-content">
-                                        <h5 className="conversation-name mb-2">
-                                          Miranda Valentine
-                                        </h5>
-                                        <div className="ctext-wrap">
-                                          <div className="ctext-wrap-content left-in">
-                                            <h4 className="m-0 payIssueTitle">
-                                              Issue : Payment Issue
-                                            </h4>
-                                            <hr className="p_divider" />
-                                            <p className="mb-0 ctext-content">
-                                              Lorem Ipsum has been the
-                                              industry's standard dummy text
-                                              ever since the 1500s, when an
-                                              printer took a galley of type and
-                                              scrambled.
-                                            </p>
+                      {/* <div className="row">
+                        <div className="col-md-12">
+                          <div className="card chatCard">
+                            <div className="chat-conversation">
+                              <div className="simplebar-content-wrapper">
+                                <div className="simplebar-content">
+                                  <ul
+                                    className="list-unstyled chat-conversation-list"
+                                    id="chat-conversation-list"
+                                  >
+                                    <li className="chat-list left">
+                                      <div className="conversation-list">
+                                        <div className="user-chat-content">
+                                          <h5 className="conversation-name mb-2">
+                                            Miranda Valentine
+                                          </h5>
+                                          <div className="ctext-wrap">
+                                            <div className="ctext-wrap-content left-in">
+                                              <h4 className="m-0 payIssueTitle">
+                                                Issue : Payment Issue
+                                              </h4>
+                                              <hr className="p_divider" />
+                                              <p className="mb-0 ctext-content">
+                                                Lorem Ipsum has been the
+                                                industry's standard dummy text
+                                                ever since the 1500s, when an
+                                                printer took a galley of type
+                                                and scrambled.
+                                              </p>
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div className="left-time">
-                                          <small
-                                            className="dropdown-btn text-muted mb-0 ms-2"
-                                            tabindex="0"
-                                          >
-                                            03:10 PM
-                                          </small>
-                                          <div className="dropdown-content">
-                                            <a href="#">
-                                              <i className="bi bi-pin-angle"></i>{" "}
-                                              Pin Chat
-                                            </a>
-                                            <hr className="divider" />
-                                            <a href="#">
-                                              <i className="bi bi-trash3"></i>{" "}
-                                              Delete
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </li>
-                                  <li className="chat-list left">
-                                    <div className="conversation-list">
-                                      <div className="user-chat-content">
-                                        <h5 className="conversation-name mb-2">
-                                          Miranda Valentine
-                                        </h5>
-                                        <div className="ctext-wrap">
-                                          <div className="ctext-wrap-content left-in">
-                                            <p className="mb-0 ctext-content">
-                                              <img
-                                                src="http://localhost/admin/auth_panel_assets/images/audio.png"
-                                                alt=""
-                                              />
-                                            </p>
-                                          </div>
-                                        </div>
-                                        <div className="left-time">
-                                          <small
-                                            className="dropdown-btn text-muted mb-0 ms-2"
-                                            tabindex="0"
-                                          >
-                                            03:10 PM
-                                          </small>
-                                          <div className="dropdown-content">
-                                            <a href="#">
-                                              <i className="bi bi-pin-angle"></i>{" "}
-                                              Pin Chat
-                                            </a>
-                                            <hr className="divider" />
-                                            <a href="#">
-                                              <i className="bi bi-trash3"></i>{" "}
-                                              Delete
-                                            </a>
+                                          <div className="left-time">
+                                            <small
+                                              className="dropdown-btn text-muted mb-0 ms-2"
+                                              tabindex="0"
+                                            >
+                                              03:10 PM
+                                            </small>
+                                            <div className="dropdown-content">
+                                              <a href="#">
+                                                <i className="bi bi-pin-angle"></i>{" "}
+                                                Pin Chat
+                                              </a>
+                                              <hr className="divider" />
+                                              <a href="#">
+                                                <i className="bi bi-trash3"></i>{" "}
+                                                Delete
+                                              </a>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </li>
-                                  <li className="chat-list right">
-                                    <div className="conversation-list">
-                                      <div className="user-chat-content">
-                                        <h5 className="conversation-name mb-2">
-                                          Carl Smith
-                                        </h5>
-                                        <div className="ctext-wrap">
-                                          <div className="ctext-wrap-content">
-                                            <p className="mb-0 ctext-content">
-                                              Lorem Ipsum has been the
-                                              industry's standard dummy text
-                                              ever since the 1500s, when an.
-                                            </p>
+                                    </li>
+                                    <li className="chat-list left">
+                                      <div className="conversation-list">
+                                        <div className="user-chat-content">
+                                          <h5 className="conversation-name mb-2">
+                                            Miranda Valentine
+                                          </h5>
+                                          <div className="ctext-wrap">
+                                            <div className="ctext-wrap-content left-in">
+                                              <p className="mb-0 ctext-content">
+                                                <img
+                                                  src="http://localhost/admin/auth_panel_assets/images/audio.png"
+                                                  alt=""
+                                                />
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <div className="left-time">
+                                            <small
+                                              className="dropdown-btn text-muted mb-0 ms-2"
+                                              tabindex="0"
+                                            >
+                                              03:10 PM
+                                            </small>
+                                            <div className="dropdown-content">
+                                              <a href="#">
+                                                <i className="bi bi-pin-angle"></i>{" "}
+                                                Pin Chat
+                                              </a>
+                                              <hr className="divider" />
+                                              <a href="#">
+                                                <i className="bi bi-trash3"></i>{" "}
+                                                Delete
+                                              </a>
+                                            </div>
                                           </div>
                                         </div>
-                                        <div className="right-time">
-                                          <small className="text-muted mb-0 me-2">
-                                            03:10 PM
-                                          </small>
-                                        </div>
                                       </div>
-                                    </div>
-                                  </li>
-                                  <li className="chat-list right">
-                                    <div className="conversation-list">
-                                      <div className="user-chat-content">
-                                        <h5 className="conversation-name mb-2">
-                                          Carl Smith
-                                        </h5>
-                                        <div className="ctext-wrap">
-                                          <div className="ctext-wrap-content">
-                                            <p className="mb-0 ctext-content">
-                                              Lorem Ipsum has been the
-                                              industry's standard dummy text
-                                              ever since the 1500s, when an.
-                                            </p>
+                                    </li>
+                                    <li className="chat-list right">
+                                      <div className="conversation-list">
+                                        <div className="user-chat-content">
+                                          <h5 className="conversation-name mb-2">
+                                            Carl Smith
+                                          </h5>
+                                          <div className="ctext-wrap">
+                                            <div className="ctext-wrap-content">
+                                              <p className="mb-0 ctext-content">
+                                                Lorem Ipsum has been the
+                                                industry's standard dummy text
+                                                ever since the 1500s, when an.
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <div className="right-time">
+                                            <small className="text-muted mb-0 me-2">
+                                              03:10 PM
+                                            </small>
                                           </div>
                                         </div>
-                                        <div className="right-time">
-                                          <small className="text-muted mb-0 me-2">
-                                            03:10 PM
-                                          </small>
+                                      </div>
+                                    </li>
+                                    <li className="chat-list right">
+                                      <div className="conversation-list">
+                                        <div className="user-chat-content">
+                                          <h5 className="conversation-name mb-2">
+                                            Carl Smith
+                                          </h5>
+                                          <div className="ctext-wrap">
+                                            <div className="ctext-wrap-content">
+                                              <p className="mb-0 ctext-content">
+                                                Lorem Ipsum has been the
+                                                industry's standard dummy text
+                                                ever since the 1500s, when an.
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <div className="right-time">
+                                            <small className="text-muted mb-0 me-2">
+                                              03:10 PM
+                                            </small>
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </li>
-                                </ul>
+                                    </li>
+                                  </ul>
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          <div className="chat_input">
-                            <input
-                              type="text"
-                              className="input_field form-control"
-                              placeholder="Post Comment..."
-                            />
-                            <button className="btn Btn_warning">
-                              <i
-                                className="bi bi-send-fill"
-                                style={{ fontsize: "20px" }}
-                              ></i>
-                            </button>
+                            <div className="chat_input py-3 pb-0">
+                              <div class="input-group">
+                                <span class="py-0 input-group-text border-0 bg-white">
+                                  <i class="paperIcon bi bi-paperclip"></i>
+                                </span>
+                                <input
+                                  type="text"
+                                  className="px-0 border-0 input_field form-control"
+                                  placeholder="Type Somthing...."
+                                />
+                                <span class="py-0 input-group-text border-0 bg-white">
+                                  <i class="micIcon bi bi-mic-fill"></i>
+                                </span>
+                              </div>
+                              <button className="btn Btn_warning">
+                                <i
+                                  className="bi bi-send-fill"
+                                  style={{ fontsize: "20px" }}
+                                ></i>
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div> */}
-                      </div>
                     </>
                   )}
                 </div>

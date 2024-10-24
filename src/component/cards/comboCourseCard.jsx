@@ -27,6 +27,7 @@ const ComboCourseCard = ({
         }`
       );
     } else {
+      if(onlineCourseAry?.combo_course_ids) {
       router.push(
         `/view-courses/course-order/${
           titleName +
@@ -35,7 +36,18 @@ const ComboCourseCard = ({
           "&" +
           onlineCourseAry.combo_course_ids
         }`
-      );
+      )}
+      else {
+        router.push(
+          `/view-courses/course-order/${
+            titleName +
+            ":" +
+            onlineCourseAry.id +
+            "&" +
+            ''
+          }`
+        )
+      }
     }
   };
   // console.log('CourseID', value)

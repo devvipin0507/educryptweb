@@ -202,26 +202,26 @@ body {
 
 /* ======================== Font Sizes Ends ======================= */
 
-.extTitle {
+.extTitle{
   font-size: var(--size-14) !important;
-  font-family: "Reddit Sans", sans-serif !important;
+  font-family: "Reddit Sans",sans-serif !important;
   font-weight: 600 !important;
 }
 .extcouponRadio {
   accent-color: rgb(255, 116, 38) !important;
   width: 12px !important;
   height: 12px !important;
-  border: 1px solid #ff7426 !important;
+  border: 1px solid #FF7426 !important;
   border-radius: 50% !important;
   padding: 5px !important;
 }
-.extendCouponModal .extCoupon_listCard p {
+.extendCouponModal .extCoupon_listCard p{
   font-size: var(--size-12) !important;
-  font-family: "Reddit Sans", sans-serif !important;
+  font-family: "Reddit Sans",sans-serif !important;
   font-weight: 500 !important;
 }
 .extendCouponModal .modal-header {
-  border-bottom: 1px solid #e2e2e2 !important;
+  border-bottom: 1px solid #E2E2E2 !important;
   padding: 12px !important;
 }
 
@@ -235,17 +235,13 @@ body {
   font-family: "Reddit Sans", sans-serif !important;
   font-size: 16px !important;
 }
-.extCoupon_listCard {
+.extCoupon_listCard{
   border: 0px !important;
-  box-shadow: 0px 1px 14px 0px #0000000d !important;
+  box-shadow: 0px 1px 14px 0px #0000000D !important;
   border-radius: 10px !important;
 }
 .extCoupon_listCard.active {
-  background: linear-gradient(
-    89.62deg,
-    #fff5ef 0.33%,
-    #ffeade 92.16%
-  ) !important;
+  background: linear-gradient(89.62deg, #FFF5EF 0.33%, #FFEADE 92.16%) !important;
 }
 
 /* ======================== Button1 CSS Starts ===================================*/
@@ -270,18 +266,22 @@ body {
 
 /* ======================== Button1 CSS Ends ===================================*/
 
+
+
+
+
 /* ======================= Combo Courses Starts =========================== */
 
-.validity1 {
-  font-size: var(--size-12) !important;
-  font-family: "Reddit Sans", sans-serif;
-  font-weight: 500 !important;
-  -webkit-line-clamp: 2 !important;
-  display: -webkit-box !important;
-  overflow: hidden !important;
-  -webkit-box-orient: vertical !important;
-  height: 36px !important;
-  line-height: 17px !important;
+.validity1{
+    font-size: var(--size-12) !important;
+    font-family: "Reddit Sans",sans-serif;
+    font-weight: 500 !important;
+    -webkit-line-clamp: 2 !important;
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    -webkit-box-orient: vertical !important;
+    height: 36px !important;
+    line-height: 17px !important;
 }
 
 /* ======================= Combo Courses Starts =========================== */
@@ -392,6 +392,11 @@ nav #eduNav {
 }
 
 .logoImg2 {
+  width: 120px !important;
+  height: 42px !important;
+}
+
+.logoImg2{
   width: 120px !important;
   height: 42px !important;
 }
@@ -2062,6 +2067,14 @@ textarea {
   box-shadow: none !important;
 }
 
+.getInTouchForm.select_2.mb-1 div div div:nth-child(2) {
+  height: 30px !important;
+}
+.getInTouchForm.select_2.mb-1 div div div:nth-child(1) {
+  font-size: var(--size-13) !important;
+  color: #000 !important;
+}
+
 /* #react-select-2-input{
   border: none !important;
 }
@@ -2290,42 +2303,58 @@ p.detailStripe {
 
 .freeCourserate p.freeCourseReview {
   padding-left: 6px !important;
-  font-size: var(--size-11) !important;
-  color: #4b4b4b !important;
-
+  font-size: var(--size-12) !important;
+  color: #000 !important;
+  font-weight: 600 !important;
   line-height: 14px !important;
 }
 
 span.quantityPrice {
-  display: flex;
-  background: #dedfe8;
-  justify-content: center;
-  padding: 2px;
-  width: fit-content;
-  border-radius: 50px;
+  display: flex !important;
+  background: #dedfe8 !important;
+  justify-content: center !important;
+  padding: 2px !important;
+  width: fit-content !important;
+  border-radius: 50px !important;
 }
 
 span.quantityPrice input:nth-child(2) {
-  width: 32px;
-  height: 20px;
-  background: #f5f7fe;
-  border: none;
-  text-align: center;
+  width: 32px !important;
+  height: 20px !important;
+  background: #dedfe8 !important;
+  border: none !important;
+  text-align: center !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
 }
 
 span.quantityPrice input:nth-child(1) {
-  border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px !important;
 }
 
 span.quantityPrice input:nth-child(3) {
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 20px 20px 0 !important;
 }
 
 span.quantityPrice input:nth-child(1),
 span.quantityPrice input:nth-child(3) {
-  width: 20px;
-  background: #fff;
-  border: none;
+  width: 20px !important;
+  background: #fff !important;
+  border: none !important;
+  font-size: var(--size-16) !important;
+}
+
+.freeCourseReview .InStockTitle {
+  color: #1F1F1F !important;
+  font-size: var(--size-12) !important;
+  font-weight: 600 !important;
+}
+.freeCourseReview .text-Avail {
+  color: #FF7426 !important;
+  font-size: var(--size-12) !important;
+  font-weight: 600 !important;
 }
 
 .courseDuration p {
@@ -2651,9 +2680,11 @@ span.quantityPrice input:nth-child(3) {
 
 .custom-breadcrumb {
   display: flex !important;
-  padding-top: 7px !important;
+      padding-top: 7px !important;
   font-size: var(--size-12) !important;
 }
+
+
 
 .active-breadcrumb {
   font-style: italic !important;
@@ -2819,11 +2850,11 @@ span.quantityPrice input:nth-child(3) {
 .videoimage {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
   background-color: rgb(235, 235, 235) !important;
-  min-width: 100px !important;
-  max-width: 100px !important;
   border: 1px solid #e7e6e6 !important;
   border-radius: 5px !important;
   height: 60px !important;
+  aspect-ratio: 20 / 20 !important;
+  object-fit: fill !important;
 }
 
 .videoimage i {
@@ -2837,8 +2868,9 @@ span.quantityPrice input:nth-child(3) {
 
 .page-section-6 {
   width: 62% !important;
-  /* margin-left: 75px !important; */
+  padding: 0px 90px !important;
 }
+
 
 .contentHeight {
   /* max-height: 450px !important;
@@ -2884,9 +2916,13 @@ span.quantityPrice input:nth-child(3) {
   margin-top: 28px !important;
 }
 
+.comboCourse_cardContainer {
+  padding: 0px 110px !important;
+}
+
 .onlineCourseTitle {
   margin-top: 28px !important;
-  margin-left: 10px !important;
+  /* margin-left: 10px !important; */
 }
 
 .cursor li {
@@ -4199,6 +4235,10 @@ input.coupon_field::placeholder {
 
 /* ==================== Profile detail Page Starts =============== */
 
+.onlineCourse{
+  width: 66% !important;
+}
+
 .profileDetailTopContainer {
   background-image: url("/assets/images/detail_bg.svg") !important;
   width: 100% !important;
@@ -4231,10 +4271,11 @@ input.coupon_field::placeholder {
   flex-wrap: nowrap !important;
   margin: 0 348px 0 0 !important;
 }
-.profileCourse_mainContainer #controlled-tab-example2 li.nav-item {
+.profileCourse_mainContainer 
+#controlled-tab-example2 li.nav-item {
   white-space: nowrap;
 }
-.profileCourse_mainContainer ::-webkit-scrollbar {
+.profileCourse_mainContainer  ::-webkit-scrollbar {
   height: var(--size-5) !important;
 }
 .profileCourse_mainContainer ::-webkit-scrollbar-track {
@@ -4243,7 +4284,8 @@ input.coupon_field::placeholder {
 .profileCourse_mainContainer ::-webkit-scrollbar-thumb {
   background: #888;
 }
-.profileCourse_mainContainer #controlled-tab-example2 li button:hover {
+.profileCourse_mainContainer 
+#controlled-tab-example2 li button:hover {
   background-color: #fceee7 !important;
 }
 
@@ -4718,13 +4760,459 @@ h4.userRateTitle {
 /* ====================== Profile blog deatil Page Ends ==================== */
 
 /* ====================== Inquiry Section starts =========================== */
-.addIssue_Card {
-  box-shadow: 0px 2px 10px 0px #0000000d !important;
-  width: 30rem !important;
-  border-radius: 12px !important;
-}
+    .addIssue_Card {
+      box-shadow: 0px 2px 10px 0px #0000000D !important;
+      width: 30rem !important;
+      border-radius: 12px !important;
+    }
 
-/* ====================== Inquiry Section starts =========================== */
+    .inquiryTab {
+      width: 100% !important;
+      padding-left: 0% !important;
+      margin-top: 16px !important;
+    }
+
+    .inquiryTab .tab-content {
+      padding: 0px !important;
+    }
+
+    .addIssue_Card input,
+    .addIssue_Card textarea {
+      /* border: 1px solid #C6C6C6 !important; */
+      border-radius: 5px !important;
+      font-size: 12px !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      padding: 10px !important;
+      font-size: 12px !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .css-1dimb5e-singleValue {
+      font-size: 12px !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      outline: none !important;
+    }
+
+    #react-select-2-input {
+      border: 1px solid #C6C6C6 !important;
+      border-radius: 5px !important;
+      font-size: 12px !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      padding: 0px !important;
+      font-size: 12px !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    #react-select-2-input {
+      border: 0px !important;
+    }
+
+    .submitBtn {
+      background: #000 !important;
+      color: #fff !important;
+      font-size: 12px !important;
+      border-radius: 5px !important;
+      border: 1px solid #000 !important;
+      padding: 6px 34px !important;
+      font-weight: 500 !important;
+    }
+
+    .css-1u9des2-indicatorSeparator {
+      display: none !important;
+    }
+
+    .css-tj5bde-Svg {
+      color: #292929 !important;
+    }
+
+    .addIssue_Card input::placeholder,
+    .addIssue_Card textarea::placeholder,
+    #react-select-2-placeholder {
+      color: #0D0D0D !important;
+      font-size: 12px !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      font-weight: 300 !important;
+    }
+
+    .conversate_card {
+      border-radius: 10px !important;
+      box-shadow: 0px 40px 40px 60px #00000008 !important;
+      width: 70% !important;
+    }
+
+    .issue_msgText p {
+      padding: 1rem !important;
+      color: #FF7426 !important;
+      font-size: 12px !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      font-weight: 400 !important;
+      background-color: #fff8f4 !important;
+      border-top-left-radius: 10px !important;
+      border-top-right-radius: 10px !important;
+    }
+
+    .item_title {
+      color: #5B5B5B !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      font-weight: 400 !important;
+      font-size: 12px !important;
+    }
+
+    .item_title span {
+      color: #5B5B5B !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      font-weight: 400 !important;
+      font-size: 12px !important;
+    }
+
+    .issueTitle span,
+    .issueTitle {
+      color: #404040 !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 12px !important;
+    }
+
+    .viewDetail button {
+      border-radius: 50% !important;
+      font-size: 14px !important;
+      background-color: #FFF3EC !important;
+      color: #FF7426 !important;
+      outline: none !important;
+      border: 0px !important;
+      width: 30px !important;
+      height: 30px !important;
+      font-weight: 800;
+      position: absolute;
+      right: 20px !important;
+      bottom: 12px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .chatCard {
+      width: 100% !important;
+      border: 0px !important;
+      border-radius: 10px !important;
+      box-shadow: 0px 2px 10px 0px #0000000D !important;
+      background-color: #fff !important;
+      padding: 16px 0px !important;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 5px !important;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #E2E2E2 !important;
+      border-radius: 10px !important;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      /* background: #888;  */
+      background: #B0B0B0 !important;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+/* ====================== Chat Section Starts ========================= */
+
+    .main_chat_container {
+      width: 100% !important;
+    }
+
+    .simplebar-content-wrapper {
+      overflow: hidden !important;
+      height: 100% !important;
+    }
+
+    .simplebar-content-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .simplebar-content-wrapper {
+      box-sizing: border-box !important;
+      direction: inherit !important;
+      display: block !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      max-width: 100% !important;
+      overflow: auto !important;
+      padding: 0 !important;
+      position: relative !important;
+      scrollbar-width: none !important;
+      visibility: visible !important;
+      width: auto !important;
+    }
+
+    .simplebar-content-wrapper .simplebar-content {
+      margin-top: auto !important;
+      overflow-y: scroll !important;
+      height: 492px !important;
+      border-bottom: 1px solid #EFEFEF !important;
+    }
+
+    .simplebar-content {
+      padding: 60px 30px !important;
+    }
+
+    .simplebar-content:after,
+    .simplebar-content:before {
+      content: " " !important;
+      display: table !important;
+    }
+
+    .chat-conversation .chat-conversation-list {
+      margin-bottom: 0 !important;
+      margin-top: 10px !important;
+      padding-top: 10px !important;
+    }
+
+    .chat-conversation .chat-conversation-list>li {
+      display: flex !important;
+    }
+
+    .chat-list {
+      margin: 0;
+    }
+
+    .chat-conversation .conversation-list {
+      align-items: flex-start !important;
+      display: inline-flex !important;
+      margin-bottom: 24px !important;
+      max-width: 58% !important;
+      position: relative !important;
+    }
+
+    .chat-conversation .chat-avatar {
+      margin: 0 8px 0 0 !important;
+    }
+
+    hr.p_divider {
+      border-bottom: 1px solid #CACACA !important;
+      margin: 1px 0 !important;
+      margin: 8px 0px !important;
+    }
+
+    .chat-conversation .chat-avatar img {
+      border-radius: 50% !important;
+      height: 38px !important;
+      width: 38px !important;
+      margin-top: -10px !important;
+      position: relative !important;
+    }
+
+    .conversation-list h5.conversation-name {
+      align-items: center !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      font-size: var(--size-14) !important;
+      font-weight: 500 !important;
+      gap: 8px !important;
+      color: #4E4E4E !important;
+      font-family: "Inter", sans-serif !important;
+    }
+
+    .chat-conversation .conversation-list .ctext-wrap {
+      display: flex !important;
+      margin-bottom: 3px !important;
+      color: #383838 !important;
+      font-size: var(--size-12) !important;
+    }
+
+    .chat-conversation .conversation-list .ctext-wrap-content {
+      padding: 12px 12px !important;
+      position: relative !important;
+      border-radius: 10px !important;
+      background: #F6F6F6 !important;
+    }
+
+    .ctext-wrap-content.left-in:after {
+      content: ' ';
+      position: absolute !important;
+      width: 0 !important;
+      height: 0 !important;
+      left: -8px !important;
+      right: auto !important;
+      top: auto !important;
+      bottom: 0px !important;
+      border: 10px solid !important;
+      /* border-color: transparent lightyellow lightyellow transparent; */
+      border-color: transparent #F6F6F6 #F6F6F6 transparent !important;
+    }
+
+    .chat-conversation .conversation-list .ctext-content {
+      word-wrap: break-word !important;
+      word-break: break-word !important;
+      font-size: var(--size-12) !important;
+      font-weight: 400 !important;
+      font-family: "Inter", sans-serif !important;
+      color: #383838 !important;
+    }
+
+    .left-time small,
+    .right-time small {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 10px !important;
+      color: #00000080 !important;
+    }
+
+    .dropdown-content {
+      margin-left: 68px !important;
+      display: none !important;
+      position: absolute !important;
+      background-color: #fff !important;
+      min-width: 120px !important;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2) !important;
+      z-index: 1 !important;
+      box-shadow: 0px 1px 14px 0px #0000001F !important;
+      padding: 3px !important;
+    }
+
+    .dropdown-content a {
+      color: #474747 !important;
+      padding: 5px 8px !important;
+      text-decoration: none !important;
+      display: block !important;
+      font-size: var(--size-12) !important;
+      font-family: "Open Sans", sans-serif !important;
+    }
+
+    hr.divider {
+      border-bottom: 1px solid #ccc !important;
+      /* height: 1px; */
+      /* background-color: #ccc; */
+      margin: 1px 0 !important;
+      margin: 2px 0px !important;
+    }
+
+    .chat-conversation .right {
+      justify-content: flex-end !important;
+    }
+
+    .chat-conversation .right .conversation-list {
+      text-align: right !important;
+    }
+
+    .chat-conversation .right .chat-avatar {
+      margin-left: 8px !important;
+      margin-right: 0 !important;
+      order: 3 !important;
+    }
+
+    .chat-conversation .right .conversation-list .conversation-name {
+      justify-content: flex-end !important;
+    }
+
+    .chat-conversation .conversation-list h5.conversation-name {
+      align-items: center !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+      gap: 8px !important;
+      font-family: "Inter", sans-serif !important;
+      color: #3F3F3F !important;
+    }
+
+    .chat-conversation .right .conversation-list .ctext-wrap {
+      justify-content: flex-end !important;
+    }
+
+    .chat-conversation .right .conversation-list .ctext-wrap .ctext-wrap-content {
+      background: #FFF6E9 !important;
+      box-shadow: none !important;
+      order: 2 !important;
+      text-align: right !important;
+      border-bottom-right-radius: 0px !important;
+    }
+
+    .left-time small,
+    .right-time small {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 500 !important;
+    }
+    .chat_input .paperIcon{
+      font-size: var(--size-22) !important;
+      color:  #787878 !important;
+      transform: rotate(45deg) !important;
+    }
+    .chat_input .micIcon{
+      font-size: var(--size-22) !important;
+      color: #969696 !important;
+    }
+    .chat_input {
+      position: relative !important;
+      bottom: 0px !important;
+      width: 100% !important;
+      display: flex !important;
+      gap: 8px !important;
+      background: #fff !important;
+      padding-bottom: 15px !important;
+      padding-right: 10px;
+    }
+
+    .chat_input .input_field {
+      background: #fff !important;
+      font-size: 12px !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    .chat_input .input_field:focus {
+      border-color: none !important;
+    }
+
+    .chat_input .input_field::placeholder {
+      color: #686868 !important;
+      font-family: "Reddit Sans", sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 300 !important;
+    }
+
+    .Btn_warning {
+      padding: 6px 12px !important;
+      border-radius: 5px !important;
+      width: 40px !important;
+      color: rgb(255, 255, 255) !important;
+      background: linear-gradient(180deg, #EA8A00 0%, #FFA726 100%) !important;
+    }
+
+    .payIssueTitle {
+      color: #FF7426 !important;
+      font-family: "Reddit Sans", sans-serif;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+    }
+
+    .chat-list.right p.ctext-content:after {
+      content: ' ';
+      position: absolute !important;
+      width: 0 !important;
+      height: 0 !important;
+      left: auto !important;
+      right: -5px !important;
+      top: 48px !important;
+      bottom: auto !important;
+      border: 6px solid !important;
+      border-color: transparent transparent #FFF6E9 #FFF6E9 !important;
+    }
+
+
+/* ====================== Chat Section Ends ========================= */
+
+/* ====================== Inquiry Section ends =========================== */
+
 
 .detailErrorImg img {
   width: 180px !important;
@@ -5703,6 +6191,12 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .blogImg {
     height: 190px !important;
   }
+  .comboCourse_cardContainer {
+    padding: 0px 50px !important;
+  }
+  .page-section-6 {
+    padding: 0px 37px !important;
+  }
 }
 
 @media (min-width: 1201px) {
@@ -5730,6 +6224,20 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
     overflow: auto !important;
     flex-wrap: nowrap !important;
     margin: 0 0px 0 0 !important;
+    white-space: nowrap !important;
+  }
+  .course_mainContainer #controlled-tab-example2 {
+    overflow: auto !important;
+    flex-wrap: nowrap !important;
+    margin: 0 0px 0 0 !important;
+    white-space: nowrap !important;
+    padding: 0px 48px !important;
+  }
+  .conversate_card{
+    width: 100% !important;
+  }
+  .addIssue_Card{
+    width: 100% !important;
   }
   .achieve-text {
     width: 100% !important;
@@ -5802,6 +6310,10 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .tredingSliderSection:hover {
     width: 6.5% !important;
   }
+  .onlineCourse{
+    width: 100% !important;
+  }
+
 }
 
 /* @media(max-width: 992px) {
@@ -5938,7 +6450,7 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .freeTC_container .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
     font-weight: 800 !important;
-    font-size: var(--size-16) !important;
+    font-size: var(--size-12) !important;
   }
 
   .detailTopContainer {
@@ -6002,6 +6514,10 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .course_mainContainer #controlled-tab-example2 {
     padding: 0px 3px !important;
   }
+  .comboCourse_cardContainer {
+    padding: 0px 6px !important;
+  }
+
 }
 
 @media (min-width: 992px) and (max-width: 1260px) {
@@ -6030,6 +6546,9 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
+  .page-section-6 {
+    padding: 0px 0px !important;
+  }
   .breadcrumb_container {
     width: 100% !important;
   }
@@ -7001,7 +7520,7 @@ p.video_bg_color.shaka-video-container {
   font-size: 12px !important;
 }
 .profileBanImg {
-  aspect-ratio: 21 / 6 !important;
+aspect-ratio: 21 / 6 !important;
   max-width: 100% !important;
   height: auto !important;
 }

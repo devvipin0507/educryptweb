@@ -25,7 +25,7 @@ const ComboCourse = ({
   useEffect(() => {}, [checkLogin]);
   const dataAry = courseDetail?.meta?.list;
   return (
-    <div className="onlineCourse px-5 px-sm-1 mb-3">
+    <div className="comboCourse_cardContainer onlineCourse px-5 px-sm-1 mb-3">
       <div className="row m-0">
         <div
           className={`${

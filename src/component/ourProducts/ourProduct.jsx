@@ -52,7 +52,7 @@ const OurProduct = ({ value, data }) => {
     dots: false,
     autoplay: true,
     infinite: value === "faculties" ? false : true,
-  className:'left',
+    className:'left',
     speed: 500,
     slidesToScroll: 1,
     slidesToShow: showSlide,

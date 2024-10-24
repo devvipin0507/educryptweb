@@ -64,7 +64,7 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
           setModalShow(false);
         }}
       />
-      <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0">
+      <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-4 p-0">
         <div className="card border-0 shadow b-radius course_card m-0">
           {value?.extra_json?.is_new == 1 && (
             <p className="m-0 course-badge">New</p>
