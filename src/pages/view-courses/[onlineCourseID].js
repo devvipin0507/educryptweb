@@ -174,47 +174,47 @@ const OnlineCourse = ({onlineCourseID}) => {
   );
 };
 
-// export const getStaticPaths = async () => {
-//   try {
-//     const token = get_token();
-//     const formData = {
-//       // Your form data for the request (if required)
-//     };
+export const getStaticPaths = async () => {
+  try {
+    const token = get_token();
+    const formData = {
+      // Your form data for the request (if required)
+    };
 
-//     const response_getCourse_service = await getCourse_Catergory_Service(encrypt(JSON.stringify(formData), token));
-//     const response_getCourse_data = decrypt(response_getCourse_service.data, token);
-//     const paths = response_getCourse_data?.data?.course_type_master.map((item) => {
-//       return {
-//         params: { 
-//           onlineCourseID: `${encodeURIComponent(item.name)}:${item.id}` // Use name and ID for the dynamic segment
-//         }
-//       };
-//     });
+    const response_getCourse_service = await getCourse_Catergory_Service(encrypt(JSON.stringify(formData), token));
+    const response_getCourse_data = decrypt(response_getCourse_service.data, token);
+    const paths = response_getCourse_data?.data?.course_type_master.map((item) => {
+      return {
+        params: { 
+          onlineCourseID: `${encodeURIComponent(item.name)}:${item.id}` // Use name and ID for the dynamic segment
+        }
+      };
+    });
 
-//     console.log("paths_", paths);
+    console.log("paths_", paths);
 
-//     return {
-//       paths, // Return all the dynamic paths
-//       fallback: false, // You can adjust fallback to 'blocking' or 'true' if necessary
-//     };
-//   } catch (error) {
-//     console.error("Error in getStaticPaths:", error);
-//     return {
-//       paths: [],
-//       fallback: false, // Return an empty array in case of failure
-//     };
-//   }
-// };
+    return {
+      paths, // Return all the dynamic paths
+      fallback: 'blocking', // Use blocking for non-generated paths
+    };
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return {
+      paths: [],
+      fallback: false, // Return an empty array in case of failure
+    };
+  }
+};
 
 
-// export const getStaticProps = async ({ params }) => {
-//   const { onlineCourseID } = params;
+export const getStaticProps = async ({ params }) => {
+  const { onlineCourseID } = params;
 
-//   return {
-//     props: {
-//       onlineCourseID: onlineCourseID || null, // Provide initialTab as a prop
-//     },
-//   };
-// };
+  return {
+    props: {
+      onlineCourseID: onlineCourseID || null, // Provide initialTab as a prop
+    },
+  };
+};
 
 export default OnlineCourse;
