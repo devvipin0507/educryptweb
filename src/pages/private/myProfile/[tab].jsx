@@ -42,21 +42,21 @@ const Index = ({ initialTab }) => {
 
   const renderContent = () => {
     switch (statusTab) {
-      case "Feeds":
+      case "feeds":
         return <Feeds />;
       case "ourCourse":
         return <OurCourses />;
-      case "Live_Test":
+      case "live_Test":
         return <LiveTest />;
-      case "Live_Classes":
+      case "live_Classes":
         return <LiveClass />;
-      case "Blog":
+      case "blog":
         return <Blogs />;
-      case "Current_affairs":
+      case "current_affairs":
         return <CurrentAffairList />;
-      case "Testimonial":
+      case "testimonial":
         return <Testimonial />;
-      case "Bookstore":
+      case "bookstore":
         return <Bookstore />;
       case "notification":
         return <Notification />;
@@ -64,7 +64,7 @@ const Index = ({ initialTab }) => {
         return <MyCourse />;
       case "purchase-history":
         return <PurchaseHistory />;
-      case "Inquiry":
+      case "inquiry":
         return <Inquiry />;
       case "profile":
         return <Profile />;
@@ -89,18 +89,18 @@ const Index = ({ initialTab }) => {
 // Use `getStaticPaths` to define available dynamic routes
 export const getStaticPaths = async () => {
   const paths = [
-    { params: { tab: "Feeds" } },
+    { params: { tab: "feeds" } },
     { params: { tab: "ourCourse" } },
-    { params: { tab: "Live_Test" } },
-    { params: { tab: "Live_Classes" } },
-    { params: { tab: "Blog" } },
-    { params: { tab: "Current_affairs" } },
-    { params: { tab: "Testimonial" } },
-    { params: { tab: "Bookstore" } },
+    { params: { tab: "live_Test" } },
+    { params: { tab: "live_Classes" } },
+    { params: { tab: "blog" } },
+    { params: { tab: "current_affairs" } },
+    { params: { tab: "testimonial" } },
+    { params: { tab: "bookstore" } },
     { params: { tab: "notification" } },
     { params: { tab: "myCourse" } },
     { params: { tab: "purchase-history" } },
-    { params: { tab: "Inquiry" } },
+    { params: { tab: "inquiry" } },
     { params: { tab: "profile" } },
   ];
 

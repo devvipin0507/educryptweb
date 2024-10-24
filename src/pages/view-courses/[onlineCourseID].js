@@ -178,34 +178,22 @@ export const getStaticPaths = async () => {
   try {
     const token = get_token();
     const formData = {};
-
-    // Fetch course category data
     const response_getCourse_service = await getCourse_Catergory_Service(encrypt(JSON.stringify(formData), token));
     const response_getCourse_data = decrypt(response_getCourse_service.data, token);
 
-    // Log the response to check the data structure
-    console.log("response_getCourse_data:", response_getCourse_data);
-
-    // Ensure we have the expected data
     const courseTypeMaster = response_getCourse_data?.data?.course_type_master || [];
-    
-    // Limit to the first 10 unique items based on ID
     const uniqueItems = Array.from(
       new Set(courseTypeMaster.map(item => item.id))
     ).map(id => {
       return courseTypeMaster.find(item => item.id === id);
     });
-
-    // Generate paths for the first 10 unique items
     const paths = uniqueItems.slice(0, 10).map(item => {
       return {
         params: {
-          onlineCourseID: `${encodeURIComponent(item.name)}:${item.id}`, // Use name and ID for the dynamic segment
+          onlineCourseID: `${encodeURIComponent(item.name)}:${item.id}`
         },
       };
     });
-
-    console.log("Generated paths:", paths); // Log the generated paths
 
     return {
       paths,
@@ -219,8 +207,6 @@ export const getStaticPaths = async () => {
     };
   }
 };
-
-
 
 export const getStaticProps = async ({ params }) => {
   const { onlineCourseID } = params;
