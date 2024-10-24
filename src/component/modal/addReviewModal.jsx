@@ -110,6 +110,7 @@ const AddReviewModal = (props) => {
         toastOptions={{ duration: 1500 }}
       /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {

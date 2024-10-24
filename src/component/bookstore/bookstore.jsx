@@ -101,7 +101,6 @@ const Bookstore = () => {
 
   return (
     <>
-        <SearchCourses catId = {bookstoreData[0]?.id} handleFilterCourses = {handleFilterCourses} />
         {banner &&
         <section className="container-fluid">
         <div className="row">
@@ -111,6 +110,7 @@ const Bookstore = () => {
         </div>
       </section>
       }  
+      <SearchCourses catId = {bookstoreData[0]?.id} handleFilterCourses = {handleFilterCourses} />
       <section className="container-fluid">
       <div className="row">
       <div className="col-md-12">

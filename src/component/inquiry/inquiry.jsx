@@ -308,8 +308,9 @@ const Inquiry = () => {
 
   return (
     <>
-      {/* <Toaster position="top-right" reverseOrder={false} /> */}
-      <Toaster
+      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -322,7 +323,7 @@ const Inquiry = () => {
             },
           },
         }}
-      />
+      /> */}
       <div className="container-fluid p-0">
         {convoDetail && (
           <div className="col-md-12 p-0">

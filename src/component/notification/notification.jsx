@@ -11,10 +11,12 @@ import ErrorPageAfterLogin from "../errorPageAfterLogin";
 const Notification = () => {
   const [notificationData, setNotificationData] = useState([]);
   const [showError, setShowError] = useState(false)
+  const [appLogo, setAppLogo] = useState('')
   const router = useRouter();
   useEffect(() => {
     setShowError(false)
     fetchNotification();
+    setAppLogo(localStorage.getItem('logo'))
   }, []);
 
   const fetchNotification = async () => {
@@ -66,6 +68,7 @@ const Notification = () => {
     <>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -92,7 +95,7 @@ const Notification = () => {
                           <p className="m-0 activeNotification"></p>
                           <img
                             className="notifyImg"
-                            src="/assets/images/notifyImg.svg"
+                            src={appLogo ? appLogo : "/assets/images/notifyImg.svg"}
                             alt=""
                           />
                         </div>

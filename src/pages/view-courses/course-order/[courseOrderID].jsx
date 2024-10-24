@@ -39,6 +39,7 @@ const CourseOrderID = () => {
   const [defaultAddress, setDefaultAddress] = useState(false);
   const [isPrivateTab, setIsPrivateTab] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [toggleTerms, setToggleTerms] = useState(false);
   const [couponData, setCouponData] = useState(null);
   const [preFillCouponList, setPreFillCouponList] = useState([]);
   const [selfFillCouponList, setSelfFillCouponList] = useState([]);
@@ -85,6 +86,7 @@ const CourseOrderID = () => {
   // console.log("versionData456788", versionData);
 
   useEffect(() => {
+    setToggleTerms(false);
     if (courseOrderID) {
       fetchCouponService(
         courseOrderID?.slice(
@@ -134,10 +136,10 @@ const CourseOrderID = () => {
   }, [])
 
   useEffect(() => {
-    if(titleName == "Bookstore" || titleName == "Books"){
+    if(courseData?.cat_type == 1){
       setIsAddressShow(true)
     }
-  }, [titleName])
+  }, [courseData])
 
   useEffect(() => {
     console.log(preFillCouponList)
@@ -318,6 +320,7 @@ const CourseOrderID = () => {
     try{
       const isLoggedIn = localStorage.getItem("jwt");
       if (isLoggedIn) {
+        if(toggleTerms) {
         const formData = {};
         const response_getPayGateway_service = await getPayGatewayService(
           encrypt(JSON.stringify(formData), token)
@@ -475,6 +478,10 @@ const CourseOrderID = () => {
             showErrorToast("We're facing some technical issue");
           } else showErrorToast(response_getPayGateway_data.false);
         }
+      }
+      else{
+        showErrorToast("Before making the payment, Please, Accept terms and condition")
+      }
       } else {
         setModalShow(true);
       }
@@ -562,7 +569,7 @@ const CourseOrderID = () => {
       if (response_ConfirmPayment_data.status) {
         // showSuccessToast(response_ConfirmPayment_data.message);
         setThankYouModalShow(true);
-        if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
+        if (courseData?.cat_type == 1) {
           router.push("/private/myProfile/ourCourse");
         } else {
           router.push("/private/myProfile/MyCourse");
@@ -771,9 +778,10 @@ const CourseOrderID = () => {
   const handleAddressForm = (e) => {
     console.log(e.target.value)
     const { name, value } = e.target;
+    const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
     setUserData({
       ...userData,
-      [name]: value,
+      [name]: capitalizedValue,
     });
   }
 
@@ -1004,6 +1012,7 @@ const CourseOrderID = () => {
     <>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -1181,7 +1190,7 @@ const CourseOrderID = () => {
                         type="text"
                         name="name"
                         value={userData.name}
-                        placeholder="Name"
+                        placeholder="Name *"
                         onChange={handleAddressForm}
                         autoComplete="off"
                       />
@@ -1221,7 +1230,7 @@ const CourseOrderID = () => {
                       <input
                         type="tel"
                         className="mobNum"
-                        placeholder="Enter mobile number"
+                        placeholder="Enter mobile number *"
                         value={userData.mobile}
                         onChange={handleInputMobile}
                       />
@@ -1232,7 +1241,7 @@ const CourseOrderID = () => {
                         name="address"
                         type="text"
                         className="address"
-                        placeholder="Flat/House no."
+                        placeholder="Flat/House no. *"
                         value={userData.address}
                         onChange={handleAddressForm}
                       />
@@ -1254,7 +1263,7 @@ const CourseOrderID = () => {
                         value={userData?.state ? stateOption.find(stateOption => stateOption.label == userData?.state) : stateOption.find(stateOption => stateOption.value === stateId) || null}
                         onChange={handleStateInForm}
                         options={stateOption && stateOption}
-                        placeholder="state"
+                        placeholder="state *"
                         isSearchable
                       />
                     </div>
@@ -1266,7 +1275,7 @@ const CourseOrderID = () => {
                         value={userData?.district ? districtOption.find(districtOption => districtOption.label == userData?.district) : districtOption.find(districtOption => districtOption.value === districtId) || null}
                         onChange={handleDistrictInForm}
                         options={districtOption && districtOption}
-                        placeholder="district"
+                        placeholder="district *"
                         isSearchable
                       />
                     </div>
@@ -1275,7 +1284,7 @@ const CourseOrderID = () => {
                         name="pincode"
                         type="tel"
                         className="pincode"
-                        placeholder="Pincode"
+                        placeholder="Pincode *"
                         value={userData.pincode}
                         onChange={handleInputPincode}
                       />
@@ -1585,7 +1594,7 @@ const CourseOrderID = () => {
                         </td>
                       )}
                     </tr>
-                    {((titleName == "Bookstore" || titleName == "Books") && courseData?.delivery_charge) && 
+                    {(courseData?.cat_type == 1 && courseData?.delivery_charge) && 
                     <tr>
                       <td>
                         <p className="m-0 payTitle">Delivery Charge</p>
@@ -1661,11 +1670,15 @@ const CourseOrderID = () => {
               )}
               <div className="col-md-12">
                 <label className="terms d-flex align-items-center" for="defaultAddress">
-                  <input type="checkbox" id="terms" name="terms" />
+                  <input type="checkbox" id="terms" name="terms" value={toggleTerms} onChange={(e)=>setToggleTerms(!toggleTerms)} />
                   <span className="checkboxContainer"></span>
                   Before making payment you agree to our 
                 </label>
-                <div><Link href="/terms&condition" style={{color: "#FF7426"}}>Terms & Condition</Link></div>
+                <div>
+                  <Link 
+                    href="/terms&condition" 
+                    style={{color: "#FF7426"}}
+                  >Terms & Condition</Link></div>
               </div>
               <div className="w-100 checkOutBtn mt-3">
                 <Button1
@@ -1680,7 +1693,7 @@ const CourseOrderID = () => {
                     )
                   }
                   disable={isProcessing}
-                  handleClick={(titleName == "Bookstore" || titleName == "Books") ? handleBookPayment : handlePayment}
+                  handleClick={courseData?.cat_type == 1 ? handleBookPayment : handlePayment}
                 />
               </div>
             </div>

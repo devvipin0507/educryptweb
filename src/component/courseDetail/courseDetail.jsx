@@ -22,7 +22,7 @@ const CourseDetail = ({ courseDetail, propsValue, title, relateCourseAry, course
       setFaq(
         courseDetail.filter((item) => item.tile_name == "FAQ")[0]?.meta?.list
       )
-      const filteCourseDetail = courseDetail.filter((item) => (item.tile_name == "Course Overview" || item.tile_name == "Description"));
+      const filteCourseDetail = courseDetail.filter((item) => (item.type == "overview"));
       // console.log(filteCourseDetail)
       if(filteCourseDetail[0]?.meta?.visibility == '0') {
         setData(filteCourseDetail[0]?.meta?.description)
@@ -136,11 +136,11 @@ const CourseDetail = ({ courseDetail, propsValue, title, relateCourseAry, course
         )}
       </section>
       <section className="container-fluid page-section-4">
-          {isValidData(faculties_Ary) && (
+          { 
             <>
               <OurProduct value="faculties" data={faculties_Ary} />
             </>
-          )}
+          }
       </section>
     </div>
   );

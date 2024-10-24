@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Button1 from "../buttons/button1/button1";
 import Button2 from "../buttons/button2/button2";
 import { IoStar } from "react-icons/io5";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { FaRupeeSign } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { userLoggedIn } from "@/utils/helpers";
+import LoginModal from "../modal/loginModal";
 
 const content_image = "/assets/images/slideImg.png";
 const content_title = "Selection Hi Jawab Hai Something Special For VCAINS";
 
 const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
+
+  const [modalShow, setModalShow] = useState(false)
   const router = useRouter();
   // console.log("value", value);
 
@@ -20,25 +24,36 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
   };
 
   const handleBuy = () => {
-    const currentPath = router.asPath;
-    localStorage.setItem("redirectAfterLogin", currentPath);
-    
-    localStorage.setItem('previousTab', router.pathname);
-    router.push(
-      `/view-courses/course-order/${
-        titleName + ":" + value.id + "&" + courseCombo
-      }`
-    );
+    const isLoggedIn = userLoggedIn();
+    if(isLoggedIn) {
+      const currentPath = router.asPath;
+      localStorage.setItem("redirectAfterLogin", currentPath);
+      
+      localStorage.setItem('previousTab', router.pathname);
+      router.push(
+        `/view-courses/course-order/${
+          titleName + ":" + value.id + "&" + courseCombo
+        }`
+      );
+    }else{
+      setModalShow(true)
+    }
   };
 
-  return (
+  return (<>
+    <LoginModal
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+      />
     <div className="card border-0 shadow-lg mb-3 detail-rightCard m-3">
-      <p className="detailStripe">New</p>
+      {value&&<p className="detailStripe">New</p>}
         <div className="d-flex justify-content-center">
         <img
           style={{ borderRadius: "10px" }}
-          src={value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
-          className={`${(titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books") ? 'book_course_img' : 'course_img'}`}
+          src={value?.cat_type == 1 ? value.cover_image: value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
+          className={`${value?.cat_type == 1 ? 'book_course_img' : 'course_img'}`}
           alt="..."
         />
         </div>
@@ -56,8 +71,7 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
           </div>
           {value?.mrp == 0 && <p className="m-0 freeStripe">Free</p>}
         </div>
-        {(titleName != "Bookstore" && titleName != 'e-BOOK' &&
-        value?.mrp != 0) && (
+        {value?.cat_type != 1 && (
           <>
             <p className="my-2 d-flex align-items-center validity">
               <img
@@ -111,6 +125,7 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

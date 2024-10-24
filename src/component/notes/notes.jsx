@@ -41,6 +41,8 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
   const router = useRouter()
   const dispatch = useDispatch()
   let displayTabData = useSelector((state) => state.allCategory?.tabName)
+  const versionData = useSelector((state) => state.allCategory?.versionData);
+  // console.log('versionData', versionData)
   useEffect(() => {
     let domain = localStorage.getItem('domain')
     if(process.env.NEXT_PUBLIC_TEST_URL) {
@@ -428,7 +430,7 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
   const filterPage = () => {
     // console.log('layer3Data', layer3Data)
     let len = layer3Data?.list?.length;
-    let length = len%6 !==0 ? Math.floor(len/6) + 1 : len/6
+    let length = len%15 !==0 ? Math.floor(len/15) + 1 : len/15
     // for(let i = 0; i < length; i++) {
     //     Arr.push(i+1)
     // }
@@ -441,13 +443,13 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
     if(layer3Data?.list?.length > 0 && data3Index > 0) {
       // console.log("page", data3Index, page.length)
       if(data3Index == 1){
-        setLayer3updateData(layer3Data?.list?.slice(0, 6))
+        setLayer3updateData(layer3Data?.list?.slice(0, 15))
       }
       else if(data3Index === page.length){
         setLayer3updateData(layer3Data?.list?.slice((data3Index-1)*10, data3Index.length))
       }
       else{
-        setLayer3updateData(layer3Data?.list?.slice((data3Index-1)*6, (data3Index)*6))
+        setLayer3updateData(layer3Data?.list?.slice((data3Index-1)*15, (data3Index)*15))
       }
     }
   }, [data3Index, layer3Data])
@@ -575,8 +577,8 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
     }
     else {
       if(onlineCourseAry.is_purchased == 1) {
-        const givenStartTime = new Date(1729233285 * 1000);
-        showErrorToast(`Test will start at ${givenStartTime.toLocaleTimeString}`)
+        const givenStartTime = new Date(item?.start_date * 1000);
+        showErrorToast(`Test will start at ${givenStartTime.toLocaleTimeString()}`)
       }
       else {
         showErrorToast('Please, purchase the course')
@@ -593,6 +595,7 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
       />
       {/* <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -741,8 +744,8 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
                 />
               );
               })}
-              
-              {layer3updateData?.length > 5 &&
+              {/* {console.log('page', page)} */}
+              {layer3updateData?.length > 14 &&
                 <div className="pagination_button m-2">
                   <button 
                     onClick={() => data3Index > 1 && setData3Index(data3Index-1)}
@@ -804,7 +807,7 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
 
                     {/* <h3>{item.title}</h3> */}
                     <div className="subjectDetails">
-                      <p className="m-0 sub_name">{item.title}</p>
+                      <p className="sub_name">{item.title}</p>
                       {item.role == "subject" && (
                         <p className="m-0 sub_topics">{item.content} Topics</p>
                       )}
@@ -859,7 +862,7 @@ const Notes = ({ propsValue, tabName, resetRef, courseDetail, CourseID, keyValue
 
                     {/* <h3>{item.title}</h3> */}
                     <div className="subjectDetails">
-                      <p className="m-0 sub_name">{item.title}</p>
+                      <p className="sub_name">{item.title}</p>
                       {item.role == "subject" && (
                         <p className="m-0 sub_topics">{item.content} Topics</p>
                       )}

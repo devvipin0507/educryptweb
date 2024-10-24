@@ -13,6 +13,7 @@ export default function Home() {
   const [color, setColor] = useState('');
   const [appIdFetched, setAppIdFetched] = useState(false);
   const dispatch = useDispatch();
+  let msg = "You are already logged in with some other devices, So you are logged out from this device. 9"
 
   useEffect(() => {
     const fetchAppDetail = async () => {
@@ -30,10 +31,24 @@ export default function Home() {
           console.log('appData', data)
           localStorage.setItem('appId', data?.id);
           localStorage.setItem('logo', data?.web_logo);
-          localStorage.setItem('domain', data?.domain)
+          localStorage.setItem('domain', data?.domain);
+          localStorage.setItem('title', data?.title);
           dispatch(app_detailAction(data));
           setColor(data);
           setAppIdFetched(true);  // Mark app ID as fetched
+        }
+        else{
+          if(app_detail_data.message == msg){
+            localStorage.removeItem('appId');
+            localStorage.removeItem('logo');
+            localStorage.removeItem('domain');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('jwt');
+            localStorage.removeItem('mainTab');
+            localStorage.removeItem('redirectdetails')
+            localStorage.removeItem('title')
+            location.reload('/')
+          } 
         }
       } catch (error) {
         console.error("Error fetching app details:", error);

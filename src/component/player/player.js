@@ -22,6 +22,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
   const [showIntro, setshowIntro] = useState(false);
   const [showSkipRecap, setshowSkipRecap] = useState(false);
   const [cursorStyle, setCursorStyle] = useState('');
+  const [Live, setLive] = useState(false);
   const currentTimeRef = useRef(currentTime); // Ref to keep track of currentTime
   
   const router = useRouter()
@@ -164,13 +165,38 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             }
           });
           // await player.load(NonDRMVideourl);
+          
           player.load(NonDRMVideourl).then(function() {
           }).catch((err)=>{
           })
           
         } else {
           const mediaTailorUrl = source?.file_url;
-          await player.load(mediaTailorUrl);
+         
+        
+        
+        
+        
+       
+          await player.load(mediaTailorUrl).then(() =>{
+            if (player.isLive()) {
+              
+              var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
+              var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
+              if (seekBar) {
+                seekBar.remove();
+                seekBar2.remove(); 
+                setLive(true)             
+
+              }
+             
+            }
+            else{
+              setLive(true) 
+            }
+          }).catch((error) =>{
+            console.log('Error Loading video', error)
+          });
           videoRef.current.play();
         }
       } catch (error) {
@@ -279,9 +305,12 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             Skip Recap</button>}
         </div>
         {cursorStyle == "auto" &&
+        <>
+        {Live ?  <span className="liveIndicator">Live</span> : ""}
           <div className="_controls_video_">
             <div className="__video-deu__">
             </div>
+           
             <div className="__video_icon___">
               <div className="video_icon_left shaka-tooltips-on">
                 {!isAdPlaying &&
@@ -304,7 +333,9 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
               </div>
             </div>
           </div>
+          </>
         }
+      
       </div>
     </div>
   );

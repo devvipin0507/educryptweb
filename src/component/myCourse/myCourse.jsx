@@ -83,8 +83,9 @@ const MyCourse = () => {
   // console.log('showDetail', showDetail)
   return (
     <>
-      {/* <Toaster position="top-right" reverseOrder={false} /> */}
-      <Toaster
+      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -97,7 +98,7 @@ const MyCourse = () => {
             },
           },
         }}
-      />
+      /> */}
       {/* <SearchCourses /> */}
       <section className="container-fluid">
         <div className="row">

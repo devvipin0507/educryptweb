@@ -42,7 +42,7 @@ const Card2 = ({value, titleName}) => {
                 </div>
                 {/* <button className="btn exploreBtn">Explore now</button> */}
                 <div className="courseBtn d-flex">
-                    <Button1 value = "View Details" handleClick = {handleExplore} />
+                    <Button1 value = {value?.is_purchased == 1 ? "View Content" : "View Details"} handleClick = {handleExplore} />
                     <Button2 value = "Extend Validity" />
                 </div>
             </div>

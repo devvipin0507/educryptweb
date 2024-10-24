@@ -77,8 +77,9 @@ const LiveClass = () => {
 
   return (
     <>
-    {/* <Toaster position="top-right" reverseOrder={false} /> */}
-    <Toaster
+    <Toaster position="top-right" reverseOrder={false} />
+    {/* <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -91,7 +92,7 @@ const LiveClass = () => {
             },
           },
         }}
-      />
+      /> */}
       {/* <SearchCourses /> */}
       <section className="container-fluid">
         <div className="row">

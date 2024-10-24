@@ -399,7 +399,7 @@ const PurchaseHistory = () => {
         // toast.success(response_ConfirmPayment_data.message);
         setThankYouModalShow(true)
         fetchMyOrders();
-        //   if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
+        //   if (value?.cat_type == 1) {
         //     router.push("/private/myProfile/ourCourse");
         //   } else {
         //     router.push("/private/myProfile/MyCourse");
@@ -649,7 +649,7 @@ const PurchaseHistory = () => {
         setThankYouModalShow(true);
         // setGetCourse(data.payid)
         fetchMyOrders();
-        //   if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
+        //   if (value?.cat_type == 1) {
         //     router.push("/private/myProfile/ourCourse");
         //   } else {
         //     router.push("/private/myProfile/MyCourse");
@@ -674,6 +674,7 @@ const PurchaseHistory = () => {
     <>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -718,7 +719,9 @@ const PurchaseHistory = () => {
                       <div class="row align-items-center">
                         {/* <tr className=""> */}
                         <div class="col-12 col-md-2 mb-2 mb-md-0 purchaseThumbnail">
-                           <div> <img
+                           <div>
+                            <img
+                              loading="lazy"
                               className="img-fluid"
                               src={item?.desc_header_image ? item.desc_header_image : '/assets/images/noImage.jfif'}
                             />
@@ -737,7 +740,7 @@ const PurchaseHistory = () => {
                           {/* <!-- Course Details Section --> */}
                           <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <h6 class="mb-1 H_title">{item.title}</h6>
-                            <p class="m-0 text-muted"><span>Added:</span> {formatDate(JSON.parse(item.purchase_date))}</p>
+                            <p class="m-0 text-muted historyDate"><span>Added:</span> {formatDate(JSON.parse(item.purchase_date))}</p>
                           </div>
                           {/* <td style={{ width: "180px" }}>
                             <p className="m-0 historyDate">
@@ -746,7 +749,7 @@ const PurchaseHistory = () => {
                             </p>
                           </td> */}
                           <div class="col-6 col-md-2 mb-2 mb-md-0">
-                            <p class="m-0 text-muted"><span>Expired On:</span> {formatDate(JSON.parse(item.expiry_date))}</p>
+                            <p class="m-0 text-muted historyDate"><span>Expired On:</span> {formatDate(JSON.parse(item.expiry_date))}</p>
                           </div>
                           {/* <td style={{ width: "150px" }}>
                             <p className="m-0 historyDate">
@@ -755,7 +758,7 @@ const PurchaseHistory = () => {
                             </p>
                           </td> */}
                           <div class="col-6 col-md-2 mb-2 mb-md-0">
-                            <p class="m-0 text-muted"><span>Order ID: </span>{item.txn_id}</p>
+                            <p class="m-0 text-muted historyDate"><span>Order ID: </span>{item.txn_id}</p>
                           </div>
                           {/* <td style={{ width: "122px" }}>
                             <p className="m-0 historyDate">
@@ -767,7 +770,7 @@ const PurchaseHistory = () => {
                             </p>
                           </td> */}
                           <div class="col-6 col-md-2 mb-2 mb-md-0">
-                            <p class="m-0">
+                            <p class="m-0 historyDate">
                               <span>Amount: </span>
                               <FaRupeeSign className="rupeeSign" />{item.payment_mode == 1
                                 ? item.emi_payment
@@ -776,7 +779,7 @@ const PurchaseHistory = () => {
                               {item.payment_mode && item.payment_mode == 0 && (
                               <>
                                 {item.mrp != 0 &&
-                                  <p class="m-0 text-success">Paid</p>
+                                  <p class="m-0 text-success historyDate">Paid</p>
                                 
                                 }
                                 <>
@@ -920,10 +923,10 @@ const PurchaseHistory = () => {
         </div>
       ) : (<>
       {showError ? 
-        <div className=" pt-0 flex-grow-1">
-          <img src="/assets/images/BuyErrorImg.svg" alt="" />
-          <h4>No Data found!</h4>
-          <p>Unable to locate data, seeking alternative methods for retrieval.</p>
+        <div className="text-center pt-0 flex-grow-1">
+          <img loading="lazy" src="/assets/images/BuyErrorImg.svg" alt="" />
+          <h4 className="m-0">No Data found!</h4>
+          <p className="m-0">Unable to locate data, seeking alternative methods for retrieval.</p>
         </div>
         :
         <LoaderAfterLogin />

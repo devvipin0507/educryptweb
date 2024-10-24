@@ -1,5 +1,5 @@
 import { getCourseDetail_Service } from "@/services";
-import { decrypt, encrypt, get_token, isValidData } from "@/utils/helpers";
+import { decrypt, encrypt, get_token, isValidData, userLoggedIn } from "@/utils/helpers";
 import React, { useEffect, useRef, useState } from "react";
 import { LiaYoutube } from "react-icons/lia";
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -21,16 +21,19 @@ import ComboCourse from "@/component/comboCourse/comboCourse";
 import Loader from "@/component/loader";
 import LoaderAfterLogin from "@/component/loaderAfterLogin";
 import ErrorPageAfterLogin from "@/component/errorPageAfterLogin";
+import LoginModal from "@/component/modal/loginModal";
 
 const Details = ({ value }) => {
   const [key, setKey] = useState(null);
   const [onlineCourseAry, setOnlineCourseAry] = useState('');
   const [showError, setShowError] = useState(false);
   const [serverError, setServerError] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const [relateCourseAry, setRelateCourseAry] = useState([]);
   const [pdfData, setPdfData] = useState([]);
   const [courseDetail, setCourseDetail] = useState([]);
   const [tiles, setTiles] = useState([]);
+  const [contentData, setContentData] = useState([])
   const [id, setId] = useState("");
   const [titleName, setTitleName] = useState("");
   // const [courseCombo, setCourseCombo] = useState("");
@@ -130,6 +133,7 @@ const Details = ({ value }) => {
           );
           setCourseDetail(response_getCourseDetail_data?.data?.tiles);
           setTiles(response_getCourseDetail_data?.data?.tiles);
+          setContentData(response_getCourseDetail_data?.data?.tiles?.find(item => (item.type == "content" || item.type == "course_combo"))?.meta?.list?.find(item => item.id == id))
           setKey(response_getCourseDetail_data?.data?.tiles?.find(item => item.type = "overview")?.tile_name)
           // console.log("detail", response_getCourseDetail_data?.data?.tiles);
         }
@@ -162,17 +166,23 @@ const Details = ({ value }) => {
   }
 
   const handleBuyNow = () => {
-    const currentPath = router.asPath;
-    localStorage.setItem("redirectAfterLogin", currentPath);
-    router.push(
-      `/view-courses/course-order/${
-        titleName +
-        ":" +
-        onlineCourseAry.id +
-        "&" +
-        courseCombo
-      }`
-    )
+    const isLoggedIn = userLoggedIn();
+    if(isLoggedIn) {
+      const currentPath = router.asPath;
+      localStorage.setItem("redirectAfterLogin", currentPath);
+      router.push(
+        `/view-courses/course-order/${
+          titleName +
+          ":" +
+          onlineCourseAry.id +
+          "&" +
+          courseCombo
+        }`
+      )
+    }
+    else{
+      setModalShow(true);
+    }
   }
   // console.log('tiles', tiles)
 
@@ -180,6 +190,12 @@ const Details = ({ value }) => {
   return (
     <>
       <Header />
+      <LoginModal
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+      />
       <div className="d-flex" style={{ marginTop: "55px" }}>
         <SideBar />
         {/* {console.log('onlineCourseAry', onlineCourseAry)} */}
@@ -230,11 +246,11 @@ const Details = ({ value }) => {
                       </span>{" "}
                       120 PDF's
                     </p> */}
-                    {onlineCourseAry?.segment_information &&
+                    {contentData?.segment_information && 
                     <p className="m-0 me-4">
-                       {onlineCourseAry.segment_information}
+                      {contentData.segment_information}
                     </p>}
-                    {onlineCourseAry.mrp != 0 &&
+                    {onlineCourseAry?.cat_type != 1 && onlineCourseAry.mrp != 0 &&
                       onlineCourseAry.validity != "0 Days" && (
                         <p>
                           <span>
@@ -250,9 +266,22 @@ const Details = ({ value }) => {
                         <IoStar /> {onlineCourseAry.avg_rating ? parseFloat(onlineCourseAry.avg_rating).toFixed(1) : '0.0'}
                       </span>
                     </p>
-                    <p className="m-0 freeCourseReview">
-                      {onlineCourseAry.user_rated} Reviews
-                    </p>
+                    
+                    <p className="m-0 freeCourseReview d-flex align-items-center">
+                        {onlineCourseAry.user_rated} Reviews &nbsp;{" "}
+                        {/* {console.log('title', titleName)} */}
+                        {/* {onlineCourseAry?.cat_type == 1 && <>
+                        <span className="text-muted">|</span> &nbsp; Quantity
+                        :&emsp;{" "}
+                        <span className="quantityPrice ml-2">
+                          <input type="button" value={"-"} />
+                          <input type="text" readOnly min={1} />
+                          <input type="button" value={"+"} />
+                        </span>
+                        &nbsp; <span className="text-muted">|</span> &nbsp; In
+                        Stock:&nbsp;<span className="text-success"> Available</span>
+                        </>} */}
+                      </p>
                   </div>
                   {onlineCourseAry.mrp != 0 && (
                     <div className="gap-2 flex-wrap flex-sm-nowrap d-flex align-items-center button_price">
@@ -364,7 +393,8 @@ const Details = ({ value }) => {
                       item.type !== "content" &&
                       item.type !== "faq" &&
                       item.type !== "overview" &&
-                      item.type !== "concept" && (
+                      item.type !== "concept" && 
+                      !(item.type == "content" && versionData.same_content_view == 1)  && (
                         <Tab
                           eventKey={item.tile_name}
                           title={item.tile_name}

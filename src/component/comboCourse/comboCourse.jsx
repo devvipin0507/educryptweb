@@ -8,7 +8,7 @@ const ComboCourse = ({courseDetail, CourseID, tabName, keyValue, titleName, onli
     // console.log('CombocourseDetail', courseDetail)
     const dataAry = courseDetail?.meta?.list;
   return (
-    <div className="course_cardContainer onlineCourse mb-3">
+    <div className="onlineCourse mb-3">
         <div className="row">
         {isValidData(dataAry) ? 
             dataAry.map((item, index) => {

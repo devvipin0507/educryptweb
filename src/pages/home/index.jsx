@@ -86,8 +86,8 @@ const index = () => {
     try{
       const formData = {}
       const response_getCurrentAffairs_service = await getCurrentAffair_service(encrypt(JSON.stringify(formData), token))
+      console.log('response_getCurrentAffairs_data', response_getCurrentAffairs_service)
       const response_getCurrentAffairs_data = decrypt(response_getCurrentAffairs_service.data, token);
-      console.log('response_getCurrentAffairs_data', response_getCurrentAffairs_data)
       if(response_getCurrentAffairs_data.status){
         dispatch(all_CurrentAffair(response_getCurrentAffairs_data.data))
       }

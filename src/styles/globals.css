@@ -66,21 +66,198 @@ body {
   --bs-secondary-bg-subtle: #e2e3e5;
   --bs-success-bg-subtle: #d1e7dd;
   --bs-border-width: 0px;
+  
+  --btnDeafult: #ff7246;
+
+
+/* ================== Color Variables Starts  =========================*/
+
+  --primary-color: #fff;
+  /* Primary */
+  --secondary-color: #FF7426;
+  /* Secondary */
+  --background-color: #F8F9FA;
+  /* Background */
+  --text-color: #212529;
+  /* Text */
+  --accent-color: #FF6F61;
+  /* Accent */
+  --success-color: #28A745;
+  /* Success */
+  --warning-color: #FFC107;
+  /* Warning */
+  --error-color: #DC3545;
+  /* Error */
+  --neutral-light: #E9ECEF;
+  /* Light Neutral */
+  --neutral-dark: #343A40;
+  /* Dark Neutral */
+
+/* ================== Color Variables Ends  =========================*/
+
+
+/* ======================== Font Sizes Starts ======================= */
+  --size-1: 1px;
+  --size-2: 2px;
+  --size-3: 3px;
+  --size-4: 4px;
+  --size-5: 5px;
+  --size-6: 6px;
+  --size-7: 7px;
+  --size-8: 8px;
+  --size-9: 9px;
+  --size-10: 10px;
+  --size-11: 11px;
+  --size-12: 12px;
+  --size-13: 13px;
+  --size-14: 14px;
+  --size-15: 15px;
+  --size-16: 16px;
+  --size-17: 17px;
+  --size-18: 18px;
+  --size-19: 19px;
+  --size-20: 20px;
+  --size-21: 21px;
+  --size-22: 22px;
+  --size-23: 23px;
+  --size-24: 24px;
+  --size-25: 25px;
+  --size-26: 26px;
+  --size-27: 27px;
+  --size-28: 28px;
+  --size-29: 29px;
+  --size-30: 30px;
+  --size-31: 31px;
+  --size-32: 32px;
+  --size-33: 33px;
+  --size-34: 34px;
+  --size-35: 35px;
+  --size-36: 36px;
+  --size-37: 37px;
+  --size-38: 38px;
+  --size-39: 39px;
+  --size-40: 40px;
+  --size-41: 41px;
+  --size-42: 42px;
+  --size-43: 43px;
+  --size-44: 44px;
+  --size-45: 45px;
+  --size-46: 46px;
+  --size-47: 47px;
+  --size-48: 48px;
+  --size-49: 49px;
+  --size-50: 50px;
+  --size-51: 51px;
+  --size-52: 52px;
+  --size-53: 53px;
+  --size-54: 54px;
+  --size-55: 55px;
+  --size-56: 56px;
+  --size-57: 57px;
+  --size-58: 58px;
+  --size-59: 59px;
+  --size-60: 60px;
+  --size-61: 61px;
+  --size-62: 62px;
+  --size-63: 63px;
+  --size-64: 64px;
+  --size-65: 65px;
+  --size-66: 66px;
+  --size-67: 67px;
+  --size-68: 68px;
+  --size-69: 69px;
+  --size-70: 70px;
+  --size-71: 71px;
+  --size-72: 72px;
+  --size-73: 73px;
+  --size-74: 74px;
+  --size-75: 75px;
+  --size-76: 76px;
+  --size-77: 77px;
+  --size-78: 78px;
+  --size-79: 79px;
+  --size-80: 80px;
+  --size-81: 81px;
+  --size-82: 82px;
+  --size-83: 83px;
+  --size-84: 84px;
+  --size-85: 85px;
+  --size-86: 86px;
+  --size-87: 87px;
+  --size-88: 88px;
+  --size-89: 89px;
+  --size-90: 90px;
+  --size-91: 91px;
+  --size-92: 92px;
+  --size-93: 93px;
+  --size-94: 94px;
+  --size-95: 95px;
+  --size-96: 96px;
+  --size-97: 97px;
+  --size-98: 98px;
+  --size-99: 99px;
+  --size-100: 100px;
+
   /* --btnDeafult: #ff7246; */
   --btnDeafult: #212529;
+}
+
+/* ======================== Font Sizes Ends ======================= */
+
+.extTitle{
+  font-size: var(--size-14) !important;
+  font-family: "Reddit Sans",sans-serif !important;
+  font-weight: 600 !important;
+}
+.extcouponRadio {
+  accent-color: rgb(255, 116, 38) !important;
+  width: 12px !important;
+  height: 12px !important;
+  border: 1px solid #FF7426 !important;
+  border-radius: 50% !important;
+  padding: 5px !important;
+}
+.extendCouponModal .extCoupon_listCard p{
+  font-size: var(--size-12) !important;
+  font-family: "Reddit Sans",sans-serif !important;
+  font-weight: 500 !important;
+}
+.extendCouponModal .modal-header {
+  border-bottom: 1px solid #E2E2E2 !important;
+  padding: 12px !important;
+}
+
+.extendCouponModal .modal-header .btn-close {
+  font-size: 12px !important;
+}
+
+.extendCouponModal .modal-header p {
+  color: #353535 !important;
+  font-weight: 600 !important;
+  font-family: "Reddit Sans", sans-serif !important;
+  font-size: 16px !important;
+}
+.extCoupon_listCard{
+  border: 0px !important;
+  box-shadow: 0px 1px 14px 0px #0000000D !important;
+  border-radius: 10px !important;
+}
+.extCoupon_listCard.active {
+  background: linear-gradient(89.62deg, #FFF5EF 0.33%, #FFEADE 92.16%) !important;
 }
 
 /* ======================== Button1 CSS Starts ===================================*/
 .userBtn {
   color: #fff !important;
   background: var(--btnDeafult) !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
   width: auto !important;
-  padding: 7px 25px !important;
+  padding: 7px 18px !important;
   border: 1px solid var(--btnDeafult) !important;
   white-space: nowrap !important;
+  /* width: 100% !important; */
 }
 
 .userBtn:hover {
@@ -91,6 +268,26 @@ body {
 
 /* ======================== Button1 CSS Ends ===================================*/
 
+
+
+
+
+/* ======================= Combo Courses Starts =========================== */
+
+.validity1{
+    font-size: var(--size-12) !important;
+    font-family: "Reddit Sans",sans-serif;
+    font-weight: 500 !important;
+    -webkit-line-clamp: 2 !important;
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    -webkit-box-orient: vertical !important;
+    height: 36px !important;
+    line-height: 17px !important;
+}
+
+/* ======================= Combo Courses Starts =========================== */
+
 /* ======================== Button2 CSS Starts ===================================*/
 
 .userBtn1:hover {
@@ -100,9 +297,10 @@ body {
 
 .userBtn1 {
   border: 1px solid var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   background-color: #ff76263b !important;
   color: var(--btnDeafult) !important;
+  padding: 7px 7px !important;
 }
 
 /* ======================== Button2 CSS Ends ===================================*/
@@ -185,18 +383,25 @@ nav #eduNav {
   padding: 8px 20px !important;
 }
 
-.logoImg {
-  width: 150px !important;
+.logoImgContainer {
+  width: 120px !important;
 }
 
-.logoImg2 {
-  width: 80px !important;
+.logoImg {
+  width: 120px !important;
+  height: 42px !important;
+  display: block;
+} 
+
+.logoImg2{
+  width: 120px !important;
+  height: 42px !important;
 }
 
 .userBtn {
   color: #fff !important;
   background: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 .primaryBtn,
@@ -204,7 +409,7 @@ nav #eduNav {
   border: 1px solid #ffa674 !important;
   border-radius: 6px !important;
   padding: 6px 12px !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   width: 100% !important;
 }
 
@@ -233,7 +438,7 @@ nav #eduNav {
 }
 
 .search input[type="text"]::placeholder {
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   font-family: "Montserrat", sans-serif !important;
   color: #717171 !important;
 }
@@ -252,11 +457,11 @@ input.searchBar {
   background: #f1f1f1 !important;
   color: #717171 !important;
   line-height: 10px !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
 }
 
 .profile_cont a {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   display: flex !important;
   align-items: center !important;
   gap: 4px !important;
@@ -285,11 +490,11 @@ h4.LogOutTitle {
   text-align: center !important;
   color: #171717 !important;
   font-weight: 700 !important;
-  font-size: 17px !important;
+  font-size: var(--size-17) !important;
 }
 p.logout_text {
   color: #424242 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
   font-family: "Reddit Sans", sans-serif !important;
   text-align: center !important;
@@ -299,7 +504,7 @@ p.logout_text {
   border: 1px solid #ffa674 !important;
   border-radius: 6px !important;
   padding: 6px 12px !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   width: 100% !important;
 }
 .logOutBtn {
@@ -352,7 +557,7 @@ p.logout_text {
   color: #434343 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   text-transform: capitalize !important;
   -webkit-line-clamp: 2 !important;
   display: -webkit-box !important;
@@ -415,17 +620,17 @@ h4.w_Title {
   color: #1f1f1f !important;
   font-weight: 700 !important;
 
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 .l_text {
   color: #575757 !important;
 
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   margin-bottom: 32px !important;
 }
 .UserModal .input-group {
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
 }
 .UserModal .mobNum {
   border: 1px solid #c2c2c2 !important;
@@ -509,7 +714,7 @@ h4.w_Title {
   padding: 8px 12px !important;
   color: #000 !important;
   font-weight: 400 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 .UserModal .emailAddress::placeholder {
   color: #2b2b2b !important;
@@ -544,7 +749,7 @@ h4.w_Title {
   width: 100% !important;
   border-right: 1px solid #acacac !important;
   padding: 2px 8px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 600 !important;
 
@@ -575,7 +780,7 @@ h4.w_Title {
 
 .forgotText {
   color: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 500 !important;
   cursor: pointer !important;
@@ -584,7 +789,7 @@ h4.w_Title {
 .btnDisabled {
   background: #bebebe !important;
   color: #fff !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 500 !important;
   width: 100% !important;
@@ -593,7 +798,7 @@ h4.w_Title {
 .btnEnabled {
   background: var(--btnDeafult) !important;
   color: #fff !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 500 !important;
   width: 100% !important;
@@ -604,7 +809,7 @@ h4.w_Title {
         color: #fff !important;
     } */
 .signUp_text {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 500 !important;
   color: #343434 !important;
@@ -612,7 +817,7 @@ h4.w_Title {
 }
 .signUp_text a {
   color: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 500 !important;
   cursor: pointer !important;
@@ -644,13 +849,13 @@ h4.w_Title {
 }
 .resendOTP {
   color: #979797 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-family: "Reddit Sans", sans-serif !important;
   margin-top: 10px !important;
 }
 .resendOTP span {
   color: var(--btnDeafult) !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-family: "Reddit Sans", sans-serif !important;
   cursor: pointer !important;
 }
@@ -660,7 +865,7 @@ h4.w_Title {
 .forgotLink {
   text-align: end !important;
   color: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   cursor: pointer !important;
   font-weight: 500 !important;
@@ -690,7 +895,7 @@ h4.w_Title {
   background: var(--btnDeafult) !important;
   border: 1px solid var(--btnDeafult) !important;
   color: #fff !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
   padding: 10px 32px !important;
@@ -704,7 +909,7 @@ h4.w_Title {
   background: #fff !important;
   border: 1px solid #bebebe !important;
   color: #1d1d1d !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
   padding: 10px 25px !important;
@@ -716,7 +921,7 @@ h4.w_Title {
 }
 .c_profileForm input,
 .c_profileForm select {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
   border: 1px solid #c2c2c2 !important;
@@ -725,7 +930,7 @@ h4.w_Title {
 }
 .c_profileForm input::placeholder,
 select::placeholder {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 300 !important;
 }
@@ -734,7 +939,7 @@ select::placeholder {
   position: absolute !important;
   right: 40px !important;
   top: 24px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   /* background: #EDEDED !important; */
   border-radius: 50% !important;
   z-index: 0 !important;
@@ -769,7 +974,7 @@ select::placeholder {
 }
 .owl-carousel .carousel-indicators {
   position: absolute !important;
-  bottom: -20% !important;
+  bottom: -40px !important;
 }
 .carousel-indicators-wrapper {
   position: absolute !important;
@@ -801,11 +1006,15 @@ select::placeholder {
   border: 2px solid rgb(255, 112, 3) !important;
   background-color: rgb(255, 112, 3) !important;
 }
+
 .banner_img img {
   /* padding: 0px !important; */
   /* padding: 0px 48px  !important; */
   height: auto !important;
-  width: 100% !important;
+  aspect-ratio: 21 / 6 !important;
+  border-radius: 30px !important;
+  padding: 10px 0 !important;
+  object-fit: fill !important;
 }
 
 /*=============================  Banner CSS Ends ============================*/
@@ -850,7 +1059,7 @@ h1 {
 .slick-prev:before,
 .slick-next:before {
   font-family: "slick" !important;
-  font-size: 30px !important;
+  font-size: var(--size-30) !important;
   line-height: 1 !important;
   opacity: 0.75 !important;
   -webkit-font-smoothing: antialiased !important;
@@ -859,7 +1068,7 @@ h1 {
 
 .slick-prev,
 .slick-next {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   line-height: 0 !important;
   position: absolute !important;
   top: 50% !important;
@@ -879,7 +1088,7 @@ h1 {
 }
 
 .slick-disabled {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   line-height: 0 !important;
   position: absolute !important;
   top: 50% !important;
@@ -911,7 +1120,7 @@ h1 {
   background: #ff7a00 !important;
   color: #fff !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 9px !important;
+  font-size: var(--size-9) !important;
   border-top-right-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
   text-transform: capitalize !important;
@@ -934,32 +1143,45 @@ h1 {
 
 .tredingSliderSection {
   margin: 20px 5px !important;
-  height: 100px !important;
+  /* height: 100px !important; */
   /* transition: .5s ease-in-out !important; */
 }
 
 .trendBtnCont {
   display: none !important;
 }
-
 .tredingSliderSection:hover .trendBtnCont {
   display: block !important;
 }
-/* .tredingSliderSection:hover{
-    padding: 5px  !important;
-    box-shadow: 0px 0px 26px 0px #00000042  !important;
-    transform: scale(1.1) !important;
-} */
-.tredingSliderSection:hover {
-  padding: 10px !important;
-  transform: scale(1.1) !important;
-  /* transition: all 0.5s !important; */
 
+/* .tredingSliderSection:hover{
+    padding: 5px !important;
+    box-shadow: 0px 0px 26px 0px #00000042 !important;
+    transform: scale(1.1);
+} */
+
+.tredingSliderSection:hover {
+  padding: 5px !important;
+  transform: scale(1.1);
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.15) !important;
-  z-index: 9999 !important;
-  /* position: absolute !important; */
-  transform: translateY(-10px) !important;
-  /* margin-top: 14px  !important; */
+  z-index: 9999;
+  position: absolute;
+  margin-top: 3px !important;
+  width: 5.5% !important;
+  height: auto !important;
+  /* aspect-ratio: 17 / 9 !important; */
+}
+
+.tredingSliderSection img {
+  aspect-ratio: 19 / 9 !important;
+  object-fit: fill !important;
+}
+
+.tredingSliderSection:hover img {
+  aspect-ratio: 19 / 9 !important;
+  object-fit: fill !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .sldr_container {
@@ -970,12 +1192,6 @@ h1 {
   padding-bottom: 20px !important;
 }
 
-.tredingSliderSection:hover img {
-  aspect-ratio: 19 / 9 !important;
-  object-fit: fill !important;
-  width: 100% !important;
-  height: 100% !important;
-}
 
 .sldr_container .slick-list {
   padding-bottom: 20px !important;
@@ -1030,17 +1246,7 @@ h1 {
   border: 1px solid #ff7a00 !important;
   background-color: #ff7a00 !important;
   border-radius: 10px !important;
-  font-size: 14px !important;
-}
-
-.tredingSliderSection img {
-  aspect-ratio: 19 / 9 !important;
-  object-fit: fill !important;
-}
-
-.tredingSliderSection:hover img {
-  aspect-ratio: 19 / 9 !important;
-  object-fit: fill !important;
+  font-size: var(--size-14) !important;
 }
 
 /* .tredingSliderSection:hover .explorebtn button {
@@ -1112,7 +1318,7 @@ h1 {
   border-color: var(--bs-nav-tabs-link-active-border-color) !important;
   font-weight: 800 !important;
 
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
   border: none !important;
   /* border-bottom: 3px solid rgb(255, 112, 3) !important; */
   border-bottom: 3px solid #212529 !important;
@@ -1124,7 +1330,7 @@ h1 {
   border: none !important;
   font-weight: 800 !important;
 
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
   outline: none !important;
 }
 
@@ -1132,7 +1338,7 @@ h1 {
   border: none !important;
   color: rgb(152, 152, 152) !important;
   font-weight: 800 !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 }
 
 .freeTC_container .nav-link.active:hover {
@@ -1142,7 +1348,7 @@ h1 {
   /* border-bottom: 3px solid rgb(255, 112, 3) !important; */
   border-bottom: 3px solid #212529 !important;
   font-weight: 800 !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 }
 
 .freeTC_container .nav-tabs {
@@ -1229,7 +1435,7 @@ h1 {
 }
 
 .slideTitle {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 700 !important;
   color: #2d2d2d !important;
   text-transform: capitalize !important;
@@ -1237,11 +1443,11 @@ h1 {
   display: -webkit-box !important;
   overflow: hidden !important;
   -webkit-box-orient: vertical !important;
-  height: 36px !important;
+  max-height: 36px !important;
   line-height: 17px !important;
 }
 .free-badge {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Montserrat", sans-serif !important;
   color: #fff !important;
   padding: 2px 10px !important;
@@ -1255,14 +1461,14 @@ h1 {
   background: var(--btnDeafult) !important;
   color: #fff !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   padding: 5px 36px !important;
 }
 
 .slick-prev,
 .slick-next {
   box-shadow: 0px 7px 28px 0px #00000021 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   border: 0px !important;
 }
 
@@ -1278,14 +1484,14 @@ h1 {
 
   display: flex !important;
   align-items: center !important;
-  font-size: 9px !important;
+  font-size: var(--size-9) !important;
   padding: 0px 5px !important;
   border-radius: 3px !important;
   gap: 2px !important;
 }
 
 .freeCard .courserate .rating svg {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 
 .freeCard img.calendarDate2 {
@@ -1296,7 +1502,7 @@ h1 {
 
 .freeCard p.review {
   padding-left: 4px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   color: #878787 !important;
 }
@@ -1306,7 +1512,7 @@ h1 {
   background: #5fb963 !important;
   color: #fff !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 8px !important;
+  font-size: var(--size-8) !important;
   border-radius: 20px !important;
   text-transform: uppercase !important;
   padding: 3px 12px !important;
@@ -1317,7 +1523,7 @@ h1 {
   border-radius: 10px !important;
 }
 .countTitle {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   float: left !important;
   font-family: "Montserrat", sans-serif !important;
   color: #878787 !important;
@@ -1355,11 +1561,11 @@ h1 {
 h1.main-title {
   font-weight: 800 !important;
   color: #161616 !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 }
 
 .ourProductSection .card {
-  margin: 10px 10px !important;
+  margin: 10px 5px !important;
 }
 
 .bottom_shadow {
@@ -1464,13 +1670,13 @@ h1.main-title {
 
 .faculty_name {
   color: #1b1d1f !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
 
   font-weight: 600 !important;
 }
 
 .faculty_role {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
   margin: 0px !important;
   color: #6d737a !important;
@@ -1487,7 +1693,7 @@ h1.main-title {
   position: absolute !important;
   right: 5px !important;
   top: 4px !important;
-  font-size: 9px !important;
+  font-size: var(--size-9) !important;
 }
 
 /* SliderProduct CSS */
@@ -1522,12 +1728,12 @@ h1.main-title {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Poppins", sans-serif !important;
 }
 
 .ourtitle {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Poppins", sans-serif !important;
   color: #fff !important;
   /* -webkit-line-clamp: 2 !important;
@@ -1583,12 +1789,12 @@ h1.main-title {
 
 .blogDate {
   color: #393e46 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   margin-bottom: 0 !important;
 }
 
 .blogTitle {
-  font-size: 15px !important;
+  font-size: var(--size-15) !important;
   font-weight: 600 !important;
   color: #222831 !important;
   -webkit-line-clamp: 2 !important;
@@ -1600,7 +1806,7 @@ h1.main-title {
 .blogSection .readBtn {
   color: var(--btnDeafult) !important;
 
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 600 !important;
 }
 .blogSection a.readBtn:active {
@@ -1611,7 +1817,7 @@ h1.main-title {
 .blog-text {
   color: #393e46 !important;
   font-size: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
   -webkit-line-clamp: 2 !important;
   display: -webkit-box !important;
@@ -1667,7 +1873,7 @@ h1.main-title {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
   font-weight: 500 !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
   color: grey !important;
 }
 
@@ -1684,7 +1890,7 @@ h1.main-title {
 .slick-prev:before,
 .slick-next:before {
   font-family: "slick" !important;
-  font-size: 30px !important;
+  font-size: var(--size-30) !important;
   line-height: 1 !important;
   opacity: 0.75 !important;
   -webkit-font-smoothing: antialiased !important;
@@ -1712,7 +1918,7 @@ h1.main-title {
 } */
 
 .slick-disabled {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   line-height: 0 !important;
   position: absolute !important;
   top: 50% !important;
@@ -1796,14 +2002,14 @@ h1.main-title {
   color: #3f3f3f !important;
 
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 .cardQuotes {
   position: absolute !important;
   right: 15px !important;
   top: 10px !important;
   color: #ffc27a !important;
-  font-size: 30px !important;
+  font-size: var(--size-30) !important;
   width: 30px !important;
 }
 .p-text p {
@@ -1811,7 +2017,7 @@ h1.main-title {
   color: #717171 !important;
 
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   -webkit-line-clamp: 4 !important;
   display: -webkit-box !important;
   overflow: hidden !important;
@@ -1820,7 +2026,7 @@ h1.main-title {
 }
 .testi-text {
   color: #8a8a8a !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Montserrat", sans-serif !important;
   font-weight: 300 !important;
 }
@@ -1841,7 +2047,7 @@ h1.main-title {
 
 .get_desc p {
   font-weight: 400 !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   color: #474747 !important;
 }
 
@@ -1850,10 +2056,10 @@ textarea {
   width: 100% !important;
   border: 0.76px solid #d7d7d7 !important;
   margin: 5px 0 !important;
-  border-radius: 2px !important;
+  border-radius: 10px !important;
   color: grey !important;
   padding: 10px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #848484 !important;
   outline: none !important;
   box-shadow: none !important;
@@ -1936,7 +2142,7 @@ textarea {
 }
 
 .orgName {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #fff !important;
   font-weight: 600 !important;
 }
@@ -1944,7 +2150,7 @@ textarea {
 .orgAddress,
 .mobNumber,
 .emailAddress {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   color: #fff !important;
 
   font-weight: 300 !important;
@@ -1952,7 +2158,7 @@ textarea {
 .orgAddress span,
 .mobNumber span,
 .emailAddress span {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #fff !important;
 
   font-weight: 400 !important;
@@ -1965,12 +2171,12 @@ textarea {
 
 .footTitle {
   color: #fff !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
   font-weight: 500 !important;
 }
 
 .list-unstyled li a {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #fff !important;
   font-weight: 300 !important;
 }
@@ -1978,7 +2184,7 @@ textarea {
 /*============================= ViewDetail CSS Starts =============================*/
 
 p.detailStripe {
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 
   border-top-right-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
@@ -2017,7 +2223,7 @@ p.detailStripe {
 
 .breadcrumb-item {
   font-style: italic !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 600 !important;
 }
 
@@ -2025,7 +2231,7 @@ p.detailStripe {
   /* color: rgb(255, 112, 3) !important; */
   color: var(--btnDeafult) !important;
   font-style: italic !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 600 !important;
 }
 
@@ -2043,7 +2249,7 @@ p.detailStripe {
 
 .detailTopContainer .courseTitle h4 {
   font-weight: 700 !important;
-  font-size: 28px !important;
+  font-size: var(--size-28) !important;
 
   text-transform: capitalize !important;
   -webkit-line-clamp: 2 !important;
@@ -2055,7 +2261,7 @@ p.detailStripe {
 }
 
 .courseDuration {
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
   display: flex !important;
 }
 
@@ -2064,7 +2270,7 @@ p.detailStripe {
   color: white !important;
   align-items: center !important;
   display: flex !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   padding: 0px 4px !important;
   border-radius: 2px !important;
   gap: 1px !important;
@@ -2072,7 +2278,7 @@ p.detailStripe {
 }
 
 .freeCourserate .freeRating svg {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 
 .reviewsmsg {
@@ -2087,14 +2293,48 @@ p.detailStripe {
 
 .freeCourserate p.freeCourseReview {
   padding-left: 6px !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   color: #4b4b4b !important;
 
   line-height: 14px !important;
 }
 
+
+span.quantityPrice {
+  display: flex;
+  background: #dedfe8;
+  justify-content: center;
+  padding: 2px;
+  width: fit-content;
+  border-radius: 50px;
+}
+
+span.quantityPrice input:nth-child(2) {
+  width: 32px;
+  height: 20px;
+  background: #f5f7fe;
+  border: none;
+  text-align: center;
+}
+
+span.quantityPrice input:nth-child(1) {
+  border-radius: 20px 0 0 20px
+}
+
+span.quantityPrice input:nth-child(3) {
+  border-radius: 0 20px 20px 0
+}
+
+span.quantityPrice input:nth-child(1),
+span.quantityPrice input:nth-child(3) {
+  width: 20px;
+  background: #fff;
+  border: none;
+}
+
+
 .courseDuration p {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #1f1f1f !important;
   font-weight: 600 !important;
 }
@@ -2104,7 +2344,7 @@ p.detailStripe {
 } */
 
 .courseDuration .video_icon {
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   color: #616161 !important;
 }
 
@@ -2116,14 +2356,14 @@ p.detailStripe {
 .MainCourseCard {
   position: absolute !important;
   right: 44px !important;
-  top: 80px !important;
+  top: 100px !important;
   width: 350px !important;
   z-index: 10 !important;
 }
 
 .detail-rightCard .slideTitle {
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 700 !important;
   color: #2d2d2d !important;
   text-transform: capitalize !important;
@@ -2144,7 +2384,7 @@ p.detailStripe {
   border-top-right-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
   box-shadow: 0px 4px 4px 0px #00000040 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-weight: 600 !important;
   padding: 2px 8px !important;
 }
@@ -2178,7 +2418,7 @@ p.detailStripe {
 
   display: flex !important;
   align-items: center !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   padding: 0px 4px !important;
   border-radius: 2px !important;
   gap: 1px !important;
@@ -2186,12 +2426,12 @@ p.detailStripe {
 }
 
 .detail-rightCard .courserate .rating svg {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 
 .detail-rightCard p.review {
   padding-left: 4px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   color: #878787 !important;
   font-weight: 400 !important;
@@ -2202,7 +2442,7 @@ p.detailStripe {
   background: #5fb963 !important;
   color: #fff !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 8px !important;
+  font-size: var(--size-8) !important;
   border-radius: 20px !important;
   text-transform: uppercase !important;
   padding: 3px 12px !important;
@@ -2230,12 +2470,22 @@ p.detailStripe {
 
 .course_mainContainer #controlled-tab-example2 {
   background-color: #fceee7 !important;
-  padding: 0px 103px !important;
+  margin: 0px 380px 0 0 !important;
+  flex-wrap: nowrap;
+  overflow: auto !important;
+  padding: 0px 106px !important;
   /* height: 70px  !important; */
   /* line-height: 48px  !important; */
 }
 .course_mainContainer #controlled-tab-example2 li button:hover {
   background-color: #fceee7 !important;
+}
+
+.course_mainContainer ::-webkit-scrollbar {
+  height: 5px !important;
+}
+.course_mainContainer ::-webkit-scrollbar-thumb {
+  background: #888 !important;
 }
 
 /* .course_mainContainer.tabs_design__ nav ul li{
@@ -2287,7 +2537,7 @@ p.detailStripe {
   color: #1c1c1c !important;
   border: none !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   outline: none !important;
   font-family: "Reddit Sans", sans-serif !important;
   padding: 10px 14px 10px 14px !important;
@@ -2332,12 +2582,12 @@ p.detailStripe {
 
 .heading_container p {
   font-weight: 700 !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 }
 
 .head {
   font-weight: 700 !important;
-  font-size: 22px !important;
+  font-size: var(--size-22) !important;
 }
 
 .detail-container {
@@ -2346,7 +2596,7 @@ p.detailStripe {
 
 .detail_container p {
   font-weight: 300 !important;
-  font-size: 22px !important;
+  font-size: var(--size-22) !important;
 }
 
 .detail_desc {
@@ -2358,7 +2608,7 @@ p.detailStripe {
 
 .detail_desc p {
   /* width: 62% !important; */
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #5e5e5e !important;
 }
 
@@ -2376,7 +2626,7 @@ p.detailStripe {
   color: #000 !important;
 
   font-weight: 600 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 
 .accordion-button:not(.collapsed) {
@@ -2391,7 +2641,7 @@ p.detailStripe {
   color: #5e5e5e !important;
 
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 .accordion-button:focus {
@@ -2402,19 +2652,17 @@ p.detailStripe {
 
 .custom-breadcrumb {
   display: flex !important;
+      padding-top: 7px !important;
+  font-size: var(--size-12) !important;
 }
 
-.breadcrumb {
-  font-style: italic !important;
-  font-weight: 700 !important;
-  margin-left: 10px !important;
-}
+
 
 .active-breadcrumb {
   font-style: italic !important;
   font-weight: 700 !important;
   color: rgb(255, 112, 3) !important;
-  margin-left: 10px !important;
+  margin-left: 0px !important;
 }
 
 .videoimage {
@@ -2435,22 +2683,23 @@ p.detailStripe {
 .watchNow {
   color: #fff !important;
   background: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   border: none !important;
   border-radius: 5px !important;
   padding: 5px 12px !important;
 }
 
 /* Pdf Detail CSS */
-
+/* 
 .custom-breadcrumb {
   display: flex !important;
-}
+} */
 
 .breadcrumb {
   font-style: italic !important;
   font-weight: 700 !important;
-  margin-left: 10px !important;
+  font-size: var(--size-12) !important;
+  margin-left: 0px !important;
 }
 
 .active-breadcrumb {
@@ -2474,7 +2723,7 @@ p.detailStripe {
 .watchNow {
   color: #fff !important;
   background: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   border: none !important;
   border-radius: 5px !important;
   padding: 5px 12px !important;
@@ -2508,25 +2757,36 @@ p.detailStripe {
 
 .videoimage svg {
   width: 20px !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
 }
-
 .pagination_button {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
 .pagination_button button:not(:first-child):not(:last-child) {
-  padding: 4px 11px;
+  padding: 3px;
   border: 1px solid #ccc;
-  background:none;
-  border-radius:100px
+  background: none;
+  border-radius: 100px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  font-size: 12px;
+  margin: 0px 1px;
+  justify-content: center;
+  align-items: center;
 }
-.pagination_button button:first-child, .pagination_button button:last-child {
+
+.pagination_button button:first-child,
+.pagination_button button:last-child {
   padding: 4px 8px;
   background: none;
   border: none;
+  text-transform: capitalize;
 }
-
-
 /*====================== PDFTab CSS =========================*/
 
 .pg-tabs-description {
@@ -2541,17 +2801,14 @@ p.detailStripe {
 }
 
 .sub_name {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  color: #2d2d2d !important;
-  text-transform: capitalize !important;
+  font-size: var(--size-14) !important;
+  font-weight: 500 !important;
+  overflow: hidden !important;
   -webkit-line-clamp: 2 !important;
   display: -webkit-box !important;
-  overflow: hidden !important;
   -webkit-box-orient: vertical !important;
-  height: 45px !important;
-  line-height: 24px !important;
-  padding: 3px 5px !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
 }
 
 .sub_topics {
@@ -2561,6 +2818,7 @@ p.detailStripe {
 .videoimage img {
   width: 100% !important;
   height: 100% !important;
+  object-fit: contain !important;
 }
 .videoimage {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
@@ -2574,7 +2832,7 @@ p.detailStripe {
 
 .videoimage i {
   width: 20px !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
 }
 
 .page-section-6 {
@@ -2636,7 +2894,7 @@ p.detailStripe {
 
 .onlineCourseTitle .title {
   font-weight: 800 !important;
-  font-size: 28px !important;
+  font-size: var(--size-28) !important;
   color: #000000 !important;
 
   line-height: normal !important;
@@ -2650,7 +2908,7 @@ p.detailStripe {
 
 .onlineCourseTitle .onlineCourseDetail {
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   -webkit-line-clamp: 5 !important;
   display: -webkit-box !important;
@@ -2678,12 +2936,12 @@ p.detailStripe {
 }
 
 .button1_share svg {
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 }
 
 .detailBbuyNow button {
   padding: 11px 46px !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 
   font-weight: 600 !important;
 }
@@ -2691,7 +2949,7 @@ p.detailStripe {
 .button1_buynow {
   color: #fff !important;
   background: var(--btnDeafult) !important;
-  font-size: 17px !important;
+  font-size: var(--size-17) !important;
   border: none !important;
   border-radius: 10px !important;
   padding: 5px 40px !important;
@@ -2725,7 +2983,7 @@ p.detailStripe {
   border-top-right-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
   box-shadow: 0px 4px 4px 0px #00000040 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-weight: 600 !important;
   padding: 2px 8px !important;
 }
@@ -2748,7 +3006,7 @@ p.detailStripe {
 }
 
 .course_card .slideTitle {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 700 !important;
   color: #2d2d2d !important;
   text-transform: capitalize !important;
@@ -2769,7 +3027,7 @@ p.detailStripe {
 
 .course_card h6.l_title {
   color: #ff7a00 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 
   font-weight: 600 !important;
 }
@@ -2787,12 +3045,12 @@ p.detailStripe {
 }
 
 .course_card .rating svg {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 
 .course_card p.review {
   padding-left: 4px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   color: #878787 !important;
   font-weight: 400 !important;
@@ -2802,7 +3060,7 @@ p.detailStripe {
   color: #282828 !important;
 
   font-weight: 700 !important;
-  font-size: 16px !important;
+  font-size: var(--size-20) !important;
 }
 
 .coursePrice .Cost_Price svg{
@@ -2812,7 +3070,7 @@ p.detailStripe {
 .course_card .Card-OffPrice {
   position: relative !important;
   color: #979797 !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 
   font-weight: 600 !important;
 }
@@ -2826,14 +3084,14 @@ p.detailStripe {
 } */
 
 .validity svg {
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 }
 
 p.validity {
   color: #767676 !important;
 
   font-weight: 400 !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 }
 
 .valid_date {
@@ -2847,7 +3105,7 @@ hr {
 }
 
 .costPrice {
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 
   font-weight: 700 !important;
   color: #282828 !important;
@@ -2856,35 +3114,35 @@ hr {
   color: #979797 !important;
 
   font-weight: 500 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 
 .discountPrice del svg.rupeeSign2 {
   font-weight: 400 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 
 .Card-OffPrice del svg.rupeeSign2 {
   font-weight: 400 !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 }
 
 .ex_gst {
   color: #5fb963 !important;
   font-weight: 500 !important;
 
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 .detail_C_Price {
   color: #282828 !important;
 
   font-weight: 700 !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
 }
 
 .detail_C_Price svg.rupeeSign {
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
 }
 
 /* .costPrice{
@@ -2895,14 +3153,14 @@ hr {
 } */
 
 .rupeeSign {
-  font-size: 23px !important;
+  font-size: var(--size-23) !important;
   padding-bottom: 2px !important;
 }
 
 .Card-OffPrice {
   position: relative !important;
   color: #979797 !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 }
 
 /* .offPrice{
@@ -2913,7 +3171,7 @@ hr {
 } */
 
 .offPricePercentage {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   color: #5fb963 !important;
 
   font-weight: 600 !important;
@@ -2922,14 +3180,14 @@ hr {
   width: 100% !important;
 
   font-weight: 800 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   padding: 7px 12px !important;
 }
 .onlineCourseButtons button + button {
   width: 100% !important;
 
   font-weight: 800 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   padding: 7px 12px !important;
 }
 
@@ -2956,7 +3214,7 @@ h4.d_title,
 h4.delpayTitle {
   font-family: "Roboto", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 }
 h4.d_title {
   color: var(--btnDeafult) !important;
@@ -2973,7 +3231,7 @@ h4.delpayTitle {
   border: 1px solid #ffad80 !important;
   border-radius: 5px !important;
   padding: 6px 24px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: var(--btnDeafult) !important;
   background: #ffefe7 !important;
   cursor: pointer !important;
@@ -2984,7 +3242,7 @@ h4.delpayTitle {
   border: 1px solid #dbdbdb !important;
   border-radius: 3px !important;
   color: #000 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   padding: 10px 12px !important;
   box-shadow: none !important;
   outline: none !important;
@@ -3034,7 +3292,7 @@ img.checkImg::after {
   width: 100% !important;
   border-right: 1px solid #acacac !important;
   padding: 0px 8px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 600 !important;
 
@@ -3080,7 +3338,7 @@ img.checkImg::after {
   width: 10px !important;
 }
 label.defaultAddress {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-family: "Reddit Sans", sans-serif !important;
   color: #585858 !important;
   font-weight: 400 !important;
@@ -3092,7 +3350,7 @@ label.defaultAddress {
   padding-left: 12px !important;
   margin-bottom: 15px !important;
   cursor: pointer !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   color: #585858 !important;
 }
 
@@ -3158,26 +3416,26 @@ label.defaultAddress {
 h4.userTitle {
   color: #000000 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   font-weight: 600 !important;
 }
 .orderCard .editBtn {
   color: var(--btnDeafult) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 .orderCard .adTitle {
   color: #555555 !important;
 
   font-weight: 500 !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 }
 .orderCard .mobTitle {
   color: #000000 !important;
 
   font-weight: 600 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 /* ===================== delivery section ends ================= */
 
@@ -3187,7 +3445,7 @@ h4.userTitle {
 }
 
 .orderCard h4.orderTitle {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 
   font-weight: 700 !important;
   color: #191c1f !important;
@@ -3212,7 +3470,7 @@ h4.userTitle {
 
 .orderCard .removeIcon {
   color: #929fa5 !important;
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 
   display: flex !important;
   justify-content: end !important;
@@ -3223,7 +3481,7 @@ h4.userTitle {
   color: #191c1f !important;
   font-weight: 700 !important;
 
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   text-wrap: wrap !important;
   text-transform: capitalize !important;
 }
@@ -3233,7 +3491,7 @@ h4.userTitle {
 }
 
 .OrderTable .thead_title {
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 
   font-weight: 600 !important;
   color: #475156 !important;
@@ -3252,22 +3510,22 @@ h4.userTitle {
   padding: 5px 5px !important;
 }
 .OrderTable .costPrice {
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 
   font-weight: 700 !important;
   color: #282828 !important;
 }
 .OrderTable .price .rupeeSign {
-  font-size: 15px !important;
+  font-size: var(--size-15) !important;
 }
 .OrderTable .offPrice del {
   position: relative !important;
   color: #979797 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 
 .OrderTable .offPrice del .rupeeSign2 {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   padding-bottom: 2px !important;
 }
 
@@ -3275,7 +3533,7 @@ h4.userTitle {
   width: 100% !important;
   padding: 8px 18px !important;
   box-shadow: 0px 5px 24px 0px #00000012 !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   border: 0px !important;
   color: #fff !important;
   background: var(--btnDeafult) !important;
@@ -3315,7 +3573,7 @@ input.coupon_field {
   height: 34px !important;
   font-weight: 400 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   padding: 6px 12px !important;
 }
 input.coupon_field:focus,
@@ -3330,7 +3588,7 @@ input.coupon_field:focus {
 }
 
 input.coupon_field::placeholder {
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   color: #77878f !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
@@ -3390,7 +3648,7 @@ input.coupon_field::placeholder {
   background: var(--btnDeafult) !important;
   color: #fff !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-weight: 400 !important;
   position: absolute !important;
   padding: 1px 10px !important;
@@ -3420,7 +3678,7 @@ input.coupon_field::placeholder {
 .emi_accordion .accordion-header button {
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   background: #f4f4f4 !important;
   /* border: 1px solid #C7C7C7  !important; */
   box-shadow: 0px 5px 24px 0px #00000012 !important;
@@ -3431,7 +3689,7 @@ input.coupon_field::placeholder {
 .emi_accordion .accordion-header.active button.accordion-button {
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   box-shadow: 0px 5px 24px 0px #00000012 !important;
   padding: 10px 12px !important;
   background: #fff8f4 !important;
@@ -3450,19 +3708,19 @@ input.coupon_field::placeholder {
   width: 100 !important;
 }
 .insta_tbl th {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   color: #6a6a6a !important;
   font-weight: 400 !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
 .insta_tbl td {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-weight: 700 !important;
   color: #3f3f3f !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
 .insta_tbl td svg {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   /* font-weight: 700  !important; */
 }
 
@@ -3477,7 +3735,7 @@ input.coupon_field::placeholder {
   border-radius: 0px !important;
   height: 34px !important;
   text-transform: uppercase !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 }
 .coupon_card button:hover {
   background-color: var(--btnDeafult) !important;
@@ -3485,7 +3743,7 @@ input.coupon_field::placeholder {
 }
 
 .coupon_card h4.orderTitle {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 700 !important;
   color: #191c1f !important;
@@ -3511,7 +3769,7 @@ input.coupon_field::placeholder {
   color: #191c1f !important;
   font-weight: 700 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 .couponModal .btn-close {
   padding: 5px 10px !important;
@@ -3546,7 +3804,7 @@ input.coupon_field::placeholder {
   border-radius: 0px !important;
   height: 34px !important;
   text-transform: uppercase !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 }
 
 .couponModal .coupon_listCard {
@@ -3558,14 +3816,14 @@ input.coupon_field::placeholder {
 .couponCodeTitle {
   display: flex !important;
   align-items: center !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #303030 !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
   cursor: pointer !important;
 }
 .couponModal .applyBtn {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   color: var(--btnDeafult) !important;
   font-weight: 500 !important;
   border-bottom: 1px solid #ff7c32 !important;
@@ -3584,7 +3842,7 @@ input.coupon_field::placeholder {
   box-shadow: 0px 5px 24px 0px #00000012 !important;
 }
 .paymentCard h4.orderTitle {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 700 !important;
   color: #191c1f !important;
@@ -3594,31 +3852,31 @@ input.coupon_field::placeholder {
 }
 .payTitle {
   color: #5f6c72 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
 
 .terms {
   color: #5f6c72 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
 .price_totalTitle {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   color: #191c1f !important;
   font-weight: 400 !important;
 }
 
 .pay_r_title {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   font-family: "Reddit Sans", sans-serif !important;
   color: #191c1f !important;
   font-weight: 400 !important;
 }
 .totalAmount {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   color: #191c1f !important;
   font-weight: 600 !important;
@@ -3633,7 +3891,7 @@ input.coupon_field::placeholder {
   justify-content: center !important;
 }
 .checkOutBtn button i {
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 
 /* =========================== Order Page Ends ==================== */
@@ -3652,7 +3910,7 @@ input.coupon_field::placeholder {
 
 .course_card1 .slideTitle {
   font-weight: 600 !important;
-  font-size: 15px !important;
+  font-size: var(--size-15) !important;
 }
 
 .course_card1 .courserate {
@@ -3665,13 +3923,13 @@ input.coupon_field::placeholder {
   color: white !important;
   align-items: center !important;
   display: flex !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   padding: 0px 4px !important;
   border-radius: 5px !important;
 }
 
 .course_card1 .rating svg {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 
 .onlineCourseButtons1 button {
@@ -3693,7 +3951,7 @@ input.coupon_field::placeholder {
 }
 .achieve-text {
   color: #474747 !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
   width: 84% !important;
@@ -3737,7 +3995,7 @@ input.coupon_field::placeholder {
 .user-count,
 .student-count {
   font-weight: 800 !important;
-  font-size: 30px !important;
+  font-size: var(--size-30) !important;
 }
 .inst-count {
   color: #1d3cb0 !important;
@@ -3756,8 +4014,7 @@ input.coupon_field::placeholder {
 }
 .c_title {
   color: #161616 !important;
-
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 /* ======================== Achievement section ends =================== */
 
@@ -3793,7 +4050,7 @@ input.coupon_field::placeholder {
   color: #939393 !important;
   font-weight: 500 !important;
 
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 #sidebar .nav-item.active a {
   text-decoration: none !important;
@@ -3815,7 +4072,7 @@ input.coupon_field::placeholder {
 }
 .nav-link {
   padding: 6px 20px 6px 10px !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   color: #3a3a3a !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
@@ -3846,7 +4103,7 @@ input.coupon_field::placeholder {
   background: #f1f1f1 !important;
   color: #717171 !important;
   line-height: 10px !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
   border: 1px solid #d0d0d0 !important;
   border-right: 0px !important;
 }
@@ -3856,7 +4113,7 @@ input.coupon_field::placeholder {
   background: #f1f1f1 !important;
   color: #717171 !important;
   line-height: 10px !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
   border: 1px solid #d0d0d0 !important;
   border-left: 0px !important;
   border-top-right-radius: 5px !important;
@@ -3881,7 +4138,7 @@ input.coupon_field::placeholder {
   color: #5e5e5e !important;
   font-weight: 400 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
 }
 /* .profile_Tabs.nav-tabs {
         border-width: 0px  !important;
@@ -3923,13 +4180,13 @@ input.coupon_field::placeholder {
   width: 100% !important;
 }
 .myCourseBtn .button1_userBtn__SWuni {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   padding: 7px 10px !important;
   width: 100% !important;
   white-space: nowrap !important;
 }
 .myCourseBtn .button2_userBtn__NScri {
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
   padding: 7px 10px !important;
   width: 100% !important;
   font-weight: 500 !important;
@@ -3952,7 +4209,7 @@ input.coupon_field::placeholder {
 
 .profileDetailTopContainer .courseTitle h4 {
   font-weight: 700 !important;
-  font-size: 28px !important;
+  font-size: var(--size-28) !important;
 
   text-transform: capitalize !important;
   -webkit-line-clamp: 2 !important;
@@ -3965,9 +4222,25 @@ input.coupon_field::placeholder {
 .profileCourse_mainContainer #controlled-tab-example2 {
   background-color: #fceee7 !important;
   padding: 0px 12px !important;
+  overflow: auto !important;
+  flex-wrap: nowrap !important;
+  margin: 0 348px 0 0 !important;
 }
-
-.profileCourse_mainContainer #controlled-tab-example2 li button:hover {
+.profileCourse_mainContainer 
+#controlled-tab-example2 li.nav-item {
+  white-space: nowrap;
+}
+.profileCourse_mainContainer  ::-webkit-scrollbar {
+  height: var(--size-5) !important;
+}
+.profileCourse_mainContainer ::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+}
+.profileCourse_mainContainer ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.profileCourse_mainContainer 
+#controlled-tab-example2 li button:hover {
   background-color: #fceee7 !important;
 }
 
@@ -4030,7 +4303,7 @@ input.coupon_field::placeholder {
   color: #1c1c1c !important;
   border: none !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   outline: none !important;
   font-family: "Reddit Sans", sans-serif !important;
   padding: 10px 14px 10px 14px !important;
@@ -4090,6 +4363,7 @@ input.coupon_field::placeholder {
 .history_List .historyCard {
   box-shadow: 0px 0px 14px 0px #00000017 !important;
   width: 100% !important;
+  border: 0px !important;
 }
 .child_historyCard {
   width: 100% !important;
@@ -4100,7 +4374,7 @@ input.coupon_field::placeholder {
 .purchaseStripe {
   color: var(--btnDeafult) !important;
   background: #fff3ed !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 500 !important;
   border-radius: 5px !important;
@@ -4122,17 +4396,19 @@ input.coupon_field::placeholder {
 }
 
 .purchaseThumbnail div {
-  border: 0.5px solid #ccc;
+  border: 0.5px solid #ccc !important;
   width: 100%;
+  border-radius: 5px !important;
+  height: 78px !important;
 }
 .purchaseThumbnail {
-  max-height: 100px;
+  /* max-height: 100px; */
   display: flex;
-  height: 100px;
+  /* height: 100px; */
 }
 
 .H_title {
-  font-size: 12px !important;
+  font-size: var(--size-14) !important;
   color: #222222e5 !important;
   font-weight: 700 !important;
   -webkit-line-clamp: 2 !important;
@@ -4150,22 +4426,22 @@ p.historyDate {
   color: #000 !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   text-transform: capitalize !important;
 }
 p.historyDate span {
   color: #868686 !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 .historyDate .rupeeSign {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 .historyCard .paid {
   color: #36ba4b !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 500 !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
@@ -4175,7 +4451,7 @@ p.historyDate span {
   align-items: center !important;
   gap: 5px !important;
   padding: 6px 12px !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 .historyTble tr td {
@@ -4186,21 +4462,21 @@ p.child_Date {
   color: #868686 !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   text-transform: capitalize !important;
 }
 p.child_Date span {
   color: #000 !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 p.child_Date span svg {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 .child_historyCard .paid,
 .child_historyCard .due {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 500 !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
@@ -4231,13 +4507,14 @@ h4.ratingOutOff {
   color: #333333 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 700 !important;
-  font-size: 40px !important;
+  font-size: var(--size-40) !important;
 }
 .avgRateAndReview {
   color: #333333a1 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 16px !important;
+  font-size: var(--size-12) !important;
+  margin-top: 5px;
 }
 .ratingSection .progressBars {
   width: 100% !important;
@@ -4247,7 +4524,7 @@ h4.ratingOutOff {
   color: #333333 !important;
   font-family: "Roboto", sans-serif !important;
   font-weight: 500 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 .ratingSection .progressBars p .progress {
   width: 100% !important;
@@ -4264,7 +4541,7 @@ h4.userRateTitle {
   color: #262626 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 .UserRateImg {
   width: 36px !important;
@@ -4273,7 +4550,7 @@ h4.userRateTitle {
 }
 .mssg_text {
   color: #292929 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 400 !important;
 }
@@ -4284,20 +4561,20 @@ h4.userRateTitle {
 .rateAndreviewModal h4.r_title {
   text-align: center !important;
   color: #1f2937 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 700 !important;
 }
 .rateAndreviewModal .r_text {
   text-align: center !important;
   color: #4b5563 !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
 }
 .textAreaTitle {
   color: #4d4d4d !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
 }
@@ -4314,7 +4591,7 @@ h4.userRateTitle {
 /* ==================== Profile Blog  Starts ==============*/
 
 .course_card h4.blogTitle {
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 700 !important;
   color: #2d2d2d !important;
   text-transform: capitalize !important;
@@ -4329,20 +4606,27 @@ h4.userRateTitle {
 .blog_Date {
   color: #797979 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 11px !important;
+  font-size: var(--size-11) !important;
   font-weight: 300 !important;
 }
 .course_card .read_more {
   color: var(--btnDeafult) !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 
   font-weight: 500 !important;
 }
 
 /* ====================== Profile blog deatil Page Starts ==================== */
 
+.CustomTab {
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
 .CustomTab.nav-tabs {
   border-width: 0px !important;
+  white-space: nowrap;
+  flex-wrap: nowrap;
 }
 
 .CustomTab li {
@@ -4354,7 +4638,7 @@ h4.userRateTitle {
   /* box-shadow: 0px 1px 4px 0px  var(--btnDeafult); */
   background: #fff4ee !important;
   color: var(--btnDeafult) !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
   padding: 7px 12px !important;
@@ -4366,7 +4650,7 @@ h4.userRateTitle {
   border-radius: 6px !important;
   background-color: #fff !important;
   color: #4e4e4e !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 600 !important;
   font-family: "Reddit Sans", sans-serif !important;
   padding: 7px 12px !important;
@@ -4382,7 +4666,7 @@ h4.userRateTitle {
 .detailblog_Date {
   color: #797979 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 500 !important;
 }
 .btn_detailShare {
@@ -4397,11 +4681,11 @@ h4.userRateTitle {
   justify-content: center !important;
 }
 .btn_detailShare svg {
-  font-size: 16px !important;
+  font-size: var(--size-16) !important;
 }
 .DetailTitle {
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   font-weight: 800 !important;
   text-transform: capitalize !important;
   color: #161616 !important;
@@ -4411,7 +4695,7 @@ h4.userRateTitle {
   border-radius: 10px !important;
 }
 .blog_detail p {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #3d3d3d !important;
   font-family: "Reddit Sans", sans-serif !important;
 }
@@ -4439,7 +4723,7 @@ h4.userRateTitle {
   color: #4d4d4d !important;
   font-family: "Anek Latin", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 
 /* ====================== Career Page Starts  ==============================*/
@@ -4463,7 +4747,7 @@ h4.userRateTitle {
   color: #000 !important;
   font-weight: 800 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
 }
 .careerBannerImg {
   width: 62% !important;
@@ -4471,20 +4755,20 @@ h4.userRateTitle {
 .careerBannerText {
   font-weight: 400 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   color: #000 !important;
 }
 h4.whyTtile {
   color: #161616 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 22px !important;
+  font-size: var(--size-22) !important;
   font-weight: 800 !important;
 }
 .whyText {
   color: #828282 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
 }
 .whycont_width {
   width: 75% !important;
@@ -4500,13 +4784,13 @@ h4.whyTtile {
 h4.careerCardtitle {
   color: #1f2024 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 600 !important;
 }
 .careerCardtext {
   color: #626366 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
 }
 .w_contentWidth {
@@ -4515,13 +4799,13 @@ h4.careerCardtitle {
 h4.worktitle {
   color: #161616 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
   font-weight: 800 !important;
 }
 .work_text {
   color: #828282 !important;
   font-family: "Reddit Sans", sans-serif !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 400 !important;
 }
 .widthWorkplace {
@@ -4554,11 +4838,11 @@ h4.worktitle {
   color: #161616 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 800 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 .privacyPolicy ol li {
   color: #474747 !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
 }
@@ -4575,13 +4859,13 @@ h4.worktitle {
 .termsCondition p {
   color: #474747 !important;
 
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
 }
 .termsCondition ul li {
   color: #474747 !important;
 
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 400 !important;
 }
 
@@ -4597,19 +4881,19 @@ h4.worktitle {
   color: #161616 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 800 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 .refund_policy p {
   color: #474747 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 .refund_policy ol li {
   color: #474747 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 /* ====================== Refund policy and cancellation Ends  ========== */
@@ -4628,7 +4912,7 @@ h4.profile_Title {
   color: #292929 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 800 !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
 }
 
 .accountImg {
@@ -4639,13 +4923,13 @@ h4.profile_Title {
 
 h4.p_ac_Title {
   color: #8d8d8d !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-family: "Reddit Sans" !important;
   font-weight: 600 !important;
 }
 p.user_Detail {
   color: #000 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-family: "Reddit Sans" !important;
   font-weight: 600 !important;
 }
@@ -4656,7 +4940,7 @@ p.user_Detail {
 .profile_Editform label {
   color: #363636 !important;
 
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
   font-weight: 700 !important;
 }
 .profile_Editform input,
@@ -4664,7 +4948,7 @@ p.user_Detail {
   width: 60% !important;
   border: 1px solid #6a6a6a !important;
   color: #0d0d0d !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 300 !important;
 
   outline: none !important;
@@ -4673,7 +4957,7 @@ p.user_Detail {
 }
 .profile_Editform input::placeholder {
   color: #0d0d0d !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 300 !important;
 }
 
@@ -4723,19 +5007,19 @@ p.user_Detail {
   color: #292929 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 .feedCard .schedule_date {
   color: #a6a6a6 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 .feedCard .feedText {
   color: #5b5b5b !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 .feedCard .feedText p {
   margin: 0px !important;
@@ -4745,13 +5029,13 @@ p.user_Detail {
 }
 .card_footer p {
   color: #4a4a4a !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 .card_footer p span {
   color: #898989 !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 .feedCard hr {
   margin: 0px !important;
@@ -4794,7 +5078,7 @@ p.user_Detail {
   color: #505050 !important;
   font-family: "Anek Odia", sans-serif !important;
   font-weight: 600 !important;
-  font-size: 14px !important;
+  font-size: var(--size-14) !important;
 }
 
 .notifyImg {
@@ -4808,13 +5092,13 @@ p.user_Detail {
   color: #696969 !important;
   font-family: "Quicksand", sans-serif !important;
   font-weight: 500 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
 }
 
 .notifyDate {
   color: #878787 !important;
   font-weight: 300 !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Poppins", sans-serif !important;
 }
 
@@ -4842,7 +5126,7 @@ p.user_Detail {
   border-radius: 50% !important;
   width: 28px !important;
   height: 28px !important;
-  font-size: 10px !important;
+  font-size: var(--size-10) !important;
 }
 .foot-social .social-icon:hover {
   background: var(--btnDeafult) !important;
@@ -4850,14 +5134,29 @@ p.user_Detail {
 
 .copyrighttitle {
   color: #fff !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 300 !important;
 }
 
 /* =========================== Bottom footer ends ============== */
 
 /* ====================== Shaka Player Section Starts ============= */
-
+.audio-player__top h3 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7) !important;
+}
+span.liveIndicator {
+  position: absolute !important;
+  color: red !important;
+  font-weight: 600 !important;
+  right: 40px !important;
+  bottom: 80px !important;
+}
+.shaka-spinner-path {
+  stroke: #b9b2b2 !important;
+  stroke-dasharray: 20, 200 !important;
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
 .shaka-video-container {
   position: relative !important;
   top: 0 !important;
@@ -5060,7 +5359,7 @@ p.user_Detail {
 }
 
 label.__quality__heading {
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   text-transform: uppercase !important;
   font-weight: 600 !important;
   margin-bottom: 6px !important;
@@ -5076,12 +5375,12 @@ label.__quality__heading {
 .subtitle-option {
   padding: 10px 20px !important;
   color: var(--color7) !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   cursor: pointer !important;
 }
 
 label.__quality__heading {
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   text-transform: uppercase !important;
   font-weight: 600 !important;
   margin-bottom: 6px !important;
@@ -5099,7 +5398,7 @@ label.__quality__heading {
 .__subtitle__heading {
   padding: 10px 20px !important;
   color: var(--color7) !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   cursor: pointer !important;
 }
 
@@ -5108,7 +5407,7 @@ label.__quality__heading {
 .__subtitle__heading {
   padding: 10px 20px !important;
   color: var(--color7) !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   cursor: pointer !important;
 }
 
@@ -5130,7 +5429,7 @@ label.__quality__heading {
 
 .shaka-video-container .material-icons-round {
   font-family: "Material Icons Round" !important;
-  font-size: 24px !important;
+  font-size: var(--size-30) !important;
   /* display: none  !important; */
 }
 
@@ -5180,13 +5479,13 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 .helpHead svg {
-  font-size: 38px !important;
+  font-size: var(--size-38) !important;
   color: #fff !important;
   cursor: pointer !important;
 }
 
 .helpHead h3 {
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
   margin-top: -2px !important;
 }
 
@@ -5313,11 +5612,6 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
     padding: 0px 58px !important;
   }
 
-  .banner_img img {
-    height: auto !important;
-    width: 100% !important;
-  }
-
   .MainCourseCard {
     right: 60px !important;
     top: 120px !important;
@@ -5338,9 +5632,16 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   }
 
   .banner_img img {
+    aspect-ratio: 16/5 !important;
+    object-fit: fill !important;
+    height: auto !important;
+    /* width: 100% !important; */
+  }
+
+  /* .banner_img img {
     height: auto !important;
     width: 100% !important;
-  }
+  } */
 }
 
 @media (min-width: 1400px) and (max-width: 1900px) {
@@ -5404,9 +5705,17 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .detail-container {
     padding: 0px 60px !important;
   }
+  .course_mainContainer #controlled-tab-example2 {
+    padding: 0px 46px !important;
+  }
 }
 
 @media (max-width: 992px) {
+  .profileCourse_mainContainer #controlled-tab-example2 {
+    overflow: auto !important;
+    flex-wrap: nowrap !important;
+    margin: 0 0px 0 0 !important;
+  }
   .achieve-text {
     width: 100% !important;
   }
@@ -5475,6 +5784,10 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .refund_policy {
     padding: 0px 10px !important;
   }
+  .tredingSliderSection:hover {
+    width: 6.5% !important;
+  }
+
 }
 
 /* @media(max-width: 992px) {
@@ -5513,7 +5826,7 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 
   .logoImg {
     width: 115px !important;
-    margin-left: 42px !important;
+    /* margin-left: 42px !important; */
   }
 
   .closeSidebar {
@@ -5595,23 +5908,23 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 
   .freeTC_container .nav-link {
     font-weight: 800 !important;
-    font-size: 16px !important;
+    font-size: var(--size-16) !important;
   }
 
   .freeTC_container .nav-link:hover {
     font-weight: 800 !important;
-    font-size: 16px !important;
+    font-size: var(--size-16) !important;
   }
 
   .freeTC_container .nav-link.active:hover {
     font-weight: 800 !important;
-    font-size: 16px !important;
+    font-size: var(--size-16) !important;
   }
 
   .freeTC_container .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
     font-weight: 800 !important;
-    font-size: 16px !important;
+    font-size: var(--size-16) !important;
   }
 
   .detailTopContainer {
@@ -5649,11 +5962,11 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   }
 
   .avgRateAndReview {
-    font-size: 10px !important;
+    font-size: var(--size-10) !important;
   }
 
   .sub_name {
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
   }
 
   .foot-social {
@@ -5672,6 +5985,10 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .orderContainer {
     padding: 0px 14px !important;
   }
+  .course_mainContainer #controlled-tab-example2 {
+    padding: 0px 3px !important;
+  }
+
 }
 
 @media (min-width: 992px) and (max-width: 1260px) {
@@ -5707,18 +6024,18 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .courseTitle p {
     margin: 40px 0px 20px 0px !important;
     font-weight: 700 !important;
-    font-size: 20px !important;
+    font-size: var(--size-20) !important;
   }
 
   .courseDuration {
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
     font-weight: 300 !important;
     /* display: flex !important; */
     margin-bottom: 20px !important;
   }
 
   .courseDuration .video_icon {
-    font-size: 20px !important;
+    font-size: var(--size-20) !important;
   }
 
   .course_imageContainer {
@@ -5741,18 +6058,18 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .courseTitle p {
     margin: 40px 0px 20px 0px !important;
     font-weight: 700 !important;
-    font-size: 20px !important;
+    font-size: var(--size-20) !important;
   }
 
   .courseDuration {
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
     font-weight: 300 !important;
     /* display: flex !important; */
     margin-bottom: 20px !important;
   }
 
   .courseDuration .video_icon {
-    font-size: 20px !important;
+    font-size: var(--size-20) !important;
   }
 
   .course_imageContainer {
@@ -5779,18 +6096,18 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .courseTitle p {
     margin: 40px 0px 20px 0px !important;
     font-weight: 700 !important;
-    font-size: 24px !important;
+    font-size: var(--size-24) !important;
   }
 
   .courseDuration {
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
     font-weight: 300 !important;
     /* display: flex !important; */
     margin-bottom: 20px !important;
   }
 
   .courseDuration .video_icon {
-    font-size: 20px !important;
+    font-size: var(--size-20) !important;
   }
 
   .courseCard {
@@ -5806,7 +6123,7 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .courseTitle p {
     margin: 40px 0px 20px 0px !important;
     font-weight: 700 !important;
-    font-size: 24px !important;
+    font-size: var(--size-24) !important;
   }
 
   .course_mainContainer ul.nav {
@@ -5843,7 +6160,7 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .detailCourse {
     margin-top: 10px !important;
     font-weight: 300 !important;
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
   }
   .cardQuotes {
     display: none !important;
@@ -5861,12 +6178,12 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 
 @media (min-width: 576px) and (max-width: 991px) {
   .git_title p {
-    font-size: 12px !important;
+    font-size: var(--size-12) !important;
   }
 
   .form input {
     width: 80% !important;
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
     margin: 5px 0 !important;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
       rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
@@ -5878,12 +6195,12 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 
 @media (min-width: 320px) and (max-width: 575px) {
   .git_title {
-    font-size: 18px !important;
+    font-size: var(--size-18) !important;
   }
 
   .form input {
     width: 80% !important;
-    font-size: 14px !important;
+    font-size: var(--size-14) !important;
     margin: 5px 0 !important;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
       rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
@@ -5948,9 +6265,9 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .owl-carousel .carousel-indicators {
+  /* .owl-carousel .carousel-indicators {
     bottom: -23% !important;
-  }
+  } */
 
   .banner_img img {
     height: auto !important;
@@ -5958,9 +6275,9 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .owl-carousel .carousel-indicators {
+  /* .owl-carousel .carousel-indicators {
     bottom: -30% !important;
-  }
+  } */
 
   .banner_img img {
     height: auto !important;
@@ -5968,9 +6285,9 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 @media (min-width: 577px) and (max-width: 767px) {
-  .owl-carousel .carousel-indicators {
+  /* .owl-carousel .carousel-indicators {
     bottom: -40% !important;
-  }
+  } */
   .banner_container {
     padding: 0px 50px !important;
   }
@@ -5980,9 +6297,9 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 @media (min-width: 490px) and (max-width: 576px) {
-  .owl-carousel .carousel-indicators {
+  /* .owl-carousel .carousel-indicators {
     bottom: -43% !important;
-  }
+  } */
   .banner_container {
     padding: 0px 1px !important;
   }
@@ -5992,10 +6309,10 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 
 @media (min-width: 320px) and (max-width: 490px) {
-  .owl-carousel .carousel-indicators {
-    /* bottom: -47% !important; */
+  /* .owl-carousel .carousel-indicators {
+    bottom: -47% !important;
     bottom: -45px !important;
-  }
+  } */
   .banner_container {
     padding: 0px 10px !important;
   }
@@ -6187,7 +6504,7 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   padding: 10px 0px !important;
 }
 label.__quality__heading {
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   text-transform: uppercase !important;
   font-weight: 600 !important;
   margin-bottom: 6px !important;
@@ -6201,11 +6518,11 @@ label.__quality__heading {
 .subtitle-option {
   padding: 10px 20px !important;
   color: var(--color7) !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   cursor: pointer !important;
 }
 label.__quality__heading {
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   text-transform: uppercase !important;
   font-weight: 600 !important;
   margin-bottom: 6px !important;
@@ -6221,7 +6538,7 @@ label.__quality__heading {
 .__subtitle__heading {
   padding: 10px 20px !important;
   color: var(--color7) !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   cursor: pointer !important;
 }
 .quality-option,
@@ -6229,7 +6546,7 @@ label.__quality__heading {
 .__subtitle__heading {
   padding: 10px 20px !important;
   color: var(--color7) !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   cursor: pointer !important;
 }
 .subtitle-control:hover .__subtitle__ {
@@ -6249,7 +6566,7 @@ label.__quality__heading {
 
 .shaka-video-container .material-icons-round {
   font-family: "Material Icons Round" !important;
-  font-size: 24px !important;
+  font-size: var(--size-24) !important;
   /* display: none  !important; */
 }
 button.shaka-small-play-button.material-icons-round.shaka-tooltip {
@@ -6327,13 +6644,13 @@ button.shaka-small-play-button.material-icons-round.shaka-tooltip {
 }
 
 .helpHead svg {
-  font-size: 38px !important;
+  font-size: var(--size-38) !important;
   color: #fff !important;
   cursor: pointer !important;
 }
 
 .helpHead h3 {
-  font-size: 20px !important;
+  font-size: var(--size-20) !important;
   margin-top: -2px !important;
 }
 
@@ -6344,19 +6661,19 @@ button.shaka-small-play-button.material-icons-round.shaka-tooltip {
 .thankModal h4 {
   color: #000000 !important;
   font-family: "Anek Latin", sans-serif !important;
-  font-size: 18px !important;
+  font-size: var(--size-18) !important;
   font-weight: 600 !important;
 }
 
 .thankModal p {
   color: #4b4b4b !important;
   font-family: "Anek Latin", sans-serif !important;
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-weight: 500 !important;
 }
 
 .profile_cont p {
-  font-size: 12px !important;
+  font-size: var(--size-12) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
   line-height: 38px !important;
@@ -6371,7 +6688,7 @@ button.shaka-small-play-button.material-icons-round.shaka-tooltip {
 .addIssue_Card textarea::placeholder,
 #react-select-2-placeholder {
   color: #0d0d0d !important;
-  font-size: 13px !important;
+  font-size: var(--size-13) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
 }
@@ -6657,7 +6974,9 @@ p.video_bg_color.shaka-video-container {
   text-align: center !important;
 }
 .profileBanImg {
-  width: 100% !important;
+aspect-ratio: 21 / 6 !important;
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .viewDetail .viewbtn {

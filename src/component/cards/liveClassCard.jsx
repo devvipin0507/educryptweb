@@ -5,6 +5,7 @@ import { FaShare } from "react-icons/fa";
 import { format } from "date-fns";
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 
 const LiveClassCard = ({courseData, value}) => {
 
@@ -41,7 +42,7 @@ const LiveClassCard = ({courseData, value}) => {
       return { hours: 0, minutes: 0, seconds: 0 };
     }
 
-    const hours = Math.floor((difference % (60 * 60 * 24)) / (60 * 60));
+    const hours = Math.floor((difference / (60 * 60)));
     const minutes = Math.floor((difference % (60 * 60)) / 60);
     const seconds = difference % 60;
 
@@ -62,17 +63,47 @@ const LiveClassCard = ({courseData, value}) => {
       setModalShow(true);
     }
     else {
-      // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
-      router.push({
-        pathname: `/private/myProfile/play/${courseData.id}`,
-        query: courseData,
-      });
-      // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
-      // console.log('watch')
+      if(courseData?.is_live == 1) {
+        // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
+        router.push({
+          pathname: `/private/myProfile/play/${courseData.id}`,
+          query: courseData,
+        });
+        // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
+        // console.log('watch')
+      }
+      toast.error('Live class is not started yet')
     }
   }
+
+  const remianingTime = (startTime, endTime) => {
+    // Convert Unix time to milliseconds
+    const startMillis = startTime * 1000;
+    const endMillis = endTime * 1000;
+
+    // Calculate the absolute time difference in milliseconds
+    const timeDiffMillis = Math.abs(endMillis - startMillis);
+
+    // Convert milliseconds to minutes
+    const timeDiffMinutes = Math.floor(timeDiffMillis / 60000);
+
+    // Check if the difference is greater than 60 minutes
+    if (timeDiffMinutes > 60) {
+      // Calculate hours and remaining minutes
+      const hours = Math.floor(timeDiffMinutes / 60);
+      const minutes = timeDiffMinutes % 60;
+      // Set the formatted output
+      return (`${hours} hr and ${minutes} min`);
+    } else {
+      // If less than or equal to 60 minutes, just show minutes
+      return (`${timeDiffMinutes} min`);
+    }
+  }
+
+  console.log('vvvvvvvvvv', courseData)
   
-  return (
+  return (<>
+    <Toaster position="top-right" reverseOrder={false} />
     <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0">
       <div className="card border-0 shadow b-radius course_card m-0">
         {value == 'LIVE' && <p className={`m-0 course-badge ${value}`}>Live</p>}
@@ -95,10 +126,10 @@ const LiveClassCard = ({courseData, value}) => {
                 src="/assets/images/calenderLogo2.png"
                 alt=""
             />
-            start On:
+            {value == "COMPLETED" ? 'Was Live at' : 'start On'}:
             <span className="ms-2 valid_date">{formatDate(courseData.start_date)}</span>
         </p>
-        <p className="d-flex align-items-center validity">
+        {/* {value !== 'LIVE' && <p className="d-flex align-items-center validity">
             <img
                 className="calendarDate2 me-1"
                 src="/assets/images/clockLogo.png"
@@ -107,6 +138,7 @@ const LiveClassCard = ({courseData, value}) => {
             End On:
             <span className="ms-2 valid_date">{formatDate(courseData.end_date)}</span>
         </p>
+        } */}
         {value == 'LIVE' && 
         <p className="d-flex align-items-center validity">
             <img
@@ -115,7 +147,7 @@ const LiveClassCard = ({courseData, value}) => {
                 alt=""
             />
             Class Duration:
-            <span className="ms-2 valid_date">{`60 min`}</span>
+            <span className="ms-2 valid_date">{remianingTime(courseData.start_date, courseData.end_date)}</span>
         </p>
         }
         <hr className="dotted-divider" />
@@ -143,6 +175,7 @@ const LiveClassCard = ({courseData, value}) => {
           </div>
       </div>
     </div>
+    </>
   )
 }
 

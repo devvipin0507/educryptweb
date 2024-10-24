@@ -19,6 +19,7 @@ const Footer = () => {
   const [modalShow, setModalShow] = useState(false)
   const [footerLinks, setFooterLinks] = useState('')
   const [appLogo, setAppLogo] = useState('');
+  const [appName, setAppName] = useState('')
   const router = useRouter();
   const footerData = useSelector((state) => state.allCategory?.allCategory?.course_type_master)
 
@@ -26,6 +27,7 @@ const Footer = () => {
     setIsLoading(true);
     fetchFooterService();
     setAppLogo(localStorage.getItem('logo'))
+    setAppName(localStorage.getItem('title'))
   }, [])
 
   const handleBlog = () => {
@@ -69,7 +71,7 @@ const Footer = () => {
                 {eduLogo1 && <img src={appLogo ? appLogo : eduLogo1} alt="" className="" />}
               </div>
               <div className="m-0 mb-2 orgName">
-                Educrypt Edu Solutions Pvt. Ltd.
+                {appName ? appName : 'Educrypt Edu Solutions Pvt. Ltd.'}
               </div>
               <div className="m-0 mb-2 orgAddress">
                 <span className="text-white fw-semibold">Address:</span> <br />
@@ -119,7 +121,7 @@ const Footer = () => {
               <ul className="list-unstyled">
                 {footerData && footerData.map((item, index) => {
                   return <li className="mb-2" key={index}>
-                    <Link key={item.id} className="text-decoration-none" href={`/view-courses/${encodeURIComponent(item.name)}:${item.id}`}>
+                    <Link className="text-decoration-none" href={`/view-courses/${item.name + ':' + item.id}`}>
                       {item.name}
                     </Link>
                   </li>

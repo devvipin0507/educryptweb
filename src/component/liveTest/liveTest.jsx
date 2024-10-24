@@ -76,6 +76,7 @@ const LiveTest = () => {
     <>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {

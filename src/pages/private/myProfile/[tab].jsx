@@ -93,6 +93,7 @@ const Index = ({ initialTab }) => {
   );
 };
 
+// // Use `getStaticPaths` to define available dynamic routes
 // Use `getStaticPaths` to define available dynamic routes
 // export const getStaticPaths = async () => {
 //   const paths = [
@@ -100,7 +101,8 @@ const Index = ({ initialTab }) => {
 //     { params: { tab: "ourCourse" } },
 //     { params: { tab: "live_Test" } },
 //     { params: { tab: "live_Classes" } },
-//     { params: { tab: "29" } },
+//     { params: { tab: "blog" } },
+//     { params: { tab: "28" } },
 //     { params: { tab: "current_affairs" } },
 //     { params: { tab: "testimonial" } },
 //     { params: { tab: "bookstore" } },
@@ -110,6 +112,7 @@ const Index = ({ initialTab }) => {
 //     { params: { tab: "inquiry" } },
 //     { params: { tab: "8" } },
 //     { params: { tab: "9" } },
+//     { params: { tab: "Blog" } },
 //     { params: { tab: "29" } },
 //     { params: { tab: "17" } },
 //     { params: { tab: "Testimonial" } },

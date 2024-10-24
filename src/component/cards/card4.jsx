@@ -11,12 +11,14 @@ import { getFPaymentService, getPayGatewayService } from "@/services";
 import { decrypt, encrypt, get_token, userLoggedIn } from "@/utils/helpers";
 import Script from "next/script";
 import ThankyouModal from "../modal/thankyouModal";
+import LoginModal from "../modal/loginModal";
 
 const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
 
   const [validityShow, setValidityShow] = useState(false);
   const [isToasterOpen, setIsToasterOpen] = useState(false);
   const [thankYouModalShow, setThankYouModalShow] = useState(false)
+  const [modalShow, setModalShow] = useState(false)
   const router = useRouter();
   const token = get_token();
 
@@ -279,7 +281,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
         setThankYouModalShow(true);
         setGetCourse(data.payid)
         // fetchMyOrders();
-        //   if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
+        //   if (value?.cat_type == 1) {
         //     router.push("/private/myProfile/ourCourse");
         //   } else {
         //     router.push("/private/myProfile/MyCourse");
@@ -302,18 +304,30 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
   };
 
   const handleBuy = () => {
-    const currentPath = router.asPath;
-    localStorage.setItem("redirectAfterLogin", currentPath);
-    localStorage.setItem('previousTab', router.pathname);
-    router.push(
-      `/view-courses/course-order/${
-        titleName + ":" + value.id + "&" + value.combo_course_ids
-      }`
-    );
+    const isLoggedIn = userLoggedIn();
+    if(isLoggedIn) {
+      const currentPath = router.asPath;
+      localStorage.setItem("redirectAfterLogin", currentPath);
+      localStorage.setItem('previousTab', router.pathname);
+      router.push(
+        `/view-courses/course-order/${
+          titleName + ":" + value.id + "&" + value.combo_course_ids
+        }`
+      );
+    }
+    else {
+      setModalShow(true)
+    }
   };
 
 
   return (<>
+    <LoginModal
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+      />
     <ThankyouModal
         show={thankYouModalShow}
         onHide = {() => setThankYouModalShow(false)}
@@ -336,6 +350,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
     />
     {/* <Toaster position="top-right" reverseOrder={false} /> */}
     <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -358,10 +373,11 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
     >
       {value.mrp == 0 && <p className="m-0 course-badge">FREE</p>}
         <div className="d-flex justify-content-center">
+          {console.log('value4235', value)}
         <img
           style={{ borderRadius: "10px" }}
-          src={value.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
-          className={` ${(titleName == "Bookstore" || titleName == "e-BOOK" || titleName == "Books") ? 'book_course_img' : 'course_img flex-fill'}`}
+          src={value?.cat_type == 1 ? value?.cover_image ?  value?.cover_image : '/assets/images/noImage.jfif' : value.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
+          className={` ${value?.cat_type == 1 ? 'book_course_img' : 'course_img flex-fill'}`}
           alt="..."
         />
         </div>
@@ -385,7 +401,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
               </div>
               {value?.mrp == 0 && <p className="m-0 freeStripe">Free</p>}
             </div>
-            {(titleName != "Bookstore" && titleName != "e-BOOK" &&
+            {(value?.cat_type != 1 &&
             value.validity) && 
               <p className="my-2 d-flex align-items-center validity">
                 <img
@@ -437,7 +453,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
         {!router.pathname.startsWith("/private/myProfile/detail") && ((!router.pathname.startsWith("/private/myProfile/detail") && value.mrp != 0) || titleName != "detail") ? (
           <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
             <Button1
-              value="View Detail"
+              value={value?.is_purchased == 1 ? "View Content" : value?.purchase_date != "" ? "View Content" : "View Detail"}
               data = {value?.prices?.length}
               handleClick={() => handleDetail(value)}
             />

@@ -50,7 +50,7 @@ const CurrentAffair = () => {
                 return (
                 <div className="col-12 col-sm-6 col-md-4 mb-3" key={index}>
                     <div className="card">
-                        {item.image && <img className="blogImg" src={item.image} alt="" />}
+                        {item.image && <img loading='lazy' className="blogImg" src={item.image} alt="" />}
                         <div className="m-0 bg_dark pt-3 ">
                             <p className='mb-2 blogDate'></p>
                             <h4 className="blogTitle">{item.title}</h4>

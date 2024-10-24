@@ -244,7 +244,7 @@ const Profile = () => {
         response_getMyProfile_service.data,
         token
       );
-      // console.log('response_getMyProfile_data', response_getMyProfile_data)
+      console.log('response_getMyProfile_data', response_getMyProfile_data)
       if (response_getMyProfile_data.status) {
         setProfileData(response_getMyProfile_data.data);
         setEditProfileData({
@@ -252,6 +252,7 @@ const Profile = () => {
           name: response_getMyProfile_data.data.name,
           email: response_getMyProfile_data.data.email,
           mobile: response_getMyProfile_data.data.mobile,
+          // state: response_getMyProfile_data?.data?.state
         });
         setProfileImage(response_getMyProfile_data.data.profile_picture)
         dispatch(profile_data(response_getMyProfile_data.data))
@@ -432,8 +433,8 @@ const Profile = () => {
                   </div>
                   <div className="col-sm-6 col-md-8 mb-4">
                     <p className="m-0 user_Detail">
-                      {/* {console.log('stateList', city)} */}
-                      {state &&
+                      {console.log('stateList', state)}
+                      {state?.length > 0 ?
                         state.map((item, index) => {
                           return (
                             <td key={index}>
@@ -444,7 +445,10 @@ const Profile = () => {
                                 })}
                             </td>
                           );
-                        })}
+                        })
+                      :
+                      <td>{profileData?.state}/{profileData.city}</td>
+                      }
                     </p>
                   </div>
                   <div className="mt-3 col-sm-6 d-flex gap-2 col-md-4">
@@ -538,6 +542,7 @@ const Profile = () => {
                         onChange={handleInputMobile}
                       />
                     </div>
+                    
                     <div className="col-md-12 mb-3">
                       <label>State</label>
                       <select

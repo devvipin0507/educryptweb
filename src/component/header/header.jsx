@@ -164,7 +164,7 @@ const Header = ({ search }) => {
 
   const handleSearchCourseDetail = (value) => {
     router.push(
-      `/view-courses/details/${"" + ":" + value.id + "&" + value.combo_course_ids
+      `/view-courses/details/${"" + ":" + value.id + "&" + value.combo_course_ids + 'parent:'
       }`
     );
   }
@@ -233,11 +233,11 @@ const Header = ({ search }) => {
       <LogoutModal
         show={logoutShow}
         onHide={() => {
-          setLogoutShow(false)
+          setLogoutShow(false);
         }}
       />
       <div className="container-fluid">
-        <a className="m-0">
+        <div className="m-0 logoImgContainer">
           {/* {logo && ( */}
           <img
             className={appId != 655 ? "logoImg" : "logoImg2"}
@@ -247,9 +247,12 @@ const Header = ({ search }) => {
             style={{ cursor: "pointer"}}
           />
           {/* )} */}
-        </a>
-        {(!router.pathname.startsWith('/private') && search !== "disable") &&
-          <div className="input-group ms-3 search" onClick={() => setIsVisible(true)}>
+        </div>
+        {!router.pathname.startsWith("/private") && search !== "disable" && (
+          <div
+            className="input-group ms-3 search"
+            onClick={() => setIsVisible(true)}
+          >
             {/* <span className="searchIcon d-none d-md-block input-group-text border-0" id="basic-addon1"> */}
             {/* <i className="bi bi-search"></i> */}
             {/* <CiSearch /> */}
@@ -262,6 +265,7 @@ const Header = ({ search }) => {
               id="basic-addon1"
             >
               <img
+                loading="lazy"
                 src="/assets/images/search-icon.svg"
                 alt=""
                 style={{ width: "12px" }}
@@ -269,7 +273,7 @@ const Header = ({ search }) => {
             </span>
             <input
               type="text"
-              className="pb-1 d-none d-md-block searchBar"
+              className="d-none d-md-block searchBar"
               placeholder="What are you looking for..."
               aria-label="Username"
               aria-describedby="basic-addon1"
@@ -279,48 +283,52 @@ const Header = ({ search }) => {
             />
             <span
               className="searchIcon d-none d-md-block input-group-text border-0"
-              style={{ borderTopRightRadius: "5px", borderBottomRightRadius: "5px" }}
+              style={{
+                borderTopRightRadius: "5px",
+                borderBottomRightRadius: "5px",
+              }}
               id="basic-addon1"
             >
-              {searchInputValue &&
+              {searchInputValue && (
                 <img
+                  loading="lazy"
                   src="/assets/images/searchRemove.svg"
                   alt=""
                   style={{ width: "12px" }}
                   onClick={handleRemoveSearch}
                 />
-              }
+              )}
             </span>
             {(isVisible && searchInputValue) &&
               <ul ref={searchRef} className="px-2 py-3 list-unstyled searchDropDown" >
                 {!loading ?
                   searchCourseList.length > 0
                     ? searchCourseList.map((item, index) => {
-                      return <li className="mb-2 d-flex align-items-center" key={index}>
+                      return <li className="mb-2 d-flex align-items-center" key={index} onClick={() => handleSearchCourseDetail(item)} style={{cursor: 'pointer'}}>
                         <img className="listImg" src={item.cover_image && item.cover_image} alt="" />
                         <p className="m-0 list_Title">{item.title}</p>
                         <img
                           className="ms-4 my-3 redirectImg"
-                          onClick={() => handleSearchCourseDetail(item)}
                           src="/assets/images/redirectLogo.png"
                           alt=""
                         />
                         <div className="clearfix"></div>
                       </li>
                     })
-                  :
-                  <>
-                    <p className="m-0">No Course Found</p>
-                  </>
-                    :
-                    <div className="row align-items-center justify-content-center sldr_container">
-                      <div className="spinner-border" role="status" />
-                    </div>
-                }
+                  : (
+                    <>
+                      <p className="m-0">No Course Found</p>
+                    </>
+                  )
+                : (
+                  <div className="row align-items-center justify-content-center sldr_container">
+                    <div className="spinner-border" role="status" />
+                  </div>
+                )}
               </ul>
             }
           </div>
-        }
+        )}
         {!isLoggedIn ? (
           <div className="navbar-collapse">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -358,7 +366,7 @@ const Header = ({ search }) => {
           //         Profile
           //       </NavDropdown.Item>
           //       <NavDropdown.Item divider />
-          //       <NavDropdown.Item eventKey={1.3} 
+          //       <NavDropdown.Item eventKey={1.3}
           //       onClick={() => setLogoutShow(true) }
           //       >
           //         {/* <i className="fa fa-sign-out"></i>  */}
@@ -369,19 +377,26 @@ const Header = ({ search }) => {
           //   </Nav>
           // </div>
 
-
           <div className="profile_cont d-flex">
-            {userName.name && <p className="headerUserName mb-0" title={userName.name}>
-              {userName.name ? "Hi" : ""} {userName.name}</p>}
+            {userName.name && (
+              <p className="headerUserName mb-0" title={userName.name}>
+                {userName.name ? "Hi" : ""} {userName.name}
+              </p>
+            )}
             <Dropdown align="end">
               <Dropdown.Toggle
                 variant="link"
                 id="dropdown-custom-components"
                 className="p-0 avatar"
-              // title="bhotopp"
+                // title="bhotopp"
               >
                 <img
-                  src={userData?.profile_picture ? userData?.profile_picture : '/assets/images/loginLogo.png'}
+                  loading="lazy"
+                  src={
+                    userData?.profile_picture
+                      ? userData?.profile_picture
+                      : "/assets/images/loginLogo.png"
+                  }
                   alt="user pic"
                   style={{
                     width: "38px",
@@ -394,9 +409,10 @@ const Header = ({ search }) => {
               <Dropdown.Menu>
                 <Dropdown.Item
                   eventKey={1.1}
-                  onClick={() => router.push('/private/myProfile/profile')}
+                  onClick={() => router.push("/private/myProfile/profile")}
                 >
                   <img
+                    loading="lazy"
                     className="list_Icon"
                     src="/assets/images/user1.png"
                     alt=""
@@ -409,6 +425,7 @@ const Header = ({ search }) => {
                   onClick={() => setLogoutShow(true)}
                 >
                   <img
+                    loading="lazy"
                     className="list_Icon"
                     src="/assets/images/logout.png"
                     alt=""

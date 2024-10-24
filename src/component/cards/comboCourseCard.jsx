@@ -5,7 +5,7 @@ const ComboCourseCard = ({value, titleName, key, CourseID, onlineCourseAry}) => 
 
     const router = useRouter();
 
-    console.log('onlineCourseAry', onlineCourseAry)
+    // console.log('onlineCourseAry', onlineCourseAry)
     const handleDetail = () => {
         if(onlineCourseAry.is_purchased != 0){
             router.push(`/view-courses/details/${titleName + ":" + value.id + "&" + '' + "parent:" + onlineCourseAry.id}`)
@@ -14,9 +14,10 @@ const ComboCourseCard = ({value, titleName, key, CourseID, onlineCourseAry}) => 
             router.push(`/view-courses/course-order/${titleName + ":" + onlineCourseAry.id + "&" + onlineCourseAry.combo_course_ids}`);
         }
     }
-    console.log('CourseID', value)
+    // console.log('CourseID', value)
   return (
-    <div className="card border-0 shadow b-radius mb-3 p-2 freeCard" style={{width: '320px'}} onClick={handleDetail}>
+    <div className="col-md-3 my-3" style={{ width: "320px" }}>
+    <div className="card border-0 shadow b-radius mb-3 p-2 h-100 freeCard" onClick={handleDetail}>
         {<img style={{borderRadius: "10px"}} src={value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'} className="card-img-top" alt="..." />}
         <div className="card-body pt-3 px-0 pb-0">
             <h6 className="mb-2 slideTitle">
@@ -33,6 +34,7 @@ const ComboCourseCard = ({value, titleName, key, CourseID, onlineCourseAry}) => 
                 </div>
             </div>
         </div>
+    </div>
     </div>
   )
 }

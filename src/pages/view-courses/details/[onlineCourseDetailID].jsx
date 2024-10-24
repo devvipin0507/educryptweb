@@ -32,6 +32,7 @@ const ViewOnlineCourseDetail = () => {
   const [serverError, setServerError] = useState(false);
   const [tiles, setTiles] = useState([]);
   const [key, setKey] = useState(null);
+  const [contentData, setContentData] = useState([])
   const [onlineCourseAry, setOnlineCourseAry] = useState("");
   const [relateCourseAry, setRelateCourseAry] = useState("");
   const [courseDetail, setCourseDetail] = useState("");
@@ -172,7 +173,7 @@ const ViewOnlineCourseDetail = () => {
         setOnlineCourseAry(response_getCourseDetail_data?.data?.course_detail);
         setRelateCourseAry(
           response_getCourseDetail_data?.data.tiles.filter(
-            (item) => (item.tile_name == "Course Overview" || item.tile_name == "Description" || item.tile_name == "Detail")
+            (item) => (item.type == "overview")
           )[0]?.meta?.related_courses
         );
         setPdfData(
@@ -182,6 +183,8 @@ const ViewOnlineCourseDetail = () => {
         setTiles(response_getCourseDetail_data?.data?.tiles);
         // console.log("detail", response_getCourseDetail_data?.data?.tiles);
         setKey(response_getCourseDetail_data?.data?.tiles?.find(item => item.type = "overview")?.tile_name)
+        setContentData(response_getCourseDetail_data?.data?.tiles?.find(item => (item.type == "content" || item.type == "course_combo"))?.meta?.list?.find(item => item.id == id))
+        console.log('123456789098762', response_getCourseDetail_data?.data?.tiles?.find(item => (item.type == "content" || item.type == "course_combo"))?.meta?.list?.find(item => item.id == id))
       }
       else{
         setShowError(true)
@@ -230,9 +233,13 @@ const ViewOnlineCourseDetail = () => {
           // console.log('response_AddtoMyCourse_data', response_AddtoMyCourse_data)
           if (response_ConfirmPayment_data.status) {
             toast.success("Added Successfully");
-            if (titleName == "Bookstore" || titleName == "e-Book" || titleName == "Books") {
+            if (onlineCourseAry?.cat_type == 1) {
               router.push("/private/myProfile/ourCourse");
             } else {
+              setTimeout(() => {
+                router.push("/private/myProfile/myCourse");
+                
+              }, 3000);
               router.push("/private/myProfile/myCourse");
             }
           } else {
@@ -259,10 +266,16 @@ const ViewOnlineCourseDetail = () => {
   };
 
   const handleBuy = () => {
-    const currentPath = router.asPath;
-    localStorage.setItem("redirectAfterLogin", currentPath);
-    localStorage.setItem('previousTab', router.pathname);
-    router.push(`/view-courses/course-order/${titleName + ":" + onlineCourseAry.id + "&" + courseCombo}`)
+    const isLoggedIn = userLoggedIn();
+    if(isLoggedIn) {
+      const currentPath = router.asPath;
+      localStorage.setItem("redirectAfterLogin", currentPath);
+      localStorage.setItem('previousTab', router.pathname);
+      router.push(`/view-courses/course-order/${titleName + ":" + onlineCourseAry.id + "&" + courseCombo}`)
+    }
+    else{
+      setModalShow(true)
+    }
   }
 
   const OverView = tiles.find(item => item.type = "overview")
@@ -281,6 +294,7 @@ const ViewOnlineCourseDetail = () => {
     <>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -305,7 +319,7 @@ const ViewOnlineCourseDetail = () => {
         onHide = {() => setThankYouModalShow(false)}
       />
       <Header search={"disable"} />
-      {/* {console.log('onlineCourseAry', onlineCourseAry)} */}
+      {/* {console.log('onlineCourseAry1111', onlineCourseAry)} */}
       {onlineCourseAry ? <>
       <section className="detailTopContainer">
         <div className="mb-4 container-fluid p-0">
@@ -320,7 +334,8 @@ const ViewOnlineCourseDetail = () => {
                     {`Home`}
                     <i className="bi bi-chevron-right"></i>
                   </li>
-                  {(onlineCourseAry.mrp != 0 || titleName) && (
+                  {!titleName.startsWith("Free") && 
+                  (onlineCourseAry.mrp != 0 || titleName) && (
                     titleName && 
                     <li
                       className="breadcrumb-item"
@@ -329,7 +344,8 @@ const ViewOnlineCourseDetail = () => {
                       {`${titleName}`}
                       <i className="bi bi-chevron-right"></i>
                     </li>
-                  )}
+                  )
+                  }
                   <li className="breadcrumb-item active">
                     {`Details`}
                     <i className="bi bi-chevron-right"></i>
@@ -352,17 +368,18 @@ const ViewOnlineCourseDetail = () => {
                   </span>{" "}
                   120 PDF's
                 </p> */}
-                {onlineCourseAry?.segment_information && 
+                {/* {console.log('contentData', contentData)} */}
+                {contentData?.segment_information && 
                 <p className="m-0 me-4">
-                  {onlineCourseAry.segment_information}
+                  {contentData.segment_information}
                 </p>}
-                {onlineCourseAry.mrp != 0 &&
-                  onlineCourseAry.validity != "0 Days" && (
+                {onlineCourseAry?.cat_type != 1 && onlineCourseAry.mrp != 0 &&
+                  onlineCourseAry?.validity != "0 Days" && (
                     <p>
                       <span>
                         <IoDocumentTextOutline className="video_icon" />
                       </span>{" "}
-                      Validity: {`${onlineCourseAry.validity}`}
+                      Validity: {`${onlineCourseAry?.validity}`}
                     </p>
                   )}
               </div>
@@ -372,8 +389,19 @@ const ViewOnlineCourseDetail = () => {
                     <IoStar /> {onlineCourseAry.avg_rating ? parseFloat(onlineCourseAry.avg_rating).toFixed(1) : '0.0'}
                   </span>
                 </p>
-                <p className="m-0 freeCourseReview">
-                  {onlineCourseAry.user_rated} Reviews
+                <p className="m-0 freeCourseReview d-flex align-items-center">
+                  {onlineCourseAry.user_rated} Reviews &nbsp;{" "}
+                  {/* {onlineCourseAry?.cat_type == 1 && <>
+                  <span className="text-muted">|</span> &nbsp; Quantity
+                  :&emsp;{" "}
+                  <span className="quantityPrice ml-2">
+                    <input type="button" value={"-"} />
+                    <input type="text" readOnly min={1} />
+                    <input type="button" value={"+"} />
+                  </span>
+                  &nbsp; <span className="text-muted">|</span> &nbsp; In
+                  Stock:&nbsp;<span className="text-success"> Available</span>
+                  </>} */}
                 </p>
               </div>
               {onlineCourseAry.mrp != 0 && (
@@ -387,7 +415,7 @@ const ViewOnlineCourseDetail = () => {
                     {onlineCourseAry.is_purchased == 0 &&
                     <p className="m-0 detailBbuyNow">
                       <Button1
-                        value={"Bu  y Now"}
+                        value={"Buy Now"}
                         handleClick={handleBuy}
                       />
                     </p>
@@ -443,6 +471,7 @@ const ViewOnlineCourseDetail = () => {
             </div> */}
         {/* </div>
         </div> */}
+        {console.log("over", OverView)}
         <div className="course_mainContainer tabs_design__">
           <nav className="m-0 p-0">
             <Tabs
@@ -480,11 +509,12 @@ const ViewOnlineCourseDetail = () => {
               }
 
               {tiles?.map(
-                (item, index) =>
-                  (item.type !== "content" &&
+                (item, index) => (
+                  // item.type !== "content" &&
                   item.type !== "faq" &&
                   item.type !== "overview" &&
-                  item.type !== "concept") && (
+                  item.type !== "concept") && 
+                  !(item.type == "content" && versionData.same_content_view == 1)  && (
                     <Tab
                     eventKey={item.tile_name}
                     title={item.tile_name}
@@ -516,19 +546,7 @@ const ViewOnlineCourseDetail = () => {
                             keyValue={key}
                           />
                         )} */}
-                        {/* {item.tile_name == "Detail" && (
-                          <CourseDetail
-                            title={item.tile_name}
-                            courseDetail={courseDetail}
-                            propsValue={
-                              isValidData(relateCourseAry) && relateCourseAry
-                            }
-                            relateCourseAry={relateCourseAry}
-                            course = {onlineCourseAry}
-                            keyValue={key}
-                          />
-                        )} */}
-                    {item.type != "course_combo" && 
+                        {item.type != "course_combo" && 
                     <Notes
                       resetRef={resetLayerRef}
                       courseDetail={item}

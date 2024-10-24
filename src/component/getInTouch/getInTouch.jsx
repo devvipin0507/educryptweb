@@ -179,6 +179,7 @@ const GetInTouch = () => {
     <>
     {/* <Toaster position="top-right" reverseOrder={false} /> */}
     <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -201,8 +202,7 @@ const GetInTouch = () => {
                     </div>
                     <div className="get_desc">
                     <p className="mb-2">
-                        Lorem ipsum dolor sit at, consectetur adipielit. Facilisi <br />{" "}
-                        fermentum, dignissim pharetra.
+                    Feel free to share any queries, feedback, complaints, or concerns you have about our courses and programs. We're here to help and improve your experience!
                     </p>
                     </div>
                     <div className="getInTouchForm">

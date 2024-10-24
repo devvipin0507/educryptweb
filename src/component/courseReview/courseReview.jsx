@@ -238,6 +238,7 @@ const CourseReview = ({courseDetail}) => {
   return (
     <>
        <Toaster
+       position="top-right"
         toastOptions={{
           success: {
             style: {

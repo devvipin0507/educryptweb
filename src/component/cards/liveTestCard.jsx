@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { useSelector } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { useRouter } from 'next/router';
+import toast, { Toaster } from 'react-hot-toast';
 
 const LiveTestCard = ({testData, value}) => {
   // const targetTimestamp = 1727270640;
@@ -29,7 +30,7 @@ const LiveTestCard = ({testData, value}) => {
     }
   }, [])
 
-  console.log('BaseURL', BaseURL)
+  // console.log('BaseURL', BaseURL)
 
   // let domain = localStorage.getItem('domain')
   // const BaseURL = process.env.NEXT_PUBLIC_TEST_URL ? process.env.NEXT_PUBLIC_TEST_URL : domain.split(',')[0]
@@ -123,6 +124,7 @@ const LiveTestCard = ({testData, value}) => {
   }
 
   const handleTakeTest = (val) => {
+    if(val.is_live == 1){
     let firstAttempt = "0";
     if (val.state == "")
       {
@@ -157,6 +159,10 @@ const LiveTestCard = ({testData, value}) => {
     // router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
     window.open(`${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
   }
+  else{
+    toast.error('Live class is not started yet')
+  }
+  }
 
   const handleRankTest = (val) => {
     const formData = {
@@ -177,7 +183,8 @@ const LiveTestCard = ({testData, value}) => {
     window.open(`${BaseURL}/web/LiveTest/result_window?data=${encryptData}`, 'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
   }
 
-  return (
+  return (<>
+    <Toaster position="top-right" reverseOrder={false} />
     <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0">
       <div className="card border-0 shadow b-radius course_card m-0">
         {value == 'LIVE' && <p className={`m-0 course-badge ${value}`}>Live</p>}
@@ -244,6 +251,7 @@ const LiveTestCard = ({testData, value}) => {
           </div>
       </div>
     </div>
+    </>
   )
 }
 

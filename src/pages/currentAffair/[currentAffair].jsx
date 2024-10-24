@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Toaster } from 'react-hot-toast'
+import React, { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import * as Icon from "react-bootstrap-icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Tab from "react-bootstrap/Tab";
@@ -60,6 +60,7 @@ const CurrentAffair = () => {
     <div>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
@@ -123,6 +124,7 @@ const CurrentAffair = () => {
                   </div>
                   <div className="col-md-12">
                     <img
+                      loading='lazy'
                       className="mb-3 m-0 detailImg"
                       src={item.image}
                       alt=""

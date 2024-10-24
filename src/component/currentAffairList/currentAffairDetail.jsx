@@ -52,6 +52,7 @@ const CurrentAffairDetail = ({ id, handleShow }) => {
     <div>
       {/* <Toaster position="top-right" reverseOrder={false} /> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {

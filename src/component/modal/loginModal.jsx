@@ -374,7 +374,10 @@ const LoginModal = (props) => {
         setDeviceToken(response_fetchOtp_data?.data?.is_registered)
         setSignUpWithOTP(true);
       }
-    } else showErrorToast(response_fetchOtp_data?.message);
+    } else {
+      showErrorToast(response_fetchOtp_data?.message);
+      setOTP('')
+    }
   } 
 
   const fetchUserRegister = async () => {
@@ -875,6 +878,7 @@ const LoginModal = (props) => {
       >
       {/* <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/> */}
       <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {

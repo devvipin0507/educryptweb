@@ -147,7 +147,6 @@ const OurCourses = () => {
 
   return (
     <>
-      <SearchCourses catId = {catId} handleFilterCourses = {handleFilterCourses} />
       <section className="container-fluid">
         {banner &&
         <div className="row">
@@ -157,6 +156,7 @@ const OurCourses = () => {
         </div>
         }
       </section>
+      <SearchCourses catId = {catId} handleFilterCourses = {handleFilterCourses} />
       <section className="container-fluid">
         {tabData?.length > 0 ?
         <div className="row">

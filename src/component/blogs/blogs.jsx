@@ -67,6 +67,7 @@ const Blogs = () => {
   return (
     <>
     <Toaster
+        position="top-right"
         toastOptions={{
           success: {
             style: {
