@@ -207,14 +207,14 @@ const OnlineCourse = ({onlineCourseID}) => {
 // };
 
 
-export const getStaticProps = async ({ params }) => {
-  const { onlineCourseID } = params;
+// export const getStaticProps = async ({ params }) => {
+//   const { onlineCourseID } = params;
 
-  return {
-    props: {
-      onlineCourseID: onlineCourseID || null, // Provide initialTab as a prop
-    },
-  };
-};
+//   return {
+//     props: {
+//       onlineCourseID: onlineCourseID || null, // Provide initialTab as a prop
+//     },
+//   };
+// };
 
 export default OnlineCourse;
