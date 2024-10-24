@@ -55,6 +55,7 @@ const CourseOrderID = () => {
   const [savedAddress, setSavedAddress] = useState([]);
   const [isChecked, setIsChecked] = useState('');
   const [accordianId, setAccordianId] = useState(0);
+  const [addressId, setAddressId] = useState('')
   const [countryCode, setCountryCode] = useState("+91");
   const [key, setKey] = useState("");
   const [paymentMode, setPaymentMode] = useState("");
@@ -869,6 +870,7 @@ const CourseOrderID = () => {
         const formData = {
           address : JSON.stringify(addressPlaced),
           is_default: defaultAddress ? 1 : 0,
+          id: addressId ? addressId : ''
         }
 
         console.log(formData)
@@ -879,6 +881,7 @@ const CourseOrderID = () => {
           setIsAddressSave(true);
           setIsChecked(response_saveAddress_data?.data?.address)
           fetchUserAddress()
+          setAddressId('')
         }
         else{
           if(response_saveAddress_data.message == "Address Already Exist"){
@@ -984,12 +987,13 @@ const CourseOrderID = () => {
   }
 
 
-  const handleEditAddress = (userAddress) => {
+  const handleEditAddress = (userAddress, AddId) => {
     setIsAddressSave(false)
     console.log('isEdit', userAddress)
+    setAddressId(AddId)
     setUserData({
       name: userAddress.name,
-      mobile: userAddress.mobile.substring(userAddress.mobile.indexOf('-')+1, userAddress.mobile.length),
+      mobile: userAddress?.mobile?.substring(userAddress?.mobile.indexOf('-')+1, userAddress.mobile.length),
       address: userAddress.address,
       landmark: userAddress.landmark,
       state: userAddress.state,
@@ -997,7 +1001,35 @@ const CourseOrderID = () => {
       pincode: userAddress.pincode,
       country: "+91-"
     })
+    
   }
+
+  // const handleConfirmEditAddress = (id) => {
+  //   if(!userData.name) {
+  //     showErrorToast("Please, Enter your name");
+  //   }
+  //   else if(!userData.mobile) {
+  //     showErrorToast("Please, Enter your mobile number");
+  //   }
+  //   else if(userData.mobile.length != 10){
+  //     showErrorToast("please enter the valid mobile number");
+  //   }
+  //   else if(!userData.address){
+  //     showErrorToast("please enter your flat/house no.")
+  //   }
+  //   else if(!userData.state) {
+  //     showErrorToast("Please, select your state");
+  //   }
+  //   else if(!userData.district) {
+  //     showErrorToast("Please, select your district");
+  //   }
+  //   else if(!userData.pincode) {
+  //     showErrorToast("Please enter the pincode");
+  //   }
+  //   else{
+  //     handleConfirmSaveAddress(id)
+  //   }
+  // }
 
   const handleDeleteAddress = async (userAddress, id) => {
     try{
@@ -1350,7 +1382,11 @@ const CourseOrderID = () => {
                       <div className="addressBtn d-flex gap-2 align-items-center">
                         {/* <Button2 value={"Cancel"} /> */}
                         {/* {console.log('saveAddress', savedAddress)} */}
-                        {savedAddress?.length > 0 && <button className="CancelAddress" onClick={() => setIsAddressSave(true)}>Cancel</button>}
+                        {savedAddress?.length > 0 && <button className="CancelAddress" 
+                          onClick={() => {
+                            setIsAddressSave(true)
+                            setAddressId('')
+                          }}>Cancel</button>}
                         <Button1 value={"Save"} />
                       </div>
                     </div>
@@ -1395,7 +1431,7 @@ const CourseOrderID = () => {
                             {userAddress.name}
                           </h4>
                         </div>
-                        <p className="m-0 editBtn" style={{cursor: 'pointer'}} onClick={() => handleEditAddress(userAddress, item.is_default)}><i className="bi bi-pencil"></i> Edit</p>
+                        <p className="m-0 editBtn" style={{cursor: 'pointer'}} onClick={() => handleEditAddress(userAddress, item.id)}><i className="bi bi-pencil"></i> Edit</p>
                         <img className="m-0 editBtn" style={{cursor: 'pointer'}} src="/assets/images/deleteLogo.svg" alt="" onClick={() => handleDeleteAddress(userAddress, item?.id)} />
                       </div>
                     </label>

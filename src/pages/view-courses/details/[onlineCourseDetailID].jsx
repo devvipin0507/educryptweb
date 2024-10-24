@@ -68,12 +68,9 @@ const ViewOnlineCourseDetail = () => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
     setScrollY(currentScrollY);
-    // console.log("key=========================", key);
+     console.log("key=========================", key);
 
-    if (
-      currentScrollY >= 300 &&
-      key == tiles?.find((item) => (item.type = "overview"))?.tile_name
-    ) {
+    if (currentScrollY >= 300 &&  key == tiles?.find((item) => (item.type = "overview"))?.tile_name ) {
       setClass(true);
     } else {
       setClass(false);

@@ -66,37 +66,35 @@ body {
   --bs-secondary-bg-subtle: #e2e3e5;
   --bs-success-bg-subtle: #d1e7dd;
   --bs-border-width: 0px;
-  
+
   --btnDeafult: #ff7246;
 
-
-/* ================== Color Variables Starts  =========================*/
+  /* ================== Color Variables Starts  =========================*/
 
   --primary-color: #fff;
   /* Primary */
-  --secondary-color: #FF7426;
+  --secondary-color: #ff7426;
   /* Secondary */
-  --background-color: #F8F9FA;
+  --background-color: #f8f9fa;
   /* Background */
   --text-color: #212529;
   /* Text */
-  --accent-color: #FF6F61;
+  --accent-color: #ff6f61;
   /* Accent */
-  --success-color: #28A745;
+  --success-color: #28a745;
   /* Success */
-  --warning-color: #FFC107;
+  --warning-color: #ffc107;
   /* Warning */
-  --error-color: #DC3545;
+  --error-color: #dc3545;
   /* Error */
-  --neutral-light: #E9ECEF;
+  --neutral-light: #e9ecef;
   /* Light Neutral */
-  --neutral-dark: #343A40;
+  --neutral-dark: #343a40;
   /* Dark Neutral */
 
-/* ================== Color Variables Ends  =========================*/
+  /* ================== Color Variables Ends  =========================*/
 
-
-/* ======================== Font Sizes Starts ======================= */
+  /* ======================== Font Sizes Starts ======================= */
   --size-1: 1px;
   --size-2: 2px;
   --size-3: 3px;
@@ -204,26 +202,26 @@ body {
 
 /* ======================== Font Sizes Ends ======================= */
 
-.extTitle{
+.extTitle {
   font-size: var(--size-14) !important;
-  font-family: "Reddit Sans",sans-serif !important;
+  font-family: "Reddit Sans", sans-serif !important;
   font-weight: 600 !important;
 }
 .extcouponRadio {
   accent-color: rgb(255, 116, 38) !important;
   width: 12px !important;
   height: 12px !important;
-  border: 1px solid #FF7426 !important;
+  border: 1px solid #ff7426 !important;
   border-radius: 50% !important;
   padding: 5px !important;
 }
-.extendCouponModal .extCoupon_listCard p{
+.extendCouponModal .extCoupon_listCard p {
   font-size: var(--size-12) !important;
-  font-family: "Reddit Sans",sans-serif !important;
+  font-family: "Reddit Sans", sans-serif !important;
   font-weight: 500 !important;
 }
 .extendCouponModal .modal-header {
-  border-bottom: 1px solid #E2E2E2 !important;
+  border-bottom: 1px solid #e2e2e2 !important;
   padding: 12px !important;
 }
 
@@ -237,13 +235,17 @@ body {
   font-family: "Reddit Sans", sans-serif !important;
   font-size: 16px !important;
 }
-.extCoupon_listCard{
+.extCoupon_listCard {
   border: 0px !important;
-  box-shadow: 0px 1px 14px 0px #0000000D !important;
+  box-shadow: 0px 1px 14px 0px #0000000d !important;
   border-radius: 10px !important;
 }
 .extCoupon_listCard.active {
-  background: linear-gradient(89.62deg, #FFF5EF 0.33%, #FFEADE 92.16%) !important;
+  background: linear-gradient(
+    89.62deg,
+    #fff5ef 0.33%,
+    #ffeade 92.16%
+  ) !important;
 }
 
 /* ======================== Button1 CSS Starts ===================================*/
@@ -268,22 +270,18 @@ body {
 
 /* ======================== Button1 CSS Ends ===================================*/
 
-
-
-
-
 /* ======================= Combo Courses Starts =========================== */
 
-.validity1{
-    font-size: var(--size-12) !important;
-    font-family: "Reddit Sans",sans-serif;
-    font-weight: 500 !important;
-    -webkit-line-clamp: 2 !important;
-    display: -webkit-box !important;
-    overflow: hidden !important;
-    -webkit-box-orient: vertical !important;
-    height: 36px !important;
-    line-height: 17px !important;
+.validity1 {
+  font-size: var(--size-12) !important;
+  font-family: "Reddit Sans", sans-serif;
+  font-weight: 500 !important;
+  -webkit-line-clamp: 2 !important;
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  -webkit-box-orient: vertical !important;
+  height: 36px !important;
+  line-height: 17px !important;
 }
 
 /* ======================= Combo Courses Starts =========================== */
@@ -391,9 +389,9 @@ nav #eduNav {
   width: 120px !important;
   height: 42px !important;
   display: block;
-} 
+}
 
-.logoImg2{
+.logoImg2 {
   width: 120px !important;
   height: 42px !important;
 }
@@ -1192,7 +1190,6 @@ h1 {
   padding-bottom: 20px !important;
 }
 
-
 .sldr_container .slick-list {
   padding-bottom: 20px !important;
 }
@@ -1420,7 +1417,7 @@ h1 {
 
 .freeCard {
   width: 90%;
-  margin: 0 10px;
+  /* margin: 0 10px; */
   transition: 0.5s ease-in-out;
   padding: 10px;
 }
@@ -2085,7 +2082,7 @@ textarea {
   border: none !important;
 }
 
-.css-19bb58m input{
+.css-19bb58m input {
   border: none !important;
 }
 
@@ -2299,7 +2296,6 @@ p.detailStripe {
   line-height: 14px !important;
 }
 
-
 span.quantityPrice {
   display: flex;
   background: #dedfe8;
@@ -2318,11 +2314,11 @@ span.quantityPrice input:nth-child(2) {
 }
 
 span.quantityPrice input:nth-child(1) {
-  border-radius: 20px 0 0 20px
+  border-radius: 20px 0 0 20px;
 }
 
 span.quantityPrice input:nth-child(3) {
-  border-radius: 0 20px 20px 0
+  border-radius: 0 20px 20px 0;
 }
 
 span.quantityPrice input:nth-child(1),
@@ -2331,7 +2327,6 @@ span.quantityPrice input:nth-child(3) {
   background: #fff;
   border: none;
 }
-
 
 .courseDuration p {
   font-size: var(--size-12) !important;
@@ -2350,11 +2345,15 @@ span.quantityPrice input:nth-child(3) {
 
 /* ====================== detail right card starts ======================== */
 
-.MainCourseCardAB {position: absolute !important;}
-.MainCourseCardFX {position: fixed !important;}
+.MainCourseCardAB {
+  position: absolute !important;
+}
+.MainCourseCardFX {
+  position: fixed !important;
+}
 
 .MainCourseCard {
-  position: absolute !important;
+  /* position: absolute !important; */
   right: 44px !important;
   top: 100px !important;
   width: 350px !important;
@@ -2652,11 +2651,9 @@ span.quantityPrice input:nth-child(3) {
 
 .custom-breadcrumb {
   display: flex !important;
-      padding-top: 7px !important;
+  padding-top: 7px !important;
   font-size: var(--size-12) !important;
 }
-
-
 
 .active-breadcrumb {
   font-style: italic !important;
@@ -2765,7 +2762,6 @@ span.quantityPrice input:nth-child(3) {
   justify-content: center;
 }
 
-
 .pagination_button button:not(:first-child):not(:last-child) {
   padding: 3px;
   border: 1px solid #ccc;
@@ -2835,8 +2831,13 @@ span.quantityPrice input:nth-child(3) {
   font-size: var(--size-20) !important;
 }
 
+.conversate_card {
+  box-shadow: 0 0 4px #00000026;
+}
+
 .page-section-6 {
   width: 62% !important;
+  /* margin-left: 75px !important; */
 }
 
 .contentHeight {
@@ -2998,7 +2999,7 @@ span.quantityPrice input:nth-child(3) {
   aspect-ratio: 16 / 9 !important;
 }
 .course_card img.bookStoreImg {
-  height: 160px !important;
+  height: 120px !important;
   /* width: 110px  !important; */
 }
 .course_card:hover {
@@ -3010,19 +3011,23 @@ span.quantityPrice input:nth-child(3) {
   font-weight: 700 !important;
   color: #2d2d2d !important;
   text-transform: capitalize !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  /* -webkit-line-clamp: 2 !important;
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  -webkit-box-orient: vertical !important;
+  max-height: 36px !important;
+  line-height: 17px !important; */
+}
+
+.course_card .slideName {
   -webkit-line-clamp: 2 !important;
   display: -webkit-box !important;
   overflow: hidden !important;
   -webkit-box-orient: vertical !important;
-  height: 36px !important;
-  line-height: 17px !important;
-}
-
-.course_card .slideName{
-  -webkit-line-clamp: 2 !important;
-  display: -webkit-box !important;
-  overflow: hidden !important;
-  -webkit-box-orient: vertical !important
 }
 
 .course_card h6.l_title {
@@ -3063,9 +3068,9 @@ span.quantityPrice input:nth-child(3) {
   font-size: var(--size-20) !important;
 }
 
-.coursePrice .Cost_Price svg{
+.coursePrice .Cost_Price svg {
   font-size: 16px !important;
-} 
+}
 
 .course_card .Card-OffPrice {
   position: relative !important;
@@ -3196,7 +3201,7 @@ hr {
   /* display: -webkit-box !important; */
   overflow: hidden !important;
   -webkit-box-orient: vertical !important;
-  height: 54px !important;
+  max-height: 40px !important;
   /* line-height: 17px !important; */
 }
 
@@ -4226,11 +4231,10 @@ input.coupon_field::placeholder {
   flex-wrap: nowrap !important;
   margin: 0 348px 0 0 !important;
 }
-.profileCourse_mainContainer 
-#controlled-tab-example2 li.nav-item {
+.profileCourse_mainContainer #controlled-tab-example2 li.nav-item {
   white-space: nowrap;
 }
-.profileCourse_mainContainer  ::-webkit-scrollbar {
+.profileCourse_mainContainer ::-webkit-scrollbar {
   height: var(--size-5) !important;
 }
 .profileCourse_mainContainer ::-webkit-scrollbar-track {
@@ -4239,8 +4243,7 @@ input.coupon_field::placeholder {
 .profileCourse_mainContainer ::-webkit-scrollbar-thumb {
   background: #888;
 }
-.profileCourse_mainContainer 
-#controlled-tab-example2 li button:hover {
+.profileCourse_mainContainer #controlled-tab-example2 li button:hover {
   background-color: #fceee7 !important;
 }
 
@@ -4394,7 +4397,9 @@ input.coupon_field::placeholder {
   height: 100%;
   object-fit: contain;
 }
-
+.offset--1 {
+  margin-left: 90px;
+}
 .purchaseThumbnail div {
   border: 0.5px solid #ccc !important;
   width: 100%;
@@ -4617,6 +4622,11 @@ h4.userRateTitle {
 }
 
 /* ====================== Profile blog deatil Page Starts ==================== */
+
+.cTabnew {
+  flex-wrap: wrap !important;
+  overflow: inherit !important;
+}
 
 .CustomTab {
   flex-wrap: nowrap;
@@ -5056,7 +5066,8 @@ p.user_Detail {
   width: 40rem !important;
   border: 0px !important;
   border-radius: 10px !important;
-  box-shadow: 0px 4px 15px 0px #00000017 !important;
+  margin: 2px 0;
+  box-shadow: 0px 4px 5px 0px #00000017 !important;
 }
 
 .NotifyCard.active {
@@ -5315,6 +5326,10 @@ span.liveIndicator {
   padding-left: 40px !important;
   padding-right: 40px !important;
   z-index: 9 !important;
+}
+
+.d_container {
+  padding: 15px 370px 0px 100px !important;
 }
 
 .video_icon_margin___:hover ._quality_ {
@@ -5787,7 +5802,6 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .tredingSliderSection:hover {
     width: 6.5% !important;
   }
-
 }
 
 /* @media(max-width: 992px) {
@@ -5988,7 +6002,6 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   .course_mainContainer #controlled-tab-example2 {
     padding: 0px 3px !important;
   }
-
 }
 
 @media (min-width: 992px) and (max-width: 1260px) {
@@ -6092,6 +6105,19 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   }
 }
 
+@media (max-width: 991px) {
+  .page-section-6,
+  .offset--1 {
+    margin-left: 0px !important;
+  }
+  .d_container {
+    padding: 15px !important;
+  }
+
+  .course_mainContainer #controlled-tab-example2 {
+    margin: 0 !important;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .courseTitle p {
     margin: 40px 0px 20px 0px !important;
@@ -6972,9 +6998,10 @@ p.video_bg_color.shaka-video-container {
   background: #ededed !important;
   padding: 2px 6px !important;
   text-align: center !important;
+  font-size: 12px !important;
 }
 .profileBanImg {
-aspect-ratio: 21 / 6 !important;
+  aspect-ratio: 21 / 6 !important;
   max-width: 100% !important;
   height: auto !important;
 }
@@ -7008,14 +7035,22 @@ aspect-ratio: 21 / 6 !important;
   box-shadow: rgba(255, 255, 255, 1) !important;
   border: none !important;
 }
-.shaka-controls-container[casting=true] .shaka-controls-button-panel, .shaka-controls-container[shown=true] .shaka-controls-button-panel {
+.shaka-controls-container[casting="true"] .shaka-controls-button-panel,
+.shaka-controls-container[shown="true"] .shaka-controls-button-panel {
   opacity: 1;
   margin-bottom: -43px;
 }
-.shaka-controls-container .shaka-controls-button-panel, .shaka-controls-container .shaka-controls-button-panel {
+.shaka-controls-container .shaka-controls-button-panel,
+.shaka-controls-container .shaka-controls-button-panel {
   margin-bottom: -43px;
 }
-.__video_icon__common__ .shaka-tooltips-on>[class*=shaka-tooltip]:active:after, .__video_icon__common__ .shaka-tooltips-on>[class*=shaka-tooltip]:focus-visible:after, .shaka-tooltips-on>[class*=shaka-tooltip]:hover:after {
+.__video_icon__common__
+  .shaka-tooltips-on
+  > [class*="shaka-tooltip"]:active:after,
+.__video_icon__common__
+  .shaka-tooltips-on
+  > [class*="shaka-tooltip"]:focus-visible:after,
+.shaka-tooltips-on > [class*="shaka-tooltip"]:hover:after {
   left: calc(65px / 2) !important;
 }
 button.shaka-current-time {
@@ -7023,3 +7058,6 @@ button.shaka-current-time {
   margin-top: -87px;
   right: 30px;
 }
+/* .slick-disabled{
+  display: none !important;
+} */

@@ -19,11 +19,11 @@ const CurrentAffairList = () => {
   const [showCardError, setShowCardError] = useState(false);
   const [currentAffId, setCurrentAffId] = useState("");
   const [key, setKey] = useState("");
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    setShowError(false)
-    setShowCardError(false)
+    setShowError(false);
+    setShowCardError(false);
     fetchCurrentAffair();
   }, []);
 
@@ -32,7 +32,7 @@ const CurrentAffairList = () => {
   }, [currentAffList]);
 
   const fetchCurrentAffair = async () => {
-    try{
+    try {
       const token = get_token();
       const formData = {};
       const response_getCurrentAffairs_service = await getCurrentAffair_service(
@@ -44,14 +44,13 @@ const CurrentAffairList = () => {
       );
       // console.log('response_getCurrentAffairs_data', response_getCurrentAffairs_data)
       if (response_getCurrentAffairs_data?.status) {
-        if(response_getCurrentAffairs_data?.data?.length == 0){
+        if (response_getCurrentAffairs_data?.data?.length == 0) {
           setShowError(true);
-        }
-        else setCurrentAffList(response_getCurrentAffairs_data.data);
+        } else setCurrentAffList(response_getCurrentAffairs_data.data);
       }
     } catch (error) {
-      console.log("error found: ", error)
-      router.push('/')
+      console.log("error found: ", error);
+      router.push("/");
     }
   };
 
@@ -64,7 +63,7 @@ const CurrentAffairList = () => {
     <>
       {!isShowDetail ? (
         <section>
-          {currentAffList?.length > 0 ?
+          {currentAffList?.length > 0 ? (
             <Tabs
               activeKey={key}
               onSelect={(k) => setKey(k)}
@@ -77,7 +76,8 @@ const CurrentAffairList = () => {
                     eventKey={item.category}
                     title={item.category}
                     key={index}
-                    className="CustomTab m-0"
+                    className="CustomTab m-0 cTabnew"
+                    style={{ overflow: "inherit;" }}
                   >
                     <div className="m-0 w-100" key={index}>
                       <div className="row mt-2">
@@ -97,15 +97,14 @@ const CurrentAffairList = () => {
                       </div>
                     </div>
                   </Tab>
-                )}
-              )}
+                );
+              })}
             </Tabs>
-          :
-          showError ? 
-            <ErrorPageAfterLogin /> 
-            :
+          ) : showError ? (
+            <ErrorPageAfterLogin />
+          ) : (
             <LoaderAfterLogin />
-          }
+          )}
         </section>
       ) : (
         <section>
