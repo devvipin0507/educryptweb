@@ -29,7 +29,12 @@ const SliderTrend = ({value, titleName}) => {
     const isLoggedIn = userLoggedIn();
     if(isLoggedIn) {
       localStorage.setItem('previousTab', router.pathname);
-      router.push(`/view-courses/course-order/${titleName+':'+value.id + "&" + value.combo_course_ids}`)
+      
+      // router.push(`/view-courses/course-order/${titleName+':'+value.id + "&" + value.combo_course_ids}`)
+      router.push({
+        pathname: `/view-courses/course-order/${titleName+':'+value.id + "&" + value.combo_course_ids}`,
+        query: {IsBuy:"IsBuy"}
+      });
     }
     else{
       setModalShow(true);
@@ -37,7 +42,12 @@ const SliderTrend = ({value, titleName}) => {
   }
 
   const handleExplore = () => {
-    router.push(`/view-courses/details/${titleName+':'+value.id + "&" + value.combo_course_ids+'parent:'}`)
+    // router.push(`/view-courses/details/${titleName+':'+value.id + "&" + value.combo_course_ids+'parent:'}`)
+    router.push({
+      pathname: `/view-courses/details/${titleName+':'+value.id + "&" + value.combo_course_ids+'parent:'}`,
+      query: {IsTranding:"IsTranding"}
+    });
+    
   }
 
 
@@ -58,10 +68,10 @@ const SliderTrend = ({value, titleName}) => {
           {/* <div className='explorebtn'>
             <Button2 value={"Buy"} handleClick={handleBuy} />
           </div> */}
-        {value.cover_image && (
+        {value?.cover_image && (
           <img 
             style={{borderRadius: "10px"}} 
-            src={value.cover_image} 
+            src={value?.cover_image} 
             className="card-img-top" 
             alt="..." 
           />

@@ -207,7 +207,7 @@ const LiveTestCard = ({testData, value}) => {
                 src="/assets/images/calenderLogo2.png"
                 alt=""
             />
-            start On:
+            Start On:
             <span className="ms-2 valid_date">{formatDate(testData.start_date)}</span>
         </p>
         <p className="d-flex align-items-center validity">

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Button1 from '../buttons/button1/button1'
+import { userLoggedIn } from '@/utils/helpers'
 
 const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, handleResultTest, handleRankTest, handleUpcomingTest, i, onlineCourseAry}) => {
 
     const [timeValue, setTimeValue] = useState('')
+    const [isLogin, setIsLogin] = useState('')
 
-    console.log('item', item)
+    // console.log('item', item)
     let startTime = item.start_date
 
     // item.start_date
@@ -20,7 +22,7 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
           const currentTime = new Date();
       
 
-          console.log("compare", givenStartTime, currentTime)
+        //   console.log("compare", givenStartTime, currentTime)
           // Compare times
           if (currentTime < givenStartTime) {
             setTimeValue("pending")
@@ -35,7 +37,8 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
       useEffect(() => {
         // Immediately call compareTime
         compareTime(startTime   , endTime );
-    
+        setIsLogin(userLoggedIn())
+        
         // Set up an interval to call compareTime every 5 seconds (5000 ms)
         const intervalId = setInterval(() => {
             compareTime(startTime   , endTime )
@@ -75,11 +78,11 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                 {" "}
                 {console.log("time", timeValue)}
                 {
-                // (isLogin && 
-                (onlineCourseAry?.is_purchased != 1 || onlineCourseAry?.is_test_purchased != 1) && onlineCourseAry?.is_locked == 0 ?
+                (isLogin ?
+                (onlineCourseAry?.is_purchased != 1 || onlineCourseAry?.is_test_purchased != 1) ?
                     item.is_locked == 0 ?
                     <>
-                        {layer1Data.type == "pdf" && <Button1 value="Read" handleClick={handleRead} /> }
+                        {layer1Data.type == "pdf" && <Button1 value="Read" handleClick={() => handleRead(item)} /> }
                         {layer1Data.type == "video" && <Button1 value="Watch Now" handleClick={() => handleWatch(item, i)} />}
                         {layer1Data?.type == "test" && 
                         (timeValue == "pending" &&
@@ -111,11 +114,13 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                     </>
                     :
                     <>
+                        {/* {console.log('hhhh')} */}
                         <img style={{ width: "32px" }} src="/assets/images/locked.png" alt="" />
                     </>
                 :
                 <>
-                    {layer1Data.type == "pdf" && <Button1 value="Read" handleClick={handleRead} /> }
+                {/* {console.log('7777777777777',item)} */}
+                    {layer1Data.type == "pdf" && <Button1 value="Read" handleClick={() => handleRead(item)} /> }
                         {layer1Data.type == "video" && <Button1 value="Watch Now" handleClick={() => handleWatch(item, i)} />}
                         {layer1Data?.type == "test" && 
                         (timeValue == "pending" &&
@@ -144,8 +149,13 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                                 />  
                             </>    
                         }
-                </>
-                }
+                    </>
+                    :
+                    <>
+                        {/* {console.log('hhhh')} */}
+                        <img style={{ width: "32px" }} src="/assets/images/locked.png" alt="" />
+                    </>
+                )}
             </div>
             </div>
         </div>

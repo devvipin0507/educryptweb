@@ -61,7 +61,7 @@ const SliderContent = ({ freeCourse, titleName }) => {
               ? freeCourse.desc_header_image
               : freeCourse.cover_image
               ? freeCourse.cover_image
-              : "https://picsum.photos/536/354"
+              : "/assets/images/noImage.jfif"
           }
           className="card-img-top"
           alt="..."

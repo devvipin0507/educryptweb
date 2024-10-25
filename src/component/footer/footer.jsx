@@ -188,7 +188,7 @@ const Footer = () => {
           className="footerBottom gap-2 gap-sm-4 d-flex flex-wrap align-items-center               justify-content-between justify-content-sm-between justify-content-md-between"
         >
           <p className="mb-2 copyrighttitle">
-            Educrypt All Right Reserved, 2022
+            {appName ? appName : 'EduCrypt'} All Right Reserved, 2022
           </p>
           <div className="mb-2 flex-wrap foot-social">
             {footerLinks?.twitter_detail && (

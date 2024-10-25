@@ -17,7 +17,10 @@ const Card2 = ({value, titleName}) => {
 
   return (
     <div className="card border-0 shadow b-radius mb-3 p-2 freeCard" style={{width: '320px'}}>
-            {<img style={{borderRadius: "10px"}} src={value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'} className="card-img-top" alt="..." />}
+            {<img 
+                style={{borderRadius: "10px"}} 
+                src={value?.cat_type == 0 ? (value?.cover_image ? value?.cover_image : '/assets/images/noImage.jfif') : (value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif')} 
+                className="card-img-top" alt="..." />}
             {/* <div className="m-0 free-badge">FREE</div> */}
             <div className="card-body pt-3 px-0 pb-0">
                 <h6 className="mb-2 slideTitle">

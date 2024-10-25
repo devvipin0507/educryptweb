@@ -9,9 +9,9 @@ const PlayId = () => {
     });
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const router = useRouter();
+    // console.log("router",router)
 
     useEffect(() => {
-        // Ensure this code runs only on the client side
         if (typeof window !== 'undefined') {
             setWindowSize({
                 width: window.innerWidth,

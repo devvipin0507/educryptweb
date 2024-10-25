@@ -52,8 +52,8 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
         <div className="d-flex justify-content-center">
         <img
           style={{ borderRadius: "10px" }}
-          src={value?.cat_type == 1 ? value.cover_image: value?.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
-          className={`${value?.cat_type == 1 ? 'book_course_img' : 'course_img'}`}
+          src={value?.cat_type == 1 ? value?.cover_image : value?.desc_header_image ? value?.desc_header_image : '/assets/images/noImage.jfif'}
+          className={`${value?.cat_type == 0 ? 'book_course_img' : 'course_img'}`}
           alt="..."
         />
         </div>

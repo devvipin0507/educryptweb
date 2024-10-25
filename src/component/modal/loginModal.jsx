@@ -696,6 +696,15 @@ const LoginModal = (props) => {
     }
   }
 
+  const classForActive2 = () => {
+    if(userData.name && userData.email && userData.state && userData.district) {
+      return "btnEnabled"
+    }
+    else {
+      return "btnDisabled"
+    }
+  }
+
   const handleForgotPassword = () => {
     setForgetPassword(true)
     setMobile("")
@@ -734,36 +743,63 @@ const LoginModal = (props) => {
 
   
   const handleFormValidationErrors = () => {
-    if (!userData.name) {
-      showErrorToast("Please, Enter your name");
-    } else if (!userData.email) {
-      showErrorToast("Please, Enter your Email");
-    } else if (!validateEmail(userData.email)) {
-      showErrorToast("Please, Enter a valid Email");
-    } else if (userData.password !== userData.confirmPassword) {
-      showErrorToast("Password and confirm Password didn't match");
-    } else if (userData.password.length < 8) {
-      showErrorToast("Password length should be at least 8");
+    if(versionData.otp_login == 0) {
+      if (!userData.name) {
+        showErrorToast("Please, Enter your name");
+      } else if (!userData.email) {
+        showErrorToast("Please, Enter your Email");
+      } else if (!validateEmail(userData.email)) {
+        showErrorToast("Please, Enter a valid Email");
+      } else if (userData.password !== userData.confirmPassword) {
+        showErrorToast("Password and confirm Password didn't match");
+      } else if (userData.password.length < 8) {
+        showErrorToast("Password length should be at least 8");
+      }
+    }
+    else {
+      if (!userData.name) {
+        showErrorToast("Please, Enter your name");
+      } else if (!userData.email) {
+        showErrorToast("Please, Enter your Email");
+      } else if (!validateEmail(userData.email)) {
+        showErrorToast("Please, Enter a valid Email");
+      }
     }
   };
 
   const handleSignUpWithOTP = (e) => {
     e.preventDefault();
-  
-    if (
-      userData.name &&
-      validateEmail(userData.email) &&
-      userData.password.length > 7 &&
-      userData.state &&
-      userData.district &&
-      userData.password === userData.confirmPassword
-    ) {
-      localStorage.setItem("jwt", jwt);
-      localStorage.setItem("user_id", deviceToken); 
-      setIsFormValid(true);
+    if(versionData.otp_login == 0) {
+      if (
+        userData.name &&
+        validateEmail(userData.email) &&
+        userData.password.length > 7 &&
+        userData.state &&
+        userData.district &&
+        userData.password === userData.confirmPassword
+      ) {
+        localStorage.setItem("jwt", jwt);
+        localStorage.setItem("user_id", deviceToken); 
+        setIsFormValid(true);
 
-    } else {
-      handleFormValidationErrors();
+      } else {
+        handleFormValidationErrors();
+      }
+    }
+    else{
+      if (
+        userData.name &&
+        validateEmail(userData.email) &&
+        userData.state &&
+        userData.district 
+      ) {
+        localStorage.setItem("jwt", jwt);
+        localStorage.setItem("user_id", deviceToken); 
+        setIsFormValid(true);
+
+      } else {
+        handleFormValidationErrors();
+      }
     }
   };
   
@@ -1293,6 +1329,7 @@ const LoginModal = (props) => {
                             isSearchable
                           />
                         </div>
+                        {versionData.otp_login == 0 && <>
                         <div className="col-md-12 margin_bottom">
                           <div className="input-group">
                             <input
@@ -1334,8 +1371,9 @@ const LoginModal = (props) => {
                             </span>
                           </div>
                         </div>
+                        </>}
                         <div className="col-md-12 mb-4">
-                          <button className={`btn ${classForActive()}`} type="submit">
+                          <button className={`btn ${versionData.otp_login == 0 ? classForActive(): classForActive2()}`} type="submit">
                             Submit
                           </button>
                         </div>

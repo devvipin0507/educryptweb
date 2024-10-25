@@ -27,26 +27,22 @@ const ComboCourseCard = ({
         }`
       );
     } else {
-      if(onlineCourseAry?.combo_course_ids) {
-      router.push(
-        `/view-courses/course-order/${
-          titleName +
-          ":" +
-          onlineCourseAry.id +
-          "&" +
-          onlineCourseAry.combo_course_ids
-        }`
-      )}
-      else {
+      if (onlineCourseAry?.combo_course_ids) {
         router.push(
           `/view-courses/course-order/${
             titleName +
             ":" +
             onlineCourseAry.id +
             "&" +
-            ''
+            onlineCourseAry.combo_course_ids
           }`
-        )
+        );
+      } else {
+        router.push(
+          `/view-courses/course-order/${
+            titleName + ":" + onlineCourseAry.id + "&" + ""
+          }`
+        );
       }
     }
   };
@@ -74,7 +70,7 @@ const ComboCourseCard = ({
             alt="..."
           />
         }
-        <div className="card-body pt-3 px-0 pb-0">
+        <div className="card-body pt-1 px-0 pb-0">
           <h6 className="mb-0 slideTitle">{value?.title}</h6>
           <div className="courserate1">
             <div className="d-flex1">

@@ -25,7 +25,7 @@ const Notes = ({
   keyValue,
   onlineCourseAry,
 }) => {
-  // console.log("keyValue",courseDetail)
+  // console.log("keyValue",onlineCourseAry)
 
   const [modalShow, setModalShow] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -166,6 +166,7 @@ const Notes = ({
         r_api[1] == 0
       ) {
         setShowLayer("layer1");
+        // skipLayer1Data();
       } else if (
         // courseDetail?.revert_api == "1#1#0#0" ||
         // courseDetail?.revert_api == "0#1#0#0" ||
@@ -173,7 +174,9 @@ const Notes = ({
         // courseDetail?.revert_api == "1#1#0#1"
         r_api[1] == 1
       ) {
-        getLayer2Data(0);
+        console.log('skip layer1')
+        // getLayer2Data(0);
+        skipLayer1Data()
       } else if (
         // courseDetail?.revert_api == "1#2#0#0" ||
         // courseDetail?.revert_api == "0#2#0#0" ||
@@ -222,12 +225,19 @@ const Notes = ({
     }
   };
 
+  const skipLayer1Data = () => {
+    console.log('courseDetail', courseDetail)
+    console.log(courseDetail?.meta?.list?.flatMap(item => item?.list))
+    setShowLayer("layer2");
+    setLayer2List(courseDetail?.meta?.list?.flatMap(item => item?.list))
+  }
+
   const getLayer2Data = (index, title) => {
     // window.scroll(0,0)
     setBreadcrumbData(title);
     setLayer1Index(index);
     setShowLayer("layer2");
-    setLayer2List(layer1Data?.meta?.list[index]);
+    setLayer2List(layer1Data?.meta?.list[index]?.list);
     // console.log(layer1Data.meta?.list[index]);
   };
 
@@ -278,13 +288,13 @@ const Notes = ({
       ) {
         return 0;
       } else {
-        return layer2List?.list[index].id;
+        return layer2List[index]?.id;
       }
     };
     const data = {
-      tile_id: layer1Data?.id && layer1Data.id,
-      type: layer1Data?.type && layer1Data.type,
-      revert_api: layer1Data?.revert_api && layer1Data.revert_api,
+      tile_id: layer1Data?.id && layer1Data?.id,
+      type: layer1Data?.type && layer1Data?.type,
+      revert_api: layer1Data?.revert_api && layer1Data?.revert_api,
       topic_id: topi_id(),
       subject_id: subj_id(),
       layer: 3,
@@ -348,6 +358,12 @@ const Notes = ({
   };
 
   const handleWatch = (data, index) => {
+    let playData = {
+      vdc_id:data.vdc_id,
+      file_url:data.file_url,
+      title:data.title,
+      video_type:data.video_type
+    }
     const isLoggedIn = localStorage.getItem("jwt");
     if (!isLoggedIn) {
       setModalShow(true);
@@ -363,7 +379,7 @@ const Notes = ({
         );
         router.push({
           pathname: `/private/myProfile/play/${data.id}`,
-          query: data,
+          query: playData,
         });
         // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
         // console.log('watch')
@@ -458,7 +474,7 @@ const Notes = ({
         setLayer3updateData(layer3Data?.list?.slice(0, 15));
       } else if (data3Index === page.length) {
         setLayer3updateData(
-          layer3Data?.list?.slice((data3Index - 1) * 10, data3Index.length)
+          layer3Data?.list?.slice((data3Index - 1) * 15, data3Index.length)
         );
       } else {
         setLayer3updateData(
@@ -638,7 +654,7 @@ const Notes = ({
                 : "col-lg-7 offset--1  col-md-12"
             }`}
           >
-            <section className={` ${checkLogin ? " " : ""}`}>
+            <section className={` ${checkLogin ? "px-2 " : ""}`}>
               <div className=" custom-breadcrumb">
                 {/* <span
             ref={resetRef}
@@ -789,8 +805,9 @@ const Notes = ({
                           >
                             prev
                           </button>
+                          {/* {console.log('page', val)} */}
                           {page.map((val, index) => {
-                            if (val != page?.length) {
+                            if (val != page?.length+1) {
                               return (
                                 <button
                                   key={index}
@@ -833,7 +850,7 @@ const Notes = ({
                   )
                 ) : showLayer == "layer2" ? (
                   layer2List &&
-                  layer2List?.list?.map((item, i) => {
+                  layer2List?.map((item, i) => {
                     // topic_PDF_Ary &&
                     // topic_PDF_Ary.map((item, i) => {
                     return (

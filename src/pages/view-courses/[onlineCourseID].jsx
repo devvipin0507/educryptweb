@@ -117,7 +117,7 @@ const OnlineCourse = ({ onlineCourseID }) => {
           <div className="col-md-12 m-0" style={{ paddingTop: "15px" }}>
             <nav aria-label="breadcrumb ">
               <ol className="breadcrumb mb-0 cursor">
-                <li className="breadcrumb-item" onClick={() => Router.back()}>
+                <li className="breadcrumb-item" onClick={() => Router.push('/')}>
                   {`Home`}
                   <i className="bi bi-chevron-right"></i>
                   {/* <Icon.ChevronRight /> */}
@@ -185,7 +185,7 @@ const OnlineCourse = ({ onlineCourseID }) => {
             </div>
           </div>
         </div>
-        <div className="course_cardContainer onlineCourse mb-3">
+        <div className="course_cardContainer  mb-3">
           <div className="row">
             {onlineCourse?.length > 0 ? (
               onlineCourse.map((item, index) => {

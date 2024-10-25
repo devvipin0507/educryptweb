@@ -291,10 +291,11 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
       }
       else {
         if(response_ConfirmPayment_data.message != "The transaction_status field must be one of: 1,2."){
-          showErrorToast(response_ConfirmPayment_data.message);
+          console.log('cancelled')
+          showErrorToast('Transaction Cancelled, Your payment was canceled. Please try again if needed.');
         }
         else{
-          showErrorToast("Payment Cancelled!")
+          showErrorToast('Transaction Failed, Your payment couldn’t be processed.');
         }
       }
     } catch (error) {
@@ -376,7 +377,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId,setGetCourse }) => {
           {console.log('value4235', value)}
         <img
           style={{ borderRadius: "10px" }}
-          src={value?.cat_type == 1 ? value?.cover_image ?  value?.cover_image : '/assets/images/noImage.jfif' : value.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
+          src={value?.cat_type == 0 ? value?.cover_image ?  value?.cover_image : '/assets/images/noImage.jfif' : value.desc_header_image ? value.desc_header_image : '/assets/images/noImage.jfif'}
           className={` ${value?.cat_type == 1 ? 'book_course_img' : 'course_img flex-fill'}`}
           alt="..."
         />

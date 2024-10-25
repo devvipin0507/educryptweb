@@ -16,7 +16,7 @@ const CurrentAffair = () => {
     const handleAllCA = () => {
         const isLoggedIn = userLoggedIn()
         if(isLoggedIn) {
-            router.push('/private/myProfile/Current affairs')
+            router.push('/private/myProfile/17')
         }
         else{
             setModalShow(true)
@@ -64,7 +64,7 @@ const CurrentAffair = () => {
         </div>
         <div className="row">
             <div className="col-12 mt-4 d-flex justify-content-center blogBtn">
-                {/* <Button1 value = "View All Current Affair" handleClick = {handleAllCA}/> */}
+                <Button1 value = "View All Current Affair" handleClick = {handleAllCA}/>
             </div>
         </div>
     </div>

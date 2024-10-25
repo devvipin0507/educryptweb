@@ -57,18 +57,28 @@ const LiveClassCard = ({courseData, value}) => {
     }
   }
 
-  const handleWatch = () => {
+  const handleWatch = (data) => {
+    let playData = {
+      vdc_id:data.vdc_id,
+      file_url:data.file_url,
+      title:data.title,
+      video_type:data.video_type
+    }
     const isLoggedIn = localStorage.getItem("jwt");
     if(!isLoggedIn) {
       setModalShow(true);
     }
     else {
+      router.push({
+        pathname: `/private/myProfile/play/${data.id}`,
+        query: playData,
+      });
       // if(courseData?.is_live == 1) {
         // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
-        router.push({
-          pathname: `/private/myProfile/play/${courseData.id}`,
-          query: courseData,
-        });
+        // router.push({
+        //   pathname: `/private/myProfile/play/${courseData.id}`,
+        //   query: courseData,
+        // });
         // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
         // console.log('watch')
       // }
@@ -126,7 +136,7 @@ const LiveClassCard = ({courseData, value}) => {
                 src="/assets/images/calenderLogo2.png"
                 alt=""
             />
-            {value == "COMPLETED" ? 'Was Live at' : 'start On'}:
+            {value == "COMPLETED" ? 'Was Live at' : 'Start On'}:
             <span className="ms-2 valid_date">{formatDate(courseData.start_date)}</span>
         </p>
         {/* {value !== 'LIVE' && <p className="d-flex align-items-center validity">
@@ -155,7 +165,7 @@ const LiveClassCard = ({courseData, value}) => {
             {(value == 'LIVE' || value == 'COMPLETED') &&
             <Button1
               value="Watch"
-              handleClick={()=>handleWatch()}
+              handleClick={()=>handleWatch(courseData)}
               data= {0}
             />
             }

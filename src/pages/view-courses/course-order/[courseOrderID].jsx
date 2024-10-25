@@ -86,7 +86,8 @@ const CourseOrderID = () => {
   });
 
   const router = useRouter();
-  const { courseOrderID } = router.query;
+  const { courseOrderID, IsBuy } = router.query;
+  console.log("router.query", router.query)
   // const id = courseOrderID.slice(courseOrderID.indexOf(':') +1, courseOrderID.length)
   // const titleName = courseOrderID.slice(0, courseOrderID.indexOf(':'))
   const token = get_token();
@@ -186,8 +187,8 @@ const CourseOrderID = () => {
         stateId
           ? stateId
           : stateOption.find(
-              (stateOption) => stateOption.label == userData.state
-            )?.value
+            (stateOption) => stateOption.label == userData.state
+          )?.value
       );
     }
   }, [stateId, userData.state]);
@@ -444,12 +445,12 @@ const CourseOrderID = () => {
                     amount:
                       paymentMode == "EMI Payment"
                         ? parseFloat(
-                            installment &&
-                              installment?.amount_description?.total_amount[0]
-                          ).toFixed(2) * 100
+                          installment &&
+                          installment?.amount_description?.total_amount[0]
+                        ).toFixed(2) * 100
                         : (couponData
-                            ? totalAmount()
-                            : parseFloat(totalAmount()).toFixed(2)) * 100,
+                          ? totalAmount()
+                          : parseFloat(totalAmount()).toFixed(2)) * 100,
                     currency: "INR",
                     prefill: {
                       // name: "Customer Name",
@@ -1114,12 +1115,16 @@ const CourseOrderID = () => {
     }
   };
 
-  const handleBackdetails = () => {
-    const back = localStorage.getItem("redirectdetails");
-    if (back) {
-      router.push(back);
-    } else {
-      router.back();
+  const handleBackdetails = (titleName) => {
+    if(titleName == "Trending Courses"){
+      router.push("/");
+    }else{
+      const back = localStorage.getItem("redirectdetails");
+      if (back) {
+        router.push(back);
+      } else {
+        router.back();
+      }
     }
   };
 
@@ -1187,16 +1192,18 @@ const CourseOrderID = () => {
                       )}
                       <li
                         className="breadcrumb-item"
-                        onClick={handleBackdetails}
+                        onClick={()=>handleBackdetails(titleName)}
                       >
                         {/* {console.log(titleName)} */}
                         {`${titleName}`}
                         <i className="bi bi-chevron-right"></i>
                       </li>
-                      <li className="breadcrumb-item" onClick={handleBack}>
-                        {`Details`}
-                        <i className="bi bi-chevron-right"></i>
-                      </li>
+                      {!IsBuy &&
+                        <li className="breadcrumb-item" onClick={handleBack}>
+                          {`Details`}
+                          <i className="bi bi-chevron-right"></i>
+                        </li>
+                          }
                       <li className="breadcrumb-item active">
                         Buy Now
                         <i className="bi bi-chevron-right"></i>
@@ -1268,7 +1275,7 @@ const CourseOrderID = () => {
                                 <span className="costPrice">
                                   {courseData.is_gst == 0
                                     ? Number(courseData.mrp) +
-                                      Number(courseData.tax)
+                                    Number(courseData.tax)
                                     : courseData.mrp}
                                   {/* {courseData.course_sp} */}
                                 </span>
@@ -1276,15 +1283,15 @@ const CourseOrderID = () => {
                               {Number(courseData.mrp) +
                                 Number(courseData.tax) !=
                                 courseData.course_sp && (
-                                <>
-                                  <p className="m-0 offPrice">
-                                    <del>
-                                      <i className="bi bi-currency-rupee"></i>
-                                      {courseData.course_sp}
-                                    </del>
-                                  </p>
-                                </>
-                              )}
+                                  <>
+                                    <p className="m-0 offPrice">
+                                      <del>
+                                        <i className="bi bi-currency-rupee"></i>
+                                        {courseData.course_sp}
+                                      </del>
+                                    </p>
+                                  </>
+                                )}
                             </td>
                           </tr>
                         </tbody>
@@ -1394,13 +1401,13 @@ const CourseOrderID = () => {
                             value={
                               userData?.state
                                 ? stateOption.find(
-                                    (stateOption) =>
-                                      stateOption.label == userData?.state
-                                  )
+                                  (stateOption) =>
+                                    stateOption.label == userData?.state
+                                )
                                 : stateOption.find(
-                                    (stateOption) =>
-                                      stateOption.value === stateId
-                                  ) || null
+                                  (stateOption) =>
+                                    stateOption.value === stateId
+                                ) || null
                             }
                             onChange={handleStateInForm}
                             options={stateOption && stateOption}
@@ -1416,13 +1423,13 @@ const CourseOrderID = () => {
                             value={
                               userData?.district
                                 ? districtOption.find(
-                                    (districtOption) =>
-                                      districtOption.label == userData?.district
-                                  )
+                                  (districtOption) =>
+                                    districtOption.label == userData?.district
+                                )
                                 : districtOption.find(
-                                    (districtOption) =>
-                                      districtOption.value === districtId
-                                  ) || null
+                                  (districtOption) =>
+                                    districtOption.value === districtId
+                                ) || null
                             }
                             onChange={handleDistrictInForm}
                             options={districtOption && districtOption}
@@ -1661,9 +1668,8 @@ const CourseOrderID = () => {
                               className="mb-2"
                             >
                               <Accordion.Header
-                                className={`${
-                                  accordianId == index ? "active" : ""
-                                }`}
+                                className={`${accordianId == index ? "active" : ""
+                                  }`}
                               >
                                 {item.name}
                               </Accordion.Header>
@@ -1678,11 +1684,11 @@ const CourseOrderID = () => {
                                             {ind == 0
                                               ? "1st Installment"
                                               : ind == 1
-                                              ? "2nd Installment"
-                                              : ind == 2
-                                              ? "3rd Installment"
-                                              : ind > 2 &&
-                                                `${ind + 1} Installment`}
+                                                ? "2nd Installment"
+                                                : ind == 2
+                                                  ? "3rd Installment"
+                                                  : ind > 2 &&
+                                                  `${ind + 1} Installment`}
                                           </p>
                                           <table className="insta_tbl">
                                             <thead>
@@ -1828,57 +1834,57 @@ const CourseOrderID = () => {
                           </td>
                           {titleName != "Bookstore"
                             ? courseData.course_sp && (
-                                <td>
-                                  <p className="m-0 text-end totalAmount">
-                                    {/* <FaRupeeSign className="rupeeSign2" /> */}
-                                    <i className="bi bi-currency-rupee"></i>
-                                    {paymentMode == "EMI Payment" &&
-                                      parseFloat(
-                                        installment?.amount_description
-                                          ?.total_amount[0]
-                                      ).toFixed(2)}
-                                    {paymentMode == "One Time Payment" &&
-                                      (couponData
-                                        ? parseFloat(
-                                            Number(couponData.mrp) +
-                                              Number(couponData.tax)
-                                          ).toFixed(2)
-                                        : parseFloat(
-                                            Number(courseData.mrp) +
-                                              Number(courseData.tax)
-                                          ).toFixed(2))}
-                                  </p>
-                                </td>
-                              )
+                              <td>
+                                <p className="m-0 text-end totalAmount">
+                                  {/* <FaRupeeSign className="rupeeSign2" /> */}
+                                  <i className="bi bi-currency-rupee"></i>
+                                  {paymentMode == "EMI Payment" &&
+                                    parseFloat(
+                                      installment?.amount_description
+                                        ?.total_amount[0]
+                                    ).toFixed(2)}
+                                  {paymentMode == "One Time Payment" &&
+                                    (couponData
+                                      ? parseFloat(
+                                        Number(couponData.mrp) +
+                                        Number(couponData.tax)
+                                      ).toFixed(2)
+                                      : parseFloat(
+                                        Number(courseData.mrp) +
+                                        Number(courseData.tax)
+                                      ).toFixed(2))}
+                                </p>
+                              </td>
+                            )
                             : courseData.course_sp && (
-                                <td>
-                                  <p className="m-0 text-end totalAmount">
-                                    {/* <FaRupeeSign className="rupeeSign2" /> */}
-                                    <i className="bi bi-currency-rupee"></i>
-                                    {paymentMode == "EMI Payment" &&
-                                      parseFloat(
-                                        installment?.amount_description
-                                          ?.total_amount[0]
-                                      ).toFixed(2)}
-                                    {paymentMode == "One Time Payment" &&
-                                      (couponData
-                                        ? parseFloat(
-                                            Number(couponData?.mrp) +
-                                              Number(couponData?.tax) +
-                                              Number(
-                                                couponData?.delivery_charge
-                                              )
-                                          ).toFixed(2)
-                                        : parseFloat(
-                                            Number(courseData?.mrp) +
-                                              Number(courseData?.tax) +
-                                              Number(
-                                                courseData?.delivery_charge
-                                              )
-                                          ).toFixed(2))}
-                                  </p>
-                                </td>
-                              )}
+                              <td>
+                                <p className="m-0 text-end totalAmount">
+                                  {/* <FaRupeeSign className="rupeeSign2" /> */}
+                                  <i className="bi bi-currency-rupee"></i>
+                                  {paymentMode == "EMI Payment" &&
+                                    parseFloat(
+                                      installment?.amount_description
+                                        ?.total_amount[0]
+                                    ).toFixed(2)}
+                                  {paymentMode == "One Time Payment" &&
+                                    (couponData
+                                      ? parseFloat(
+                                        Number(couponData?.mrp) +
+                                        Number(couponData?.tax) +
+                                        Number(
+                                          couponData?.delivery_charge
+                                        )
+                                      ).toFixed(2)
+                                      : parseFloat(
+                                        Number(courseData?.mrp) +
+                                        Number(courseData?.tax) +
+                                        Number(
+                                          courseData?.delivery_charge
+                                        )
+                                      ).toFixed(2))}
+                                </p>
+                              </td>
+                            )}
                         </tr>
                       </tbody>
                     </table>
