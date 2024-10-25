@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Button1 from "../buttons/button1/button1";
 import Button2 from "../buttons/button2/button2";
 import { IoStar } from "react-icons/io5";

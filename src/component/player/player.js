@@ -192,7 +192,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
              
             }
             else{
-              setLive(true) 
+              setLive(false) 
             }
           }).catch((error) =>{
             console.log('Error Loading video', error)
@@ -207,9 +207,13 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
     initPlayer();
     const handleKeyPress = (event) => {
       if (event.key === 'ArrowRight') {
-        skipForward();
+        if(!Live){
+          skipForward();
+        }
       } else if (event.key === 'ArrowLeft') {
-        skipBackward();
+        if(!Live){
+          skipBackward();
+        }
       } else if (event.key === ' ') { // Space key for play/pause
         event.preventDefault(); // Prevent scrolling the page
         togglePlayPause();
@@ -313,7 +317,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
            
             <div className="__video_icon___">
               <div className="video_icon_left shaka-tooltips-on">
-                {!isAdPlaying &&
+                {!isAdPlaying && !Live &&
                   <div onClick={skipBackward} className="__video_icon__common__ shaka-tooltip"  aria-label="Rewind 10 seconds"><img src="/assets/images/skip_02.svg" alt="Rewind 10 seconds" /></div>
                 }
                 <div onClick={togglePlayPause}
@@ -328,7 +332,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
                     </span>
                   )}
                 </div>
-                {!isAdPlaying &&
+                {!isAdPlaying && !Live &&
                   <div onClick={skipForward} className="__video_icon__common__ shaka-tooltip" aria-label="Forward 10 seconds"><img src="/assets/images/skip_01.svg" alt="Forward 10 seconds" /></div>}
               </div>
             </div>
