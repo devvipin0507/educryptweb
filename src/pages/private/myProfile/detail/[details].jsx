@@ -182,6 +182,7 @@ const Details = ({ value }) => {
           );
           setCourseDetail(response_getCourseDetail_data?.data?.tiles);
           setTiles(response_getCourseDetail_data?.data?.tiles);
+          console.log('contentDAta', response_getCourseDetail_data?.data)
           setContentData(
             response_getCourseDetail_data?.data?.tiles
               ?.find(
@@ -303,6 +304,7 @@ const Details = ({ value }) => {
                       </span>{" "}
                       120 PDF's
                     </p> */}
+                    {console.log('contentData', contentData)}
                         {contentData?.segment_information && (
                           <p className="m-0 me-4">
                             {contentData.segment_information}
@@ -369,7 +371,8 @@ const Details = ({ value }) => {
                             <div className="m-0">
                               <div className="m-0 gap-2 d-flex align-items-center">
                                 <span className="costPrice">
-                                  <FaRupeeSign className="rupeeSign" />
+                                  {/* <FaRupeeSign className="rupeeSign" /> */}
+                                  ₹
                                   {onlineCourseAry.is_gst == 0
                                     ? Number(onlineCourseAry.mrp) +
                                       Number(onlineCourseAry.tax)
@@ -380,7 +383,8 @@ const Details = ({ value }) => {
                                   onlineCourseAry.course_sp && (
                                   <span className="discountPrice">
                                     <del>
-                                      <FaRupeeSign className="rupeeSign2" />
+                                      {/* <FaRupeeSign className="rupeeSign2" /> */}
+                                      ₹
                                       {onlineCourseAry.course_sp}
                                     </del>
                                   </span>

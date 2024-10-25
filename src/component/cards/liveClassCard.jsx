@@ -58,31 +58,45 @@ const LiveClassCard = ({courseData, value}) => {
   }
 
   const handleWatch = (data) => {
-    let playData = {
-      vdc_id:data.vdc_id,
-      file_url:data.file_url,
-      title:data.title,
-      video_type:data.video_type
+    if(data?.live_status == 2 && data?.video_type == 8) {
+      showErrorToast('Live class has been ended')
+      console.log("data",data)
     }
-    const isLoggedIn = localStorage.getItem("jwt");
-    if(!isLoggedIn) {
-      setModalShow(true);
-    }
-    else {
-      router.push({
-        pathname: `/private/myProfile/play/${data.id}`,
-        query: playData,
-      });
-      // if(courseData?.is_live == 1) {
-        // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
-        // router.push({
-        //   pathname: `/private/myProfile/play/${courseData.id}`,
-        //   query: courseData,
-        // });
-        // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
-        // console.log('watch')
+    else{
+      let playData = {
+        vdc_id:data.vdc_id,
+        file_url:data.file_url,
+        title:data.title,
+        video_type:data.video_type,
+        start_date:data.start_date,
+        end_date:data.end_date
+      }
+      // let playData = {
+      //   vdc_id:data.vdc_id,
+      //   file_url:data.file_url,
+      //   title:data.title,
+      //   video_type:data.video_type
       // }
-      // toast.error('Live class is not started yet')
+      const isLoggedIn = localStorage.getItem("jwt");
+      if(!isLoggedIn) {
+        setModalShow(true);
+      }
+      else {
+        router.push({
+          pathname: `/private/myProfile/play/${data.id}`,
+          query: playData,
+        });
+        // if(courseData?.is_live == 1) {
+          // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
+          // router.push({
+          //   pathname: `/private/myProfile/play/${courseData.id}`,
+          //   query: courseData,
+          // });
+          // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
+          // console.log('watch')
+        // }
+        // toast.error('Live class is not started yet')
+      }
     }
   }
 

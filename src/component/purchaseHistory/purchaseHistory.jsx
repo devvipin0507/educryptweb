@@ -772,7 +772,9 @@ const PurchaseHistory = () => {
                           <div class="col-6 col-md-2 mb-2 mb-md-0">
                             <p class="m-0 historyDate">
                               <span>Amount: </span>
-                              <FaRupeeSign className="rupeeSign" />{item.payment_mode == 1
+                              {/* <FaRupeeSign className="rupeeSign" /> */}
+                              ₹
+                              {item.payment_mode == 1
                                 ? item.emi_payment
                                 : item.mrp}
                               </p>
@@ -869,7 +871,8 @@ const PurchaseHistory = () => {
                               <p className="m-0 child_Date">
                                 Amount: 
                                 <span className="ms-1">
-                                  <FaRupeeSign className="rupeeSign" />
+                                  {/* <FaRupeeSign className="rupeeSign" /> */}
+                                  ₹
                                 {parseFloat(
                                   Number(installment.emi_mrp) +
                                     Number(installment.emi_tax)

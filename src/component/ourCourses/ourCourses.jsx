@@ -34,6 +34,7 @@ const OurCourses = () => {
       setTabData(contentData?.course_type_master);
       // console.log('localStorage', localStorage.getItem('mainTab'))
       const getTabName = localStorage.getItem('mainTab');
+      // console.log('getTabName',getTabName)
       if(getTabName){
         setKey(getTabName)
         setCatId(contentData?.course_type_master?.filter(item => item.name == getTabName)[0]?.id)
@@ -42,8 +43,8 @@ const OurCourses = () => {
         }, [2000])  
       }
       else{
-        setCatId(contentData?.course_type_master[0].id)
-        setKey(contentData?.course_type_master[0].name);
+        setCatId(contentData?.course_type_master[0]?.id)
+        setKey(contentData?.course_type_master[0]?.name);
       }
     }
   }, [contentData]);

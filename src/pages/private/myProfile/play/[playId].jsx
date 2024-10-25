@@ -59,6 +59,8 @@ const PlayId = () => {
                         item={null}
                         title={router?.query?.title}
                         videoMetaData={null}
+                        start_date={router.query.start_date}
+                        end_date={router.query.end_date}
                     />
                 );
             case 1:

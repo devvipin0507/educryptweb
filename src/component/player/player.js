@@ -172,24 +172,15 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           
         } else {
           const mediaTailorUrl = source?.file_url;
-         
-        
-        
-        
-        
-       
           await player.load(mediaTailorUrl).then(() =>{
             if (player.isLive()) {
-              
               var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
               var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
               if (seekBar) {
-                seekBar.remove();
-                seekBar2.remove(); 
+                // seekBar.remove();
+                // seekBar2.remove(); 
                 setLive(true)             
-
               }
-             
             }
             else{
               setLive(false) 
@@ -310,7 +301,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
         </div>
         {cursorStyle == "auto" &&
         <>
-        {Live ?  <span className="liveIndicator">Live</span> : ""}
+        {/* {Live ?  <span className="liveIndicator">Live</span> : ""} */}
           <div className="_controls_video_">
             <div className="__video-deu__">
             </div>

@@ -155,7 +155,7 @@ const Notes = ({
       handleShowData();
     } else {
       // let revertAPi =  layer1Data?.revert_api
-      console.log("layer11111", keyValue, courseDetail?.revert_api);
+      // console.log("layer11111", keyValue, courseDetail?.revert_api);
       let r_api = courseDetail?.revert_api.split("#");
 
       if (
@@ -192,7 +192,7 @@ const Notes = ({
         // courseDetail?.revert_api == "1#3#0#1"
         r_api[1] == 3
       ) {
-        console.log("hell");
+        // console.log("hell");
         getLayer3Data(0);
       }
     }
@@ -277,7 +277,7 @@ const Notes = ({
 
     const topi_id = () => {
       let r_api = courseDetail?.revert_api.split("#");
-      console.log("r_api", r_api);
+      // console.log("r_api", r_api);
       if (
         // layer1Data?.revert_api == "1#2#0#0" ||
         // layer1Data?.revert_api == "1#3#0#0" ||
@@ -358,33 +358,37 @@ const Notes = ({
   };
 
   const handleWatch = (data, index) => {
-    let playData = {
-      vdc_id:data.vdc_id,
-      file_url:data.file_url,
-      title:data.title,
-      video_type:data.video_type
+    if(data?.live_status == 2 && data?.video_type == 8) {
+      showErrorToast('Live class has been ended')
     }
-    const isLoggedIn = localStorage.getItem("jwt");
-    if (!isLoggedIn) {
-      setModalShow(true);
-    } else {
-      if (onlineCourseAry.is_purchased == 1) {
-        // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
-        dispatch(
-          all_tabName({
-            index,
-            tab: keyValue,
-            layer: showLayer,
-          })
-        );
-        router.push({
-          pathname: `/private/myProfile/play/${data.id}`,
-          query: playData,
-        });
-        // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
-        // console.log('watch')
+    else{
+      let playData = {
+        vdc_id:data.vdc_id,
+        file_url:data.file_url,
+        title:data.title,
+        video_type:data.video_type
+      }
+      const isLoggedIn = localStorage.getItem("jwt");
+      if (!isLoggedIn) {
+        setModalShow(true);
       } else {
-        showErrorToast("Please, purchase the course");
+        if (onlineCourseAry.is_purchased == 1) {
+          // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
+          dispatch(
+            all_tabName({
+              index,
+              tab: keyValue,
+              layer: showLayer,
+            })
+          );
+          router.push({
+            pathname: `/private/myProfile/play/${data.id}`,
+            query: playData,
+          });
+          // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
+        } else {
+          showErrorToast("Please, purchase the course");
+        }
       }
     }
   };
@@ -410,7 +414,7 @@ const Notes = ({
       // courseDetail?.revert_api == "0#2#0#0"
       r_api[1] == 2
     ) {
-      console.log("hel");
+      // console.log("hel");
       setShowLayer("layer2");
     }
   };
@@ -487,7 +491,7 @@ const Notes = ({
   // console.log('layer3updateData', layer3updateData)
 
   const handleTakeTest = (val, index) => {
-    console.log("val111111111", val);
+    // console.log("val111111111", val);
     const isLoggedIn = localStorage.getItem("jwt");
     if (!isLoggedIn) {
       setModalShow(true);
@@ -629,8 +633,8 @@ const Notes = ({
           setModalShow(false);
         }}
       />
-      {/* <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/> */}
-      <Toaster
+      <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/>
+      {/* <Toaster
         position="top-right"
         toastOptions={{
           success: {
@@ -644,7 +648,7 @@ const Notes = ({
             },
           },
         }}
-      />
+      /> */}
       <div className="container-fluid p-4 pt-0">
         <div className={` ${checkLogin ? "row" : "row"}`}>
           <div
@@ -675,6 +679,7 @@ const Notes = ({
                   className={
                     showLayer == "layer2" ? "active-breadcrumb" : "breadcrumb"
                   }
+                  style={{cursor: 'pointer'}}
                   onClick={setLayer1}
                 >
                   {/* {(layer2List != undefined && showLayer == "layer2") || */}
@@ -692,6 +697,7 @@ const Notes = ({
                   className={
                     showLayer == "layer3" ? "active-breadcrumb" : "breadcrumb"
                   }
+                  style={{cursor: 'pointer'}}
                   onClick={setLayer2}
                 >
                   {showLayer == "layer3" && breadcrumbData2 ? (
@@ -791,6 +797,7 @@ const Notes = ({
                             handleUpcomingTest={handleUpcomingTest}
                             i={i}
                             onlineCourseAry={onlineCourseAry}
+                            key={i}
                           />
                         );
                       })}

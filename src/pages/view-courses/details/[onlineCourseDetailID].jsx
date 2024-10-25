@@ -165,12 +165,12 @@ const ViewOnlineCourseDetail = () => {
     setShowError(false);
     if (onlineCourseDetailID) {
       // window.scrollTo(0, 0);
-      fetchCourseDetail(
-        onlineCourseDetailID?.slice(
-          onlineCourseDetailID.indexOf(":") + 1,
-          onlineCourseDetailID.indexOf("&")
-        )
-      );
+      // fetchCourseDetail(
+      //   onlineCourseDetailID?.slice(
+      //     onlineCourseDetailID.indexOf(":") + 1,
+      //     onlineCourseDetailID.indexOf("&")
+      //   )
+      // );
       setId(
         onlineCourseDetailID?.slice(
           onlineCourseDetailID.indexOf(":") + 1,
@@ -211,11 +211,12 @@ const ViewOnlineCourseDetail = () => {
     try {
       // console.log('idddddd', courseCombo)
       const formData = {
-        course_id: id,
-        page: 1,
+        course_id: 21125,
+        // page: 1,
         parent_id: courseCombo ? "" : parentId ? parentId : id,
+        // parent_id: 0
       };
-      // console.log('formData', formData)
+      console.log('formData111111111', formData)
       const response_getCourseDetail_service = await getCourseDetail_Service(
         encrypt(JSON.stringify(formData), token)
       );
@@ -449,7 +450,7 @@ const ViewOnlineCourseDetail = () => {
                   </span>{" "}
                   120 PDF's
                 </p> */}
-                    {/* {console.log('contentData', contentData)} */}
+                    {console.log('contentData', contentData)}
                     {contentData?.segment_information && (
                       <p className="m-0 me-4">
                         {contentData.segment_information}
@@ -511,7 +512,8 @@ const ViewOnlineCourseDetail = () => {
                         <div className="m-0">
                           <div className="m-0 gap-2 d-flex align-items-center">
                             <span className="costPrice">
-                              <FaRupeeSign className="rupeeSign" />
+                              {/* <FaRupeeSign className="rupeeSign" /> */}
+                              ₹
                               {onlineCourseAry.is_gst == 0
                                 ? Number(onlineCourseAry.mrp) +
                                   Number(onlineCourseAry.tax)
@@ -522,7 +524,8 @@ const ViewOnlineCourseDetail = () => {
                               onlineCourseAry.course_sp && (
                               <span className="discountPrice">
                                 <del>
-                                  <FaRupeeSign className="rupeeSign2" />
+                                  {/* <FaRupeeSign className="rupeeSign2" /> */}
+                                  ₹
                                   {onlineCourseAry.course_sp}
                                 </del>
                               </span>

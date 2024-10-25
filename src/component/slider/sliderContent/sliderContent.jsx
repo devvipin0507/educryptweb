@@ -103,14 +103,16 @@ const SliderContent = ({ freeCourse, titleName }) => {
           <div className="coursePrice gap-1 d-flex flex-wrap align-items-center pb-1 m-0">
             {/* <div className="coursePrice d-flex align-items-center pb-2 m-0"> */}
             <p className="m-0 d-flex align-items-center Cost_Price">
-              <FaRupeeSign className="rupeeSign" />
+              {/* <FaRupeeSign className="rupeeSign" /> */}
+              ₹
               {freeCourse.course_sp}
             </p>
             {freeCourse.course_sp !== freeCourse.mrp && (
               <>
                 <p className="m-0 Card-OffPrice">
                   <del>
-                    <FaRupeeSign className="rupeeSign2" />
+                    {/* <FaRupeeSign className="rupeeSign2" /> */}
+                    ₹
                     {freeCourse.mrp}
                   </del>
                 </p>

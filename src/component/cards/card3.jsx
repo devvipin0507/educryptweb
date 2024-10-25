@@ -90,7 +90,8 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
             {/* <div className="coursePriceContainer"> */}
             <div className="coursePrice gap-2 d-flex align-items-center pb-1 m-0">
               <div className="m-0 d-flex align-items-center detail_C_Price">
-                <FaRupeeSign className="rupeeSign" />
+                {/* <FaRupeeSign className="rupeeSign" /> */}
+                ₹
                 {/* <span className='costPrice'> */}
                 {value.is_gst == 0
                   ? Number(value.mrp) + Number(value.tax)
@@ -101,7 +102,8 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
                 <>
                   <p className="m-0 Card-OffPrice">
                     <del>
-                      <FaRupeeSign className="rupeeSign2" />
+                      {/* <FaRupeeSign className="rupeeSign2" /> */}
+                      ₹
                       {value?.course_sp}
                     </del>
                   </p>

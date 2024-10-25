@@ -142,7 +142,7 @@ const CourseOrderID = () => {
   useEffect(() => {
     const isPrivate = localStorage.getItem("previousTab");
     console.log("isprivate", isPrivate);
-    const show = isPrivate.substring(0, isPrivate.indexOf("private"));
+    const show = isPrivate?.substring(0, isPrivate?.indexOf("private"));
     setShowError(false);
     if (show) {
       setIsPrivateTab(true);
@@ -1271,7 +1271,8 @@ const CourseOrderID = () => {
                             </td>
                             <td style={{ padding: "5px 5px" }}>
                               <p className="m-0 price">
-                                <FaRupeeSign className="rupeeSign" />
+                                {/* <FaRupeeSign className="rupeeSign" /> */}
+                                ₹
                                 <span className="costPrice">
                                   {courseData.is_gst == 0
                                     ? Number(courseData.mrp) +
@@ -1304,11 +1305,13 @@ const CourseOrderID = () => {
                   <div className="col-sm-12 col-md-8 col-lg-8 mb-2">
                     <div className="gap-2 d-flex align-items-center">
                       <h4 className="m-0 d_title">Delivery Address</h4>
-                      <img
-                        className="checkImg"
-                        src="/assets/images/paycheckImg.svg"
-                        alt=""
-                      />
+                      <div className="checkImgContainer">
+                        <img
+                          className="checkImg"
+                          src="/assets/images/paycheckImg.svg"
+                          alt=""
+                        />
+                      </div>
                       <h4 className="m-0 delpayTitle">Payment</h4>
                     </div>
                   </div>
@@ -1489,11 +1492,13 @@ const CourseOrderID = () => {
                   <div className="col-sm-12 col-md-8 col-lg-8 mb-2">
                     <div className="gap-2 d-flex align-items-center">
                       <h4 className="m-0 d_title">Delivery Address</h4>
-                      <img
-                        className="checkImg"
-                        src="/assets/images/paycheckImg.svg"
-                        alt=""
-                      />
+                      <div className="checkImgContainer">
+                        <img
+                          className="checkImg"
+                          src="/assets/images/paycheckImg.svg"
+                          alt=""
+                        />
+                      </div>
                       <h4 className="m-0 delpayTitle">Payment</h4>
                     </div>
                   </div>
@@ -1526,6 +1531,7 @@ const CourseOrderID = () => {
                                       {userAddress.name}
                                     </h4>
                                   </div>
+                                  <div className="m-0 d-flex flex-nowrap">
                                   <p
                                     className="m-0 editBtn"
                                     style={{ cursor: "pointer" }}
@@ -1535,7 +1541,17 @@ const CourseOrderID = () => {
                                   >
                                     <i className="bi bi-pencil"></i> Edit
                                   </p>
-                                  <img
+                                  <i
+                                      style={{ cursor: "pointer" }}
+                                      className="ms-2 delAddress bi bi-trash3"
+                                      onClick={() =>
+                                        handleDeleteAddress(
+                                          userAddress,
+                                          item?.id
+                                        )
+                                      }
+                                    ></i>
+                                  {/* <img
                                     className="m-0 editBtn"
                                     style={{ cursor: "pointer" }}
                                     src="/assets/images/deleteLogo.svg"
@@ -1543,7 +1559,8 @@ const CourseOrderID = () => {
                                     onClick={() =>
                                       handleDeleteAddress(userAddress, item?.id)
                                     }
-                                  />
+                                  /> */}
+                                  </div>
                                 </div>
                               </label>
                               <p className="mb-2 adTitle">
@@ -1609,7 +1626,9 @@ const CourseOrderID = () => {
                               <span key={index}>
                                 {item && item?.coupon?.coupon_tilte} Applied
                                 <p>
-                                  You are Saving <FaRupeeSign />
+                                  You are Saving 
+                                  {/* <FaRupeeSign /> */}
+                                  ₹
                                   {item && item.discount}
                                 </p>
                               </span>
@@ -1702,17 +1721,27 @@ const CourseOrderID = () => {
                                             <tbody>
                                               <tr>
                                                 <td>
-                                                  <FaRupeeSign /> {value}
+                                                  {/* <FaRupeeSign />  */}
+                                                  ₹
+                                                  {value}
                                                 </td>
                                                 <td>
-                                                  <FaRupeeSign />{" "}
+                                                  {/* <FaRupeeSign /> */}
+                                                  ₹
+                                                  {" "}
+                                                ₹ {value}
+                                                </td>
+                                                <td>
+                                                ₹ {" "}
                                                   {
                                                     item?.amount_description
                                                       ?.tax[ind]
                                                   }
                                                 </td>
                                                 <td>
-                                                  <FaRupeeSign />{" "}
+                                                  {/* <FaRupeeSign /> */}
+                                                  ₹
+                                                  {" "}
                                                   {
                                                     item?.amount_description
                                                       ?.total_amount[ind]
@@ -1750,7 +1779,8 @@ const CourseOrderID = () => {
                         </td>
                         {courseData.course_sp && (
                           <td className="col-4 t_price">
-                            <FaRupeeSign className="rupeeSign2" />
+                            // <FaRupeeSign className="rupeeSign2" />
+                            ₹
                             {courseData.course_sp}
                           </td>
                         )}
@@ -1889,7 +1919,7 @@ const CourseOrderID = () => {
                       </tbody>
                     </table>
                   )}
-                  <div className="col-md-12">
+                  <div className="col-md-12 my-2">
                     <label
                       className="terms d-flex align-items-center"
                       for="defaultAddress"
@@ -1901,17 +1931,16 @@ const CourseOrderID = () => {
                         value={toggleTerms}
                         onChange={(e) => setToggleTerms(!toggleTerms)}
                       />
-                      <span className="checkboxContainer"></span>
-                      Before making payment you agree to our
+                      <span className="ms-2">
+                        Before making payment you agree to our <br />
+                        <Link
+                          href="/terms&condition"
+                          style={{ color: "#FF7426" }}
+                        >
+                          Terms & Condition
+                        </Link>
+                      </span>
                     </label>
-                    <div>
-                      <Link
-                        href="/terms&condition"
-                        style={{ color: "#FF7426" }}
-                      >
-                        Terms & Condition
-                      </Link>
-                    </div>
                   </div>
                   <div className="w-100 checkOutBtn mt-3">
                     <Button1
@@ -1935,7 +1964,7 @@ const CourseOrderID = () => {
                   </div>
                 </div>
                 <div
-                  className="row premiumIcon justify-content-center"
+                  className="row premiumIcon mt-4 justify-content-center"
                   style={{ whiteSpace: "nowrap" }}
                 >
                   <span className="col-md-5">
