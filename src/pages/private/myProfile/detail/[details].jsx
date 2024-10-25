@@ -76,7 +76,7 @@ const Details = ({ value }) => {
     console.log("pageSection1", pageSection1);
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      alert("k");
+      // alert("k");
       setScrollY(currentScrollY);
 
       // Calculate if the currentScrollY meets the height conditions
