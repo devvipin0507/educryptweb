@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 import 'shaka-player/dist/controls.css';
 
-const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title }) => {
+const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title,start_date }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const playerRef = useRef(null);
@@ -166,12 +166,14 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           });
           // await player.load(NonDRMVideourl);
           
-          player.load(NonDRMVideourl).then(function() {
+          player.load(`${source?.file_url}?start=${start_date}`).then(function() {
           }).catch((err)=>{
           })
           
         } else {
-          const mediaTailorUrl = source?.file_url;
+          // var url = "https://d1t1j16enocdd3.cloudfront.net/out/v1/cc4c28fce98349c39944d3713aa3ced2/start/1729866060/index.mpd";
+          const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+          // const mediaTailorUrl = url;
           await player.load(mediaTailorUrl).then(() =>{
             if (player.isLive()) {
               var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');

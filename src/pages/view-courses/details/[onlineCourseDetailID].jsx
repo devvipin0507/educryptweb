@@ -211,7 +211,7 @@ const ViewOnlineCourseDetail = () => {
     try {
       // console.log('idddddd', courseCombo)
       const formData = {
-        course_id: 21125,
+        course_id: id,
         // page: 1,
         parent_id: courseCombo ? "" : parentId ? parentId : id,
         // parent_id: 0

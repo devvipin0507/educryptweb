@@ -3276,12 +3276,12 @@ h4.delpayTitle {
 }
 
 .CancelAddress {
-  border: 1px solid #ffad80 !important;
+  border: 1px solid var(--btnDeafult) !important;
   border-radius: 5px !important;
   padding: 6px 24px !important;
   font-size: var(--size-12) !important;
   color: var(--btnDeafult) !important;
-  background: #ffefe7 !important;
+  background: #fff !important;
   cursor: pointer !important;
 }
 .ord_DeliForm input {
@@ -7618,7 +7618,7 @@ button.shaka-current-time {
 /* .slick-disabled{
   display: none !important;
 } */
-/* #shaka-player-ui-time-container {
+#shaka-player-ui-time-container {
   padding: 7px 18px !important;
   height: auto !important;
   border-radius: 15px !important;
@@ -7627,7 +7627,7 @@ button.shaka-current-time {
   font-weight: 500;
   border: inherit !important;
   line-height: normal;
-} */
+}
 /* .shaka-current-time[disabled] {
 font-weight: 700;
   color: red !important;

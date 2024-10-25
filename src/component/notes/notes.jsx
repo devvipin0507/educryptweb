@@ -372,7 +372,8 @@ const Notes = ({
       if (!isLoggedIn) {
         setModalShow(true);
       } else {
-        if (onlineCourseAry.is_purchased == 1) {
+        // console.log('guyggjh')
+        if (onlineCourseAry?.is_purchased == 1) {
           // router.push(`/private/myProfile/view-pdf/${encodeURIComponent(value.file_url)}`)
           dispatch(
             all_tabName({
@@ -386,7 +387,23 @@ const Notes = ({
             query: playData,
           });
           // router.push(`/private/myProfile/play/${data.file_url}&type=${data.file_type}`)
-        } else {
+          // console.log('watch')
+        }
+        else if (onlineCourseAry?.is_purchased == 0) {
+          dispatch(
+            all_tabName({
+              index,
+              tab: keyValue,
+              layer: showLayer,
+            })
+          );
+          router.push({
+            pathname: `/private/myProfile/play/${data.id}`,
+            query: playData,
+          });
+        }
+        
+        else {
           showErrorToast("Please, purchase the course");
         }
       }
