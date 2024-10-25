@@ -166,13 +166,18 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           });
           // await player.load(NonDRMVideourl);
           
-          player.load(`${source?.file_url}?start=${start_date}`).then(function() {
+          player.load(NonDRMVideourl).then(function() {
           }).catch((err)=>{
           })
+
+          // player.load(`${source?.file_url}?start=${start_date}`).then(function() {
+          // }).catch((err)=>{
+          // })
           
         } else {
           // var url = "https://d1t1j16enocdd3.cloudfront.net/out/v1/cc4c28fce98349c39944d3713aa3ced2/start/1729866060/index.mpd";
-          const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+          // const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+          const mediaTailorUrl = source?.file_url;
           // const mediaTailorUrl = url;
           await player.load(mediaTailorUrl).then(() =>{
             if (player.isLive()) {
