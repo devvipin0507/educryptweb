@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 import 'shaka-player/dist/controls.css';
 
-const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title,start_date }) => {
+const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title, start_date,video_type }) => {
+  // console.log("NonDRMVideourl",NonDRMVideourl)
+  // console.log("start_date",start_date)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const playerRef = useRef(null);
@@ -24,7 +26,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
   const [cursorStyle, setCursorStyle] = useState('');
   const [Live, setLive] = useState(false);
   const currentTimeRef = useRef(currentTime); // Ref to keep track of currentTime
-  
+
   const router = useRouter()
 
   useEffect(() => {
@@ -33,31 +35,31 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
 
   useEffect(() => {
     const videoElement = videoRef.current;
-  
+
     // Retrieve and apply the stored mute state from localStorage when the video player loads
     const storedMuteState = localStorage.getItem('isMuted');
     if (storedMuteState !== null) {
       videoElement.muted = storedMuteState === 'true';
     }
-  
+
     // Save the mute state to localStorage whenever the user mutes/unmutes the video
     const handleVolumeChange = () => {
       const isMuted = videoElement.muted;
       localStorage.setItem('isMuted', isMuted ? 'true' : 'false');
     };
-  
+
     if (videoElement) {
       videoElement.addEventListener("volumechange", handleVolumeChange);
     }
-  
+
     return () => {
       if (videoElement) {
         videoElement.removeEventListener("volumechange", handleVolumeChange);
       }
     };
   }, []);
-  
-  
+
+
 
 
   useEffect(() => {
@@ -121,12 +123,13 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
       adManager.initMediaTailor(container, netEngine, videoElement);
       setPlayer(player);
 
+
       const config = {
-        'enableTooltips' : true,
-        'overflowMenuButtons' : ['quality', 'caption', 'language'],
+        'enableTooltips': true,
+        'overflowMenuButtons': ['quality', 'caption', 'language'],
         // 'controlPanelElements': ['backward', 'play_pause', 'forward', 'spacer', 'mute', 'overflow_menu', 'fullscreen']
-       }
-       ui.configure(config);
+      }
+      ui.configure(config);
       videoRef.current.addEventListener("loadeddata", handleLoaded);
       videoRef.current.addEventListener("error", handleError);
       videoRef.current.addEventListener("play", () => {
@@ -160,39 +163,39 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
         if (NonDRMVideourl) {
           player.getNetworkingEngine().registerRequestFilter((type, request) => {
             if (type === shaka.net.NetworkingEngine.RequestType.MANIFEST ||
-                type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
+              type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
               request.method = 'GET';
             }
           });
-          // await player.load(NonDRMVideourl);
-          
-          player.load(NonDRMVideourl).then(function() {
-          }).catch((err)=>{
-          })
+          await player.load("https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd");
+
+          // player.load(NonDRMVideourl).then(function() {
+          // }).catch((err)=>{
+          // })
 
           // player.load(`${source?.file_url}?start=${start_date}`).then(function() {
           // }).catch((err)=>{
           // })
-          
+
         } else {
           // var url = "https://d1t1j16enocdd3.cloudfront.net/out/v1/cc4c28fce98349c39944d3713aa3ced2/start/1729866060/index.mpd";
           // const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
           const mediaTailorUrl = source?.file_url;
           // const mediaTailorUrl = url;
-          await player.load(mediaTailorUrl).then(() =>{
+          await player.load(mediaTailorUrl).then(() => {
             if (player.isLive()) {
               var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
               var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
               if (seekBar) {
                 // seekBar.remove();
                 // seekBar2.remove(); 
-                setLive(true)             
+                setLive(true)
               }
             }
-            else{
-              setLive(false) 
+            else {
+              setLive(false)
             }
-          }).catch((error) =>{
+          }).catch((error) => {
             console.log('Error Loading video', error)
           });
           videoRef.current.play();
@@ -201,15 +204,38 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
       }
 
     };
+    if(video_type == 8){
+      const updateCurrentTimeButtonText = () => {
+        const currentTimeButton = document.querySelector('.shaka-current-time');
+        if (currentTimeButton) {
+          // Check if the button's current text is "Live"
+          if (currentTimeButton.textContent !== 'Live') {
+            currentTimeButton.textContent = 'Go Live';
+            currentTimeButton.setAttribute('aria-label', 'Go Live'); // Update aria-label for accessibility
+          }
+        }
+      };
+      updateCurrentTimeButtonText();
+      const observer = new MutationObserver(() => {
+        const currentTimeButton = document.querySelector('.shaka-current-time');
+        if (currentTimeButton && currentTimeButton.textContent !== 'Live') {
+          updateCurrentTimeButtonText();
+        }
+      });
+      observer.observe(containerRef.current, {
+        childList: true,
+        subtree: true,
+      });
+    }
 
     initPlayer();
     const handleKeyPress = (event) => {
       if (event.key === 'ArrowRight') {
-        if(!Live){
+        if (!Live) {
           skipForward();
         }
       } else if (event.key === 'ArrowLeft') {
-        if(!Live){
+        if (!Live) {
           skipBackward();
         }
       } else if (event.key === ' ') { // Space key for play/pause
@@ -229,7 +255,6 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
         });
       }
     };
-
     window.addEventListener('keydown', handleKeyPress);
     return () => {
       if (videoRef.current) {
@@ -307,37 +332,37 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             Skip Recap</button>}
         </div>
         {cursorStyle == "auto" &&
-        <>
-        {/* {Live ?  <span className="liveIndicator">Live</span> : ""} */}
-          <div className="_controls_video_">
-            <div className="__video-deu__">
-            </div>
-           
-            <div className="__video_icon___">
-              <div className="video_icon_left shaka-tooltips-on">
-                {!isAdPlaying && !Live &&
-                  <div onClick={skipBackward} className="__video_icon__common__ shaka-tooltip"  aria-label="Rewind 10 seconds"><img src="/assets/images/skip_02.svg" alt="Rewind 10 seconds" /></div>
-                }
-                <div onClick={togglePlayPause}
-                  className={`${isAdPlaying ? "__ads__" : "__adds__"} __play_pause__ shaka-tooltips-on`}>
-                  {isPlaying ? (
-                    <span className="shaka-tooltip" aria-label="Pause">
-                      <img src="/assets/images/pause.svg" />
-                    </span>
-                  ) : (
-                    <span className="shaka-tooltip"  aria-label="Play">
-                        <img src="/assets/images/play.svg"/>
-                    </span>
-                  )}
+          <>
+            {/* {Live ?  <span className="liveIndicator">Live</span> : ""} */}
+            <div className="_controls_video_">
+              <div className="__video-deu__">
+              </div>
+
+              <div className="__video_icon___">
+                <div className="video_icon_left shaka-tooltips-on">
+                  {!isAdPlaying && !Live &&
+                    <div onClick={skipBackward} className="__video_icon__common__ shaka-tooltip" aria-label="Rewind 10 seconds"><img src="/assets/images/skip_02.svg" alt="Rewind 10 seconds" /></div>
+                  }
+                  <div onClick={togglePlayPause}
+                    className={`${isAdPlaying ? "__ads__" : "__adds__"} __play_pause__ shaka-tooltips-on`}>
+                    {isPlaying ? (
+                      <span className="shaka-tooltip" aria-label="Pause">
+                        <img src="/assets/images/pause.svg" />
+                      </span>
+                    ) : (
+                      <span className="shaka-tooltip" aria-label="Play">
+                        <img src="/assets/images/play.svg" />
+                      </span>
+                    )}
+                  </div>
+                  {!isAdPlaying && !Live &&
+                    <div onClick={skipForward} className="__video_icon__common__ shaka-tooltip" aria-label="Forward 10 seconds"><img src="/assets/images/skip_01.svg" alt="Forward 10 seconds" /></div>}
                 </div>
-                {!isAdPlaying && !Live &&
-                  <div onClick={skipForward} className="__video_icon__common__ shaka-tooltip" aria-label="Forward 10 seconds"><img src="/assets/images/skip_01.svg" alt="Forward 10 seconds" /></div>}
               </div>
             </div>
-          </div>
           </>
         }
-      
+
       </div>
     </div>
   );

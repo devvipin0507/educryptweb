@@ -7632,3 +7632,9 @@ button.shaka-current-time {
 font-weight: 700;
   color: red !important;
 } */
+/* button.shaka-current-time {
+  display: none;
+} */
+.live-status{
+  z-index: 99999;
+}
