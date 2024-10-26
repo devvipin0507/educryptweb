@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import 'shaka-player/dist/controls.css';
 
 const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title, start_date,video_type }) => {
-  // console.log("NonDRMVideourl",NonDRMVideourl)
-  // console.log("start_date",start_date)
+  console.log("NonDRMVideourl",NonDRMVideourl)
+  console.log("start_date",start_date)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const playerRef = useRef(null);
@@ -185,7 +185,8 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
 
         } else {
           if(start_date){
-            const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+            // const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+            const mediaTailorUrl = source?.file_url;
             await player.load(mediaTailorUrl).then(() => {
               if (player.isLive()) {
                 var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
@@ -254,6 +255,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
         childList: true,
         subtree: true,
       });
+      
     }
 
     initPlayer();
