@@ -7649,7 +7649,7 @@ font-weight: 700;
   justify-content: end;
   align-items: end;
 }
-@media (min-width:1497px) {
+@media (min-width:1600px) {
   .time_video-custome {
     bottom: 87px;
 }
