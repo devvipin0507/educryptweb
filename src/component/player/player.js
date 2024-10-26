@@ -167,38 +167,66 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
               request.method = 'GET';
             }
           });
-          await player.load("https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd");
+          // await player.load("https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd");
+          if(start_date){
+          player.load(`${source?.file_url}?start=${start_date}`).then(function() {
+          }).catch((err)=>{
+          })   
+          }else{
+            player.load(NonDRMVideourl).then(function() {
+            }).catch((err)=>{
+            })
+          }
 
-          // player.load(NonDRMVideourl).then(function() {
-          // }).catch((err)=>{
-          // })
 
           // player.load(`${source?.file_url}?start=${start_date}`).then(function() {
           // }).catch((err)=>{
           // })
 
         } else {
-          // var url = "https://d1t1j16enocdd3.cloudfront.net/out/v1/cc4c28fce98349c39944d3713aa3ced2/start/1729866060/index.mpd";
-          // const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
-          const mediaTailorUrl = source?.file_url;
-          // const mediaTailorUrl = url;
-          await player.load(mediaTailorUrl).then(() => {
-            if (player.isLive()) {
-              var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
-              var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
-              if (seekBar) {
-                // seekBar.remove();
-                // seekBar2.remove(); 
-                setLive(true)
+          if(start_date){
+            const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+            await player.load(mediaTailorUrl).then(() => {
+              if (player.isLive()) {
+                var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
+                var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
+                if (seekBar) {
+                  // seekBar.remove();
+                  // seekBar2.remove(); 
+                  setLive(true)
+                }
               }
-            }
-            else {
-              setLive(false)
-            }
-          }).catch((error) => {
-            console.log('Error Loading video', error)
-          });
-          videoRef.current.play();
+              else {
+                setLive(false)
+              }
+            }).catch((error) => {
+              console.log('Error Loading video', error)
+            });
+            videoRef.current.play();
+            
+          }else {
+             const mediaTailorUrl = source?.file_url;
+            await player.load(mediaTailorUrl).then(() => {
+              if (player.isLive()) {
+                var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
+                var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
+                if (seekBar) {
+                  // seekBar.remove();
+                  // seekBar2.remove(); 
+                  setLive(true)
+                }
+              }
+              else {
+                setLive(false)
+              }
+            }).catch((error) => {
+              console.log('Error Loading video', error)
+            });
+            videoRef.current.play();
+          }
+          // const mediaTailorUrl = source?.file_url;
+          // const mediaTailorUrl = url;
+       
         }
       } catch (error) {
       }
