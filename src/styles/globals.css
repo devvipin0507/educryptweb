@@ -5847,7 +5847,7 @@ span.liveIndicator {
 }
 
 ._controls_video_ {
-  width: 100% !important;
+  width: 90% !important;
   margin: 0 auto !important;
   position: absolute !important;
   bottom: 20px !important;
@@ -7042,8 +7042,8 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   transition: 0.4s ease all !important;
 }
 ._controls_video_ {
-  /* width: -moz-fit-content !important;
-  width: fit-content !important; */
+  width: -moz-fit-content !important;
+  /* width: fit-content !important; */
   margin: 0 auto !important;
   position: absolute !important;
   bottom: 9px !important;
@@ -7632,12 +7632,15 @@ button.shaka-current-time {
 font-weight: 700;
   color: red !important;
 } */
+/* button.shaka-current-time {
+  display: none;
+} */
 .live-status{
   z-index: 99999;
 }
 .time_video-custome {
   position: absolute;
-  right: 3%;
+  right: -8%;
   color: #fff;
   z-index: 9999999999999;
   bottom: 65px;
@@ -7645,4 +7648,9 @@ font-weight: 700;
   display: flex;
   justify-content: end;
   align-items: end;
+}
+@media (min-width:1497px) {
+  .time_video-custome {
+    bottom: 87px;
+}
 }
