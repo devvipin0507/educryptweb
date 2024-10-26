@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 import 'shaka-player/dist/controls.css';
 
-const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title, start_date,video_type }) => {
-  console.log("NonDRMVideourl",NonDRMVideourl)
-  console.log("start_date",start_date)
+const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title, start_date, video_type }) => {
+  // console.log("NonDRMVideourl", NonDRMVideourl)
+  // console.log("start_date", start_date)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const playerRef = useRef(null);
@@ -28,6 +28,12 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
   const currentTimeRef = useRef(currentTime); // Ref to keep track of currentTime
 
   const router = useRouter()
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
 
   useEffect(() => {
     currentTimeRef.current = currentTime; // Update the ref with the latest currentTime
@@ -168,13 +174,13 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             }
           });
           // await player.load("https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd");
-          if(start_date){
-          player.load(`${source?.file_url}?start=${start_date}`).then(function() {
-          }).catch((err)=>{
-          })   
-          }else{
-            player.load(NonDRMVideourl).then(function() {
-            }).catch((err)=>{
+          if (start_date) {
+            player.load(`${source?.file_url}?start=${start_date}`).then(function () {
+            }).catch((err) => {
+            })
+          } else {
+            player.load(NonDRMVideourl).then(function () {
+            }).catch((err) => {
             })
           }
 
@@ -184,40 +190,40 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           // })
 
         } else {
-          if(start_date){
+          if (start_date) {
             // const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
             const mediaTailorUrl = source?.file_url;
             await player.load(mediaTailorUrl).then(() => {
               if (player.isLive()) {
+                setLive(true)
+              }
+              else {
                 var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
                 var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
                 if (seekBar) {
                   // seekBar.remove();
-                  // seekBar2.remove(); 
-                  setLive(true)
+                  seekBar2.remove(); 
                 }
-              }
-              else {
                 setLive(false)
               }
             }).catch((error) => {
               console.log('Error Loading video', error)
             });
             videoRef.current.play();
-            
-          }else {
-             const mediaTailorUrl = source?.file_url;
+
+          } else {
+            const mediaTailorUrl = source?.file_url;
             await player.load(mediaTailorUrl).then(() => {
               if (player.isLive()) {
+                setLive(true)
+              }
+              else {
                 var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
                 var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
                 if (seekBar) {
                   // seekBar.remove();
-                  // seekBar2.remove(); 
-                  setLive(true)
+                  seekBar2.remove();
                 }
-              }
-              else {
                 setLive(false)
               }
             }).catch((error) => {
@@ -227,13 +233,13 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           }
           // const mediaTailorUrl = source?.file_url;
           // const mediaTailorUrl = url;
-       
+
         }
       } catch (error) {
       }
 
     };
-    if(video_type == 8){
+    if (video_type == 8) {
       const updateCurrentTimeButtonText = () => {
         const currentTimeButton = document.querySelector('.shaka-current-time');
         if (currentTimeButton) {
@@ -255,7 +261,6 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
         childList: true,
         subtree: true,
       });
-      
     }
 
     initPlayer();
@@ -339,6 +344,11 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             style={{ width: "100%" }}
           />
         </div>
+        {/* {!Live &&
+          <div className="time_video-custome">
+            <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
+          </div>
+        } */}
         {showSkipIcon && (
           <div className="skip-icon __skip_icon____">
             <p>▶▶▶</p>
@@ -365,6 +375,11 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           <>
             {/* {Live ?  <span className="liveIndicator">Live</span> : ""} */}
             <div className="_controls_video_">
+            {!Live &&
+          <div className="time_video-custome">
+            <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
+          </div>
+        }
               <div className="__video-deu__">
               </div>
 

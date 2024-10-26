@@ -7043,7 +7043,7 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
 }
 ._controls_video_ {
   width: -moz-fit-content !important;
-  width: fit-content !important;
+  /* width: fit-content !important; */
   margin: 0 auto !important;
   position: absolute !important;
   bottom: 9px !important;
@@ -7637,4 +7637,15 @@ font-weight: 700;
 } */
 .live-status{
   z-index: 99999;
+}
+.time_video-custome {
+  position: absolute;
+  right: 3%;
+  color: #fff;
+  z-index: 9999999999999;
+  bottom: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
 }
