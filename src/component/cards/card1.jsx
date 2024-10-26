@@ -115,7 +115,7 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
                   ? value?.desc_header_image
                   : "/assets/images/noImage.jfif"
               }
-              className="card-img-top"
+              className="card-img-top coverImg"
               alt="..."
             />
           )}

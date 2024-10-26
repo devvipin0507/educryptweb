@@ -3035,7 +3035,7 @@ span.quantityPrice input:nth-child(3) {
 .course_card img {
   /* height: calc(15vw) !important; */
   background: #ededed !important;
-  width: 100% !important;
+  width: 100%;
   object-fit: fill !important;
   object-fit: fill !important;
   background: #000 !important;
@@ -7653,4 +7653,20 @@ font-weight: 700;
   .time_video-custome {
     bottom: 87px;
 }
+}
+/* .course_card img.bookStoreImg {
+  height: 120px !important;
+  width: 84px !important;
+}
+
+.course_card img.bookStoreImg {
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: fill !important;
+} */
+
+.coverImg {
+  height: 186px;
+  width: 122px !important;
+  margin: 0 auto;
 }
