@@ -183,6 +183,18 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             }).catch((err) => {
             })
           }
+          if (player.isLive()) {
+            setLive(true)
+          }
+          else {
+            var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
+            var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
+            if (seekBar) {
+              // seekBar.remove();
+              seekBar2.remove(); 
+            }
+            setLive(false)
+          }
 
 
           // player.load(`${source?.file_url}?start=${start_date}`).then(function() {
