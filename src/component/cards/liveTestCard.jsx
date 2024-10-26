@@ -7,7 +7,7 @@ import { Router } from 'react-router-dom';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
 
-const LiveTestCard = ({testData, value}) => {
+const LiveTestCard = ({testData, value, intervalRef, popupRef, handleCallFunction}) => {
   // const targetTimestamp = 1727270640;
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [BaseURL, setBaseURL] = useState('');
@@ -56,7 +56,7 @@ const LiveTestCard = ({testData, value}) => {
     }, 1000);
 
     return () => clearInterval(timer); // Clean up the timer on component unmount
-  }, []);
+  }, [testData]);
 
   useEffect(() => {
     if(String(timeLeft.hours).padStart(2, '0') == '00' && String(timeLeft.minutes).padStart(2, '0') == '00' && String(timeLeft.seconds).padStart(2, '0') == '00') {
@@ -157,11 +157,19 @@ const LiveTestCard = ({testData, value}) => {
     console.log("https:}",`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
     
     // router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
-    window.open(`${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
-  // }
-  // else{
-  //   toast.error('Live test is not started yet')
-  // }
+    popupRef.current = window.open(`${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,  'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
+  
+    // Start interval to check if the popup is still open
+    intervalRef.current = setInterval(() => {
+      if (popupRef.current && popupRef.current.closed) {
+        clearInterval(intervalRef.current);
+        popupRef.current = null;
+        // onPopupClose(); // Call the function to handle the popup close event
+        // getLayer3Data(data3, title3);
+        handleCallFunction()
+        // console.log('867867687687')
+      }
+    }, 500); // Check every 500ms
   }
 
   const handleRankTest = (val) => {
@@ -181,7 +189,18 @@ const LiveTestCard = ({testData, value}) => {
     console.log('encryptData',encryptData)
 
     window.open(`${BaseURL}/web/LiveTest/result_window?data=${encryptData}`, 'popupWindow', `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`)
+
+    
   }
+
+  // useEffect(() => {
+  //   // Recalculate timeLeft whenever testData changes
+  //   setTimeLeft(calculateTimeLeft());
+  
+  //   // Optionally reset any states or initiate actions needed
+  // }, [testData]); 
+
+  // console.log('testData', testData)
 
   return (<>
     <Toaster position="top-right" reverseOrder={false} />
@@ -221,12 +240,25 @@ const LiveTestCard = ({testData, value}) => {
         </p>
         <hr className="dotted-divider" />
         <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
-            {value == 'LIVE' &&
+            {value == 'LIVE' && (testData?.state == "" || testData?.state == 0) &&
               <Button1
                 value="Attempt Now"
                 handleClick={() => handleTakeTest(testData)}
                 data= {0}
               />
+            }
+            {value == 'LIVE' && testData?.is_reattempt != 0 && testData?.state == 1 && <>
+              <Button1
+                value="Attempt Now"
+                handleClick={() => handleTakeTest(testData)}
+                data= {0}
+              />
+              <Button1
+              value={testData?.state == 1 ? `View Result` : `Leaderboard`}
+              handleClick={() => testData?.state ? handleResultTest(testData): handleRankTest(testData)}
+              data={0}
+            />
+            </>
             }
             {value == 'UPCOMING' &&
               <Button1

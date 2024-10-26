@@ -99,8 +99,8 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
               <img
                 style={{ borderRadius: "10px" }}
                 src={
-                  value.cover_image
-                    ? value.cover_image
+                  value?.cover_image
+                    ? value?.cover_image
                     : "/assets/images/noImage.jfif"
                 }
                 className="card-img-top bookStoreImg"
@@ -111,8 +111,8 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
             <img
               style={{ borderRadius: "10px" }}
               src={
-                value.cover_image
-                  ? value.cover_image
+                value?.desc_header_image
+                  ? value?.desc_header_image
                   : "/assets/images/noImage.jfif"
               }
               className="card-img-top"

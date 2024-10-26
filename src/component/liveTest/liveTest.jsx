@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from 'react-query';
 import { decrypt, encrypt, get_token } from "@/utils/helpers";
 import { getLiveTestService } from "@/services";
@@ -13,8 +13,11 @@ import toast, { Toaster } from "react-hot-toast";
 const LiveTest = () => {
   const [key, setKey] = useState('LIVE');
   const [showError, setShowError] = useState(false);
+  const [liveTests, setLiveTests] = useState([])
   const router = useRouter();
   const token = get_token();
+  const popupRef = useRef(null);
+  const intervalRef = useRef(null);
 
   const fetchLiveTest = async (type) => {
     const formData = {
@@ -24,7 +27,7 @@ const LiveTest = () => {
     const encryptedData = encrypt(JSON.stringify(formData), token);
     const response = await getLiveTestService(encryptedData);
     const decryptedData = decrypt(response.data, token);
-
+    console.log('decryptedData', decryptedData)
     if (!decryptedData?.status) {
       if (decryptedData.message === msg) {
         localStorage.removeItem("jwt");
@@ -34,25 +37,46 @@ const LiveTest = () => {
       throw new Error(decryptedData.message || "Error fetching data");
     }
 
-    return decryptedData.data;
+    return setLiveTests(decryptedData.data);
   };
 
-  const { data: liveTests, isLoading, isError } = useQuery(
-    ['liveTests', key],
-    () => fetchLiveTest(key === 'LIVE' ? 0 : key === 'UPCOMING' ? 1 : 2),
-    {
-      onError: () => {
-        setShowError(true);
-      },
-      retry: false,
-      refetchOnWindowFocus: false,
+  useEffect(() => {
+    setShowError(false)
+    setLiveTests([])
+    if(key == "LIVE") {
+      fetchLiveTest(0);
     }
-  );
+    else if(key == "UPCOMING") {
+      fetchLiveTest(1);
+    }
+    else {
+      fetchLiveTest(2);
+    }
+  }, [key])
+
+  // const { data: liveTests, isLoading, isError } = useQuery(
+  //   ['liveTests', key],
+  //   () => fetchLiveTest(key === 'LIVE' ? 0 : key === 'UPCOMING' ? 1 : 2),
+  //   {
+  //     onError: () => {
+  //       setShowError(true);
+  //     },
+  //     retry: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
+
+  // const reponse_liveTest_service = 
 
   const handleTabChange = (k) => {
     setKey(k);
     setShowError(false); // Reset the error when changing tabs
   };
+
+  const handleCallFunction = () => {
+    console.log('test')
+    fetchLiveTest(key === 'LIVE' ? 0 : key === 'UPCOMING' ? 1 : 2)
+  }
 
   return (
     <>
@@ -73,7 +97,7 @@ const LiveTest = () => {
               activeKey={key}
               onSelect={(k) => handleTabChange(k)}
             >
-              {['LIVE', 'UPCOMING', 'COMPLETED'].map((tabKey) => (
+              {/* {['LIVE', 'UPCOMING', 'COMPLETED'].map((tabKey) => (
                 <Tab eventKey={tabKey} title={tabKey} key={tabKey}>
                   <div className="row">
                     {isLoading ? (
@@ -82,12 +106,61 @@ const LiveTest = () => {
                       <ErrorPageAfterLogin />
                     ) : (
                       liveTests.map((item, index) => (
-                        <LiveTestCard testData={item} value={key} key={index} />
+                        <LiveTestCard testData={item} value={key} key={index} popupRef = {popupRef} intervalRef = {intervalRef} handleCallFunction = {handleCallFunction} />
                       ))
                     )}
                   </div>
                 </Tab>
-              ))}
+              ))} */}
+
+              <Tab eventKey="LIVE" title="LIVE">
+                <div className="row">
+                {liveTests?.length > 0 ? liveTests.map((item, index) => {
+                  return <LiveTestCard testData={item} value={key} key={index} popupRef = {popupRef} intervalRef = {intervalRef} handleCallFunction = {handleCallFunction} />
+                })
+                  :
+                  <>
+                    {showError ? 
+                      <ErrorPageAfterLogin />
+                      :
+                      <LoaderAfterLogin />
+                    }
+                  </>
+                }
+                </div>
+              </Tab>
+              <Tab eventKey="UPCOMING" title="UPCOMING">
+                <div className="row">
+                {liveTests?.length > 0 ? liveTests.map((item, index) => {
+                  return <LiveTestCard testData={item} value={key} key={index} popupRef = {popupRef} intervalRef = {intervalRef} handleCallFunction = {handleCallFunction} />
+                })
+                  :
+                  <>
+                    {showError ? 
+                      <ErrorPageAfterLogin />
+                      :
+                      <LoaderAfterLogin />
+                    }
+                  </>
+                }
+                </div>
+              </Tab>
+              <Tab eventKey="COMPLETED" title="COMPLETED">
+                <div className="row">
+                {liveTests?.length > 0 ? liveTests.map((item, index) => {
+                  return <LiveTestCard testData={item} value={key} key={index} popupRef = {popupRef} intervalRef = {intervalRef} handleCallFunction = {handleCallFunction} />
+                })
+                  :
+                  <>
+                    {showError ? 
+                      <ErrorPageAfterLogin />
+                      :
+                      <LoaderAfterLogin />
+                    }
+                  </>
+                }
+                </div>
+              </Tab>
             </Tabs>
           </div>
         </div>

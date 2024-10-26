@@ -105,13 +105,19 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                             handleClick={() => handleTakeTest(item, i)} 
                         />
                         )}
+
+                        {layer1Data?.type == "test" && (timeValue == "result"  && (item?.state == 1) && item?.is_reattempt != 0 &&
+                        <Button1 value="Re-Attempt" 
+                            handleClick={() => handleTakeTest(item, i)} 
+                        />
+                        )}
                         {layer1Data?.type == "test" && (timeValue == "result" && item?.is_reattempt == 0 &&
                         <Button1 value={item?.state == 1 ? "View Result" : "LeaderBoard"}
                             handleClick={() => item?.state == 1 ? handleResultTest(item, i) : handleRankTest(item, i)} 
                         />
                         )}
 
-                        {layer1Data?.type == "test" && (timeValue == "attempt" && item?.is_reattempt == 1 && item?.state == 1) &&
+                        {layer1Data?.type == "test" && (timeValue == "attempt" && item?.is_reattempt != 0 && item?.state == 1) &&
                             <>
                                 <Button1 value="Attempt Now" 
                                     handleClick={() => handleTakeTest(item, i)} 
@@ -129,7 +135,7 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                     </>
                 :
                 <>
-                {console.log('7777777777777',timeValue, item)}
+                {/* {console.log('7777777777777',timeValue, item)} */}
                     {layer1Data.type == "pdf" && <Button1 value="Read" handleClick={() => handleRead(item)} /> }
                         {(layer1Data.type == "video" || layer1Data.type == "Video") && <Button1 value="Watch Now" handleClick={() => handleWatch(item, i)} />}
                         {layer1Data?.type == "test" && 
@@ -165,7 +171,7 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                         />
                         )}
 
-                        {layer1Data?.type == "test" && (timeValue == "attempt" && item?.is_reattempt == 1 && item?.state == 1) &&
+                        {/* {layer1Data?.type == "test" && (timeValue == "attempt" && item?.is_reattempt != 0 && item?.state == 1) &&
                             <>
                                 <Button1 value="Attempt Now" 
                                     handleClick={() => handleTakeTest(item, i)} 
@@ -174,7 +180,7 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
                                     handleClick={() => item?.state == 1 ? handleResultTest(item, i) : handleRankTest(item, i)} 
                                 />  
                             </>    
-                        }
+                        } */}
                     </>
                     :
                     <>

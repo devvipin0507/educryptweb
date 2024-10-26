@@ -55,7 +55,7 @@ const OurCourses = () => {
     if(key != '') {
       fetchCategoryData();
     }
-  }, [key])
+  }, [key, catId])
 
   const handleTabChange = (k) => {
     // console.log(key)

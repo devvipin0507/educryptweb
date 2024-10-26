@@ -49,8 +49,6 @@ const PlayId = () => {
             return <p>Loading...</p>; // Display loading state
         }
 
-        // https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8
-
         switch (videoType) {
             case 7:
             case 8:

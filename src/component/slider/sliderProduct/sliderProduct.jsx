@@ -18,7 +18,7 @@ const SliderProduct = ({value}) => {
     return (
       <div className="mb-3 ourProductSection">
         <div className="card">
-            {prod_image1 && <img className="ourProImg" src={value.icon ? value.icon : prod_image1} alt="" />}
+            {prod_image1 && <img className="ourProImg" src={value?.web_icon ? value?.web_icon : prod_image1} alt="" />}
             <div className="bottom_shadow"></div>
             <a className="m-0 bg_dark p-2 d-flex align-items-center justify-content-between text-decoration-none"
               onClick={handleBuy}

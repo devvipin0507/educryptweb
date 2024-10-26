@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button1 from "../buttons/button1/button1";
 import { getMasterDataService } from "@/services";
 import { IoIosArrowForward } from "react-icons/io";
@@ -30,6 +30,8 @@ const Notes = ({
   const [modalShow, setModalShow] = useState(false);
   const [showError, setShowError] = useState(false);
   const [isToasterOpen, setIsToasterOpen] = useState(false);
+  const [data3, setData3] = useState('');
+  const [title3, setTitle3] = useState('');
   const [status, setStatus] = useState("");
   const [layer1Data, setLayer1Data] = useState();
   const [showLayer, setShowLayer] = useState("layer1");
@@ -57,6 +59,8 @@ const Notes = ({
   const dispatch = useDispatch();
   let displayTabData = useSelector((state) => state.allCategory?.tabName);
   const versionData = useSelector((state) => state.allCategory?.versionData);
+  const popupRef = useRef(null);
+  const intervalRef = useRef(null);
   // console.log('versionData', versionData)
   useEffect(() => {
     let domain = localStorage.getItem("domain");
@@ -193,7 +197,10 @@ const Notes = ({
         r_api[1] == 3
       ) {
         // console.log("hell");
+        setData3(0)
+        setTitle3('')
         getLayer3Data(0);
+        
       }
     }
   }, [courseDetail, keyValue]);
@@ -467,11 +474,15 @@ const Notes = ({
       // layer1Data?.revert_api == "0#2#0#0"
       r_api[1] == 2
     ) {
+      setData3(i)
+      setTitle3(item?.title)
       getLayer3Data(i, item.title);
     } else getLayer2Data(i, item.title);
   };
 
   const handleLayer2Click = (i, item) => {
+    setData3(i)
+    setTitle3(item?.title)
     getLayer3Data(i, item.title);
   };
   // console.log('layer2List', layer2List)
@@ -540,16 +551,32 @@ const Notes = ({
         const encryptData = btoa(JSON.stringify(formData));
         console.log("encryptData", encryptData);
         // const encryptData = encrypt(JSON.stringify(formData));
-        window.open(
+        popupRef.current = window.open(
           `${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,
           "popupWindow",
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );
+        // Start interval to check if the popup is still open
+        intervalRef.current = setInterval(() => {
+          if (popupRef.current && popupRef.current.closed) {
+            clearInterval(intervalRef.current);
+            popupRef.current = null;
+            // onPopupClose(); // Call the function to handle the popup close event
+            getLayer3Data(data3, title3);
+            console.log('867867687687')
+          }
+        }, 500); // Check every 500ms
       } else {
         showErrorToast("Please, purchase the course");
       }
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
 
   const handleRankTest = (val) => {
     const isLoggedIn = localStorage.getItem("jwt");
