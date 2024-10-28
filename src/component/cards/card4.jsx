@@ -502,13 +502,13 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
                 </div>
               ) : (
                 <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
-                  <Button1 data={true} value="Purchased" />
+                  <Button1 widthFull={true} value="Purchased" />
                 </div>
               )}
             </>
           ) : (
             <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
-              <Button1 data={true} value={"Buy Now"} handleClick={handleBuy} />
+              <Button1 widthFull={true} value={"Buy Now"} handleClick={handleBuy} />
             </div>
           )}
         </div>

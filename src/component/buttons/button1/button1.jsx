@@ -10,6 +10,7 @@ const Button1 = ({
   adClass,
   data,
   classCustom,
+  widthFull,
 }) => {
   console.log("value", data);
   const defaultValue = useMemo(() => "View All Current Affair", []);
@@ -19,7 +20,7 @@ const Button1 = ({
   return (
     <>
       <button
-        className={`m-0 btn userBtn  ${
+        className={`m-0 btn userBtn ${widthFull  ? 'w-100' : ''}  ${
           classCustom ? classCustom : ""
         } text-decoration-none ${
           data ? (!data === data ? "w-100" : "w-100 p-0") : ""
