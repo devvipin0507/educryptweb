@@ -288,11 +288,11 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
     initPlayer();
     const handleKeyPress = (event) => {
       if (event.key === 'ArrowRight') {
-        if (!Live) {
+        if (Live) {
           skipForward();
         }
       } else if (event.key === 'ArrowLeft') {
-        if (!Live) {
+        if (Live) {
           skipBackward();
         }
       } else if (event.key === ' ') { // Space key for play/pause
@@ -407,7 +407,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
 
               <div className="__video_icon___">
                 <div className="video_icon_left shaka-tooltips-on">
-                  {!isAdPlaying && !Live &&
+                  {!isAdPlaying && Live &&
                     <div onClick={skipBackward} className="__video_icon__common__ shaka-tooltip" aria-label="Rewind 10 seconds"><img src="/assets/images/skip_02.svg" alt="Rewind 10 seconds" /></div>
                   }
                   <div onClick={togglePlayPause}
@@ -422,7 +422,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
                       </span>
                     )}
                   </div>
-                  {!isAdPlaying && !Live &&
+                  {!isAdPlaying && Live &&
                     <div onClick={skipForward} className="__video_icon__common__ shaka-tooltip" aria-label="Forward 10 seconds"><img src="/assets/images/skip_01.svg" alt="Forward 10 seconds" /></div>}
                 </div>
               </div>
