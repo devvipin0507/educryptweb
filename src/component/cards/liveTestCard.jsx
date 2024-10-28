@@ -289,7 +289,7 @@ const LiveTestCard = ({
               testData?.state == 1 && (
                 <>
                   <Button1
-                    value="Attempt Now"
+                    value="Re-Attempt"
                     handleClick={() => handleTakeTest(testData)}
                     data={1}
                   />
