@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Modal } from 'react-bootstrap'
 import { decrypt, encrypt, get_token } from '@/utils/helpers'
@@ -8,6 +8,12 @@ import { useRouter } from 'next/router'
 const LogoutModal = (props) => {
   
   const router = useRouter();
+
+    useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
 
   const fetchLogoutService = async () => {
     try{

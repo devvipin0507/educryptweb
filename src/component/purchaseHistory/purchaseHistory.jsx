@@ -42,6 +42,12 @@ const PurchaseHistory = () => {
     }
   }, [thankYouModalShow]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   // useEffect(() => {
   //   // Fetch installments for orders with payment_mode == 1
   //   myOrder.forEach((item) => {

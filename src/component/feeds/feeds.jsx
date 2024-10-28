@@ -80,6 +80,12 @@ const Feeds = () => {
   }, [])
 
   useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
+  useEffect(() => {
     if(isToasterOpen) {
       setTimeout(() => {
         setIsToasterOpen(false)

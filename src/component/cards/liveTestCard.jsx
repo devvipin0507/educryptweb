@@ -35,6 +35,12 @@ const LiveTestCard = ({
     }
   }, []);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   // console.log('BaseURL', BaseURL)
 
   // let domain = localStorage.getItem('domain')

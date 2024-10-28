@@ -13,10 +13,17 @@ const Notification = () => {
   const [showError, setShowError] = useState(false)
   const [appLogo, setAppLogo] = useState('')
   const router = useRouter();
+
   useEffect(() => {
     setShowError(false)
     fetchNotification();
     setAppLogo(localStorage.getItem('logo'))
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
   }, []);
 
   const fetchNotification = async () => {

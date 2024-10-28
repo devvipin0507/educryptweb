@@ -26,6 +26,12 @@ const MyCourse = () => {
     setShowDetail(false);
   }, [getCourse]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const fetchMyCourseService = async () => {
     try {
       const token = get_token();

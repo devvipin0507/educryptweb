@@ -55,6 +55,12 @@ const Notes = ({
 
   useEffect(() => {}, [checkLogin]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const router = useRouter();
   const dispatch = useDispatch();
   let displayTabData = useSelector((state) => state.allCategory?.tabName);

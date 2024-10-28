@@ -58,7 +58,11 @@ const Profile = () => {
   const dispatch = useDispatch();
   const versionData = useSelector((state) => state.allCategory?.versionData);
 
-  // console.log('versionData', versionData)
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
 
   useEffect(() => {
     setIsEditProfile(false);
@@ -97,6 +101,12 @@ const Profile = () => {
       }, 1500)
     }
   }, [isToasterOpen])
+
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
 
   const showSuccessToast = (toastMsg) => {
     if (!isToasterOpen) {

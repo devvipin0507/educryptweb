@@ -39,6 +39,12 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
     }
   }, [thankYouModalShow]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const showErrorToast = (toastMsg) => {
     if (!isToasterOpen) {
       setIsToasterOpen(true);
@@ -381,7 +387,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
       >
         {value.mrp == 0 && <p className="m-0 course-badge">FREE</p>}
         <div className="d-flex justify-content-center">
-          {console.log("value4235", value)}
+          {/* {console.log("value4235", value)} */}
           <img
             style={{ borderRadius: "10px" }}
             src={

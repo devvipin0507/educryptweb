@@ -39,6 +39,12 @@ const LiveClass = () => {
     }
   }, [key])
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
 
   const fetchLiveCourse = async (value) => {
     try{
@@ -77,7 +83,7 @@ const LiveClass = () => {
 
   return (
     <>
-    <Toaster position="top-right" reverseOrder={false} />
+    {/* <Toaster position="top-right" reverseOrder={false} /> */}
     {/* <Toaster
         position="top-right"
         toastOptions={{

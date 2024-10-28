@@ -35,6 +35,12 @@ const GetInTouch = () => {
     }, [])
 
     useEffect(() => {
+        return () => {
+          toast.dismiss();
+        };
+      }, []);
+
+    useEffect(() => {
         if(isToasterOpen) {
           setTimeout(() => {
             setIsToasterOpen(false)

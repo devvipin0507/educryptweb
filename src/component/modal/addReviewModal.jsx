@@ -26,6 +26,12 @@ const AddReviewModal = (props) => {
   }, [isToasterOpen]);
 
   useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
+  useEffect(() => {
     if (props.editReviewData) {
       setReview(props?.editReviewData?.message);
     }

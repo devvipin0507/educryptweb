@@ -7659,6 +7659,7 @@ button.shaka-current-time {
   font-weight: 500;
   border: inherit !important;
   line-height: normal;
+  z-index: 9999;
 }
 /* .shaka-current-time[disabled] {
 font-weight: 700;
@@ -7686,19 +7687,13 @@ font-weight: 700;
     bottom: 87px;
   }
 }
-/* .course_card img.bookStoreImg {
-  height: 120px !important;
-  width: 84px !important;
-}
-
-.course_card img.bookStoreImg {
-  height: auto !important;
-  aspect-ratio: 16 / 9 !important;
-  object-fit: fill !important;
-} */
 
 .coverImg {
   height: 186px;
   width: 122px !important;
   margin: 0 auto;
+}
+
+.shaka-controls-container {
+  z-index: 9 !important;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import * as Icon from "react-bootstrap-icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Tab from "react-bootstrap/Tab";
@@ -27,6 +27,12 @@ const CurrentAffair = () => {
     useEffect(() => {
         fetchCurrentAff();
     }, [])
+
+    useEffect(() => {
+      return () => {
+        toast.dismiss();
+      };
+    }, []);
 
     // useEffect(() => {
     //     console.log('currentAffairData',currentAffairData)

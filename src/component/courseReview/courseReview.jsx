@@ -25,6 +25,12 @@ const CourseReview = ({courseDetail}) => {
   const router = useRouter();
   const courseID = router.asPath.substring(router.asPath.indexOf(':') + 1, router.asPath.indexOf('&'))
   // console.log('courseDetail', courseDetail)
+  
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
 
   useEffect(()=>{
     setRating(avgRating)
@@ -40,6 +46,12 @@ const CourseReview = ({courseDetail}) => {
       }, 1500)
     }
   }, [isToasterOpen])
+
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
 
   // useEffect(() => {
   //   const details = router.asPath
@@ -68,16 +80,11 @@ const CourseReview = ({courseDetail}) => {
   }, [reviewModalShow, reviewList])
 
   const showErrorToast = (toastMsg) => {
-    // console.log("toastMsg",toastMsg)
     toast.error(toastMsg, {
       autoClose: 1500
   });
     if (!isToasterOpen) {
       setIsToasterOpen(true);
-      toast.error(toastMsg, {
-        // onClose: () => setIsToasterOpen(false),  // Set isToasterOpen to false when the toaster closes
-        autoClose: 1500
-    });
     }
   }
 
@@ -133,6 +140,7 @@ const CourseReview = ({courseDetail}) => {
   };
 
   const handleAddReview = () => {
+    console.log("courseDetail",courseDetail)
     const isLoggedIn = userLoggedIn();
     if(isLoggedIn) {
       if(courseDetail.is_purchased == 1) {

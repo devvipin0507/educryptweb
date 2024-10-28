@@ -63,6 +63,12 @@ const Inquiry = () => {
     }
   }, [isToasterOpen]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const showErrorToast = (toastMsg) => {
     if (!isToasterOpen) {
       setIsToasterOpen(true);

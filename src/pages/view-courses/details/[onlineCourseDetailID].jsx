@@ -154,6 +154,12 @@ const ViewOnlineCourseDetail = () => {
     }
   }, [router.isReady, onlineCourseDetailID]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   // useEffect(() => {
   //   window.addEventListener("scroll", handleScroll);
   //   return () => {
@@ -207,11 +213,11 @@ const ViewOnlineCourseDetail = () => {
     }
   }, [tiles]);
 
-  const fetchCourseDetail = async (id) => {
+  const fetchCourseDetail = async (course_id) => {
     try {
       // console.log('idddddd', courseCombo)
       const formData = {
-        course_id: id,
+        course_id: course_id,
         // page: 1,
         parent_id: courseCombo ? "" : parentId ? parentId : id,
         // parent_id: 0
@@ -224,7 +230,7 @@ const ViewOnlineCourseDetail = () => {
         response_getCourseDetail_service.data,
         token
       );
-      // console.log("get_courseDetail", response_getCourseDetail_data);
+      console.log("get_courseDetail", response_getCourseDetail_data);
       if (response_getCourseDetail_data.status) {
         setOnlineCourseAry(response_getCourseDetail_data?.data?.course_detail);
         setRelateCourseAry(
@@ -241,7 +247,7 @@ const ViewOnlineCourseDetail = () => {
         // console.log("detail", response_getCourseDetail_data?.data?.tiles);
         setKey(
           response_getCourseDetail_data?.data?.tiles?.find(
-            (item) => (item.type = "overview")
+            (item) => (item.type == "overview")
           )?.tile_name
         );
         setContentData(
@@ -356,7 +362,7 @@ const ViewOnlineCourseDetail = () => {
     }
   };
 
-  const OverView = tiles.find((item) => (item.type = "overview"));
+  const OverView = tiles.find((item) => (item.type == "overview"));
   // console.log('key', key)
 
   const handleBackdetails = () => {

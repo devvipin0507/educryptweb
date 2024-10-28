@@ -52,6 +52,12 @@ const LiveTest = () => {
   //   }
   // );
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const fetchLiveTest = async (type) => {
     try {
       const formData = {
@@ -110,13 +116,7 @@ const LiveTest = () => {
 
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          success: { style: { opacity: "1" } },
-          error: { style: { opacity: "1" } },
-        }}
-      />
+      {/* <Toaster position="top-right" reverseOrder={false} />  */}
       <section className="container-fluid">
         <div className="row">
           <div className="col-md-12">

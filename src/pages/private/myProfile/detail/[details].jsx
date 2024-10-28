@@ -150,7 +150,8 @@ const Details = ({ value }) => {
       const formData = {
         course_id: id,
         page: 1,
-        parent_id: courseCombo ? "" : parentId ? parentId : id,
+        // parent_id: courseCombo ? "" : parentId ? parentId : id,
+        parent_id : ''
       };
       console.log("formData", formData);
       const response_getCourseDetail_service = await getCourseDetail_Service(
@@ -161,7 +162,7 @@ const Details = ({ value }) => {
         token
       );
       console.log(
-        "response_getCourseDetail_data",
+        "response_getCourseDetail_data56786545678",
         response_getCourseDetail_data
       );
       if (response_getCourseDetail_data.status) {
@@ -192,7 +193,7 @@ const Details = ({ value }) => {
           );
           setKey(
             response_getCourseDetail_data?.data?.tiles?.find(
-              (item) => (item.type = "overview")
+              (item) => (item.type == "overview")
             )?.tile_name
           );
           // console.log("detail", response_getCourseDetail_data?.data?.tiles);
@@ -273,15 +274,6 @@ const Details = ({ value }) => {
                               : `My Courses`}
                             <i className="bi bi-chevron-right"></i>
                           </li>
-                          {/* {onlineCourseAry.mrp != 0 || titleName && (
-                                <li
-                                className="breadcrumb-item"
-                                onClick={() => router.back()}
-                                >
-                                {`${titleName}`}
-                                <i className="bi bi-chevron-right"></i>
-                                </li>
-                            )} */}
                           <li className="breadcrumb-item active">
                             {`Details`}
                             <i className="bi bi-chevron-right"></i>
@@ -292,19 +284,6 @@ const Details = ({ value }) => {
                         <h4 className="m-0 mb-3">{onlineCourseAry?.title}</h4>
                       </div>
                       <div className="mb-3 gap-1 d-flex flex-wrap flex-sm-nowrap courseDuration">
-                        {/* <p className="m-0 me-4">
-                      <span>
-                        <LiaYoutube className="video_icon" />
-                      </span>{" "}
-                      120 Videos
-                    </p>
-                    <p className="m-0 me-4">
-                      <span>
-                        <IoDocumentTextOutline className="video_icon" />
-                      </span>{" "}
-                      120 PDF's
-                    </p> */}
-                    {/* {console.log('contentData', contentData)} */}
                         {contentData?.segment_information && (
                           <p className="m-0 me-4">
                             {contentData.segment_information}

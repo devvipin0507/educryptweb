@@ -140,6 +140,12 @@ const LoginModal = (props) => {
     }
   }, [getOTP]);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const formatTime = (seconds) => {
     // console.log('hey')
     const minutes = Math.floor(seconds / 60);

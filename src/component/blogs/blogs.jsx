@@ -22,6 +22,12 @@ const Blogs = () => {
     fetchGetBlogList();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   const fetchGetBlogList = async () => {
     try{
       const formData = {};

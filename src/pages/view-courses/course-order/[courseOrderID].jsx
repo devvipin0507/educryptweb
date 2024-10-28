@@ -152,6 +152,12 @@ const CourseOrderID = () => {
   }, []);
 
   useEffect(() => {
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
+  useEffect(() => {
     if (courseData?.cat_type == 1) {
       setIsAddressShow(true);
     }
