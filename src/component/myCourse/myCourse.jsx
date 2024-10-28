@@ -165,7 +165,7 @@ const MyCourse = () => {
                                 handleDetail={handleDetail}
                                 titleId="FREE COURSES"
                                 detail={false}
-                                data={0}
+                                data={true}
                               />
                             </div>
                           )

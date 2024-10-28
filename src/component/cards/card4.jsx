@@ -489,27 +489,26 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
                         ? "View Content"
                         : "View Detail"
                     }
-                   // data={value?.prices?.length}
+                    data={true}
                     handleClick={() => handleDetail(value)}
-                     data={0}
                   />
                   {value?.prices?.length > 0 && (
                     <Button2
                       value="Extend Validity"
-                      data={0}
+                      data={true}
                       handleClick={() => handleExtendValidity(value)}
                     />
                   )}
                 </div>
               ) : (
                 <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
-                  <Button1 data={0} value="Purchased" />
+                  <Button1 data={true} value="Purchased" />
                 </div>
               )}
             </>
           ) : (
             <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
-              <Button1 data={0} value={"Buy Now"} handleClick={handleBuy} />
+              <Button1 data={true} value={"Buy Now"} handleClick={handleBuy} />
             </div>
           )}
         </div>

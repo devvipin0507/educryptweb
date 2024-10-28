@@ -11,7 +11,7 @@ const Button1 = ({
   data,
   classCustom,
 }) => {
-  // console.log('value', value)
+  console.log("value", data);
   const defaultValue = useMemo(() => "View All Current Affair", []);
   const defaultValue1 = useMemo(() => "Edit", []);
   const defaultValue2 = useMemo(() => "Download", []);
@@ -22,11 +22,11 @@ const Button1 = ({
         className={`m-0 btn userBtn  ${
           classCustom ? classCustom : ""
         } text-decoration-none ${
-          data ? (data == 0 ? "w-100" : "w-40 p-0") : "w-100"
+          data ? (!data === data ? "w-100" : "w-100 p-0") : ""
         } ${value?.prices?.length > 0 && "w-100"} ${adClass ? "active" : ""}`}
         onClick={handleClick}
         disabled={disable}
-        style={data === 0 ? { padding: "0px" } : {}}
+        style={data === data ? { padding: "0px" } : {}}
       >
         {value === defaultValue1 && <MdModeEdit className="me-1" />}
         {value} {value === defaultValue && <HiOutlineArrowNarrowRight />}

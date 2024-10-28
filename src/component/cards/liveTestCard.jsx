@@ -275,7 +275,7 @@ const LiveTestCard = ({
                 <Button1
                   value="Attempt Now"
                   handleClick={() => handleTakeTest(testData)}
-                  data={0}
+                  data={true}
                 />
               )}
             {value == "LIVE" &&
@@ -311,7 +311,7 @@ const LiveTestCard = ({
                       ).padStart(2, "0")}`
                 }
                 handleClick={() => handleTakeTest(testData)}
-                data={0}
+                data={true}
               />
             )}
             {value == "COMPLETED" && (
@@ -322,7 +322,7 @@ const LiveTestCard = ({
                     ? handleResultTest(testData)
                     : handleRankTest(testData)
                 }
-                data={0}
+                data={true}
               />
             )}
             {versionData?.share_content == 1 && (
