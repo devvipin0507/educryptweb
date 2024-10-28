@@ -73,7 +73,7 @@ const Details = ({ value }) => {
     const offset1 = document.querySelector(".offset--1")?.offsetHeight || 0;
     const pageSection6 =
       document.querySelector(".page-section-6")?.offsetHeight || 0;
-    console.log("pageSection1", pageSection1);
+    // console.log("pageSection1", pageSection1);
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       // alert("k");
@@ -81,7 +81,7 @@ const Details = ({ value }) => {
 
       // Calculate if the currentScrollY meets the height conditions
       const combinedHeight = Math.max(pageSection1, offset1, pageSection6);
-      console.log("combinedHeight", combinedHeight);
+      // console.log("combinedHeight", combinedHeight);
       if (
         currentScrollY >= pageSection1 &&
         key === tiles?.find((item) => item.type === "overview")?.tile_name
@@ -304,7 +304,7 @@ const Details = ({ value }) => {
                       </span>{" "}
                       120 PDF's
                     </p> */}
-                    {console.log('contentData', contentData)}
+                    {/* {console.log('contentData', contentData)} */}
                         {contentData?.segment_information && (
                           <p className="m-0 me-4">
                             {contentData.segment_information}

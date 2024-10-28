@@ -526,9 +526,9 @@ const Notes = ({
     } else {
       if (onlineCourseAry.is_purchased == 1) {
         var firstAttempt = "0";
-        // if (val.state == ""){
-        //   firstAttempt = "1";
-        // }
+        if (val.state == ""){
+          firstAttempt = "1";
+        }
         // // else if (App.Server_Time.ToUnixTimeSeconds() > long.Parse(Current_Selected_Resource.end_date)){
         // //   firstAttempt = "0";
         // // }

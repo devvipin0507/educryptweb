@@ -685,8 +685,8 @@ const PurchaseHistory = () => {
   };
   return (
     <>
-      {/* <Toaster position="top-right" reverseOrder={false} /> */}
-      <Toaster
+      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster
         position="top-right"
         toastOptions={{
           success: {
@@ -700,7 +700,7 @@ const PurchaseHistory = () => {
             },
           },
         }}
-      />
+      /> */}
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
