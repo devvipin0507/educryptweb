@@ -8,7 +8,7 @@ const Card2 = ({ value, titleName }) => {
   const router = useRouter();
 
   const handleExplore = () => {
-    console.log("Clicked ==========");
+    // console.log("Clicked ==========");
     router.push(
       `/view-courses/details/${
         titleName + ":" + value.id + "&" + value.combo_course_ids + "parent:"

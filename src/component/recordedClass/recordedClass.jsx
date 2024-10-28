@@ -66,7 +66,7 @@ const RecordedClass = ({ propsValue, tabName, resetRef, courseDetail, CourseID }
     }
     const response_getMasterData_service = await getMasterDataService(encrypt(JSON.stringify(formData), token))
     const response_getMasterData_Data = decrypt(response_getMasterData_service.data, token);
-    console.log('response_getMasterData_Data', response_getMasterData_Data.data)
+    // console.log('response_getMasterData_Data', response_getMasterData_Data.data)
     if(response_getMasterData_Data.status) {
       return response_getMasterData_Data.data
     }

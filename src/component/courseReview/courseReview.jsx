@@ -25,7 +25,7 @@ const CourseReview = ({courseDetail}) => {
   const router = useRouter();
   const courseID = router.asPath.substring(router.asPath.indexOf(':') + 1, router.asPath.indexOf('&'))
   // console.log('courseDetail', courseDetail)
-  
+
   useEffect(() => {
     return () => {
       toast.dismiss();
@@ -140,7 +140,7 @@ const CourseReview = ({courseDetail}) => {
   };
 
   const handleAddReview = () => {
-    console.log("courseDetail",courseDetail)
+    // console.log("courseDetail",courseDetail)
     const isLoggedIn = userLoggedIn();
     if(isLoggedIn) {
       if(courseDetail.is_purchased == 1) {

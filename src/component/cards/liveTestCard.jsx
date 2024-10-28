@@ -129,9 +129,9 @@ const LiveTestCard = ({
       appid: localStorage.getItem("appId"),
     };
 
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const encryptData = btoa(JSON.stringify(formData));
-    console.log("encryptData", encryptData);
+    // console.log("encryptData", encryptData);
     // const encryptData = encrypt(JSON.stringify(formData));
     // Router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/learn_result_window?data=${encryptData}`)
     window.open(
@@ -167,13 +167,13 @@ const LiveTestCard = ({
       appid: localStorage.getItem("appId"),
     };
 
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const encryptData = btoa(JSON.stringify(formData));
-    console.log("encryptData", encryptData);
-    console.log(
-      "https:}",
-      `https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`
-    );
+    // console.log("encryptData", encryptData);
+    // console.log(
+    //   "https:}",
+    //   `https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`
+    // );
 
     // router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/attempt_now_window?data=${encryptData}`)
     popupRef.current = window.open(
@@ -207,9 +207,9 @@ const LiveTestCard = ({
       first_attempt: 1,
       appid: localStorage.getItem("appId"),
     };
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const encryptData = btoa(JSON.stringify(formData));
-    console.log("encryptData", encryptData);
+    // console.log("encryptData", encryptData);
 
     window.open(
       `${BaseURL}/web/LiveTest/result_window?data=${encryptData}`,

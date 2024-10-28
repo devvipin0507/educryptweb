@@ -22,7 +22,7 @@ const CurrentAffair = () => {
     const token = get_token()
     const versionData = useSelector((state) => state.allCategory?.versionData);
 
-    console.log(currentAffair)
+    // console.log(currentAffair)
 
     useEffect(() => {
         fetchCurrentAff();
@@ -51,7 +51,7 @@ const CurrentAffair = () => {
       }
       const response_currentAffairDetail_service = await getCurrentAffairDetails(encrypt(JSON.stringify(formData), token));
       const response_currentAffairDetail_data = decrypt(response_currentAffairDetail_service.data, token);
-      console.log('response_currentAffairDetail_data', response_currentAffairDetail_data)
+      // console.log('response_currentAffairDetail_data', response_currentAffairDetail_data)
       if(response_currentAffairDetail_data.status){
         setCurrentAffairData(response_currentAffairDetail_data.data) 
         setDate(response_currentAffairDetail_data.data.created_at)

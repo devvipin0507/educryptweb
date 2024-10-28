@@ -30,6 +30,10 @@ const SearchCourses = ({catId, handleFilterCourses}) => {
     );
   };
 
+  useEffect(() => {
+    setSearchInputValue('')
+  }, [catId])
+
   useEffect(() =>{
     // console.log('hell', searchCourseList)
     if(searchCourseList?.length > 0 && searchInputValue !== "") {

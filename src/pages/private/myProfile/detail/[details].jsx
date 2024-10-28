@@ -183,7 +183,7 @@ const Details = ({ value }) => {
           );
           setCourseDetail(response_getCourseDetail_data?.data?.tiles);
           setTiles(response_getCourseDetail_data?.data?.tiles);
-          console.log('contentDAta', response_getCourseDetail_data?.data)
+          // console.log('contentDAta', response_getCourseDetail_data?.data)
           setContentData(
             response_getCourseDetail_data?.data?.tiles
               ?.find(

@@ -405,7 +405,6 @@ const LoginModal = (props) => {
       device_token: 0,
       otp: OTP,
     };
-    console.log("formData", formData);
     const response_userResgister_service = await userRegisterService(
       encrypt(JSON.stringify(formData), token)
     );
@@ -413,7 +412,6 @@ const LoginModal = (props) => {
       response_userResgister_service.data,
       token
     );
-    console.log("response_userRegister_data", response_userRegister_data);
     if (response_userRegister_data.status) {
       localStorage.setItem("jwt", response_userRegister_data.data.jwt);
       jwt_decode(response_userRegister_data.data.jwt);

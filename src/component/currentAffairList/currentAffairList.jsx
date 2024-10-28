@@ -42,10 +42,10 @@ const CurrentAffairList = () => {
         response_getCurrentAffairs_service.data,
         token
       );
-      console.log(
-        "response_getCurrentAffairs_data",
-        response_getCurrentAffairs_data
-      );
+      // console.log(
+      //   "response_getCurrentAffairs_data",
+      //   response_getCurrentAffairs_data
+      // );
       if (response_getCurrentAffairs_data?.status) {
         if (response_getCurrentAffairs_data?.data?.length == 0) {
           setShowError(true);

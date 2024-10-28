@@ -84,7 +84,7 @@ const OnlineCourse = ({ onlineCourseID }) => {
         response_getCourse_service.data,
         token
       );
-      console.log("response_getCourse_data", response_getCourse_data);
+      // console.log("response_getCourse_data", response_getCourse_data);
       if (response_getCourse_data.status) {
         if (response_getCourse_data?.data?.length == 0) {
           setShowError(true);

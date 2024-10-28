@@ -76,10 +76,10 @@ const ExamCalender = ({
       response_getMasterData_service.data,
       token
     );
-    console.log(
-      "response_getMasterData_Data",
-      response_getMasterData_Data.data
-    );
+    // console.log(
+    //   "response_getMasterData_Data",
+    //   response_getMasterData_Data.data
+    // );
     if (response_getMasterData_Data.status) {
       return response_getMasterData_Data.data;
     }

@@ -26,7 +26,7 @@ const Index = ({ initialTab }) => {
   useEffect(() => {
     // Update statusTab whenever the router.query.tab changes
     const { tab } = router.query;
-    console.log('tab', tab)
+    // console.log('tab', tab)
     if (tab) {
       setStatusTab(tab);
     }

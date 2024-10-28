@@ -15,13 +15,13 @@ const index = () => {
 
   const fetchAboutService = async () => {
     try{
-      console.log('hjghhgjh')
+      // console.log('hjghhgjh')
       const formData = {}
       const response_aboutUs_service = await aboutUsService();
       if(response_aboutUs_service.status) {
         setAboutUsData(response_aboutUs_service.data)
       }
-      console.log('response_aboutUs_data', response_aboutUs_service)
+      // console.log('response_aboutUs_data', response_aboutUs_service)
       // const response_aboutUs_data = decrypt(response_aboutUs_service.data, token);
     } catch (error) {
       console.log("error found: ", error)
@@ -38,7 +38,7 @@ const index = () => {
             <div className="d-flex align-items-center careertextContent">
               <div>
                 <h3 className="m-0 bannerTitle mb-4">
-                  FAQs
+                  About us
                 </h3>
                 <p className="careerBannerText">
                   Have questions? Here you’ll find the answers most valued by our partners, along with access to step-by-step

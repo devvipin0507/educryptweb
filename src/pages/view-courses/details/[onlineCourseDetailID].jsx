@@ -230,7 +230,7 @@ const ViewOnlineCourseDetail = () => {
         response_getCourseDetail_service.data,
         token
       );
-      console.log("get_courseDetail", response_getCourseDetail_data);
+      // console.log("get_courseDetail", response_getCourseDetail_data);
       if (response_getCourseDetail_data.status) {
         setOnlineCourseAry(response_getCourseDetail_data?.data?.course_detail);
         setRelateCourseAry(

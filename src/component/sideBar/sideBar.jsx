@@ -58,15 +58,15 @@ const SideBar = () => {
       const response_content_service = await getCourse_Catergory_Service(
         formData
       );
-      console.log(
-        "bannerResponse1",
-        decrypt(response_content_service.data, token)
-      );
+      // console.log(
+      //   "bannerResponse1",
+      //   decrypt(response_content_service.data, token)
+      // );
       const content_service_Data = decrypt(
         response_content_service.data,
         token
       );
-      console.log("content_service_Data", content_service_Data);
+      // console.log("content_service_Data", content_service_Data);
       if (content_service_Data?.status) {
         dispatch(all_content(content_service_Data?.data));
         setSideBarTabs(content_service_Data?.data?.bottom_bar_web);

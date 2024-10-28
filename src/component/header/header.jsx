@@ -222,6 +222,7 @@ const Header = ({ search }) => {
     <nav
       className="px-0 px-sm-5 px-md-5 navbar navbar-expand bg-white fixed-top"
       id="eduNav"
+      style={{zIndex: '9'}}
     >
       {/* <LoginModal show={modalShow} handleShow = {handleShow} /> */}
       <LoginModal

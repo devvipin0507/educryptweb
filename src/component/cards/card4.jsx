@@ -160,15 +160,15 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
                       payid: response.razorpay_payment_id,
                       pay_via: 3,
                     };
-                    console.log("Payment ID:", response.razorpay_payment_id);
-                    console.log("Order ID:", response.razorpay_order_id);
-                    console.log("Signature:", response.razorpay_signature);
+                    // console.log("Payment ID:", response.razorpay_payment_id);
+                    // console.log("Order ID:", response.razorpay_order_id);
+                    // console.log("Signature:", response.razorpay_signature);
                     let status = 1;
                     paymentConfirmation(status, orderDetails, item.course_id);
                   },
                 };
                 const instance = new Razorpay(options);
-                console.log("option", options);
+                // console.log("option", options);
                 instance.on("payment.failed", function (response) {
                   toast.error("Payment failed!");
                 });
@@ -231,7 +231,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
             pay_via: 9,
           };
           let status = response.status == "success" ? 1 : 0;
-          console.log("responsey8778", response);
+          // console.log("responsey8778", response);
           // loading(true);
           paymentConfirmation(status, order_details);
           //   const formData = new FormData();
@@ -269,7 +269,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
 
   const paymentConfirmation = async (status, data, id) => {
     try {
-      console.log("confirm", data);
+      // console.log("confirm", data);
       const formDataConfirm = {
         type: 4,
         course_id: id,
@@ -391,7 +391,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
           <img
             style={{ borderRadius: "10px" }}
             src={
-              value?.cat_type == 0
+              value?.cat_type == 1
                 ? (value?.cover_image
                   ? value?.cover_image
                   : "/assets/images/noImage.jfif")

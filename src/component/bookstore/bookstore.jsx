@@ -114,8 +114,8 @@ const Bookstore = () => {
       <section className="container-fluid">
       <div className="row">
       <div className="col-md-12">
-        <p className="m-0 mb-4 tab_text">
-              {bookstoreData[0]?.description}
+        <p className="m-0 mb-4 tab_text" dangerouslySetInnerHTML={{ __html: bookstoreData[0]?.description }}>
+              {/* {bookstoreData[0]?.description} */}
             </p>
           </div>
             {filterCoursesList?.length > 0 ? filterCoursesList.map((item, index) => {

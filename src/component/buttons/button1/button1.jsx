@@ -12,7 +12,7 @@ const Button1 = ({
   classCustom,
   widthFull,
 }) => {
-  console.log("value", data);
+  // console.log("value", data);
   const defaultValue = useMemo(() => "View All Current Affair", []);
   const defaultValue1 = useMemo(() => "Edit", []);
   const defaultValue2 = useMemo(() => "Download", []);

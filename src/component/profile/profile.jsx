@@ -59,6 +59,7 @@ const Profile = () => {
   const versionData = useSelector((state) => state.allCategory?.versionData);
 
   useEffect(() => {
+    toast.dismiss();
     return () => {
       toast.dismiss();
     };

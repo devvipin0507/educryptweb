@@ -62,7 +62,7 @@ const LiveClassCard = ({ courseData, value }) => {
   const handleWatch = (data) => {
     if (data?.live_status == 2 && data?.video_type == 8) {
       showErrorToast("Live class has been ended");
-      console.log("data", data);
+      // console.log("data", data);
     } else {
       let playData = {
         vdc_id: data.vdc_id,
