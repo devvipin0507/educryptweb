@@ -276,7 +276,7 @@ body {
   font-size: var(--size-11) !important;
   font-family: "Reddit Sans", sans-serif;
   font-weight: 500 !important;
-  -webkit-line-clamp: 2 !important;
+  /* -webkit-line-clamp: 2 !important; */
   display: -webkit-box !important;
   /* overflow: hidden !important; */
   -webkit-box-orient: vertical !important;
@@ -2029,15 +2029,15 @@ h1.main-title {
   font-size: var(--size-30) !important;
   width: 30px !important;
 }
-.p-text p {
+.p-text div {
   margin: 10px !important;
   color: #717171 !important;
 
   font-weight: 400 !important;
   font-size: var(--size-12) !important;
-  -webkit-line-clamp: 4 !important;
+  /* -webkit-line-clamp: 4 !important; */
   display: -webkit-box !important;
-  overflow: hidden !important;
+  overflow: auto !important;
   -webkit-box-orient: vertical !important;
   height: 75px !important;
 }

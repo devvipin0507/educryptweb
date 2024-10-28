@@ -193,7 +193,7 @@ const LiveClassCard = ({ courseData, value }) => {
               <Button1
                 value="Watch"
                 handleClick={() => handleWatch(courseData)}
-                data={0}
+                data={true}
               />
             )}
             {value == "UPCOMING" && (
@@ -209,7 +209,7 @@ const LiveClassCard = ({ courseData, value }) => {
                       ).padStart(2, "0")}`
                 }
                 handleClick={() => isTimeUp && handleWatch()}
-                data={0}
+                data={true}
               />
             )}
             {versionData?.share_content == 1 && (

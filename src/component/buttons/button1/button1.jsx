@@ -23,7 +23,7 @@ const Button1 = ({
         className={`m-0 btn userBtn ${widthFull  ? 'w-100' : ''}  ${
           classCustom ? classCustom : ""
         } text-decoration-none ${
-          data ? (!data === data ? "w-100" : "w-100 p-0") : ""
+          data ? (data === true ? "w-100" : "w-100 p-0") : ""
         } ${value?.prices?.length > 0 && "w-100"} ${adClass ? "active" : ""}`}
         onClick={handleClick}
         disabled={disable}

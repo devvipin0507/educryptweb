@@ -392,15 +392,15 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
             style={{ borderRadius: "10px" }}
             src={
               value?.cat_type == 0
-                ? value?.cover_image
+                ? (value?.cover_image
                   ? value?.cover_image
-                  : "/assets/images/noImage.jfif"
-                : value.desc_header_image
+                  : "/assets/images/noImage.jfif")
+                : (value.desc_header_image
                 ? value.desc_header_image
-                : "/assets/images/noImage.jfif"
+                : "/assets/images/noImage.jfif")
             }
             className={` ${
-              value?.cat_type == 1 ? "book_course_img" : "course_img flex-fill"
+              value?.cat_type == 1 ? "coverImg" : "bookStoreImg flex-fill"
             }`}
             alt="..."
           />

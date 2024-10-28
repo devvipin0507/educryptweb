@@ -22,30 +22,17 @@ const SliderTestimonial = ({ value }) => {
       </div>
       <div className="m-0 p-text">
         {/* {value.desc} */}
-        {!readMore ? (
+        
           <span style={{ display: "flex" }}>
-            <p>
-              {value.description.slice(3, 150)}{" "}
-              <a style={{ color: "#FF7426" }} onClick={() => setReadMore(true)}>
+        
+            <div dangerouslySetInnerHTML={{__html: value?.description}}>
+              {/* <a style={{ color: "#FF7426" }} onClick={() => setReadMore(true)}>
                 {" "}
                 ...read more
-              </a>
-            </p>
+              </a> */}
+            </div>
           </span>
-        ) : (
-          <span style={{}}>
-            <p>
-              {value.description.slice(3, value.description.length - 6)}{" "}
-              <a
-                style={{ color: "#FF7426" }}
-                onClick={() => setReadMore(false)}
-              >
-                {" "}
-                ...read less
-              </a>
-            </p>
-          </span>
-        )}
+       
       </div>
     </div>
   );
