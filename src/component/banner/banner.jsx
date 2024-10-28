@@ -20,7 +20,7 @@ const Banner = () => {
     }, []);
 
     const handleBannerLinks = (value) => {
-        console.log(value)
+        // console.log(value)
         if(value.link_type == 2) {
             window.open(value.link, '_blank')
         }

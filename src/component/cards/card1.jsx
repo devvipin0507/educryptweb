@@ -25,7 +25,6 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
 
   const handleExplore = () => {
     localStorage.setItem("mainTab", keyValue);
-    console.log("helll");
     router.push(
       `/view-courses/details/${
         titleName?.split(" ").join("_") +
@@ -42,7 +41,6 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
     const isLoggedIn = userLoggedIn();
     if (isLoggedIn) {
       const currentPath = router.asPath;
-      console.log("currentPath", currentPath);
       localStorage.setItem("redirectAfterLogin", currentPath);
       localStorage.setItem("previousTab", router.pathname);
       // router.push(
@@ -62,7 +60,7 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
           "&" +
           value.combo_course_ids
         }`,
-        query: {IsBuy:"IsBuy"}
+        query: { IsBuy: "IsBuy" },
       });
     } else {
       setModalShow(true);
@@ -151,19 +149,19 @@ const Card1 = ({ value, titleName, handleDetail, keyValue }) => {
               <div className="coursePrice py-1 d-flex flex-wrap align-items-center pb-1 m-0">
                 {/* <div className="coursePrice d-flex align-items-center pb-2 m-0"> */}
                 <p className="m-0 d-flex align-items-center Cost_Price">
-                  {/* <FaRupeeSign className="rupeeSign" /> */}
-                  ₹
+                  {/* <FaRupeeSign className="rupeeSign" /> */}₹
                   {value.course_sp}
                 </p>
+                &nbsp;
                 {value.course_sp !== value.mrp && (
                   <>
                     <p className="m-0 Card-OffPrice">
                       <del>
-                        {/* <FaRupeeSign className="rupeeSign2" /> */}
-                        ₹
+                        {/* <FaRupeeSign className="rupeeSign2" /> */}₹
                         {value.mrp}
                       </del>
                     </p>
+                    &nbsp;
                     <p className="m-0 offPricePercentage">
                       {`(${value.discount}% Off)`}
                     </p>

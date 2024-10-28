@@ -37,7 +37,7 @@ const CurrentAffairDetail = ({ id, handleShow }) => {
         }
         const response_currentAffairDetail_service = await getCurrentAffairDetails(encrypt(JSON.stringify(formData), token));
         const response_currentAffairDetail_data = decrypt(response_currentAffairDetail_service.data, token);
-        console.log('response_currentAffairDetail_data', response_currentAffairDetail_data)
+        // console.log('response_currentAffairDetail_data', response_currentAffairDetail_data)
         if(response_currentAffairDetail_data.status){
           if(response_currentAffairDetail_data?.data?.length == 0) {
             setShowError(true)

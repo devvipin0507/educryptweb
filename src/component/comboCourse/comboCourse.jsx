@@ -33,7 +33,7 @@ const ComboCourse = ({
       <div className="row m-0">
         <div
           className={`${
-            !checkLogin ? "col-lg-7 offset--1 col-md-12" : "col-md-12 nn"
+            !checkLogin ? "col-lg-8 offset--1 col-md-12" : "col-md-12 nn"
           }  `}
         >
           <div className="row">

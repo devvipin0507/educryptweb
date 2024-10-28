@@ -42,11 +42,25 @@ const CurrentAffairList = () => {
         response_getCurrentAffairs_service.data,
         token
       );
-      // console.log('response_getCurrentAffairs_data', response_getCurrentAffairs_data)
+      console.log(
+        "response_getCurrentAffairs_data",
+        response_getCurrentAffairs_data
+      );
       if (response_getCurrentAffairs_data?.status) {
         if (response_getCurrentAffairs_data?.data?.length == 0) {
           setShowError(true);
         } else setCurrentAffList(response_getCurrentAffairs_data.data);
+      } else {
+        if (response_getCurrentAffairs_data == msg) {
+          localStorage.removeItem("jwt");
+          localStorage.removeItem("user_id");
+          router.push("/");
+          setCurrentAffList([]);
+          setShowError(true);
+        } else {
+          setCurrentAffList([]);
+          setShowError(true);
+        }
       }
     } catch (error) {
       console.log("error found: ", error);
@@ -117,5 +131,8 @@ const CurrentAffairList = () => {
     </>
   );
 };
+
+const msg =
+  "You are already logged in with some other devices, So you are logged out from this device. 9";
 
 export default CurrentAffairList;

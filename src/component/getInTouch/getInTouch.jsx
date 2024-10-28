@@ -120,7 +120,7 @@ const GetInTouch = () => {
     }
 
     const handleSubmit = () => {
-        console.log('hell')
+        // console.log('hell')
         if(!gitForm.name) {
             showErrorToast("Please enter your name")
         }
@@ -153,7 +153,7 @@ const GetInTouch = () => {
                 message: gitForm.message,
                 type: 0,
             };
-            console.log('formData', formData)
+            // console.log('formData', formData)
             const response_getInTouch_service = await InquiryService(encrypt(JSON.stringify(formData), token));
             const response_getInTouch_data = decrypt(response_getInTouch_service.data, token);
             if(response_getInTouch_data.status) {
@@ -168,7 +168,7 @@ const GetInTouch = () => {
             else{
                 showErrorToast(response_getInTouch_data.data)
             }
-            console.log('response_getInTouch_data', response_getInTouch_data);
+            // console.log('response_getInTouch_data', response_getInTouch_data);
         } catch (error) {
             console.log("error found: ", error)
             // router.push('/')

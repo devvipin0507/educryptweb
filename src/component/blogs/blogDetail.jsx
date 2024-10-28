@@ -44,7 +44,7 @@ const BlogDetail = ({ id, handleShow }) => {
       if (response_blogDetail_data.status) {
         if(response_blogDetail_data?.data?.length == 0){
           setShowError(true)
-          console.log("response_blogDetail_data", response_blogDetail_data.data);
+          // console.log("response_blogDetail_data", response_blogDetail_data.data);
         }
         else setBlogDetailData(response_blogDetail_data.data);
       }

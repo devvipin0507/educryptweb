@@ -74,7 +74,7 @@ const Inquiry = () => {
   };
 
   const showSuccessToast = (toastMsg) => {
-    console.log('popup222')
+    // console.log('popup222')
     if (!isToasterOpen) {
       setIsToasterOpen(true);
       toast.success(toastMsg, {
@@ -190,7 +190,7 @@ const Inquiry = () => {
         });
       }
       fetchConverstaionList();
-      console.log("response_inquiry_data", response_inquiry_data);
+      // console.log("response_inquiry_data", response_inquiry_data);
     } catch (error) {
       console.log("error found: ", error);
       router.push("/");
@@ -227,10 +227,10 @@ const Inquiry = () => {
       } else {
         setShowError(true);
       }
-      console.log(
-        response_inquiryConverstaion_data,
-        response_inquiryConverstaion_data
-      );
+      // console.log(
+      //   response_inquiryConverstaion_data,
+      //   response_inquiryConverstaion_data
+      // );
     } catch (error) {
       console.log("error found: ", error);
     }
@@ -269,10 +269,10 @@ const Inquiry = () => {
       } else {
         setReplyList([]);
       }
-      console.log(
-        "response_inquiryReplyList_data",
-        response_inquiryReplyList_data
-      );
+      // console.log(
+      //   "response_inquiryReplyList_data",
+      //   response_inquiryReplyList_data
+      // );
     } catch (error) {
       console.log("error found: ", error);
     }
@@ -292,7 +292,7 @@ const Inquiry = () => {
           response_inquiryReply_service.data,
           token
         );
-        console.log("response_inquiryReply_data", response_inquiryReply_data);
+        // console.log("response_inquiryReply_data", response_inquiryReply_data);
         if (response_inquiryReply_data.status) {
           fetchInquiryReplyList();
         } else {

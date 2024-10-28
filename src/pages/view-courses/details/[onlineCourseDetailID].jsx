@@ -56,7 +56,7 @@ const ViewOnlineCourseDetail = () => {
   const resetLayerRef = useRef();
   const router = useRouter();
   const { onlineCourseDetailID,IsTranding } = router.query;
-  console.log("onlineCourseDetailID",onlineCourseDetailID)
+  // console.log("onlineCourseDetailID",onlineCourseDetailID)
   const token = get_token();
   const reviewData = useSelector((state) => state.allCategory?.review);
   const displayTabData = useSelector((state) => state.allCategory?.tabName);
@@ -88,8 +88,8 @@ const ViewOnlineCourseDetail = () => {
     const offset1 = document.querySelector(".offset--1")?.offsetHeight || 0;
     const pageSection6 =
       document.querySelector(".page-section-6")?.offsetHeight || 0;
-    console.log("pageSection1", pageSection1);
-    console.log("offset1", offset1);
+    // console.log("pageSection1", pageSection1);
+    // console.log("offset1", offset1);
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
@@ -136,7 +136,7 @@ const ViewOnlineCourseDetail = () => {
 
   // UseEffect to check when query is ready
   useEffect(() => {
-    console.log("onlineCourseDetailID 66", onlineCourseDetailID);
+    // console.log("onlineCourseDetailID 66", onlineCourseDetailID);
     if (router.isReady && onlineCourseDetailID) {
       const courseID = onlineCourseDetailID?.slice(
         onlineCourseDetailID.indexOf(":") + 1,
@@ -216,7 +216,7 @@ const ViewOnlineCourseDetail = () => {
         parent_id: courseCombo ? "" : parentId ? parentId : id,
         // parent_id: 0
       };
-      console.log('formData111111111', formData)
+      // console.log('formData111111111', formData)
       const response_getCourseDetail_service = await getCourseDetail_Service(
         encrypt(JSON.stringify(formData), token)
       );
@@ -224,7 +224,7 @@ const ViewOnlineCourseDetail = () => {
         response_getCourseDetail_service.data,
         token
       );
-      console.log("get_courseDetail", response_getCourseDetail_data);
+      // console.log("get_courseDetail", response_getCourseDetail_data);
       if (response_getCourseDetail_data.status) {
         setOnlineCourseAry(response_getCourseDetail_data?.data?.course_detail);
         setRelateCourseAry(
@@ -251,14 +251,14 @@ const ViewOnlineCourseDetail = () => {
             )
             ?.meta?.list?.find((item) => item.id == id)
         );
-        console.log(
-          "123456789098762",
-          response_getCourseDetail_data?.data?.tiles
-            ?.find(
-              (item) => item.type == "content" || item.type == "course_combo"
-            )
-            ?.meta?.list?.find((item) => item.id == id)
-        );
+        // console.log(
+        //   "123456789098762",
+        //   response_getCourseDetail_data?.data?.tiles
+        //     ?.find(
+        //       (item) => item.type == "content" || item.type == "course_combo"
+        //     )
+        //     ?.meta?.list?.find((item) => item.id == id)
+        // );
       } else {
         setShowError(true);
       }
@@ -298,7 +298,7 @@ const ViewOnlineCourseDetail = () => {
             transaction_status: 1,
             post_transaction_id: response_AddtoMyCourse_data.data.txn_id,
           };
-          console.log(formDataConfirm);
+          // console.log(formDataConfirm);
           const response_ConfirmPayment_service = await getFPaymentService(
             encrypt(JSON.stringify(formDataConfirm), token)
           );
@@ -359,15 +359,15 @@ const ViewOnlineCourseDetail = () => {
   const OverView = tiles.find((item) => (item.type = "overview"));
   // console.log('key', key)
 
-  const handleBackdetails =()=>{
-    if(IsTranding){
-      router.push('/')
-    }else{
-      const back = localStorage.getItem('redirectdetails')
-      if(back){
-        router.push(back)
-      }else{
-        router.back()
+  const handleBackdetails = () => {
+    if (IsTranding) {
+      router.push("/");
+    } else {
+      const back = localStorage.getItem("redirectdetails");
+      if (back) {
+        router.push(back);
+      } else {
+        router.back();
       }
     }
   };
@@ -450,7 +450,7 @@ const ViewOnlineCourseDetail = () => {
                   </span>{" "}
                   120 PDF's
                 </p> */}
-                    {console.log('contentData', contentData)}
+                    {/* {console.log('contentData', contentData)} */}
                     {contentData?.segment_information && (
                       <p className="m-0 me-4">
                         {contentData.segment_information}
@@ -512,8 +512,7 @@ const ViewOnlineCourseDetail = () => {
                         <div className="m-0">
                           <div className="m-0 gap-2 d-flex align-items-center">
                             <span className="costPrice">
-                              {/* <FaRupeeSign className="rupeeSign" /> */}
-                              ₹
+                              {/* <FaRupeeSign className="rupeeSign" /> */}₹
                               {onlineCourseAry.is_gst == 0
                                 ? Number(onlineCourseAry.mrp) +
                                   Number(onlineCourseAry.tax)
@@ -525,8 +524,7 @@ const ViewOnlineCourseDetail = () => {
                               <span className="discountPrice">
                                 <del>
                                   {/* <FaRupeeSign className="rupeeSign2" /> */}
-                                  ₹
-                                  {onlineCourseAry.course_sp}
+                                  ₹{onlineCourseAry.course_sp}
                                 </del>
                               </span>
                             )}

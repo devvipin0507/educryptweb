@@ -180,7 +180,7 @@ const Header = ({ search }) => {
     try {
       const formData = new FormData();
       const response_content_service = await getCourse_Catergory_Service(formData);
-      console.log('bannerResponse', decrypt(response_content_service.data, token))
+      // console.log('bannerResponse', decrypt(response_content_service.data, token))
       const content_service_Data = decrypt(response_content_service.data, token)
       if (content_service_Data.status) {
         dispatch(all_CategoryAction(content_service_Data.data))

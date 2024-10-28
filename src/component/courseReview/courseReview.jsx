@@ -68,7 +68,7 @@ const CourseReview = ({courseDetail}) => {
   }, [reviewModalShow, reviewList])
 
   const showErrorToast = (toastMsg) => {
-    console.log("toastMsg",toastMsg)
+    // console.log("toastMsg",toastMsg)
     toast.error(toastMsg, {
       autoClose: 1500
   });
@@ -99,9 +99,9 @@ const CourseReview = ({courseDetail}) => {
         // course_id: 107
       }
       const repsonse_CourseReview_service = await getCourseReviewService(encrypt(JSON.stringify(formData), token));
-      console.log('repsonse_CourseReview_service', repsonse_CourseReview_service)
+      // console.log('repsonse_CourseReview_service', repsonse_CourseReview_service)
       const response_CourseReview_data = decrypt(repsonse_CourseReview_service.data, token);
-      console.log('response_CourseReview_data', response_CourseReview_data);
+      // console.log('response_CourseReview_data', response_CourseReview_data);
       if(response_CourseReview_data.status) {
         setReviewList(response_CourseReview_data.data)
         fetchCourseDetail()
@@ -177,7 +177,7 @@ const CourseReview = ({courseDetail}) => {
         response_getCourseDetail_service.data,
         token
       );
-      console.log("response_getCourseDetail_data", response_getCourseDetail_data);
+      // console.log("response_getCourseDetail_data", response_getCourseDetail_data);
       if (response_getCourseDetail_data.status) {
         // setOnlineCourseAry(response_getCourseDetail_data?.data?.course_detail);
         setAvgRating(response_getCourseDetail_data?.data?.course_detail?.avg_rating)

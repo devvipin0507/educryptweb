@@ -34,7 +34,7 @@ const ExamCalender = ({
     setLayer1Index(index);
     setShowLayer("layer2");
     setLayer2List(layer1Data.meta?.list[index]);
-    console.log(layer1Data.meta?.list[index]);
+    // console.log(layer1Data.meta?.list[index]);
   };
 
   const getLayer3Data = async (index) => {

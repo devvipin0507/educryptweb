@@ -12,62 +12,77 @@ const content_image = "/assets/images/slideImg.png";
 const content_title = "Selection Hi Jawab Hai Something Special For VCAINS";
 
 const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
-
-  const [modalShow, setModalShow] = useState(false)
+  const [modalShow, setModalShow] = useState(false);
   const router = useRouter();
   // console.log("value", value);
 
   const handleExplore = () => {
     router.push(
-      `/view-courses/details/${titleName + ":" + value.id + "&" + courseCombo + 'parent:'}`
+      `/view-courses/details/${
+        titleName + ":" + value.id + "&" + courseCombo + "parent:"
+      }`
     );
   };
 
   const handleBuy = () => {
     const isLoggedIn = userLoggedIn();
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       const currentPath = router.asPath;
       localStorage.setItem("redirectAfterLogin", currentPath);
-      
-      localStorage.setItem('previousTab', router.pathname);
+
+      localStorage.setItem("previousTab", router.pathname);
       router.push(
         `/view-courses/course-order/${
           titleName + ":" + value.id + "&" + courseCombo
         }`
       );
-    }else{
-      setModalShow(true)
+    } else {
+      setModalShow(true);
     }
   };
 
-  return (<>
-    <LoginModal
+  return (
+    <>
+      <LoginModal
         show={modalShow}
         onHide={() => {
           setModalShow(false);
         }}
       />
-    <div className="card border-0 shadow-lg mb-3 detail-rightCard m-3">
-      {value&&<p className="detailStripe">New</p>}
+      <div className="card border-0 shadow-lg mb-3 detail-rightCard m-3">
+        {value && <p className="detailStripe">New</p>}
         <div className="d-flex justify-content-center">
-        <img
-          style={{ borderRadius: "10px" }}
-          src={value?.cat_type == 1 ? value?.cover_image : value?.desc_header_image ? value?.desc_header_image : '/assets/images/noImage.jfif'}
-          className={`${value?.cat_type == 0 ? 'book_course_img' : 'course_img'}`}
-          alt="..."
-        />
+          <img
+            style={{ borderRadius: "10px" }}
+            src={
+              value?.cat_type == 1
+                ? value?.cover_image
+                : value?.desc_header_image
+                ? value?.desc_header_image
+                : "/assets/images/noImage.jfif"
+            }
+            className={`${
+              value?.cat_type == 0 ? "book_course_img" : "course_img"
+            }`}
+            alt="..."
+          />
         </div>
-      {/* <div className="m-0 free-badge">FREE</div> */}
-      <div className="card-body pt-2 px-0 pb-0">
-        <h6 className="m-0 mb-2 slideTitle">{value?.title}</h6>
-        <div className="courserate">
-          <div className="d-flex align-items-center">
-            <span className="rating">
-              <IoStar /> {value.avg_rating ? parseFloat(value.avg_rating).toFixed(1) : "0.0"}
-            </span>
-            <p className="m-0 review">
-              {value.user_rated ? value.user_rated : 0} reviews
-            </p>
+        {/* <div className="m-0 free-badge">FREE</div> */}
+        <div className="card-body pt-2 px-0 pb-0">
+          <h6 className="m-0 mb-2 slideTitle">{value?.title}</h6>
+          <div className="courserate">
+            <div className="d-flex align-items-center">
+              <span className="rating">
+                <IoStar />{" "}
+                {value.avg_rating
+                  ? parseFloat(value.avg_rating).toFixed(1)
+                  : "0.0"}
+              </span>
+              <p className="m-0 review">
+                {value.user_rated ? value.user_rated : 0} reviews
+              </p>
+            </div>
+            {value?.mrp == 0 && <p className="m-0 freeStripe">Free</p>}
           </div>
           {value?.mrp == 0 && <p className="m-0 freeStripe">Free</p>}
         </div>
@@ -90,20 +105,18 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
             {/* <div className="coursePriceContainer"> */}
             <div className="coursePrice gap-2 d-flex align-items-center pb-1 m-0">
               <div className="m-0 d-flex align-items-center detail_C_Price">
-                {/* <FaRupeeSign className="rupeeSign" /> */}
-                ₹
+                {/* <FaRupeeSign className="rupeeSign" /> */}₹
                 {/* <span className='costPrice'> */}
                 {value.is_gst == 0
                   ? Number(value.mrp) + Number(value.tax)
                   : value.mrp}
                 {/* </span> */}
               </div>
-              {(Number(value.mrp) + Number(value.tax)) != value.course_sp && (
+              {Number(value.mrp) + Number(value.tax) != value.course_sp && (
                 <>
                   <p className="m-0 Card-OffPrice">
                     <del>
-                      {/* <FaRupeeSign className="rupeeSign2" /> */}
-                      ₹
+                      {/* <FaRupeeSign className="rupeeSign2" /> */}₹
                       {value?.course_sp}
                     </del>
                   </p>
@@ -113,20 +126,9 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
                 </>
               )}
             </div>
-            {/* </div> */}
           </>
         )}
-        {value.is_purchased == 0 && (
-          <div className="d-flex justify-content-between onlineCourseButtons1">
-            {value?.mrp != 0 ? (
-              <Button1 value="Buy Now" handleClick={handleBuy} />
-            ) : (
-              <Button1 value="Add to My Course" handleClick={handleAddToMyCourse} />
-            )}
-          </div>
-        )}
       </div>
-    </div>
     </>
   );
 };

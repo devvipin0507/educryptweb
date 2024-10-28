@@ -21,7 +21,7 @@ const Bookstore = () => {
     const router = useRouter()
     
     const contentData = useSelector((state) => state?.allCategory?.content)
-    console.log('conterntData' , contentData)
+    // console.log('conterntData' , contentData)
     useEffect(() => {
         if (contentData?.banner_list_web?.length > 0) {
             setBanner(contentData.banner_list_web[0]?.banner_url);
@@ -57,7 +57,7 @@ const Bookstore = () => {
             response_getCourse_service.data,
             token
           );
-          console.log("response_getCourse_data", response_getCourse_data);
+          // console.log("response_getCourse_data", response_getCourse_data);
           if (response_getCourse_data?.status) {
             if(response_getCourse_data?.data?.length == 0) {
               setShowError(true)
@@ -80,7 +80,7 @@ const Bookstore = () => {
       };
 
       const handleDetail = (value) => {
-        console.log("detailesss", value);
+        // console.log("detailesss", value);
         router.push(`/private/myProfile/detail/${"Bookstore" + ":" + value.id + "&" + value.combo_course_ids+'parent:'}`)
     }
 

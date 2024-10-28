@@ -26,8 +26,8 @@ const CurrentAffCard = ({ value, handleBlogDetail }) => {
   return (
     <>
       {!isShowBlogDetail ? (
-        <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-4 p-0">
-          <div className="card border-0 shadow b-radius course_card m-0">
+        <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-4 p-0">
+          <div className="card border-0 shadow2 b-radius course_card m-0">
             <img
               src={value.image ? value.image : "/assets/images/noImage.jfif"}
               style={{ borderRadius: "10px" }}

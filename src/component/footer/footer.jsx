@@ -47,7 +47,7 @@ const Footer = () => {
       if (response_footer_service.status == 200) {
         setFooterLinks(response_footer_service.data)
       }
-      console.log(response_footer_service)
+      // console.log(response_footer_service)
     } catch (error) {
       console.log("error found: ", error)
       // router.push('/')

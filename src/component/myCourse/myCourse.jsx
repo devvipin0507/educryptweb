@@ -14,20 +14,20 @@ import LoaderAfterLogin from "../loaderAfterLogin";
 
 const MyCourse = () => {
   const [showDetail, setShowDetail] = useState(false);
-  const [showError, setShowError] = useState(false)
+  const [showError, setShowError] = useState(false);
   const [getCourse, setGetCourse] = useState("");
   const [myCourseData, setMyCourseData] = useState([]);
   const [FreeCourseData, setFreeCourseData] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    setShowError(false)
+    setShowError(false);
     fetchMyCourseService();
     setShowDetail(false);
   }, [getCourse]);
 
   const fetchMyCourseService = async () => {
-    try{
+    try {
       const token = get_token();
       const formData = {};
       const response_MyCourse_service = await getMyCourseService(
@@ -39,16 +39,19 @@ const MyCourse = () => {
       );
       // console.log('response_MyCourse_data', response_MyCourse_data)
       if (response_MyCourse_data?.status) {
-        if(response_MyCourse_data?.data?.length < 0) {
-          setShowError(true)
-        }
-        else {
-          setMyCourseData(response_MyCourse_data.data.filter((item) => item?.mrp != 0));
-          setFreeCourseData(response_MyCourse_data.data.filter((item) => item?.mrp == 0))
+        if (response_MyCourse_data?.data?.length < 0) {
+          setShowError(true);
+        } else {
+          setMyCourseData(
+            response_MyCourse_data.data.filter((item) => item?.mrp != 0)
+          );
+          setFreeCourseData(
+            response_MyCourse_data.data.filter((item) => item?.mrp == 0)
+          );
         }
       } else if (response_MyCourse_data.message == msg) {
-        setShowError(true)
-        if(response_MyCourse_data.message){
+        setShowError(true);
+        if (response_MyCourse_data.message) {
           toast.error(response_MyCourse_data.message);
         }
         localStorage.removeItem("jwt");
@@ -56,13 +59,13 @@ const MyCourse = () => {
         // location.href("/")
         router.push("/");
       } else {
-        setShowError(true)
+        setShowError(true);
         // if(response_MyCourse_data.message){
         //   toast.error(response_MyCourse_data.message);
         // }
       }
     } catch (error) {
-      console.log("error Found: ", error)
+      console.log("error Found: ", error);
     }
   };
 
@@ -70,7 +73,7 @@ const MyCourse = () => {
     console.log("detailesss", value);
     router.push(
       `/private/myProfile/detail/${
-        "MyCourse" + ":" + value.id + "&" + value.combo_course_ids + 'parent:'
+        "MyCourse" + ":" + value.id + "&" + value.combo_course_ids + "parent:"
       }`
     );
   };
@@ -112,7 +115,7 @@ const MyCourse = () => {
                 <div className="container-fluid">
                   <div className="row">
                     {/* {console.log('myCourseData', FreeCourseData)} */}
-                    {myCourseData?.length > 0 ?
+                    {myCourseData?.length > 0 ? (
                       myCourseData.map((item, index) => {
                         return (
                           item.mrp !== 0 && (
@@ -125,21 +128,22 @@ const MyCourse = () => {
                                 titleName={""}
                                 handleDetail={handleDetail}
                                 titleId="PAID COURSES"
-                                detail = {false}
+                                detail={false}
                                 setGetCourse={setGetCourse}
                               />
                             </div>
                           )
                         );
                       })
-                      :
+                    ) : (
                       <>
-                        {(showError || myCourseData?.length == 0) ?
-                        <ErrorPageAfterLogin />
-                        :
-                        <LoaderAfterLogin />}
+                        {showError || myCourseData?.length == 0 ? (
+                          <ErrorPageAfterLogin />
+                        ) : (
+                          <LoaderAfterLogin />
+                        )}
                       </>
-                    }
+                    )}
                   </div>
                 </div>
               </Tab>
@@ -147,34 +151,37 @@ const MyCourse = () => {
                 <div className="container-fluid">
                   <div className="row">
                     {/* {console.log()} */}
-                    {FreeCourseData?.length > 0 ? FreeCourseData.map((item, index) => {
-                      return (
-                        item.mrp == 0 && (
-                          <div
-                            className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0"
-                            key={index}
-                          >
-                            <Card4
-                              value={item}
-                              titleName={""}
-                              handleDetail={handleDetail}
-                              titleId="FREE COURSES"
-                              detail = {false}
-                            />
-                          </div>
-                        )
-                      );
-                    })
-                    :
-                    <>
+                    {FreeCourseData?.length > 0 ? (
+                      FreeCourseData.map((item, index) => {
+                        return (
+                          item.mrp == 0 && (
+                            <div
+                              className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4 p-0"
+                              key={index}
+                            >
+                              <Card4
+                                value={item}
+                                titleName={""}
+                                handleDetail={handleDetail}
+                                titleId="FREE COURSES"
+                                detail={false}
+                                data={0}
+                              />
+                            </div>
+                          )
+                        );
+                      })
+                    ) : (
                       <>
-                        {(showError || FreeCourseData?.length == 0) ?
-                        <ErrorPageAfterLogin />
-                        :
-                        <LoaderAfterLogin />}
+                        <>
+                          {showError || FreeCourseData?.length == 0 ? (
+                            <ErrorPageAfterLogin />
+                          ) : (
+                            <LoaderAfterLogin />
+                          )}
+                        </>
                       </>
-                    </>
-                  }
+                    )}
                   </div>
                 </div>
               </Tab>

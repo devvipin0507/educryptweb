@@ -49,13 +49,13 @@ const ComboCourseCard = ({
   // console.log('CourseID', value)
   return (
     <div
-      className={`${checkLogin ? "col-md-4 my-3" : "col-md-4 my-3"}`}
+      className={`${checkLogin ? "col-md-4 my-3 px-2" : "col-md-4 my-3 px-2"}`}
       //   style={checkLogin ? {} : { width: "320px" }}
     >
       <div
         className={`${
           checkLogin ? "" : "freeCard"
-        }card border-0 shadow b-radius mb-3 p-2 h-100  `}
+        } card border-0  b-radius p-2 h-100 `}
         onClick={handleDetail}
       >
         {
