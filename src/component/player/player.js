@@ -5,8 +5,9 @@ import dynamic from 'next/dynamic';
 import 'shaka-player/dist/controls.css';
 
 const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title, start_date, video_type }) => {
-  // console.log("NonDRMVideourl", NonDRMVideourl)
-  // console.log("start_date", start_date)
+  console.log("NonDRMVideourl", NonDRMVideourl)
+  console.log("start_date", start_date)
+  console.log("video_type", video_type)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const playerRef = useRef(null);
@@ -128,8 +129,6 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
       const adManager = player.getAdManager();
       adManager.initMediaTailor(container, netEngine, videoElement);
       setPlayer(player);
-
-
       const config = {
         'enableTooltips': true,
         'overflowMenuButtons': ['quality', 'caption', 'language'],
@@ -176,26 +175,37 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           // await player.load("https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd");
           if (start_date) {
             player.load(`${source?.file_url}?start=${start_date}`).then(function () {
+              if (player.isLive()) {
+                setLive(false)
+              }
+              else {
+                var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
+                var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
+                if (seekBar) {
+                  // seekBar.remove();
+                  seekBar2.remove();
+                }
+                setLive(true)
+              }
             }).catch((err) => {
             })
           } else {
             player.load(NonDRMVideourl).then(function () {
+              if (player.isLive()) {
+                setLive(false)
+              }
+              else {
+                var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
+                var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
+                if (seekBar) {
+                  // seekBar.remove();
+                  seekBar2.remove();
+                }
+                setLive(true)
+              }
             }).catch((err) => {
             })
           }
-          if (player.isLive()) {
-            setLive(true)
-          }
-          else {
-            var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
-            var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
-            if (seekBar) {
-              // seekBar.remove();
-              seekBar2.remove(); 
-            }
-            setLive(false)
-          }
-
 
           // player.load(`${source?.file_url}?start=${start_date}`).then(function() {
           // }).catch((err)=>{
@@ -203,20 +213,20 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
 
         } else {
           if (start_date) {
-            // const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
-            const mediaTailorUrl = source?.file_url;
+            const mediaTailorUrl = `${source?.file_url}?start=${start_date}`;
+            // const mediaTailorUrl = source?.file_url;
             await player.load(mediaTailorUrl).then(() => {
               if (player.isLive()) {
-                setLive(true)
+                setLive(false)
               }
               else {
                 var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
                 var seekBar2 = controls.getControlsContainer().querySelector('.shaka-current-time');
                 if (seekBar) {
                   // seekBar.remove();
-                  seekBar2.remove(); 
+                  seekBar2.remove();
                 }
-                setLive(false)
+                setLive(true)
               }
             }).catch((error) => {
               console.log('Error Loading video', error)
@@ -227,7 +237,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
             const mediaTailorUrl = source?.file_url;
             await player.load(mediaTailorUrl).then(() => {
               if (player.isLive()) {
-                setLive(true)
+                setLive(false)
               }
               else {
                 var seekBar = controls.getControlsContainer().querySelector('.shaka-seek-bar-container');
@@ -236,7 +246,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
                   // seekBar.remove();
                   seekBar2.remove();
                 }
-                setLive(false)
+                setLive(true)
               }
             }).catch((error) => {
               console.log('Error Loading video', error)
@@ -387,11 +397,11 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           <>
             {/* {Live ?  <span className="liveIndicator">Live</span> : ""} */}
             <div className="_controls_video_">
-            {!Live &&
-          <div className="time_video-custome">
-            <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
-          </div>
-        }
+              {Live &&
+                <div className={`time_video-custome`}>
+                  <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
+                </div>
+              }
               <div className="__video-deu__">
               </div>
 

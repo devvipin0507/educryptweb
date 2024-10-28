@@ -20,43 +20,25 @@ const LiveTest = () => {
   const intervalRef = useRef(null);
 
   const fetchLiveTest = async (type) => {
-    try{
-      const formData = {
-        page: 1,
-        type: type,
-      };
-      const encryptedData = encrypt(JSON.stringify(formData), token);
-      const response = await getLiveTestService(encryptedData);
-      const decryptedData = decrypt(response.data, token);
-      console.log('decryptedData', decryptedData)
-      if (decryptedData?.status) {
-        if(decryptedData?.data?.length == 0) {
-          setShowError(true)
-        }
-        else {
-          setLiveTests(decryptedData.data);
-        }
+    const formData = {
+      page: 1,
+      type: type,
+    };
+    const encryptedData = encrypt(JSON.stringify(formData), token);
+    const response = await getLiveTestService(encryptedData);
+    const decryptedData = decrypt(response.data, token);
+    console.log('decryptedData', decryptedData)
+    if (!decryptedData?.status) {
+      if (decryptedData.message === msg) {
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("user_id");
+        router.push("/");
       }
-      else {
-        if(decryptedData.message == msg) {
-          localStorage.removeItem("jwt");
-          localStorage.removeItem("user_id");
-          router.push("/");
-          setLiveTests([])
-          setShowError(true)
-        }
-        else{
-          setLiveTests([])
-          setShowError(true)
-        }
-        // throw new Error(decryptedData.message || "Error fetching data");
-      }
+      throw new Error(decryptedData.message || "Error fetching data");
     }
-    catch (error) {
-      console.log("error found: ", error)
-      router.push("/");
-    }
-  }
+
+    return setLiveTests(decryptedData.data);
+  };
 
   useEffect(() => {
     setShowError(false)
@@ -186,7 +168,5 @@ const LiveTest = () => {
     </>
   );
 };
-
-const msg = "You are already logged in with some other devices, So you are logged out from this device. 9"
 
 export default LiveTest;

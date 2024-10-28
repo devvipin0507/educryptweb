@@ -7642,7 +7642,7 @@ font-weight: 700;
   position: absolute;
   right: -8%;
   color: #fff;
-  z-index: 9999999999999;
+  /* z-index: 1; */
   bottom: 65px;
   width: 100%;
   display: flex;
