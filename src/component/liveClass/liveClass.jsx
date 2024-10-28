@@ -154,7 +154,7 @@ const LiveClass = () => {
               </Tab>
             </Tabs>
           </div>
-        </div>msg
+        </div>
       </section>
     </>
   );
