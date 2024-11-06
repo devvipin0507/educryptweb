@@ -211,10 +211,10 @@ const Profile = () => {
         response_updateProfile_service.data,
         token
       );
-      console.log("checked", editProfileData, response_updateProfile_data);
+      // console.log("checked", editProfileData, response_updateProfile_data);
       if(response_updateProfile_data.status) {
         if(response_updateProfile_data.message){
-          console.log("response_updateProfile_data.message",response_updateProfile_data.message)
+          // console.log("response_updateProfile_data.message",response_updateProfile_data.message)
           toast.success(response_updateProfile_data.message);
         }
       setIsEditProfile(false)
@@ -255,7 +255,7 @@ const Profile = () => {
         response_getMyProfile_service.data,
         token
       );
-      console.log('response_getMyProfile_data', response_getMyProfile_data)
+      // console.log('response_getMyProfile_data', response_getMyProfile_data)
       if (response_getMyProfile_data.status) {
         setProfileData(response_getMyProfile_data.data);
         setEditProfileData({
@@ -444,7 +444,7 @@ const Profile = () => {
                   </div>
                   <div className="col-sm-6 col-md-8 mb-4">
                     <p className="m-0 user_Detail">
-                      {console.log('stateList', state)}
+                      {/* {console.log('stateList', state)} */}
                       {state?.length > 0 ?
                         state.map((item, index) => {
                           return (

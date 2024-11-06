@@ -75,7 +75,7 @@ const SearchCourses = ({catId, handleFilterCourses}) => {
         } else {
           setSearchCourseList([]);
         }
-        console.log("response_getCourses_data", response_getCourses_data);
+        // console.log("response_getCourses_data", response_getCourses_data);
       }
     } catch (error) {
       console.log("error found: ", error)

@@ -29,7 +29,7 @@ const RecordedClass = ({ propsValue, tabName, resetRef, courseDetail, CourseID }
     setLayer1Index(index);
     setShowLayer("layer2");
     setLayer2List(layer1Data.meta?.list[index]);
-    console.log(layer1Data.meta?.list[index]);
+    // console.log(layer1Data.meta?.list[index]);
   };
 
   const getLayer3Data = async (index) => {
@@ -73,7 +73,7 @@ const RecordedClass = ({ propsValue, tabName, resetRef, courseDetail, CourseID }
   };
 
   const handleRead = () => {
-    console.log("Read Now");
+    // console.log("Read Now");
   };
 
   return (

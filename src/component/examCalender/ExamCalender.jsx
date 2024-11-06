@@ -86,7 +86,7 @@ const ExamCalender = ({
   };
 
   const handleRead = () => {
-    console.log("Read Now");
+    // console.log("Read Now");
   };
 
   return (

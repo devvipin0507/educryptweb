@@ -206,16 +206,16 @@ const PurchaseHistory = () => {
           const response_getFPayment_service = await getFPaymentService(
             encrypt(JSON.stringify(formDataPayment), token)
           );
-          console.log(
-            "response_getFPayment_service",
-            response_getFPayment_service
-          );
+          // console.log(
+          //   "response_getFPayment_service",
+          //   response_getFPayment_service
+          // );
           const response_getFPayment_data = decrypt(
             response_getFPayment_service.data,
             token
           );
           let key = response_getPayGateway_data?.data?.easebuzz?.mid;
-          console.log("response_getFPayment_data", response_getFPayment_data);
+          // console.log("response_getFPayment_data", response_getFPayment_data);
           if (response_getFPayment_data.status) {
             // console.log(response.razorpay_payment_id)
             if(response_getPayGateway_data?.data?.rzp?.status == 1) {
@@ -235,14 +235,14 @@ const PurchaseHistory = () => {
                     payid: response.razorpay_payment_id,
                     pay_via: 3,
                   };
-                  console.log("Payment ID:", response.razorpay_payment_id);
-                  console.log("Order ID:", response.razorpay_order_id);
-                  console.log("Signature:", response.razorpay_signature);
+                  // console.log("Payment ID:", response.razorpay_payment_id);
+                  // console.log("Order ID:", response.razorpay_order_id);
+                  // console.log("Signature:", response.razorpay_signature);
                   let status = 1;
                   paymentConfirmation(status, orderDetails, item.id);
                 },
               };
-              console.log("option", options);
+              // console.log("option", options);
               const instance = new Razorpay(options);
               instance.on("payment.failed", function (response) {
                 toast.error("Payment failed!");
@@ -290,7 +290,7 @@ const PurchaseHistory = () => {
       var options = {
         access_key: acc_key, // access key received via Initiate Payment
         onResponse: (response) => {
-          console.log(response);
+          // console.log(response);
           // post_transaction_id
           const order_details = {
             txnid: response.txnid,
@@ -298,7 +298,7 @@ const PurchaseHistory = () => {
             pay_via: 9,
           };
           let status = response.status == "success" ? 1 : 0;
-          console.log('responsey8778', response)
+          // console.log('responsey8778', response)
           // loading(true);
           paymentConfirmation(status, order_details, id);
         },
@@ -324,7 +324,7 @@ const PurchaseHistory = () => {
         transaction_status: status,
         post_transaction_id: data.payid,
       };
-      console.log("formDataConfirm", formDataConfirm);
+      // console.log("formDataConfirm", formDataConfirm);
       const response_ConfirmPayment_service = await getFPaymentService(
         encrypt(JSON.stringify(formDataConfirm), token)
       );
@@ -332,7 +332,7 @@ const PurchaseHistory = () => {
         response_ConfirmPayment_service.data,
         token
       );
-      console.log("response_ConfirmPayment_data", response_ConfirmPayment_data);
+      // console.log("response_ConfirmPayment_data", response_ConfirmPayment_data);
       if (response_ConfirmPayment_data.status) {
         setThankYouModalShow(true)
         fetchMyOrders();
@@ -366,37 +366,37 @@ const PurchaseHistory = () => {
 
     // Compare the two timestamps
     if (currentTimestamp >= givenTimestamp) {
-      console.log("Current date is greater than the given date.");
+      // console.log("Current date is greater than the given date.");
       return "Upcoming"
     } else if (currentTimestamp < givenTimestamp) {
-      console.log("Given date is greater than the current date.");
+      // console.log("Given date is greater than the current date.");
       return "Overdue"
     } 
     else {
-      console.log("Both dates are equal.");
+      // console.log("Both dates are equal.");
       return "due"
     }
   }
 
   const handleExtendValidity = (value) => {
-    console.log('item2222', value)
+    // console.log('item2222', value)
     setValidityShow(true)
     setValidityDetail(value)
     // console.log('extend', value)
   }
 
   const handleSelectedValidity = (selectedPack, courseData) => {
-    console.log("Clicked ==========12345", selectedPack);
+    // console.log("Clicked ==========12345", selectedPack);
     setValidityShow(false)
     handleValidityPayNow(selectedPack, courseData)
   };
 
 
   const handleValidityPayNow = async (item, courseData) => {
-    console.log('courseData', courseData)
+    // console.log('courseData', courseData)
     try{
       // console.log("EMi installments", item);
-      console.log("pay now", item);
+      // console.log("pay now", item);
       const isLoggedIn = localStorage.getItem("jwt");
       if (isLoggedIn) {
         const formData = {};
@@ -425,16 +425,16 @@ const PurchaseHistory = () => {
           const response_getFPayment_service = await getFPaymentService(
             encrypt(JSON.stringify(formDataPayment), token)
           );
-          console.log(
-            "response_getFPayment_service",
-            response_getFPayment_service
-          );
+          // console.log(
+          //   "response_getFPayment_service",
+          //   response_getFPayment_service
+          // );
           const response_getFPayment_data = decrypt(
             response_getFPayment_service.data,
             token
           );
           let key = response_getPayGateway_data?.data?.easebuzz?.mid;
-          console.log("response_getFPayment_data", response_getFPayment_data);
+          // console.log("response_getFPayment_data", response_getFPayment_data);
           if (response_getFPayment_data.status) {
             // console.log('price', item.price)
             if(response_getPayGateway_data?.data?.rzp?.status == 1) {
@@ -455,15 +455,15 @@ const PurchaseHistory = () => {
                     payid: response.razorpay_payment_id,
                     pay_via: 3,
                   };
-                  console.log("Payment ID:", response.razorpay_payment_id);
-                  console.log("Order ID:", response.razorpay_order_id);
-                  console.log("Signature:", response.razorpay_signature);
+                  // console.log("Payment ID:", response.razorpay_payment_id);
+                  // console.log("Order ID:", response.razorpay_order_id);
+                  // console.log("Signature:", response.razorpay_signature);
                   let status = 1;
                   paymentValidityConfirmation(status, orderDetails, item.course_id, courseData);
                 },
               };
               const instance = new Razorpay(options);
-              console.log("option", options);
+              // console.log("option", options);
               instance.on("payment.failed", function (response) {
                 toast.error("Payment failed!");
               });
@@ -510,7 +510,7 @@ const PurchaseHistory = () => {
 
         disable_payment_mode: 'emi',
         onResponse: (response) => {
-          console.log(response);
+          // console.log(response);
           // post_transaction_id
           const order_details = {
             txnid: response.txnid,
@@ -518,7 +518,7 @@ const PurchaseHistory = () => {
             pay_via: 9,
           };
           let status = response.status == "success" ? 1 : 0;
-          console.log('responsey8778', response)
+          // console.log('responsey8778', response)
           // loading(true);
           paymentValidityConfirmation(status, order_details, id, courseData);
         },
@@ -554,7 +554,7 @@ const PurchaseHistory = () => {
         response_ConfirmPayment_service.data,
         token
       );
-      console.log("response_ConfirmPayment_data", response_ConfirmPayment_data);
+      // console.log("response_ConfirmPayment_data", response_ConfirmPayment_data);
       if (response_ConfirmPayment_data.status) {
         // toast.success(response_ConfirmPayment_data.message);
         setThankYouModalShow(true);
@@ -629,8 +629,8 @@ const PurchaseHistory = () => {
                     <div className="card historyCard px-2 py-2 mb-2" key={index}>
                       <div class="row align-items-center">
                         {/* <tr className=""> */}
-                        <div class="col-12 col-md-2 mb-2 mb-md-0 purchaseThumbnail">
-                           <div>
+                        <div class="mx-3 col-12 col-md-2 mb-2 mb-md-0 purchaseThumbnail">
+                           <div className="d-flex align-items-center">
                             <img
                               loading="lazy"
                               className="img-fluid"
@@ -670,19 +670,21 @@ const PurchaseHistory = () => {
                                 <>
                                   {item.invoice_url && (
                                     <div class="col-6 col-md-1 text-end d-flex">
+
+                                      {item?.prices?.length > 0 &&
+                                        <Button2 value="Extend Validity" handleClick={() => handleExtendValidity(item)} />
+                                      }
+                                      <>
+                                        &nbsp;
+                                      </>
                                       <Button1
                                         value={"Download"}
                                         handleClick={() =>
                                           handleInvoice(item.invoice_url)
                                         }
                                       />
-                                      <>
-                                      &nbsp;
-                                      </>
                                       {/* {console.log('item', item)} */}
-                                      {item?.prices?.length > 0 &&
-                                        <Button2 value="Extend Validity" handleClick={() => handleExtendValidity(item)} />
-                                      }
+                                      
                                       {/* <button class="btn btn-warning">Download <i class="bi bi-download"></i></button> */}
                                    </div>
                                   )}

@@ -128,6 +128,44 @@ const Card3 = ({ value, titleName, courseCombo, handleAddToMyCourse }) => {
             </div>
           </>
         )}
+
+          {value.is_purchased != 0 ? (
+            <>
+              {!router.pathname.startsWith("/private/myProfile/detail") &&
+              ((!router.pathname.startsWith("/private/myProfile/detail") &&
+                value.mrp != 0) ||
+                titleName != "detail") ? (
+                <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
+                  <Button1
+                    value={
+                      value?.is_purchased == 1
+                        ? "View Content"
+                        : value?.purchase_date != ""
+                        ? "View Content"
+                        : "View Detail"
+                    }
+                    data={true}
+                    handleClick={() => handleDetail(value)}
+                  />
+                  {value?.prices?.length > 0 && (
+                    <Button2
+                      value="Extend Validity"
+                      data={true}
+                      handleClick={() => handleExtendValidity(value)}
+                    />
+                  )}
+                </div>
+              ) : (
+                <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
+                  <Button1 widthFull={true} value="Purchased" />
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="myCourseBtn d-flex flex-wrap flex-lg-nowrap gap-2">
+              <Button1 widthFull={true} value={"Buy Now"} handleClick={handleBuy} />
+            </div>
+          )}
       </div>
     </>
   );

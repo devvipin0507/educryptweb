@@ -1,8 +1,10 @@
 import { getCourseDetail_Service } from "@/services";
 import {
+  comboDetail,
   decrypt,
   encrypt,
   get_token,
+  isOurCourse,
   isValidData,
   userLoggedIn,
 } from "@/utils/helpers";
@@ -22,12 +24,13 @@ import Card4 from "@/component/cards/card4";
 import { useRouter } from "next/router";
 import Header from "@/component/header/header";
 import SideBar from "@/component/sideBar/sideBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ComboCourse from "@/component/comboCourse/comboCourse";
 import Loader from "@/component/loader";
 import LoaderAfterLogin from "@/component/loaderAfterLogin";
 import ErrorPageAfterLogin from "@/component/errorPageAfterLogin";
 import LoginModal from "@/component/modal/loginModal";
+import { reset_tab } from "@/store/sliceContainer/masterContentSlice";
 
 const Details = ({ value }) => {
   const [key, setKey] = useState(null);
@@ -48,6 +51,7 @@ const Details = ({ value }) => {
   const displayTabData = useSelector((state) => state.allCategory?.tabName);
 
   const router = useRouter();
+  const dispatch = useDispatch();
   const { details } = router.query;
   const reviewData = useSelector((state) => state.allCategory?.review);
   const versionData = useSelector((state) => state.allCategory?.versionData);
@@ -99,28 +103,6 @@ const Details = ({ value }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [tiles, key]);
 
-  // const handleScroll = () => {
-  //   const currentScrollY = window.scrollY;
-  //   setScrollY(currentScrollY);
-  //   // console.log("key=========================", key);
-
-  //   if (
-  //     currentScrollY >= 300 &&
-  //     key == tiles?.find((item) => (item.type = "overview"))?.tile_name
-  //   ) {
-  //     setClass(true);
-  //   } else {
-  //     setClass(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [key]);
-
   useEffect(() => {
     if (details) {
       // window.scrollTo(0, 0);
@@ -150,10 +132,10 @@ const Details = ({ value }) => {
       const formData = {
         course_id: id,
         page: 1,
-        // parent_id: courseCombo ? "" : parentId ? parentId : id,
-        parent_id : ''
+        parent_id: courseCombo ? "" : parentId ? parentId : id,
+        // parent_id : ''
       };
-      console.log("formData", formData);
+      // console.log("formData", formData);
       const response_getCourseDetail_service = await getCourseDetail_Service(
         encrypt(JSON.stringify(formData), token)
       );
@@ -161,10 +143,10 @@ const Details = ({ value }) => {
         response_getCourseDetail_service.data,
         token
       );
-      console.log(
-        "response_getCourseDetail_data56786545678",
-        response_getCourseDetail_data
-      );
+      // console.log(
+      //   "response_getCourseDetail_data56786545678",
+      //   response_getCourseDetail_data
+      // );
       if (response_getCourseDetail_data.status) {
         if (!response_getCourseDetail_data?.data?.course_detail) {
           setShowError(true);
@@ -210,6 +192,7 @@ const Details = ({ value }) => {
   const handleTabChange = (k) => {
     // console.log("k 83", k);
     setKey(k);
+    dispatch(reset_tab())
     // console.log('k', k)
     if (resetLayerRef.current) {
       resetLayerRef.current.click();
@@ -218,10 +201,15 @@ const Details = ({ value }) => {
 
   const handleBackdetails = () => {
     const back = localStorage.getItem("redirectdetails");
-    if (back) {
-      router.push(back);
-    } else {
+    if(comboDetail(router.asPath)) {
       router.back();
+    }
+    else{
+      if (back) {
+        router.push(back);
+      } else {
+        router.back();
+      }
     }
   };
 
@@ -263,6 +251,7 @@ const Details = ({ value }) => {
                     <div className="col-md-12">
                       <nav aria-label="breadcrumb ">
                         <ol className="m-0 breadcrumb cursor">
+                          {/* {console.log('titleName', titleName)} */}
                           <li
                             className="breadcrumb-item"
                             onClick={handleBackdetails}
@@ -270,7 +259,7 @@ const Details = ({ value }) => {
                             {titleName
                               ? titleName == "MyCourse"
                                 ? "My Courses"
-                                : titleName
+                                : comboDetail(router.asPath) ? titleName : isOurCourse() ? "Our Course" : titleName 
                               : `My Courses`}
                             <i className="bi bi-chevron-right"></i>
                           </li>
@@ -300,84 +289,87 @@ const Details = ({ value }) => {
                             </p>
                           )}
                       </div>
-                      <div className="d-flex mb-3 freeCourserate">
-                        <p className="m-0">
-                          <span className="freeRating">
-                            <IoStar />{" "}
-                            {onlineCourseAry.avg_rating
-                              ? parseFloat(onlineCourseAry.avg_rating).toFixed(
-                                  1
-                                )
-                              : "0.0"}
-                          </span>
-                        </p>
+                      {!comboDetail(router.asPath) && <>
+                        <div className="d-flex mb-3 freeCourserate">
+                          <p className="m-0">
+                            <span className="freeRating">
+                              <IoStar />{" "}
+                              {onlineCourseAry.avg_rating
+                                ? parseFloat(onlineCourseAry.avg_rating).toFixed(
+                                    1
+                                  )
+                                : "0.0"}
+                            </span>
+                          </p>
 
-                        <p className="m-0 freeCourseReview d-flex align-items-center">
-                          {onlineCourseAry.user_rated} Reviews &nbsp;{" "}
-                          {/* {console.log('title', titleName)} */}
-                          {/* {onlineCourseAry?.cat_type == 1 && <>
-                        <span className="text-muted">|</span> &nbsp; Quantity
-                        :&emsp;{" "}
-                        <span className="quantityPrice ml-2">
-                          <input type="button" value={"-"} />
-                          <input type="text" readOnly min={1} />
-                          <input type="button" value={"+"} />
-                        </span>
-                        &nbsp; <span className="text-muted">|</span> &nbsp; In
-                        Stock:&nbsp;<span className="text-success"> Available</span>
-                        </>} */}
-                        </p>
-                      </div>
-                      {onlineCourseAry.mrp != 0 && (
-                        <div className="gap-2 flex-wrap flex-sm-nowrap d-flex align-items-center button_price">
-                          <div className="gap-2 share d-flex align-items-center">
-                            {versionData?.share_content == 1 && (
-                              <button className="button1_share">
-                                <FaShare />
-                              </button>
-                            )}
-                            {/* {console.log(onlineCourseAry)} */}
+                          <p className="m-0 freeCourseReview d-flex align-items-center">
+                            {onlineCourseAry.user_rated} Reviews &nbsp;{" "}
+                            {/* {console.log('title', titleName)} */}
+                            {/* {onlineCourseAry?.cat_type == 1 && <>
+                          <span className="text-muted">|</span> &nbsp; Quantity
+                          :&emsp;{" "}
+                          <span className="quantityPrice ml-2">
+                            <input type="button" value={"-"} />
+                            <input type="text" readOnly min={1} />
+                            <input type="button" value={"+"} />
+                          </span>
+                          &nbsp; <span className="text-muted">|</span> &nbsp; In
+                          Stock:&nbsp;<span className="text-success"> Available</span>
+                          </>} */}
+                          </p>
+                        </div>
+                        {onlineCourseAry.mrp != 0 && (
+                          <div className="gap-2 flex-wrap flex-sm-nowrap d-flex align-items-center button_price">
+                            <div className="gap-2 share d-flex align-items-center">
+                              {versionData?.share_content == 1 && (
+                                <button className="button1_share">
+                                  <FaShare />
+                                </button>
+                              )}
+                              {/* {console.log(onlineCourseAry)} */}
+                              {onlineCourseAry.is_purchased == 0 && (
+                                <p className="m-0 detailBbuyNow">
+                                  <Button1
+                                    value={"Buy Now"}
+                                    handleClick={handleBuyNow}
+                                  />
+                                </p>
+                              )}
+                            </div>
                             {onlineCourseAry.is_purchased == 0 && (
-                              <p className="m-0 detailBbuyNow">
-                                <Button1
-                                  value={"Buy Now"}
-                                  handleClick={handleBuyNow}
-                                />
-                              </p>
+                              <div className="m-0">
+                                <div className="m-0 gap-2 d-flex align-items-center">
+                                  <span className="costPrice">
+                                    {/* <FaRupeeSign className="rupeeSign" /> */}
+                                    ₹
+                                    {onlineCourseAry.is_gst == 0
+                                      ? Number(onlineCourseAry.mrp) +
+                                        Number(onlineCourseAry.tax)
+                                      : onlineCourseAry.mrp}
+                                  </span>
+                                  {Number(onlineCourseAry.mrp) +
+                                    Number(onlineCourseAry.tax) !=
+                                    onlineCourseAry.course_sp && (
+                                    <span className="discountPrice">
+                                      <del>
+                                        {/* <FaRupeeSign className="rupeeSign2" /> */}
+                                        ₹
+                                        {onlineCourseAry.course_sp}
+                                      </del>
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="m-0 ms-1 ex_gst">
+                                  {onlineCourseAry.is_gst == 0
+                                    ? "Inclusive of GST"
+                                    : "Exclusive of GST"}{" "}
+                                </p>
+                              </div>
                             )}
                           </div>
-                          {onlineCourseAry.is_purchased == 0 && (
-                            <div className="m-0">
-                              <div className="m-0 gap-2 d-flex align-items-center">
-                                <span className="costPrice">
-                                  {/* <FaRupeeSign className="rupeeSign" /> */}
-                                  ₹
-                                  {onlineCourseAry.is_gst == 0
-                                    ? Number(onlineCourseAry.mrp) +
-                                      Number(onlineCourseAry.tax)
-                                    : onlineCourseAry.mrp}
-                                </span>
-                                {Number(onlineCourseAry.mrp) +
-                                  Number(onlineCourseAry.tax) !=
-                                  onlineCourseAry.course_sp && (
-                                  <span className="discountPrice">
-                                    <del>
-                                      {/* <FaRupeeSign className="rupeeSign2" /> */}
-                                      ₹
-                                      {onlineCourseAry.course_sp}
-                                    </del>
-                                  </span>
-                                )}
-                              </div>
-                              <p className="m-0 ms-1 ex_gst">
-                                {onlineCourseAry.is_gst == 0
-                                  ? "Inclusive of GST"
-                                  : "Exclusive of GST"}{" "}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      )}
+                        )}
+                      </>
+                      }
                       <div
                         className={`d-none d-md-none d-lg-block MainCourseCard ${
                           classSet ? "MainCourseCardAB" : "MainCourseCardFX"
@@ -435,14 +427,14 @@ const Details = ({ value }) => {
                           />
                         </Tab>
                       )}
-                      {/* {console.log("key 214", key)} */}
+                      {/* {console.log("key 214",tiles,  versionData.same_content_view)} */}
                       {tiles?.map(
                         (item, index) =>
                           // console.log('item', item)
-                          item.type !== "content" &&
+                          (item.type !== "content" &&
                           item.type !== "faq" &&
                           item.type !== "overview" &&
-                          item.type !== "concept" &&
+                          item.type !== "concept") &&
                           !(
                             item.type == "content" &&
                             versionData.same_content_view == 1
@@ -504,7 +496,7 @@ const Details = ({ value }) => {
                                     // propsValue={isValidData(pdfData) && pdfData}
                                   />
                                 )}
-                              {item.type == "course_combo" && (
+                              {item.type == "course_combo"  && (
                                 <ComboCourse
                                   courseDetail={item}
                                   CourseID={id}

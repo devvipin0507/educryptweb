@@ -15,6 +15,7 @@ import LoaderAfterLogin from "../loaderAfterLogin";
 const MyCourse = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showError2, setShowError2] = useState(false)
   const [getCourse, setGetCourse] = useState("");
   const [myCourseData, setMyCourseData] = useState([]);
   const [FreeCourseData, setFreeCourseData] = useState([]);
@@ -27,10 +28,25 @@ const MyCourse = () => {
   }, [getCourse]);
 
   useEffect(() => {
+    setShowError(false);
+    setShowError2(false)
     return () => {
       toast.dismiss();
     };
   }, []);
+
+  // useEffect(() => {
+  //   if(myCourseData?.length == 0) {
+  //     setShowError(true)
+  //   }
+  //   else if(FreeCourseData?.length == 0) {
+  //     setShowError2(true)
+  //   }
+  //   else{
+  //     setShowError(false)
+  //     setShowError2(false)
+  //   }
+  // }, [myCourseData, FreeCourseData])
 
   const fetchMyCourseService = async () => {
     try {
@@ -47,6 +63,7 @@ const MyCourse = () => {
       if (response_MyCourse_data?.status) {
         if (response_MyCourse_data?.data?.length < 0) {
           setShowError(true);
+          setShowError2(true)
         } else {
           setMyCourseData(
             response_MyCourse_data.data.filter((item) => item?.mrp != 0)
@@ -54,9 +71,18 @@ const MyCourse = () => {
           setFreeCourseData(
             response_MyCourse_data.data.filter((item) => item?.mrp == 0)
           );
+
+          if((response_MyCourse_data.data.filter((item) => item?.mrp != 0)?.length == 0)) {
+            setShowError(true)
+          }
+          if((response_MyCourse_data.data.filter((item) => item?.mrp == 0)?.length == 0)) {
+            setShowError2(true)
+          }
         }
       } else if (response_MyCourse_data.message == msg) {
+        // console.log('66767678')
         setShowError(true);
+        setShowError2(true)
         if (response_MyCourse_data.message) {
           toast.error(response_MyCourse_data.message);
         }
@@ -65,7 +91,9 @@ const MyCourse = () => {
         // location.href("/")
         router.push("/");
       } else {
+        // console.log('66767678')
         setShowError(true);
+        setShowError2(true)
         // if(response_MyCourse_data.message){
         //   toast.error(response_MyCourse_data.message);
         // }
@@ -75,8 +103,10 @@ const MyCourse = () => {
     }
   };
 
+  // console.log('showError', showError)
+
   const handleDetail = (value) => {
-    console.log("detailesss", value);
+    // console.log("detailesss", value);
     router.push(
       `/private/myProfile/detail/${
         "MyCourse" + ":" + value.id + "&" + value.combo_course_ids + "parent:"
@@ -143,7 +173,7 @@ const MyCourse = () => {
                       })
                     ) : (
                       <>
-                        {showError || myCourseData?.length == 0 ? (
+                        {showError ? (
                           <ErrorPageAfterLogin />
                         ) : (
                           <LoaderAfterLogin />
@@ -180,7 +210,7 @@ const MyCourse = () => {
                     ) : (
                       <>
                         <>
-                          {showError || FreeCourseData?.length == 0 ? (
+                          {showError2 ? (
                             <ErrorPageAfterLogin />
                           ) : (
                             <LoaderAfterLogin />

@@ -95,7 +95,7 @@ const CourseCurriculum = ({ propsValue, tabName, resetRef, courseDetail }) => {
   };
 
   const handleWatch = () => {
-    console.log("watch Now");
+    // console.log("watch Now");
   };
 
   // console.log('val2222', value)

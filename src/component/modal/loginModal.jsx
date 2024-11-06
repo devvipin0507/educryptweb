@@ -51,6 +51,7 @@ const LoginModal = (props) => {
   const [districtList, setDistrictList] = useState([]);
   const [districtOption, setDistrictOption] = useState([]);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [appLogo, setAppLogo] = useState('')
 
   // useEffect(() => {
   //   fetchStateList();
@@ -141,6 +142,7 @@ const LoginModal = (props) => {
   }, [getOTP]);
 
   useEffect(() => {
+    setAppLogo(localStorage.getItem('logo'))
     return () => {
       toast.dismiss();
     };
@@ -243,7 +245,7 @@ const LoginModal = (props) => {
       is_social: 0,
       device_id: 0,
     };
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const response_login_service = await userLoginService(
       encrypt(JSON.stringify(formData), token)
     );
@@ -359,7 +361,7 @@ const LoginModal = (props) => {
       response_fetchOtp_service.data,
       token
     );
-    console.log("response_fetchOtp_data", response_fetchOtp_data);
+    // console.log("response_fetchOtp_data", response_fetchOtp_data);
     if (response_fetchOtp_data.status) {
       showSuccessToast(response_fetchOtp_data.message);
       if (response_fetchOtp_data?.data?.is_registered == 0) {
@@ -405,6 +407,7 @@ const LoginModal = (props) => {
       device_token: 0,
       otp: OTP,
     };
+    // console.log("formData", formData);
     const response_userResgister_service = await userRegisterService(
       encrypt(JSON.stringify(formData), token)
     );
@@ -412,6 +415,7 @@ const LoginModal = (props) => {
       response_userResgister_service.data,
       token
     );
+    // console.log("response_userRegister_data", response_userRegister_data);
     if (response_userRegister_data.status) {
       localStorage.setItem("jwt", response_userRegister_data.data.jwt);
       jwt_decode(response_userRegister_data.data.jwt);
@@ -661,7 +665,7 @@ const LoginModal = (props) => {
       response_fetchOtp_service.data,
       token
     );
-    console.log("response_fetchOtp_data", response_fetchOtp_data);
+    // console.log("response_fetchOtp_data", response_fetchOtp_data);
     if (response_fetchOtp_data.status) {
       showSuccessToast(response_fetchOtp_data.message);
       setIsActive(false);
@@ -903,7 +907,7 @@ const LoginModal = (props) => {
         } else {
           showErrorToast(response_userRegister_data.message);
         }
-        console.log("response_userRegister_data", response_userRegister_data);
+        // console.log("response_userRegister_data", response_userRegister_data);
       }
     } catch (error) {
       console.log("API error:", error);
@@ -964,7 +968,7 @@ const LoginModal = (props) => {
                       // ========================== User Login Without OTP ======================== //
                       <>
                         <img
-                          src="/assets/images/eduLogo.png"
+                          src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                           className="modalLogo mb-3"
                         />
                         <h4 className="m-0 mb-1 w_Title">Welcome !</h4>
@@ -1145,7 +1149,7 @@ const LoginModal = (props) => {
                         // ========================== User Login With OTP ======================== //
                         <>
                           <img
-                            src="/assets/images/eduLogo.png"
+                            src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                             className="modalLogo mb-3"
                           />
                           <h4 className="m-0 mb-1 w_Title">Welcome !</h4>
@@ -1259,7 +1263,7 @@ const LoginModal = (props) => {
                         // ========================== Otp screen after User Login With OTP ======================== //
                         <>
                           <img
-                            src="/assets/images/eduLogo.png"
+                            src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                             className="modalLogo mb-3"
                           />
                           <h4 className="m-0 w_Title">Enter OTP !</h4>
@@ -1390,6 +1394,7 @@ const LoginModal = (props) => {
                                   isSearchable
                                 />
                               </div>
+                              {versionData.otp_login == 0 && <>
                               <div className="col-md-12 margin_bottom">
                                 <div className="input-group">
                                   <input
@@ -1443,6 +1448,7 @@ const LoginModal = (props) => {
                                   </span>
                                 </div>
                               </div>
+                              </>}
                               <div className="col-md-12 mb-4">
                                 <button
                                   className={`btn ${classForActive()}`}
@@ -1460,7 +1466,7 @@ const LoginModal = (props) => {
                   !getOTP ? (
                     <>
                       <img
-                        src="/assets/images/eduLogo.png"
+                        src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                         className="modalLogo mb-3"
                       />
                       <h4 className="m-0 mb-1 w_Title">Welcome !</h4>
@@ -1573,7 +1579,7 @@ const LoginModal = (props) => {
                     // ========================== Otp screen after Sign Up with Mobile Number ======================== //
                     <>
                       <img
-                        src="/assets/images/eduLogo.png"
+                        src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                         className="modalLogo mb-3"
                       />
                       <h4 className="m-0 w_Title">Enter OTP !</h4>
@@ -1859,7 +1865,7 @@ const LoginModal = (props) => {
                     {!getOTP ? (
                       <>
                         <img
-                          src="/assets/images/eduLogo.png"
+                          src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                           className="modalLogo mb-3"
                         />
                         <h4 className="m-0 mt-4 w_Title">Forgot Password</h4>
@@ -1946,7 +1952,7 @@ const LoginModal = (props) => {
                       // ========================== OTP Screen after Forgot Password ======================== //
                       <>
                         <img
-                          src="/assets/images/eduLogo.png"
+                          src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                           className="modalLogo mb-3"
                         />
                         <h4 className="m-0 mt-4 w_Title">Enter OTP !</h4>
@@ -2008,7 +2014,7 @@ const LoginModal = (props) => {
                   // ========================== Create Password after Forgot Password ======================== //
                   <>
                     <img
-                      src="/assets/images/eduLogo.png"
+                      src={appLogo ? appLogo : "/assets/images/eduLogo.png"}
                       className="modalLogo mb-3"
                     />
                     <h4 className="mb-1 mt-4 w_Title">Forgot Password</h4>

@@ -218,7 +218,7 @@ const UpdatePasswordModal = (props) => {
         showErrorToast(fetch_verifyOTP_data?.message)
       }
     }
-    console.log('done')
+    // console.log('done')
   }
 
   const handleResetPassword = (e) => {

@@ -146,7 +146,7 @@ const ViewOnlineCourseDetail = () => {
         0,
         onlineCourseDetailID.indexOf(":")
       );
-      console.log("title", title);
+      // console.log("title", title);
       setId(courseID);
       setTitleName(title);
 
@@ -566,7 +566,7 @@ const ViewOnlineCourseDetail = () => {
             </div> */}
             {/* </div>
         </div> */}
-            {console.log("over", OverView)}
+            {/* {console.log("over", OverView)} */}
             <div className="course_mainContainer tabs_design__">
               <nav className="m-0 p-0">
                 <Tabs

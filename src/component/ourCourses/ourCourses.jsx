@@ -9,6 +9,7 @@ import { getCourse_service } from "@/services";
 import { decrypt, encrypt, get_token } from "@/utils/helpers";
 import ErrorPageAfterLogin from "../errorPageAfterLogin";
 import LoaderAfterLogin from "../loaderAfterLogin";
+import Banner from "../banner/banner";
 
 const OurCourses = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -29,6 +30,9 @@ const OurCourses = () => {
     if (contentData?.banner_list_web?.length > 0) {
       setBanner(contentData.banner_list_web[0]?.banner_url);
     }
+  }, [contentData]);
+
+  useEffect(() => {
     if (contentData?.course_type_master) {
       // localStorage.setItem('tab_id', contentData?.course_type_master[0].name)
       setTabData(contentData?.course_type_master);
@@ -47,8 +51,7 @@ const OurCourses = () => {
         setKey(contentData?.course_type_master[0]?.name);
       }
     }
-  }, [contentData]);
-  // console.log('banner', tabData)
+  }, [contentData])
 
   useEffect(() => {
     setShowError(false)
@@ -99,7 +102,7 @@ const OurCourses = () => {
         main_cat: 0,
         // 'course_ids': id
       };
-      console.log('formDAta', formData)
+      // console.log('formDAta', formData)
       const response_getCourse_service = await getCourse_service(
         encrypt(JSON.stringify(formData), token)
       );
@@ -107,7 +110,7 @@ const OurCourses = () => {
         response_getCourse_service.data,
         token
       );
-      console.log("response_getCourse_data", response_getCourse_data);
+      // console.log("response_getCourse_data", response_getCourse_data);
       if (response_getCourse_data.status) {
         if(response_getCourse_data?.data?.length == 0) {
           setShowError(true)
@@ -149,13 +152,14 @@ const OurCourses = () => {
   return (
     <>
       <section className="container-fluid">
-        {banner &&
+        {/* {banner &&
         <div className="row">
           <div className="col-md-12 mb-5">
             <img className="profileBanImg" src={banner ? banner : ""} alt="" />
           </div>
         </div>
-        }
+        } */}
+        <Banner />
       </section>
       <SearchCourses catId = {catId} handleFilterCourses = {handleFilterCourses} />
       <section className="container-fluid">

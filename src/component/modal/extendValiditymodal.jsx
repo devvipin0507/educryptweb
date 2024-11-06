@@ -19,7 +19,7 @@ const ExtendValiditymodal = (props) => {
 
   const handleOptionChange = (val) => {
     setSelectedOption(val.id)
-     console.log('target',val)
+    //  console.log('target',val)
     setIsChecked(val)
   }
 
@@ -102,7 +102,7 @@ const ExtendValiditymodal = (props) => {
         <div className="w-100 text-center my-4 px-4">
           <Button1 
             value = "Continue"
-            classCustom="w-100"
+            classCustom=""
             handleClick={() => props.handleSelectedValidity(isChecked, props.courseDetail)} 
           />
         </div>

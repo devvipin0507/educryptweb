@@ -238,6 +238,8 @@ const CourseOrderID = () => {
       }, 3000);
     }
   }, [thankYouModalShow]);
+  
+  
 
   const showErrorToast = (toastMsg) => {
     if (!isToasterOpen) {
@@ -334,7 +336,7 @@ const CourseOrderID = () => {
   //////////////////////////////// Handle Payment Service ////////////////////////////////////////////////
 
   const handleBookPayment = () => {
-    console.log('userData', userData)
+    // console.log('userData', userData)
     if (
       !userData.name &&
       !userData.mobile &&
@@ -386,19 +388,19 @@ const CourseOrderID = () => {
               landmark: userData.landmark,
             };
 
-            // console.log(addressPlaced);
+            console.log(couponData);
 
             const formDataPayment1 = {
-              coupon_applied: 0,
+              coupon_applied: couponData ? couponData?.coupon?.id : 0,
               course_id: id,
-              course_price: parseFloat(courseData.mrp).toFixed(2),
-              // course_price : couponData ? parseFloat(couponData.mrp).toFixed(2) : parseFloat(courseData.mrp).toFixed(2),
-              // tax: couponData ? parseFloat(couponData.tax).toFixed(2) : parseFloat(courseData.tax).toFixed(2),
+              // course_price: parseFloat(courseData.mrp).toFixed(2),
+              course_price : couponData ? parseFloat(couponData.mrp).toFixed(2) : parseFloat(courseData.mrp).toFixed(2),
+              tax: couponData ? parseFloat(couponData.tax).toFixed(2) : parseFloat(courseData.tax).toFixed(2),
               delivery_charge: courseData.delivery_charge
                 ? courseData.delivery_charge
                 : 0,
               pay_via: payName == "RZP_DETAIL" ? 3 : 9,
-              tax: parseFloat(courseData.tax).toFixed(2),
+              // tax: parseFloat(courseData.tax).toFixed(2),
               type: 1,
               temp: 2,
               address: isAddressShow ? JSON.stringify(addressPlaced) : "",
@@ -432,7 +434,7 @@ const CourseOrderID = () => {
                 ? formDataPayment2
                 : formDataPayment1;
 
-            // console.log("formDataPayment", formDataPayment);
+            console.log("formDataPayment", formDataPayment);
             const response_getFPayment_service = await getFPaymentService(
               encrypt(JSON.stringify(formDataPayment), token)
             );
@@ -442,7 +444,7 @@ const CourseOrderID = () => {
             );
             let key = response_getPayGateway_data?.data?.easebuzz?.mid;
             // console.log('formDataPayment', formDataPayment)
-            // console.log("response_getFPayment_data", response_getFPayment_data);
+            console.log("response_getFPayment_data", response_getFPayment_data);
             if (response_getFPayment_data.status) {
               if (response_getPayGateway_data?.data?.rzp?.status == 1) {
                 try {
@@ -896,7 +898,7 @@ const CourseOrderID = () => {
         id: addressId ? addressId : "",
       };
 
-      console.log(formData);
+      // console.log(formData);
       const response_saveAddress_service = await saveAddressService(
         encrypt(JSON.stringify(formData), token)
       );
@@ -982,7 +984,7 @@ const CourseOrderID = () => {
                   pincode: defaultAddres.pincode,
                   country: "+91-",
                 });
-                console.log(defaultAddres);
+                // console.log(defaultAddres);
               }
             }
           });
@@ -1025,7 +1027,7 @@ const CourseOrderID = () => {
               pincode: defaultAddres.pincode,
               country: "+91-",
             });
-            console.log(defaultAddres);
+            // console.log(defaultAddres);
           }
         }
       });
@@ -1946,7 +1948,7 @@ const CourseOrderID = () => {
                           <td>
                             <p className="m-0 price_totalTitle">To Pay </p>
                           </td>
-                          {titleName != "Bookstore"
+                          {courseData?.cat_type == 1
                             ? courseData.course_sp && (
                               <td>
                                 <p className="m-0 text-end totalAmount">

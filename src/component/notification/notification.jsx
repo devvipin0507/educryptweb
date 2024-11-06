@@ -73,8 +73,8 @@ const Notification = () => {
   };
   return (
     <>
-      {/* <Toaster position="top-right" reverseOrder={false} /> */}
-      <Toaster
+      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster
         position="top-right"
         toastOptions={{
           success: {
@@ -88,7 +88,7 @@ const Notification = () => {
             },
           },
         }}
-      />
+      /> */}
       {/* <div>Notification</div> */}
       <section className="container-fluid mt-3">
         <div className="row">

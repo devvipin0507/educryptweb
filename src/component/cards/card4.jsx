@@ -8,7 +8,7 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 import { format } from "date-fns";
 import ExtendValiditymodal from "../modal/extendValiditymodal";
 import { getFPaymentService, getPayGatewayService } from "@/services";
-import { decrypt, encrypt, get_token, userLoggedIn } from "@/utils/helpers";
+import { comboDetail, decrypt, encrypt, get_token, userLoggedIn } from "@/utils/helpers";
 import Script from "next/script";
 import ThankyouModal from "../modal/thankyouModal";
 import LoginModal from "../modal/loginModal";
@@ -90,11 +90,11 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
 
     // }
     setValidityShow(true);
-    console.log("extend", value);
+    // console.log("extend", value);
   };
 
   const handleSelectedValidity = (selectedPack) => {
-    console.log("Clicked ==========12345", selectedPack);
+    // console.log("Clicked ==========12345", selectedPack);
     setValidityShow(false);
     handlePayNow(selectedPack);
   };
@@ -304,7 +304,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
           response_ConfirmPayment_data.message !=
           "The transaction_status field must be one of: 1,2."
         ) {
-          console.log("cancelled");
+          // console.log("cancelled");
           showErrorToast(
             "Transaction Cancelled, Your payment was canceled. Please try again if needed."
           );
@@ -362,8 +362,8 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Script src="https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/v2.0.0/easebuzz-checkout-v2.min.js" />
-      {/* <Toaster position="top-right" reverseOrder={false} /> */}
-      <Toaster
+      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster
         position="top-right"
         toastOptions={{
           success: {
@@ -377,7 +377,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
             },
           },
         }}
-      />
+      /> */}
       <div
         className={`card border-0 mb-3 ${
           titleName != "detail"
@@ -443,6 +443,7 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
           ) : (
             <>
               <div className="w-100 mt-2">
+                {/* {console.log('value', value)} */}
                 {value.expiry_date && (
                   <p className="m-0 mb-1 gap-1 d-flex align-items-center validity">
                     <img
@@ -479,6 +480,35 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
               <hr className="dotted-divider" />
             </>
           )}
+        {!comboDetail(router.asPath) && <>
+        {value.is_purchased == 0 && value?.mrp != 0 && (
+          <>
+            {/* <div className="coursePriceContainer"> */}
+            <div className="coursePrice gap-2 d-flex align-items-center pb-1 m-0">
+              <div className="m-0 d-flex align-items-center detail_C_Price">
+                {/* <FaRupeeSign className="rupeeSign" /> */}₹
+                {/* <span className='costPrice'> */}
+                {value.is_gst == 0
+                  ? Number(value.mrp) + Number(value.tax)
+                  : value.mrp}
+                {/* </span> */}
+              </div>
+              {Number(value.mrp) + Number(value.tax) != value.course_sp && (
+                <>
+                  <p className="m-0 Card-OffPrice">
+                    <del>
+                      {/* <FaRupeeSign className="rupeeSign2" /> */}₹
+                      {value?.course_sp}
+                    </del>
+                  </p>
+                  <p className="m-0 offPricePercentage">
+                    {value?.discount && `(${value?.discount}% Off)`}
+                  </p>
+                </>
+              )}
+            </div>
+          </>
+        )}
           {/* {console.log(value)} */}
           {value.is_purchased != 0 ? (
             <>
@@ -517,6 +547,8 @@ const Card4 = ({ value, titleName, handleDetail, titleId, setGetCourse }) => {
               <Button1 widthFull={true} value={"Buy Now"} handleClick={handleBuy} />
             </div>
           )}
+        </>
+        }
         </div>
       </div>
     </>

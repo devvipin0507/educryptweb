@@ -20,7 +20,7 @@ const LogoutModal = (props) => {
       const token = get_token()
       const formData = {}
       const response_userLogout_service = await userLogoutService(encrypt(JSON.stringify(formData), token));
-      console.log('response_userLogout_data', response_userLogout_service)
+      // console.log('response_userLogout_data', response_userLogout_service)
       const response_userLogout_data = decrypt(response_userLogout_service.data, token);
       if(response_userLogout_data.status) {
         localStorage.removeItem('jwt');

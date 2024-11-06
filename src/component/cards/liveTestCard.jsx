@@ -332,7 +332,7 @@ const LiveTestCard = ({
               />
             )}
             {versionData?.share_content == 1 && (
-              <button className="btn_detailShare">
+              <button className="px-1 btn_detailShare">
                 <FaShare />
               </button>
             )}

@@ -5,6 +5,11 @@
   margin: 0px;
   box-sizing: border-box;
 }
+
+.fixed-top {
+  z-index: 1030 !important;
+}
+
 html,
 body {
   overflow-x: hidden !important;
@@ -326,7 +331,7 @@ body {
   width: 30px !important;
   padding: 7px !important;
   box-shadow: 0px 7px 28px 0px #00000021 !important;
-  z-index: 9 !important;
+  z-index: 1 !important;
   color: var(--primary-color) !important;
   background: var(--btnDeafult) !important;
 }
@@ -1418,7 +1423,7 @@ h1 {
 
 .freeCard {
   width: 90%;
-  /* margin: 0 10px; */
+  margin: 0 10px;
   transition: 0.5s ease-in-out;
   padding: 10px;
 }
@@ -1966,8 +1971,8 @@ h1.main-title {
   border-radius: 50% !important;
   width: 10px !important;
   height: 10px !important;
-  background-color: rgba(128,128,128, .3) !important;
-  transition: opacity .6s ease;
+  background-color: rgba(128, 128, 128, 0.3) !important;
+  transition: opacity 0.6s ease;
 }
 
 .slick-dots li button::before {
@@ -1979,8 +1984,8 @@ h1.main-title {
   width: 28px !important;
   height: 9px !important;
   border-radius: 25px !important;
-  border: 2px solid #000 !important;
-  background-color: #000 !important;
+  border: 2px solid rgb(0, 0, 0) !important;
+  background-color: rgb(0, 0, 0) !important;
 }
 
 .slick-dots {
@@ -2373,7 +2378,7 @@ span.quantityPrice input:nth-child(3) {
   font-weight: 600 !important;
 }
 .freeCourseReview .text-Avail {
-  color:var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
   font-size: var(--size-12) !important;
   font-weight: 600 !important;
 }
@@ -2407,7 +2412,7 @@ span.quantityPrice input:nth-child(3) {
   right: 44px !important;
   top: 100px !important;
   width: 350px !important;
-  z-index: 10 !important;
+  z-index: 1 !important;
 }
 
 .detail-rightCard .slideTitle {
@@ -2950,7 +2955,7 @@ span.quantityPrice input:nth-child(3) {
 .onlineCourseTitle .title {
   font-weight: 800 !important;
   font-size: var(--size-28) !important;
-  color:var(--black) !important;
+  color: var(--black) !important;
 
   line-height: normal !important;
 }
@@ -3333,17 +3338,17 @@ h4.delpayTitle {
   font-size: inherit !important;
   color: #2b2b2b !important;
 }
-.checkImgContainer{
+.checkImgContainer {
   display: flex !important;
   align-items: center !important;
   text-align: center !important;
 }
 .checkImgContainer::before,
 .checkImgContainer::after {
-  content: '';
+  content: "";
   /* flex: 1 1 !important; */
   height: 1px !important;
-  border: 1px solid #9B9B9B80 !important;
+  border: 1px solid #9b9b9b80 !important;
   margin: 0 10px !important;
   width: 24px;
   margin-top: 0px !important;
@@ -3508,7 +3513,7 @@ label.defaultAddress {
   border-radius: 3px !important;
 }
 h4.userTitle {
-  color:var(--black) !important;
+  color: var(--black) !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-size: var(--size-13) !important;
   font-weight: 600 !important;
@@ -3518,14 +3523,14 @@ h4.userTitle {
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
   font-size: var(--size-11) !important;
-  border: 0.6px solid #BCBCBC !important;
+  border: 0.6px solid #bcbcbc !important;
   padding: 3px 10px !important;
   border-radius: 5px !important;
   text-transform: uppercase !important;
 }
-.orderCard .delAddress{
-  border: 0.6px solid #FFB9B9 !important;
-  color: #E54B4B !important;
+.orderCard .delAddress {
+  border: 0.6px solid #ffb9b9 !important;
+  color: #e54b4b !important;
   padding: 3px 6px !important;
   font-size: var(--size-11) !important;
   border-radius: 5px !important;
@@ -3537,7 +3542,7 @@ h4.userTitle {
   font-size: var(--size-11) !important;
 }
 .orderCard .mobTitle {
-  color:var(--black) !important;
+  color: var(--black) !important;
 
   font-weight: 600 !important;
   font-size: var(--size-12) !important;
@@ -3988,7 +3993,6 @@ input.coupon_field::placeholder {
   font-family: "Reddit Sans", sans-serif !important;
 }
 
-
 .container3 {
   display: block;
   position: relative;
@@ -4019,20 +4023,20 @@ input.coupon_field::placeholder {
   height: 16px;
   width: 16px;
   background-color: #fff;
-  border: 1.5px solid #A8A8A8;
+  border: 1.5px solid #a8a8a8;
   border-radius: 5px;
 }
-.container3 input:checked~.checkmark:after {
+.container3 input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* On mouse-over, add a grey background color */
-.container3:hover input~.checkmark {
+.container3:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.container3 input:checked~.checkmark {
+.container3 input:checked ~ .checkmark {
   background-color: #000;
   border: 0px;
 }
@@ -4043,7 +4047,6 @@ input.coupon_field::placeholder {
   position: absolute;
   display: none;
 }
-
 
 /* Style the checkmark/indicator */
 .container3 .checkmark:after {
@@ -4056,8 +4059,6 @@ input.coupon_field::placeholder {
   transform: rotate(45deg);
   border-radius: 1px;
 }
-
-
 
 .container4 {
   display: block;
@@ -4089,21 +4090,21 @@ input.coupon_field::placeholder {
   height: 16px;
   width: 16px;
   background-color: #fff;
-  border: 1.5px solid #A8A8A8;
+  border: 1.5px solid #a8a8a8;
   border-radius: 2px;
 }
 
-.container4 input:checked~.checkmark:after {
+.container4 input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* On mouse-over, add a grey background color */
-.container4:hover input~.checkmark {
+.container4:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.container4 input:checked~.checkmark {
+.container4 input:checked ~ .checkmark {
   background-color: #000;
   border: 0px;
 }
@@ -4114,7 +4115,6 @@ input.coupon_field::placeholder {
   position: absolute;
   display: none;
 }
-
 
 /* Style the checkmark/indicator */
 .container4 .checkmark:after {
@@ -4128,26 +4128,25 @@ input.coupon_field::placeholder {
   border-radius: 1px;
 }
 
-
 .coupon_card .discountIcon {
   width: 22px !important;
   height: 22px !important;
 }
-.coupon_card h4.couponApply{
+.coupon_card h4.couponApply {
   color: #353535 !important;
   font-weight: 600 !important;
-  font-family: "Reddit Sans",sans-serif !important;
+  font-family: "Reddit Sans", sans-serif !important;
   font-size: var(--size-11) !important;
 }
-.coupon_card p.savedtitle{
-  color: #3FA750 !important;
-    font-size: var(--size-10) !important;
-    font-weight: 400 !important;
-    font-family: "Reddit Sans", sans-serif !important;
+.coupon_card p.savedtitle {
+  color: #3fa750 !important;
+  font-size: var(--size-10) !important;
+  font-weight: 400 !important;
+  font-family: "Reddit Sans", sans-serif !important;
 }
 .appCoupon {
   font-size: var(--size-14) !important;
-  color: #8C8C8C !important;
+  color: #8c8c8c !important;
 }
 .price_totalTitle {
   font-size: var(--size-12) !important;
@@ -4686,9 +4685,10 @@ input.coupon_field::placeholder {
 
 .purchaseThumbnail img {
   /* width: 70%; */
-  /* height: 100%; */
-  object-fit: contain;
-  border-radius: 6px;
+  height: 100%;
+  object-fit: contain !important;
+  border-radius: 6px !important;
+  padding: 10px 0px !important;
 }
 .offset--1 {
   margin-left: 90px;
@@ -5028,7 +5028,7 @@ h4.userRateTitle {
   margin-top: 57px !important;
 }
 
-.contact_Img{
+.contact_Img {
   width: 100%;
   height: 100%;
 }
@@ -5039,13 +5039,13 @@ h4.userRateTitle {
   font-size: var(--size-20) !important;
   font-weight: 600 !important;
 }
-.v_title{
+.v_title {
   color: #232323 !important;
   font-family: "Inter", sans-serif;
   font-size: var(--size-16) !important;
   font-weight: 700 !important;
 }
-.vv_title{
+.vv_title {
   color: #232323 !important;
   font-family: "Inter", sans-serif;
   font-size: var(--size-16) !important;
@@ -5058,7 +5058,6 @@ h4.userRateTitle {
   font-size: var(--size-12) !important;
   font-weight: 400 !important;
 }
-
 
 /* ====================== Contact US Ends ========================== */
 
@@ -5147,7 +5146,7 @@ h4.userRateTitle {
 
 .issue_msgText p {
   padding: 1rem !important;
-  color:var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
   font-size: 12px !important;
   font-family: "Reddit Sans", sans-serif !important;
   font-weight: 400 !important;
@@ -5182,7 +5181,7 @@ h4.userRateTitle {
   border-radius: 50% !important;
   font-size: 14px !important;
   background-color: #fff3ec !important;
-  color:var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
   outline: none !important;
   border: 0px !important;
   width: 30px !important;
@@ -5492,7 +5491,7 @@ hr.divider {
 }
 
 .payIssueTitle {
-  color:var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
   font-family: "Reddit Sans", sans-serif;
   font-size: 12px !important;
   font-weight: 500 !important;
@@ -5633,9 +5632,9 @@ h4.worktitle {
   padding: 0px 100px !important;
   margin-top: 78px !important;
 }
-.privacyPolicy h3{
+.privacyPolicy h3 {
   color: #161616 !important;
-  font-size:var(--size-18) !important;
+  font-size: var(--size-18) !important;
   font-weight: 800 !important;
 }
 .privacyPolicy p {
@@ -6123,7 +6122,7 @@ span.liveIndicator {
   bottom: 20px !important;
   padding-left: 40px !important;
   padding-right: 40px !important;
-  z-index: 9 !important;
+  z-index: 99 !important;
 }
 
 .d_container {
@@ -7322,7 +7321,6 @@ input.shaka-range-element.shaka-seek-bar.shaka-no-propagation.shaka-show-control
   bottom: 9px !important;
   padding-left: 35px !important;
   padding-right: 40px !important;
-  z-index: 9 !important;
 }
 .video_icon_margin___:hover ._quality_ {
   display: block !important;
