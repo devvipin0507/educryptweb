@@ -12,7 +12,9 @@ import {
 } from "@/store/sliceContainer/masterContentSlice";
 import ErrorPageAfterLogin from "../errorPageAfterLogin";
 import LoaderAfterLogin from "../loaderAfterLogin";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { format } from "date-fns";
 import TileDetail from "./tileDetail";
 
@@ -60,7 +62,7 @@ const Notes = ({
 
   const [checkLogin, setCheckLogin] = useState("");
 
-  useEffect(() => {}, [checkLogin]);
+  useEffect(() => { }, [checkLogin]);
 
   useEffect(() => {
     return () => {
@@ -129,8 +131,9 @@ const Notes = ({
 
   useEffect(() => {
     // console.log('hhhhh')
-    if(tabShow && layer2List && layer2List?.length > 0) {
+    if (tabShow && layer2List && layer2List?.length > 0) {
       setShowLayer("layer3")
+      setData3Index(displayTabData?.page)
       setBreadcrumbData(displayTabData?.tabLayer1Item)
       getLayer3Data(displayTabData?.tabLayer2index, displayTabData?.tabLayer2Item)
       setTabShow(false)
@@ -162,11 +165,13 @@ const Notes = ({
         }
         else if(r_api[1] == 2) {
           getLayer3Data(displayTabData?.tabLayer1index, displayTabData?.tabLayer1Item)
+          setData3Index(displayTabData?.page)
         }
         else if(r_api[1] == 3) {
           setData3(0)
           setTitle3('')
           getLayer3Data(0);
+          setData3Index(displayTabData?.page)
         }
       // }
       // setTimeout(() => {
@@ -196,7 +201,7 @@ const Notes = ({
         setData3(0)
         setTitle3('')
         getLayer3Data(0);
-        
+
       }
     }
   }, [courseDetail, keyValue]);
@@ -237,7 +242,6 @@ const Notes = ({
 
   const getLayer2Data = (index, title) => {
     // window.scroll(0,0)
-    console.log('heel')
     setBreadcrumbData(title);
     setLayer1Index(index);
     setShowLayer("layer2");
@@ -362,15 +366,15 @@ const Notes = ({
   };
 
   const handleWatch = (data, index) => {
-    if(data?.live_status == 2 && data?.video_type == 8) {
+    if (data?.live_status == 2 && data?.video_type == 8) {
       showErrorToast('Live class has been ended')
     }
-    else{
+    else {
       let playData = {
-        vdc_id:data.vdc_id,
-        file_url:data.file_url,
-        title:data.title,
-        video_type:data.video_type
+        vdc_id: data.vdc_id,
+        file_url: data.file_url,
+        title: data.title,
+        video_type: data.video_type
       }
       const isLoggedIn = localStorage.getItem("jwt");
       if (!isLoggedIn) {
@@ -383,11 +387,12 @@ const Notes = ({
             all_tabName({
               index,
               tab: displayTabData?.tab ? displayTabData?.tab : keyValue,
-              layer: displayTabData?.layer ? displayTabData?.layer: showLayer,
+              layer: displayTabData?.layer ? displayTabData?.layer : showLayer,
               tabLayer1index: displayTabData?.tabLayer1index ?? tabLayer1index,
               tabLayer1Item: displayTabData?.tabLayer1Item ? displayTabData?.tabLayer1Item : tabLayer1Item,
               tabLayer2index: displayTabData?.tabLayer2index ?? tabLayer2index,
               tabLayer2Item: displayTabData?.tabLayer2Item ? displayTabData?.tabLayer2Item : tabLayer2Item,
+              page: data3Index,
               tabLayer3index: '',
               tabLayer3Item: ''
             })
@@ -400,19 +405,26 @@ const Notes = ({
           // console.log('watch')
         }
         else if (onlineCourseAry?.is_purchased == 0) {
-          // dispatch(
-          //   all_tabName({
-          //     index,
-          //     tab: keyValue,
-          //     layer: showLayer,
-          //   })
-          // );
+          dispatch(
+            all_tabName({
+              index,
+              tab: displayTabData?.tab ? displayTabData?.tab : keyValue,
+              layer: displayTabData?.layer ? displayTabData?.layer: showLayer,
+              tabLayer1index: displayTabData?.tabLayer1index ?? tabLayer1index,
+              tabLayer1Item: displayTabData?.tabLayer1Item ? displayTabData?.tabLayer1Item : tabLayer1Item,
+              tabLayer2index: displayTabData?.tabLayer2index ?? tabLayer2index,
+              tabLayer2Item: displayTabData?.tabLayer2Item ? displayTabData?.tabLayer2Item : tabLayer2Item,
+              page: data3Index,
+              tabLayer3index: '',
+              tabLayer3Item: ''
+            })
+          );
           router.push({
             pathname: `/private/myProfile/play/${data.id}`,
             query: playData,
           });
         }
-        
+
         else {
           showErrorToast("Please, purchase the course");
         }
@@ -423,6 +435,7 @@ const Notes = ({
   const setLayer1 = () => {
     // console.log('layer1Data87687868', courseDetail)
     let r_api = courseDetail?.revert_api.split("#");
+    setData3Index(1)
     if (
       // courseDetail?.revert_api == "1#0#0#0" ||
       // courseDetail?.revert_api == "0#0#0#0" ||
@@ -449,6 +462,7 @@ const Notes = ({
   const setLayer2 = () => {
     // console.log('layer1Data', courseDetail)
     let r_api = courseDetail?.revert_api.split("#");
+    setData3Index(1)
     if (
       // courseDetail?.revert_api == "1#0#0#0" ||
       // courseDetail?.revert_api == "0#0#0#0" ||
@@ -539,7 +553,7 @@ const Notes = ({
     } else {
       if (onlineCourseAry.is_purchased == 1) {
         var firstAttempt = "0";
-        if (val.state == ""){
+        if (val.state == "") {
           firstAttempt = "1";
         }
         // // else if (App.Server_Time.ToUnixTimeSeconds() > long.Parse(Current_Selected_Resource.end_date)){
@@ -690,30 +704,27 @@ const Notes = ({
           setModalShow(false);
         }}
       />
-      <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/>
-      {/* <Toaster
+      {/* <Toaster position="top-right" reverseOrder={false} toastOptions={{duration: 1500}}/> */}
+      <ToastContainer
         position="top-right"
-        toastOptions={{
-          success: {
-            style: {
-              opacity: "1",
-            },
-          },
-          error: {
-            style: {
-              opacity: "1",
-            },
-          },
-        }}
-      /> */}
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <div className="container-fluid p-4 pt-0">
         <div className={` ${checkLogin ? "row" : "row"}`}>
           <div
-            className={`${
-              checkLogin
+            className={`${checkLogin
                 ? "col-lg-8 col-md-12"
                 : "col-lg-7 offset--1  col-md-12"
-            }`}
+              }`}
           >
             <section className={` ${checkLogin ? "px-2 " : ""}`}>
               <div className=" custom-breadcrumb">
@@ -736,12 +747,12 @@ const Notes = ({
                   className={
                     showLayer == "layer2" ? "active-breadcrumb" : "breadcrumb"
                   }
-                  style={{cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                   onClick={setLayer1}
                 >
                   {/* {(layer2List != undefined && showLayer == "layer2") || */}
                   {(showLayer == "layer2" || showLayer == "layer3") &&
-                  breadcrumbData ? (
+                    breadcrumbData ? (
                     // ? ` > ${layer2List.title}`
                     <>
                       {breadcrumbData} <i className="bi bi-chevron-right"></i>
@@ -754,7 +765,7 @@ const Notes = ({
                   className={
                     showLayer == "layer3" ? "active-breadcrumb" : "breadcrumb"
                   }
-                  style={{cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                   onClick={setLayer2}
                 >
                   {showLayer == "layer3" && breadcrumbData2 ? (
@@ -771,7 +782,7 @@ const Notes = ({
                 {/* {console.log('layer3updateData', layer3updateData)} */}
                 {showLayer == "layer3" ? (
                   layer3Data?.list?.length > 0 &&
-                  layer3updateData?.length > 0 ? (
+                    layer3updateData?.length > 0 ? (
                     <div>
                       {layer3updateData?.map((item, i) => {
                         return (
@@ -859,7 +870,7 @@ const Notes = ({
                           />
                         );
                       })}
-                      {/* {console.log('page', data3Index)} */}
+                     {/* {console.log('page', data3Index)} */}
                       {page.length > 1 && (
                         <div className="pagination_button m-2">
                           <button
@@ -872,7 +883,7 @@ const Notes = ({
                           </button>
                           {/* {console.log('page', val)} */}
                           {page.map((val, index) => {
-                            if (val != page?.length+1) {
+                            if (val != page?.length + 1) {
                               return (
                                 <button
                                   key={index}
@@ -880,9 +891,9 @@ const Notes = ({
                                   style={
                                     val == data3Index
                                       ? {
-                                          backgroundColor: "#FF7426",
-                                          color: "white",
-                                        }
+                                        backgroundColor: "#FF7426",
+                                        color: "white",
+                                      }
                                       : {}
                                   }
                                 >
