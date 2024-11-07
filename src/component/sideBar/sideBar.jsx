@@ -174,7 +174,7 @@ const SideBar = () => {
             >
               <Nav.Link className="m-0">
                 <img src="/assets/images/notificationLogo.png" alt="" />
-                notification
+                Notification
               </Nav.Link>
             </Nav.Item>
             <div className="sidebar-header">

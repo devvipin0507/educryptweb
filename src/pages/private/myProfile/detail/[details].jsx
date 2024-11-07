@@ -450,42 +450,6 @@ const Details = ({ value }) => {
                               key={index}
                             // propsValue={isValidData(item) && item.tiles}
                             >
-                              {/* {item.tile_name == "Course Overview" && (
-                            <CourseDetail
-                              title={item.tile_name}
-                              courseDetail={courseDetail}
-                              propsValue={
-                                isValidData(relateCourseAry) && relateCourseAry
-                              }
-                              relateCourseAry={relateCourseAry}
-                              course = {onlineCourseAry}
-                              titleName = {titleName}
-                            />
-                          )} */}
-                              {/* {item.tile_name == "Description" && (
-                            <CourseDetail
-                              title={item.tile_name}
-                              courseDetail={courseDetail}
-                              propsValue={
-                                isValidData(relateCourseAry) && relateCourseAry
-                              }
-                              relateCourseAry={relateCourseAry}
-                              course = {onlineCourseAry}
-                              keyValue={key}
-                            />
-                          )} */}
-                              {/* {item.tile_name == "Detail" && (
-                            <CourseDetail
-                              title={item.tile_name}
-                              courseDetail={courseDetail}
-                              propsValue={
-                                isValidData(relateCourseAry) && relateCourseAry
-                              }
-                              relateCourseAry={relateCourseAry}
-                              course = {onlineCourseAry}
-                              keyValue={key}
-                            />
-                          )} */}
                               {/* {item.tile_name === "Notes" && ( */}
                               {item.type !== "course_combo" &&
                                 (item.type == "test" ||
