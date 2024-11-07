@@ -56,6 +56,8 @@ const Index = ({ initialTab }) => {
       case "29":
         return <Blogs />;
       case "current_affairs":
+        case "Notification":
+          return <Notification />;
       case "17":
         return <CurrentAffairList />;
       case "testimonial":
@@ -105,7 +107,7 @@ export const getStaticPaths = async () => {
     { params: { tab: "current_affairs" } },
     { params: { tab: "testimonial" } },
     { params: { tab: "bookstore" } },
-    { params: { tab: "Notification" } },
+    { params: { tab: "notification" } },
     { params: { tab: "myCourse" } },
     { params: { tab: "purchase-history" } },
     { params: { tab: "inquiry" } },
