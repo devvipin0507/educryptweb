@@ -56,8 +56,6 @@ const Index = ({ initialTab }) => {
       case "29":
         return <Blogs />;
       case "current_affairs":
-        case "Notification":
-          return <Notification />;
       case "17":
         return <CurrentAffairList />;
       case "testimonial":
