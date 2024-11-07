@@ -1,42 +1,46 @@
-import Footer from '@/component/footer/footer'
-import Header from '@/component/header/header'
+import Footer from '@/component/footer/footer';
+import Header from '@/component/header/header';
 import { policyService } from '@/services';
 import { decrypt, get_token } from '@/utils/helpers';
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 
-const index = () => {
-  
-  const [policyData, setPolicyData] = useState('');
-  const token = get_token()
-
-  useEffect(() => {
-    fetchPolicyService()
-  }, [])
- 
-  const fetchPolicyService = async () => {
-    try{
-      const formData = {}
-      const response_policy_service = await policyService();
-      if(response_policy_service.status) {
-        setPolicyData(response_policy_service.data)
-      }
-    } catch (error) {
-      console.log("error found: ", error)
-      // router.push('/')
-    }
-  }
+const Index = ({ policyData }) => {
   return (
     <>
-        <Header />
-        <div className="container-fluid privacyPolicy">
-          <div
-            className=""
-            dangerouslySetInnerHTML={{ __html: policyData && policyData }}
-          ></div>
-        </div>
-        <Footer />
+      <Header />
+      <div className="container-fluid privacyPolicy">
+        <div
+          className=""
+          dangerouslySetInnerHTML={{ __html: policyData && policyData }}
+        ></div>
+      </div>
+      <Footer />
     </>
-  )
+  );
+};
+
+// This function will run on the server and pass data to the page as props
+export async function getServerSideProps(context) {
+  let policyData = '';
+  
+  try {
+    // Fetching the policy data directly on the server side
+    const response_policy_service = await policyService();
+    
+    // Check if response is successful
+    if (response_policy_service.status) {
+      policyData = response_policy_service.data;
+    }
+  } catch (error) {
+    console.log("Error while fetching policy:", error);
+  }
+
+  // Return the policyData as a prop to be injected into the component
+  return {
+    props: {
+      policyData,
+    },
+  };
 }
 
-export default index
+export default Index;
