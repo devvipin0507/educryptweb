@@ -227,11 +227,13 @@ const Notification = () => {
 
         // console.log("formData", formData);
         const encryptData = btoa(JSON.stringify(formData));
+        if (typeof window !== 'undefined') {
         window.open(
           `${BaseURL}/web/LiveTest/attempt_now_window?data=${encryptData}`,
           "popupWindow",
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );
+      }
         // Start interval to check if the popup is still open
     }
   };
@@ -264,11 +266,13 @@ const Notification = () => {
     // console.log("encryptData", encryptData);
     // const encryptData = encrypt(JSON.stringify(formData));
     // Router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/learn_result_window?data=${encryptData}`)
+    if (typeof window !== 'undefined') {
     window.open(
       `${BaseURL}/web/LiveTest/learn_result_window?data=${encryptData}`,
       "popupWindow",
       `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
     );
+  }
   };
 
   const handleRankTest = (val, course_data) => {
@@ -286,12 +290,13 @@ const Notification = () => {
     // console.log("formData", formData);
     const encryptData = btoa(JSON.stringify(formData));
     // console.log("encryptData", encryptData);
-
+    if (typeof window !== 'undefined') {
     window.open(
       `${BaseURL}/web/LiveTest/result_window?data=${encryptData}`,
       "popupWindow",
       `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
     );
+  }
   };
 
   const getDetail = async (data) => {
