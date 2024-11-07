@@ -97,7 +97,7 @@ const Index = ({ initialTab }) => {
 export const getStaticPaths = async () => {
   const paths = [
     { params: { tab: "feeds" } },
-    { params: { tab: "ourCourse" } },
+    // { params: { tab: "ourCourse" } },
     { params: { tab: "live_Test" } },
     { params: { tab: "live_Classes" } },
     { params: { tab: "blog" } },
@@ -116,7 +116,6 @@ export const getStaticPaths = async () => {
     { params: { tab: "17" } },
     { params: { tab: "Testimonial" } },
     { params: { tab: "14" } },
-    // { params: { tab: "notification" } },
     { params: { tab: "myCourse" } },
     { params: { tab: "purchase-history" } },
     { params: { tab: "12" } },
