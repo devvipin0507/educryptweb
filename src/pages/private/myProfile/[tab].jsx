@@ -105,7 +105,7 @@ export const getStaticPaths = async () => {
     { params: { tab: "current_affairs" } },
     { params: { tab: "testimonial" } },
     { params: { tab: "bookstore" } },
-    { params: { tab: "notification" } },
+    { params: { tab: "Notification" } },
     { params: { tab: "myCourse" } },
     { params: { tab: "purchase-history" } },
     { params: { tab: "inquiry" } },
