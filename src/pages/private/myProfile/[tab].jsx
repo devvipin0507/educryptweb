@@ -63,8 +63,8 @@ const Index = ({ initialTab }) => {
       case "bookstore":
       case "14":
         return <Bookstore />;
-      // case "notification":
-      //   return <Notification />;
+      case "notification":
+        return <Notification />;
       case "myCourse":
         return <MyCourse />;
       case "purchase-history":
