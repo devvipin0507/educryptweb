@@ -48,12 +48,14 @@ const Notification = () => {
         height: window.innerHeight,
       });
     };
-
+    if (typeof window !== 'undefined') {
     window.addEventListener("resize", handleResize);
-
+    }
     // Cleanup event listener on component unmount
     return () => {
+      if (typeof window !== 'undefined') {
       window.removeEventListener("resize", handleResize);
+      }
     };
   }, []);
 
