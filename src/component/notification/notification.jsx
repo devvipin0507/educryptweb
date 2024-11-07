@@ -369,7 +369,8 @@ const Notification = () => {
               notificationData?.map((item, index) => {
                 return (
                     <div 
-                      className={`card p-2 mx-auto NotifyCard ${item?.view_state == 0 ? "active" : ""} mb-2` } 
+                      className={`card p-2 mx-auto NotifyCard ${item?.view_state == 0 ? "active" : ""} mb-2` }
+                      style={(item?.action_element == 4 || item?.action_element == 2) ? {cursor: "pointer" } : {}}
                       key={index}
                       onClick={() => handleNotify(item, index)}
                     >
@@ -404,7 +405,10 @@ const Notification = () => {
                             )}
                             <span
                               className="m-0"
-                              onClick={() => toggleReadMore(index, item)}
+                              onClick={(e) => {
+                                e.stopPropagation(); // Prevent handleNotify from being triggered
+                                toggleReadMore(index, item);
+                              }}
                               style={{ color: 'blue', cursor: 'pointer', marginLeft: '5px' }}
                             >
                               {isExpanded && (id == index) ? 'Read Less' : 'Read More'}

@@ -1987,14 +1987,14 @@ const CourseOrderID = () => {
                                         Number(couponData?.mrp) +
                                         Number(couponData?.tax) +
                                         Number(
-                                          couponData?.delivery_charge
+                                          couponData?.delivery_charge ? couponData?.delivery_charge : 0
                                         )
                                       ).toFixed(2)
                                       : parseFloat(
                                         Number(courseData?.mrp) +
                                         Number(courseData?.tax) +
                                         Number(
-                                          courseData?.delivery_charge
+                                          courseData?.delivery_charge ? courseData?.delivery_charge : 0
                                         )
                                       ).toFixed(2))}
                                 </p>
