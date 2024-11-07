@@ -8,7 +8,7 @@ import LiveClass from "@/component/liveClass/liveClass";
 import LiveTest from "@/component/liveTest/liveTest";
 import LoaderAfterLogin from "@/component/loaderAfterLogin";
 import MyCourse from "@/component/myCourse/myCourse";
-// import Notification from "@/component/notification/notification";
+import Notification from "@/component/notification/notification";
 import OurCourses from "@/component/ourCourses/ourCourses";
 import Profile from "@/component/profile/profile";
 import PurchaseHistory from "@/component/purchaseHistory/purchaseHistory";
@@ -97,7 +97,7 @@ const Index = ({ initialTab }) => {
 export const getStaticPaths = async () => {
   const paths = [
     { params: { tab: "feeds" } },
-    // { params: { tab: "ourCourse" } },
+    { params: { tab: "ourCourse" } },
     { params: { tab: "live_Test" } },
     { params: { tab: "live_Classes" } },
     { params: { tab: "blog" } },
@@ -105,7 +105,7 @@ export const getStaticPaths = async () => {
     { params: { tab: "current_affairs" } },
     { params: { tab: "testimonial" } },
     { params: { tab: "bookstore" } },
-    // { params: { tab: "notification" } },
+    { params: { tab: "notification" } },
     { params: { tab: "myCourse" } },
     { params: { tab: "purchase-history" } },
     { params: { tab: "inquiry" } },
