@@ -181,7 +181,10 @@ const Details = ({ value }) => {
           setKey(
             response_getCourseDetail_data?.data?.tiles?.find(
               (item) => (item.type == "overview")
-            )?.tile_name
+            )?.tile_name 
+            ? response_getCourseDetail_data?.data?.tiles?.find(
+              (item) => (item.type == "overview")
+            )?.tile_name : response_getCourseDetail_data?.data?.tiles[0]?.tile_name
           );
           // console.log("detail", response_getCourseDetail_data?.data?.tiles);
         }
@@ -404,6 +407,7 @@ const Details = ({ value }) => {
                       onSelect={(k) => handleTabChange(k)}
                       className=""
                     >
+                      
                       {/* <Tab
                     eventKey={'course Detail'}
                     title={'course Detail' }

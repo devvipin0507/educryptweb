@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useSelector } from "react-redux";
-import SubTabsData from "../subTabsData/subTabsData";
+// import SubTabsData from "../subTabsData/subTabsData";
 import { useRouter } from "next/router";
-import SearchCourses from "../searchCourses/searchCourses";
+// import SearchCourses from "../searchCourses/searchCourses";
 import { getCourse_service } from "@/services";
 import { decrypt, encrypt, get_token } from "@/utils/helpers";
 import ErrorPageAfterLogin from "../errorPageAfterLogin";
 import LoaderAfterLogin from "../loaderAfterLogin";
-import Banner from "../banner/banner";
-// const Banner = lazy(() => import("../banner/banner"));
-// const SearchCourses = lazy(() => import("../searchCourses/searchCourses"));
-// const SubTabsData = lazy(() => import("../subTabsData/subTabsData"));
+// import Banner from "../banner/banner";
+const Banner = lazy(() => import("../banner/banner"));
+const SearchCourses = lazy(() => import("../searchCourses/searchCourses"));
+const SubTabsData = lazy(() => import("../subTabsData/subTabsData"));
 
 const OurCourses = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -28,7 +28,7 @@ const OurCourses = () => {
   const router = useRouter();
 
   const contentData = useSelector((state) => state?.allCategory?.content);
-  console.log('contentData 31', contentData)
+  console.log('contentData', contentData)
   useEffect(() => {
     if (contentData?.banner_list_web?.length > 0) {
       setBanner(contentData.banner_list_web[0]?.banner_url);
@@ -160,10 +160,10 @@ const OurCourses = () => {
           </div>
         </div>
         } */}
-        {/* <Suspense fallback={<LoaderAfterLogin />}> */}
+        <Suspense fallback={<LoaderAfterLogin />}>
           <Banner IsMargin={true} />
            <SearchCourses catId={catId} handleFilterCourses={handleFilterCourses} />
-        {/* </Suspense> */}
+        </Suspense>
       </section>
       {/* <Suspense fallback={<LoaderAfterLogin />}>
       </Suspense> */}
@@ -187,8 +187,7 @@ const OurCourses = () => {
                         key={index}
                       // data = {item}
                       >
-                        {/* <Suspense fallback={<LoaderAfterLogin />}> */}
-
+                        <Suspense fallback={<LoaderAfterLogin />}>
                           <SubTabsData
                             data={item}
                             handleDetail={handleDetail}
@@ -196,7 +195,7 @@ const OurCourses = () => {
                             getCourses={filterCoursesList}
                             showError={showError}
                           />
-                        {/* </Suspense> */}
+                        </Suspense>
                       </Tab>
                     );
                   }
