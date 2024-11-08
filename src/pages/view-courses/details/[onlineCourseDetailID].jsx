@@ -15,10 +15,11 @@ import Card3 from "@/component/cards/card3";
 import { freeTransactionService, getCourseDetail_Service, getFPaymentService } from "@/services";
 import Button1 from "@/component/buttons/button1/button1";
 import LoginModal from "@/component/modal/loginModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ThankyouModal from "@/component/modal/thankyouModal";
 import Loader from "@/component/loader";
 import dynamic from 'next/dynamic';
+import { reset_tab } from "@/store/sliceContainer/masterContentSlice";
 
 const CourseDetail = dynamic(() => import('@/component/courseDetail/courseDetail'), 
 { ssr: false, loading: () => <Loader /> });
@@ -47,7 +48,11 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
   const [titleName, setTitleName] = useState(initialData?.title || "");
   const [contentData, setContentData] = useState([]);
   // const { onlineCourseDetailID, IsTranding } = router.query;
+
+  const dispatch = useDispatch()
   const versionData = useSelector((state) => state.allCategory?.versionData);
+  const displayTabData = useSelector((state) => state.allCategory?.tabName);
+
   const [pdfData, setPdfData] = useState("");
   let courseCombo = onlineCourseDetailID?.slice(
     onlineCourseDetailID?.indexOf("&") + 1,
@@ -146,6 +151,15 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
     }
   }, [router.isReady, router.query.onlineCourseDetailID, fetchCourseDetail]);
 
+  useEffect(() => {
+    setShowError(false);
+    if (displayTabData?.tab) {
+      setKey(displayTabData?.tab);
+    } else {
+      setKey(tiles.find((item) => item.type == "overview")?.tile_name);
+    }
+  }, [tiles]);
+
   const handleAddToMyCourse = async () => {
     try {
       if (userLoggedIn()) {
@@ -171,7 +185,15 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
     }
   };
 
-  const handleTabChange = (k) => setKey(k);
+  const handleTabChange = (k) => {
+    setKey(k);
+    // console.log("k 83", k);
+    dispatch(reset_tab())
+    // console.log('k', k)
+    if (resetLayerRef.current) {
+      resetLayerRef.current.click();
+    }
+  }
 
   const handleBackdetails = () => {
     if (IsTranding) {
