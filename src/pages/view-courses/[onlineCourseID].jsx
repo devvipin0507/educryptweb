@@ -210,7 +210,6 @@ export async function getServerSideProps(context) {
     };
     const response = await getCourse_service(encrypt(JSON.stringify(formData), token));
     const decryptedData = decrypt(response.data, token);
-
     if (decryptedData.status) {
       initialData = decryptedData?.data || [];
     }
