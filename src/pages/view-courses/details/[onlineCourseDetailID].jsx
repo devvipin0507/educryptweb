@@ -177,12 +177,13 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
     if (IsTranding) {
       router.push("/");
     } else {
-      const back = localStorage.getItem("redirectdetails");
-      router.back();
-      // if (back) {
-      //   router.push(back);
-      // } else {
-      // }
+      const back = localStorage.getItem("previousTab");
+      console.log("back",back)
+      if (back) {
+        router.push(back);
+      } else {
+        router.back();
+      }
     }
   };
 
@@ -191,7 +192,7 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
     if (isLoggedIn) {
       const currentPath = router.asPath;
       localStorage.setItem("redirectAfterLogin", currentPath);
-      localStorage.setItem("previousTab", router.pathname);
+      // localStorage.setItem("previousTab", router.pathname);
       router.push(
         `/view-courses/course-order/${titleName + ":" + onlineCourseAry.id + "&" + courseCombo
         }`
