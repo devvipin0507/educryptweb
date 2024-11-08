@@ -178,11 +178,11 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
       router.push("/");
     } else {
       const back = localStorage.getItem("redirectdetails");
-      if (back) {
-        router.push(back);
-      } else {
-        router.back();
-      }
+      router.back();
+      // if (back) {
+      //   router.push(back);
+      // } else {
+      // }
     }
   };
 
