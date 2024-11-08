@@ -57,8 +57,8 @@ const Notes = ({
   const [tabLayer2Item, setTabLayer2item] = useState('')
   const [tabLayer3Item, setTabLayer3item] = useState('')
   const [windowSize, setWindowSize] = useState({
-    width: 0,
-    height: 0,
+    width: window.innerWidth,
+    height: window.innerHeight
   });
 
   const [checkLogin, setCheckLogin] = useState("");
