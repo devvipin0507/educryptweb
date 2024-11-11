@@ -69,23 +69,63 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
   const OverView = tiles.find((item) => (item.type == "overview"));
 
 
-  console.log("initialData", initialData)
+  // console.log("initialData", initialData)
+
+  // useEffect(() => {
+    
+  //   const handleScroll = () => {
+  //     if (typeof window !== 'undefined') {
+  //       const currentScrollY = window.scrollY;
+  //       setClass(currentScrollY > 0);
+  //     }
+  //   };
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener("scroll", handleScroll);
+  //   }
+  //   return () => {
+  //     if (typeof window !== 'undefined') {
+  //       window.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, []);
 
   useEffect(() => {
+    // Getting the heights of the elements once after the component mounts
+    // console.log("pageSection1", pageSection1);
+    // console.log("offset1", offset1);
     const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        const currentScrollY = window.scrollY;
-        setClass(currentScrollY > 0);
+      let pageSection1 = document.querySelector(".page-section-1")?.offsetHeight;
+      let offset1 = document.querySelector(".offset--1")?.offsetHeight || 0;
+      let pageSection6 = document.querySelector(".page-section-6")?.offsetHeight || 0;
+      let currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      if (pageSection1 > 0) {
+        if (currentScrollY >= pageSection1) {
+          setClass(true);
+        } else {
+          setClass(false);
+        }
+      } else if (offset1 > 0) {
+        if (currentScrollY >= offset1) {
+          setClass(true);
+        } else {
+          setClass(false);
+        }
+      } else if (pageSection6 > 0) {
+        if (currentScrollY >= pageSection6) {
+          setClass(true);
+        } else {
+          setClass(false);
+        }
       }
     };
     if (typeof window !== 'undefined') {
+      // Attach the scroll event listener
       window.addEventListener("scroll", handleScroll);
+
+      // Clean up the event listener on component unmount
+      return () => window.removeEventListener("scroll", handleScroll);
     }
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
   }, []);
 
   const fetchCourseDetail = useCallback(async (course_id) => {

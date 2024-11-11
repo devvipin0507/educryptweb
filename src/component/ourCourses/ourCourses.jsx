@@ -43,13 +43,15 @@ const OurCourses = () => {
       const getTabName = localStorage.getItem('mainTab');
       // console.log('getTabName',getTabName)
       if (getTabName) {
+        console.log('getTabName1')
         setKey(getTabName)
         setCatId(contentData?.course_type_master?.filter(item => item.name == getTabName)[0]?.id)
         setTimeout(() => {
-          localStorage.setItem('mainTab', "")
+          localStorage.removeItem('mainTab')
         }, [2000])
       }
       else {
+        console.log('getTabName2')
         setCatId(contentData?.course_type_master[0]?.id)
         setKey(contentData?.course_type_master[0]?.name);
       }
