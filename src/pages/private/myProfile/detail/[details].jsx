@@ -447,7 +447,6 @@ const Details = ({ value }) => {
                       {/* {console.log("key 214",tiles,  versionData.same_content_view)} */}
                       {tiles?.map(
                         (item, index) =>
-                          // console.log('item', item)
                           (item.type !== "content" &&
                             item.type !== "faq" &&
                             item.type !== "overview" &&
@@ -460,9 +459,7 @@ const Details = ({ value }) => {
                               eventKey={item.tile_name}
                               title={item.tile_name}
                               key={index}
-                            // propsValue={isValidData(item) && item.tiles}
                             >
-                              {/* {item.tile_name === "Notes" && ( */}
                               {item.type !== "course_combo" &&
                                 (item.type == "test" ||
                                   item.type == "pdf" ||
@@ -475,7 +472,6 @@ const Details = ({ value }) => {
                                       tabName={item.tile_name}
                                       keyValue={key}
                                       onlineCourseAry={onlineCourseAry}
-                                    // propsValue={isValidData(pdfData) && pdfData}
                                     />
                                   </Suspense>
                                 )}

@@ -529,7 +529,7 @@ const Notes = ({
     if (!isLoggedIn) {
       setModalShow(true);
     } else {
-      if (onlineCourseAry.is_purchased == 1) {
+      // if (onlineCourseAry.is_purchased == 1) {
         var firstAttempt = "0";
         if (val.state == "") {
           firstAttempt = "1";
@@ -571,9 +571,9 @@ const Notes = ({
             // console.log('867867687687')
           }
         }, 500); // Check every 500ms
-      } else {
-        showErrorToast("Please, purchase the course");
-      }
+      // } else {
+      //   showErrorToast("Please, purchase the course");
+      // }
     }
   };
 
@@ -588,7 +588,7 @@ const Notes = ({
     if (!isLoggedIn) {
       setModalShow(true);
     } else {
-      if (onlineCourseAry.is_purchased == 1) {
+      // if (onlineCourseAry.is_purchased == 1) {
         const formData = {
           jwt: localStorage.getItem("jwt"),
           user_id: localStorage.getItem("user_id"),
@@ -609,9 +609,9 @@ const Notes = ({
           "popupWindow",
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );
-      } else {
-        showErrorToast("Please, purchase the course");
-      }
+      // } else {
+      //   showErrorToast("Please, purchase the course");
+      // }
     }
   };
 
@@ -620,7 +620,7 @@ const Notes = ({
     if (!isLoggedIn) {
       setModalShow(true);
     } else {
-      if (onlineCourseAry.is_purchased == 1) {
+      // if (onlineCourseAry.is_purchased == 1) {
         var firstAttempt = "0";
         if (val.state == "") {
           firstAttempt = "1";
@@ -654,9 +654,9 @@ const Notes = ({
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );
       }
-      } else {
-        showErrorToast("Please, purchase the course");
-      }
+      // } else {
+      //   showErrorToast("Please, purchase the course");
+      // }
     }
   };
 
@@ -665,14 +665,14 @@ const Notes = ({
     if (!isLoggedIn) {
       setModalShow(true);
     } else {
-      if (onlineCourseAry.is_purchased == 1) {
+      // if (onlineCourseAry.is_purchased == 1) {
         const givenStartTime = new Date(item?.start_date * 1000);
         showErrorToast(
           `Test will start at ${givenStartTime.toLocaleTimeString()}`
         );
-      } else {
-        showErrorToast("Please, purchase the course");
-      }
+      // } else {
+      //   showErrorToast("Please, purchase the course");
+      // }
     }
   };
 
