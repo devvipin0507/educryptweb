@@ -208,4 +208,4 @@ const TileDetail = ({item, layer1Data, handleRead, handleWatch, handleTakeTest, 
   )
 }
 
-export default TileDetail
+export default React.memo(TileDetail)

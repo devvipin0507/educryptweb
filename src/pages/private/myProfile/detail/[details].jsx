@@ -31,6 +31,7 @@ import LoaderAfterLogin from "@/component/loaderAfterLogin";
 import ErrorPageAfterLogin from "@/component/errorPageAfterLogin";
 import LoginModal from "@/component/modal/loginModal";
 import { reset_tab } from "@/store/sliceContainer/masterContentSlice";
+import { toast } from "react-toastify";
 
 const Notes = lazy(() => import("@/component/notes/notes"));
 const CourseDetail = lazy(() => import("@/component/courseDetail/courseDetail"));
@@ -207,6 +208,7 @@ const Details = ({ value }) => {
 
   const handleTabChange = (k) => {
     // console.log("k 83", k);
+    toast.dismiss()
     setKey(k);
     dispatch(reset_tab())
     // console.log('k', k)
@@ -415,14 +417,6 @@ const Details = ({ value }) => {
                       onSelect={(k) => handleTabChange(k)}
                       className=""
                     >
-                      
-                      {/* <Tab
-                    eventKey={'course Detail'}
-                    title={'course Detail' }
-                    key={'course Detail'}
-                    // propsValue={isValidData(item) && item.tiles}
-                    >
-                </Tab> */}
                       {OverView && (
                         <Tab
                           eventKey={OverView.tile_name}

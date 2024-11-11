@@ -92,14 +92,6 @@ const Notes = ({
   }, []);
 
   useEffect(() => {
-    if (isToasterOpen) {
-      setTimeout(() => {
-        setIsToasterOpen(false);
-      }, 1500);
-    }
-  }, [isToasterOpen]);
-
-  useEffect(() => {
     if (courseDetail) {
       setLayer1Data(courseDetail);
     }
@@ -139,6 +131,7 @@ const Notes = ({
   }, [layer2List])
 
   useEffect(() => {
+    toast.dismiss()
     // console.log(displayTabData)
     setData3Index(1);
     let r_api = courseDetail?.revert_api.split("#");
@@ -200,16 +193,6 @@ const Notes = ({
     if (cr_date) {
       // setDate(cr_date.toString().substring(0, cr_date.toString().indexOf('GMT')))
       return format(cr_date, "d MMM, yyyy");
-    }
-  };
-
-  const showErrorToast = (toastMsg) => {
-    if (!isToasterOpen) {
-      setIsToasterOpen(true);
-      toast.error(toastMsg, {
-        // onClose: () => setIsToasterOpen(false),  // Set isToasterOpen to false when the toaster closes
-        autoClose: 1000,
-      });
     }
   };
 
@@ -327,14 +310,14 @@ const Notes = ({
           window.open(value.file_url, "_blank");
         }
       } else {
-        showErrorToast("Please, purchase the course");
+        toast.error("Please, purchase the course");
       }
     }
   };
 
   const handleWatch = (data, index) => {
     if (data?.live_status == 2 && data?.video_type == 8) {
-      showErrorToast('Live class has been ended')
+      toast.error('Live class has been ended');
     }
     else {
       let playData = {
@@ -393,7 +376,7 @@ const Notes = ({
         }
 
         else {
-          showErrorToast("Please, purchase the course");
+          toast.error("Please, purchase the course");        
         }
       }
     }
@@ -571,9 +554,6 @@ const Notes = ({
             // console.log('867867687687')
           }
         }, 500); // Check every 500ms
-      // } else {
-      //   showErrorToast("Please, purchase the course");
-      // }
     }
   };
 
@@ -609,9 +589,6 @@ const Notes = ({
           "popupWindow",
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );
-      // } else {
-      //   showErrorToast("Please, purchase the course");
-      // }
     }
   };
 
@@ -654,9 +631,6 @@ const Notes = ({
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );
       }
-      // } else {
-      //   showErrorToast("Please, purchase the course");
-      // }
     }
   };
 
@@ -667,12 +641,7 @@ const Notes = ({
     } else {
       // if (onlineCourseAry.is_purchased == 1) {
         const givenStartTime = new Date(item?.start_date * 1000);
-        showErrorToast(
-          `Test will start at ${givenStartTime.toLocaleTimeString()}`
-        );
-      // } else {
-      //   showErrorToast("Please, purchase the course");
-      // }
+        toast.error(`Test will start at ${givenStartTime.toLocaleTimeString()}`); 
     }
   };
 
@@ -708,20 +677,6 @@ const Notes = ({
           >
             <section className={` ${checkLogin ? "px-2 " : ""}`}>
               <div className=" custom-breadcrumb">
-                {/* <span
-            ref={resetRef}
-            className={showLayer == "layer1" ? "breadcrumb" : "breadcrumb"}
-            onClick={() => {
-              setShowLayer("layer1");
-            }}
-          >
-            {showLayer == "layer1" ||
-            showLayer == "layer2" ||
-            showLayer == "layer3"
-              ? // ? ` > ${layer2List.title}`
-                `Subjects >`
-              : ""}
-          </span> */}
                 <span
                   ref={resetRef}
                   className={
@@ -730,7 +685,6 @@ const Notes = ({
                   style={{ cursor: 'pointer' }}
                   onClick={setLayer1}
                 >
-                  {/* {(layer2List != undefined && showLayer == "layer2") || */}
                   {(showLayer == "layer2" || showLayer == "layer3") &&
                     breadcrumbData ? (
                     // ? ` > ${layer2List.title}`
@@ -766,75 +720,6 @@ const Notes = ({
                     <div>
                       {layer3updateData?.map((item, i) => {
                         return (
-                          // <div
-                          //   className=" pg-tabs-description mt-3"
-                          //   key={i}
-                          // //   onClick={() => handleOpenVideo(item)}
-                          // >
-                          //   <div className="tabs-deschovr d-flex align-items-center rounded">
-                          //     <div className="w-100 pg-sb-topic d-flex align-items-center justify-content-between">
-                          //       <div className="d-flex justify-content-between">
-                          //         <img
-                          //           src={item.thumbnail_url ? item.thumbnail_url : "/assets/images/noImage.jfif"}
-                          //           height={"60px"}
-                          //         />
-                          //         <div className="subjectDetails">
-                          //           <p className="m-0 sub_name">{item.title}</p>
-                          //           {item.role == "PDF" && (
-                          //             <p className="m-0 sub_topics">
-                          //               {item.release_date}
-                          //             </p>
-                          //           )}
-                          //         </div>
-                          //       </div>
-                          //       <div className="pg-sb-topic pe-2">
-                          //         <div className="btnsalltbba text-center d-flex">
-                          //           {" "}
-                          //           {
-                          //           // (isLogin &&
-                          //           item.is_purchased == 0 ?
-                          //           // item.is_locked == "1" ?
-                          //           // <>
-                          //           //   <img style={{ width: "32px" }} src="/assets/images/locked.png" alt="" />
-                          //           // </>
-                          //           // :
-                          //             item.is_locked == 0 ?
-                          //             <>
-                          //             {layer1Data.type == "pdf" && <Button1 value="Read" handleClick={handleRead} /> }
-                          //             {layer1Data.type == "video" && <Button1 value="Watch Now" handleClick={handleWatch(item, i)} />}
-                          //             {layer1Data.type == "test" && <Button1 value="Test" />}
-                          //             </>
-                          //             :
-                          //             <>
-                          //               <img style={{ width: "32px" }} src="/assets/images/locked.png" alt="" />
-                          //             </>
-                          //           :
-                          //           <>
-                          //           {layer1Data?.type == "pdf" && <Button1 value="Read" handleClick={() => handleRead(item)} /> }
-                          //           {layer1Data?.type == "video" && <Button1 value="Watch Now" handleClick={() => handleWatch(item, i)} />}
-                          //           {layer1Data?.type == "test" &&
-                          //             (compareTime(item.start_date  , item.end_date) == "pending" &&
-                          //             <Button1 value="Upcoming"
-                          //               // handleClick={() => handleTakeTest(item, i)}
-                          //             />
-                          //             )}
-                          //             {layer1Data?.type == "test" && (compareTime(item.start_date  , item.end_date) == "attempt" &&
-                          //             <Button1 value="Attempt Now"
-                          //               handleClick={() => handleTakeTest(item, i)}
-                          //             />
-                          //             )}
-                          //             {layer1Data?.type == "test" && (compareTime(item.start_date  , item.end_date) == "result" &&
-                          //             <Button1 value={item?.state == 1 ? "View Result" : "LeaderBoard"}
-                          //               handleClick={() => item?.state == 1 ? handleResultTest(item, i) : handleRankTest(item, i)}
-                          //             />
-                          //             )}
-                          //           </>
-                          //           }
-                          //         </div>
-                          //       </div>
-                          //     </div>
-                          //   </div>
-                          // </div>
                           <TileDetail
                             item={item}
                             layer1Data={layer1Data}
@@ -1032,4 +917,4 @@ const Notes = ({
   );
 };
 
-export default Notes;
+export default React.memo(Notes);
