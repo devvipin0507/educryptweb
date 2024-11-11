@@ -298,11 +298,11 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
                   {onlineCourseAry.mrp != 0 && (
                     <div className="gap-2 d-flex flex-wrap flex-sm-nowrap align-items-center button_price">
                       <div className="gap-2 share d-flex align-items-center">
-                        {versionData?.share_content == 1 && (
+                        {/* {versionData?.share_content == 1 && (
                           <button className="button1_share">
                             <FaShare />
                           </button>
-                        )}
+                        )} */}
                         {onlineCourseAry.is_purchased == 0 && (
                           <p className="m-0 detailBbuyNow">
                             <Button1

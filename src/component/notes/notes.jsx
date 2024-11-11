@@ -139,6 +139,7 @@ const Notes = ({
   }, [layer2List])
 
   useEffect(() => {
+    // console.log(displayTabData)
     setData3Index(1);
     let r_api = courseDetail?.revert_api.split("#");
     if (displayTabData?.layer) {
@@ -399,6 +400,7 @@ const Notes = ({
   };
 
   const setLayer1 = () => {
+    dispatch(reset_tab())
     // console.log('layer1Data87687868', courseDetail)
     let r_api = courseDetail?.revert_api.split("#");
     setData3Index(1)
@@ -426,7 +428,16 @@ const Notes = ({
   };
 
   const setLayer2 = () => {
+    // dispatch(reset_tab())
     // console.log('layer1Data', courseDetail)
+    dispatch(
+      all_tabName({
+        ...all_tabName, 
+        tabLayer2index: '',
+        tabLayer2Item: '',
+        page: data3Index,
+      })
+    );
     let r_api = courseDetail?.revert_api.split("#");
     setData3Index(1)
     if (
