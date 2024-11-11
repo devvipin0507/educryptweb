@@ -31,6 +31,7 @@ import LoaderAfterLogin from "@/component/loaderAfterLogin";
 import ErrorPageAfterLogin from "@/component/errorPageAfterLogin";
 import LoginModal from "@/component/modal/loginModal";
 import { reset_tab } from "@/store/sliceContainer/masterContentSlice";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Notes = lazy(() => import("@/component/notes/notes"));
 const CourseDetail = lazy(() => import("@/component/courseDetail/courseDetail"));
@@ -286,6 +287,18 @@ const Details = ({ value }) => {
   const OverView = tiles.find((item) => item.type == "overview");
   return (
     <>
+     <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Header />
       <LoginModal
         show={modalShow}

@@ -7,9 +7,11 @@
 }
 
 .fixed-top {
-  z-index: 1 !important;
+  z-index: 99 !important;
 }
-
+.Toastify__toast-container--top-right {
+  z-index: 999 !important;
+}
 html,
 body {
   overflow-x: hidden !important;
@@ -4469,7 +4471,7 @@ input.coupon_field::placeholder {
 
     } */
 .myCourseBtn {
-  /* height: -webkit-fill-available; */
+  height: -webkit-fill-available;
   width: 100% !important;
 }
 .myCourseBtn .button1_userBtn__SWuni {
