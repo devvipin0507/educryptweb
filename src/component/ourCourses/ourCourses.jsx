@@ -10,6 +10,8 @@ import { decrypt, encrypt, get_token } from "@/utils/helpers";
 import ErrorPageAfterLogin from "../errorPageAfterLogin";
 import LoaderAfterLogin from "../loaderAfterLogin";
 // import Banner from "../banner/banner";
+import Head from 'next/head';
+
 const Banner = lazy(() => import("../banner/banner"));
 const SearchCourses = lazy(() => import("../searchCourses/searchCourses"));
 const SubTabsData = lazy(() => import("../subTabsData/subTabsData"));
@@ -154,6 +156,11 @@ const OurCourses = () => {
 
   return (
     <>
+      <Head>
+        <title>{'Our Courses'}</title>
+        <meta name={'Our Courses'} content={'Our Courses'} />
+      </Head>
+
       <section className="container-fluid">
         {/* {banner &&
         <div className="row">
@@ -164,7 +171,7 @@ const OurCourses = () => {
         } */}
         <Suspense fallback={<LoaderAfterLogin />}>
           <Banner IsMargin={true} />
-           <SearchCourses catId={catId} handleFilterCourses={handleFilterCourses} />
+          <SearchCourses catId={catId} handleFilterCourses={handleFilterCourses} />
         </Suspense>
       </section>
       {/* <Suspense fallback={<LoaderAfterLogin />}>

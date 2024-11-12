@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef, Suspense, lazy } from "react";
+import React, { useEffect, useState, useRef, Suspense, lazy } from "react";
 import { getCourseDetail_Service } from "@/services";
 import {
   comboDetail,
@@ -32,6 +32,7 @@ import ErrorPageAfterLogin from "@/component/errorPageAfterLogin";
 import LoginModal from "@/component/modal/loginModal";
 import { reset_tab } from "@/store/sliceContainer/masterContentSlice";
 import { ToastContainer, toast } from 'react-toastify';
+import Head from 'next/head';
 
 const Notes = lazy(() => import("@/component/notes/notes"));
 const CourseDetail = lazy(() => import("@/component/courseDetail/courseDetail"));
@@ -161,11 +162,11 @@ const Details = ({ value }) => {
       }
     };
     // if (typeof window !== 'undefined') {
-      // Attach the scroll event listener
-      window.addEventListener("scroll", handleScroll);
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
 
-      // Clean up the event listener on component unmount
-      return () => window.removeEventListener("scroll", handleScroll);
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener("scroll", handleScroll);
     // }
   }, []);
 
@@ -218,14 +219,6 @@ const Details = ({ value }) => {
               )
               ?.meta?.list?.find((item) => item.id == id)
           );
-          // setKey(
-          //   response_getCourseDetail_data?.data?.tiles?.find(
-          //     (item) => (item.type == "overview")
-          //   )?.tile_name 
-          //   ? response_getCourseDetail_data?.data?.tiles?.find(
-          //     (item) => (item.type == "overview")
-          //   )?.tile_name : response_getCourseDetail_data?.data?.tiles[0]?.tile_name
-          // );
           setKey(
             response_getCourseDetail_data?.data?.tiles?.find(
               (item) => (item.type == "overview")
@@ -287,7 +280,12 @@ const Details = ({ value }) => {
   const OverView = tiles.find((item) => item.type == "overview");
   return (
     <>
-     <ToastContainer
+      <Head>
+        <title>{onlineCourseAry?.title}</title>
+        <meta name={onlineCourseAry?.title} content={onlineCourseAry?.title} />
+      </Head>
+
+      <ToastContainer
         position="top-right"
         autoClose={1000}
         hideProgressBar={false}

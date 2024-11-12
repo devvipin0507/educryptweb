@@ -7,7 +7,6 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useRouter } from "next/router";
 import { get_token, encrypt, decrypt, userLoggedIn, isValidData } from "@/utils/helpers";
-
 import { IoStar } from "react-icons/io5";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +19,7 @@ import ThankyouModal from "@/component/modal/thankyouModal";
 import Loader from "@/component/loader";
 import dynamic from 'next/dynamic';
 import { reset_tab } from "@/store/sliceContainer/masterContentSlice";
+import Head from 'next/head';
 
 const CourseDetail = dynamic(() => import('@/component/courseDetail/courseDetail'), 
 { ssr: false, loading: () => <Loader /> });
@@ -133,7 +133,7 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
       const formData = {
         course_id: course_id,
         // page: 1,
-        parent_id: courseCombo ? "" : parentId ? parentId : id,
+        parent_id: courseCombo ? "" : parentId ? parentId : course_id,
         // parent_id: 0
       };
       const response_getCourseDetail_service = await getCourseDetail_Service(
@@ -266,6 +266,10 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
 
   return (
     <>
+     <Head>
+        <title>{onlineCourseAry?.title}</title>
+        <meta name={onlineCourseAry?.title} content={onlineCourseAry?.title} />
+      </Head>
       <ToastContainer position="top-right" autoClose={1000} />
       <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
       <ThankyouModal show={thankYouModalShow} onHide={() => setThankYouModalShow(false)} />

@@ -11,9 +11,11 @@ import LoaderAfterLogin from "../loaderAfterLogin";
 // import toast, { Toaster } from "react-hot-toast";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Head from 'next/head';
+
 const LiveTestCard = lazy(() => import("../cards/liveTestCard"));
 
-const LiveTest = () => {
+const LiveTest = ({title}) => {
   const [key, setKey] = useState("LIVE");
   const [showError, setShowError] = useState(false);
   const [liveTests, setLiveTests] = useState([]);
@@ -119,6 +121,11 @@ const LiveTest = () => {
 
   return (
     <>
+     <Head>
+        <title>{title}</title>
+        <meta name={title} content={title} />
+      </Head>
+
       <ToastContainer
         position="top-right"
         autoClose={1000}

@@ -3,6 +3,7 @@ import Header from '@/component/header/header'
 import { contactUsService } from '@/services';
 import { get_token } from '@/utils/helpers';
 import React, { useEffect, useState } from 'react'
+import Head from 'next/head';
 
 const index = () => {
 
@@ -27,6 +28,10 @@ const index = () => {
   }
   return (
     <>
+     <Head>
+        <title>{'Contact us'}</title>
+        <meta name={'Contact us'} content={'Contact us'} />
+      </Head>
     <Header />
     <div className="container-fluid contactCont">
       <div className="row mb-5">

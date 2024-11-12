@@ -109,7 +109,7 @@ const Header = ({ search }) => {
     }
   }, [dispatch, token]);
 
-  const fetchSearchCourse = useCallback(async () => {
+  const fetchSearchCourse = useCallback(async (value) => {
     try {
       if (value) {
         const formData = {

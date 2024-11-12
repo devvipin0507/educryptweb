@@ -4471,7 +4471,7 @@ input.coupon_field::placeholder {
 
     } */
 .myCourseBtn {
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
   width: 100% !important;
 }
 .myCourseBtn .button1_userBtn__SWuni {

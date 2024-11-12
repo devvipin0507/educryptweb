@@ -157,7 +157,13 @@ const SideBar = () => {
                     <Nav.Item
                       key={index}
                       onClick={() => {
-                          router.push(`/private/myProfile/${value?.type}`)
+                          // router.push(`/private/myProfile/${value?.type}`)
+                          router.push({
+                            pathname: `/private/myProfile/${value?.type}`,
+                            query: {
+                              title: value.title,
+                            }
+                          });
                           localStorage.removeItem('mainTab')
                         }
                       }
@@ -230,7 +236,13 @@ const SideBar = () => {
                     <Nav.Item
                       key={index}
                       onClick={() => {
-                          router.push(`/private/myProfile/${value?.type}`)
+                          // router.push(`/private/myProfile/${value?.type}`)
+                          router.push({
+                            pathname: `/private/myProfile/${value?.type}`,
+                            query: {
+                              title: value.title,
+                            }
+                          });
                           localStorage.removeItem('mainTab')
                         }
                       }

@@ -62,6 +62,7 @@ const Notes = ({
   });
 
   const [checkLogin, setCheckLogin] = useState("");
+  let rApi = courseDetail?.revert_api.split("#");
 
   useEffect(() => { }, [checkLogin]);
 
@@ -674,6 +675,7 @@ const Notes = ({
     }
   };
 
+  console.log('courseDetail',   courseDetail)
   return (
     <>
       <LoginModal
@@ -937,14 +939,34 @@ const Notes = ({
                             {/* <h3>{item.title}</h3> */}
                             <div className="subjectDetails">
                               <p className="sub_name">{item.title}</p>
-                              {item.role == "subject" && (
+                              {rApi[1] == 0 && layer1Data?.type == "pdf" &&  (
                                 <p className="m-0 sub_topics">
-                                  {item.content} Topics
+                                  {item?.count} PDF's
                                 </p>
                               )}
-                              {item.role == "topic" && (
+                              {rApi[1] == 0 && layer1Data?.type == "video" &&  (
                                 <p className="m-0 sub_topics">
-                                  {item.content} PDF's
+                                  {item?.count} Videos
+                                </p>
+                              )}
+                              {rApi[1] == 0 && layer1Data?.type == "test" &&  (
+                                <p className="m-0 sub_topics">
+                                  {item?.count} Tests
+                                </p>
+                              )}
+                              {rApi[1] == 1 && layer1Data?.type == "pdf" &&  (
+                                <p className="m-0 sub_topics">
+                                  {item?.count} Pdf's
+                                </p>
+                              )}
+                              {rApi[1] == 1 && layer1Data?.type == "video" &&  (
+                                <p className="m-0 sub_topics">
+                                  {item?.count} Videos
+                                </p>
+                              )}
+                              {rApi[1] == 1 && layer1Data?.type == "test" &&  (
+                                <p className="m-0 sub_topics">
+                                  {item?.count} Tests
                                 </p>
                               )}
                             </div>
@@ -997,14 +1019,24 @@ const Notes = ({
                             {/* <h3>{item.title}</h3> */}
                             <div className="subjectDetails">
                               <p className="sub_name">{item.title}</p>
-                              {item.role == "subject" && (
+                              {rApi[1] == 0 &&  (
                                 <p className="m-0 sub_topics">
-                                  {item.content} Topics
+                                  {item?.list?.length} Topics
                                 </p>
                               )}
-                              {item.role == "topic" && (
+                              {rApi[1] == 2 && courseDetail?.type == "video" &&  (
                                 <p className="m-0 sub_topics">
-                                  {item.content} PDF's
+                                   {item?.count} Videos
+                                </p>
+                              )}
+                              {rApi[1] == 2 && courseDetail?.type == "pdf" && (
+                                <p className="m-0 sub_topics">
+                                   {item?.count} PDF's
+                                </p>
+                              )}
+                              {rApi[1] == 2 && courseDetail?.type == "test" && (
+                                <p className="m-0 sub_topics">
+                                   {item?.count} Tests
                                 </p>
                               )}
                             </div>
