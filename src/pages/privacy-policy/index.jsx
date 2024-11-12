@@ -32,6 +32,7 @@ const index = () => {
         <title>{'Privacy Policy'}</title>
         <meta name={'Privacy Policy'} content={'Privacy Policy'} />
       </Head>
+      
       <Header />
       <div className="container-fluid privacyPolicy">
         <div

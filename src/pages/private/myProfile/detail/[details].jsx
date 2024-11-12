@@ -304,7 +304,7 @@ const Details = ({ value }) => {
           setModalShow(false);
         }}
       />
-      <div className="d-flex" style={{ marginTop: "55px" }}>
+      <div className="d-flex" style={{ marginTop: "108px" }}>
         <SideBar />
         {/* {console.log('onlineCourseAry', onlineCourseAry)} */}
         <main className="main_content pt-0 flex-grow-1">

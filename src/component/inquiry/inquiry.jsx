@@ -403,6 +403,7 @@ const Inquiry = ({title}) => {
                     <div className="getInTouchForm mb-1">
                       {/* {console.log(InquiryType)} */}
                       <Select
+                      className="select_2"
                         name="state"
                         value={
                           InquiryType.find(

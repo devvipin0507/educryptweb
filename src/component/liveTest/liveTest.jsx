@@ -45,7 +45,8 @@ const LiveTest = ({ title }) => {
       }
     } catch (error) {
       console.error("API call error:", error);
-      router.push("/");
+      // router.push("/");
+      setShowError(true); // Reset error on tab change
       throw error;
     }
   };
@@ -61,6 +62,7 @@ const LiveTest = ({ title }) => {
   });
 
   const handleTabChange = (k) => {
+    console.log("k",k)
     setKey(k);
     setShowError(false); // Reset error on tab change
   };
