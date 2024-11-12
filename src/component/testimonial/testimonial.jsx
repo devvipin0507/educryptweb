@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { encrypt, decrypt, isValidData } from '../../utils/helpers';
 import { getTestimonialService } from '@/services';
-import Head from 'next/head';
 
 const Testimonial = () => {
     const [showSlide, setShowSlide] = useState(3);
@@ -112,10 +111,6 @@ const Testimonial = () => {
 
     return (
       <>
-      <Head>
-        <title>{'Testimonial'}</title>
-        <meta name={'Testimonial'} content={'Testimonial'} />
-      </Head>
         <div className='container mb-3 test_container'>
           {isValidData(testimonial_Ary1) && <>
             <div className='testimonial_heading'>

@@ -36,7 +36,7 @@ const index = () => {
         <title>{'About us'}</title>
         <meta name={'About us'} content={'About us'} />
       </Head>
-      {/* <Header search={"disable"} />
+      <Header search={"disable"} />
       <div className="container-fluid detailTopContainer mb-5">
         <div className={`row`}>
           <div className={`col-sm-12 col-md-7 col-lg-6`}>
@@ -45,10 +45,10 @@ const index = () => {
                 <h3 className="m-0 bannerTitle mb-4">
                   About us
                 </h3>
-                <p className="careerBannerText">
+                {/* <p className="careerBannerText">
                   Have questions? Here you’ll find the answers most valued by our partners, along with access to step-by-step
                   instructions & support.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -63,15 +63,18 @@ const index = () => {
       </div>
       <div className="container-fluid careerMainSection mb-5">
         <div className="row mt-5">
+          <p
+            dangerouslySetInnerHTML={{ __html: aboutUsData }}
+          ></p>
         </div>
         </div>
-      <Footer /> */}
-      <Header />
+      <Footer />
+      {/* <Header />
       <div className='container-fluid p-0 mt-5' >
         <div className='' dangerouslySetInnerHTML={{ __html: aboutUsData && aboutUsData }}>
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
     </>
 
   )

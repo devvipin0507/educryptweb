@@ -62,9 +62,9 @@ const index = () => {
       </div>
       <div className="container-fluid careerMainSection mb-5">
         <div className="row mt-5">
+        {faqData?.length > 0 && (
           <div className="text-center whycont_width col-md-12 mx-auto mb-3">
             <h4 className="m-0 mb-3 whyTtile">Frequently Asked Questions</h4>
-            {faqData?.length > 0 && (
               <div className="p-0 mt-4">
                 <div className="accordion accordion-flush" id="faqlist" style={{ textAlign: 'start' }}>
                   {faqData?.map((item, index) => {
@@ -97,8 +97,8 @@ const index = () => {
                   })}
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       <Footer />

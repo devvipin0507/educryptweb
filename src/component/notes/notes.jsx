@@ -675,7 +675,7 @@ const Notes = ({
     }
   };
 
-  console.log('courseDetail',   courseDetail)
+  // console.log('courseDetail',   courseDetail)
   return (
     <>
       <LoginModal

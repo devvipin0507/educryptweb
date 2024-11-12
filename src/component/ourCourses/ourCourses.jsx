@@ -56,7 +56,7 @@ const OurCourses = () => {
         console.log('getTabName2')
         setCatId(contentData?.course_type_master[0]?.id)
         setKey(contentData?.course_type_master[0]?.name);
-      }
+      } 
     }
   }, [contentData])
 
