@@ -78,7 +78,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="d-flex" style={{ marginTop: "55px" }}>
+    <div className="d-flex" >
       <div>
         <div className="closeSidebar closeSidebarTop mx-3 py-1">
           <button

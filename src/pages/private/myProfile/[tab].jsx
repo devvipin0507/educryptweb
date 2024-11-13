@@ -82,7 +82,7 @@ const Index = ({ initialTab }) => {
   return (
     <>
       <Header />
-      <div className="d-flex" style={{ marginTop: "108px" }}>
+      <div className="d-flex" style={{ marginTop: "55px" }}>
         <SideBar />
         <main className="main_content flex-grow-1">
           {renderContent()}

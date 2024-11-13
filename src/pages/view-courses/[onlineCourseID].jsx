@@ -103,7 +103,7 @@ const OnlineCourse = ({ onlineCourseID, initialData }) => {
         <meta name={titleName} content={titleName} />
       </Head>
       <Header />
-      <div className="container-fluid p-0 mt-5">
+      <div className="container-fluid p-0">
         <div
           className={
             titleName &&
