@@ -613,14 +613,14 @@ const Notes = ({
       setModalShow(true);
     } else {
       // if (onlineCourseAry.is_purchased == 1) {
-      var firstAttempt = "0";
-      if (val.state == "") {
-        firstAttempt = "1";
-      }
+      var firstAttempt = "1";
+      // if (val.state == "") {
+      //   firstAttempt = "1";
+      // }
       // // else if (App.Server_Time.ToUnixTimeSeconds() > long.Parse(Current_Selected_Resource.end_date)){
       // //   firstAttempt = "0";
       // // }
-      else if (Number(val.is_reattempt) > 0) {
+      if (Number(val.is_reattempt) > 0) {
         firstAttempt = "0";
       }
       const formData = {
@@ -641,7 +641,7 @@ const Notes = ({
       // const encryptData = encrypt(JSON.stringify(formData));
       if (typeof window !== 'undefined') {
         window.open(
-          `${BaseURL}/web/LiveTest/learn_result_window?data=${encryptData}`,
+          `${BaseURL}/web/LiveTest/result?inshow_result=${encryptData}`,
           "popupWindow",
           `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
         );

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DownloadSlide = () => {
+const DownloadSlide = ({scrollToGetInTouch}) => {
   return (
     <nav className="navbar navbar-expand top_nav">
         <div className="container-fluid">
@@ -43,7 +43,8 @@ const DownloadSlide = () => {
                 </a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">
+                <div onClick={scrollToGetInTouch} style={{cursor:'pointer'}}>
+                <a className="nav-link">
                 <svg
                     className="me-2"
                     width="22"
@@ -72,8 +73,9 @@ const DownloadSlide = () => {
                     </clipPath>
                     </defs>
                 </svg>
-                Help & Support
+                     Help & Support
                 </a>
+                </div>
             </li>
             </ul>
         </div>

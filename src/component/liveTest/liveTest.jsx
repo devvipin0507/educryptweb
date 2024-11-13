@@ -26,13 +26,38 @@ const LiveTest = ({ title }) => {
   const queryClient = useQueryClient();
 
   // Fetch Data Function
+  // const fetchLiveTest = async (type) => {
+  //   try {
+  //     const formData = { page: 1, type };
+  //     const encryptedData = encrypt(JSON.stringify(formData), token);
+  //     const response = await getLiveTestService(encryptedData);
+  //     const decryptedData = decrypt(response.data, token);
+      
+  //     if (decryptedData?.status) {
+  //       return decryptedData?.data;
+  //     } else {
+  //       if (decryptedData.message === msg) {
+  //         localStorage.removeItem("jwt");
+  //         localStorage.removeItem("user_id");
+  //         router.push("/");
+  //       }
+  //       throw new Error("No data found");
+  //     }
+  //   } catch (error) {
+  //     console.error("API call error:", error);
+  //     // router.push("/");
+  //     setShowError(true); // Reset error on tab change
+  //     throw error;
+  //   }
+  // };
+
   const fetchLiveTest = async (type) => {
     try {
       const formData = { page: 1, type };
       const encryptedData = encrypt(JSON.stringify(formData), token);
       const response = await getLiveTestService(encryptedData);
       const decryptedData = decrypt(response.data, token);
-      
+  
       if (decryptedData?.status) {
         return decryptedData?.data;
       } else {
@@ -45,11 +70,21 @@ const LiveTest = ({ title }) => {
       }
     } catch (error) {
       console.error("API call error:", error);
-      // router.push("/");
-      setShowError(true); // Reset error on tab change
-      throw error;
+      setShowError(true); // Display error message
+      return []; // Return an empty array to cache this state
     }
   };
+  
+
+  // const { data: liveTests, isLoading } = useQuery({
+  //   queryKey: ["liveTests", key],
+  //   queryFn: () => fetchLiveTest(key === "LIVE" ? 0 : key === "UPCOMING" ? 1 : 2),
+  //   cacheTime: 1000 * 60 * 60 * 24, // Cache for 24 hours
+  //   staleTime: 1000 * 60 * 60, // Consider fresh for 1 hour
+  //   refetchOnWindowFocus: false, // No refetch on tab focus
+  //   onError: () => setShowError(true),
+  //   onSuccess: (data) => setShowError(!data || data.length === 0),
+  // });
 
   const { data: liveTests, isLoading } = useQuery({
     queryKey: ["liveTests", key],
@@ -57,21 +92,37 @@ const LiveTest = ({ title }) => {
     cacheTime: 1000 * 60 * 60 * 24, // Cache for 24 hours
     staleTime: 1000 * 60 * 60, // Consider fresh for 1 hour
     refetchOnWindowFocus: false, // No refetch on tab focus
-    onError: () => setShowError(true),
-    onSuccess: (data) => setShowError(!data || data.length === 0),
+    enabled: !showError, // Disable refetching if there's an error
+    onError: () => {
+      setShowError(true);
+    },
+    onSuccess: (data) => {
+      // If no data is returned, set showError to true and prevent further refetches
+      if (!data || data.length === 0) {
+        setShowError(true);
+      } else {
+        setShowError(false);
+      }
+    },
+    onSettled: () => {
+      // Cleanup or reset after each query, regardless of success/failure
+      queryClient.invalidateQueries(["liveTests", key], { refetchActive: false });
+    },
   });
-
+  
+  
   const handleTabChange = (k) => {
-    console.log("k",k)
     setKey(k);
-    setShowError(false); // Reset error on tab change
+    if (showError) setShowError(false); // Only reset error if it was true
   };
+  
 
   // Define the handleCallFunction to refetch data
   const handleCallFunction = () => {
     queryClient.invalidateQueries(["liveTests", key]);
   };
 
+  console.log("isLoading",isLoading)
   return (
     <>
       <Head>

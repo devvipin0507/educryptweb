@@ -327,14 +327,14 @@ const Notification = () => {
   };
 
   const handleResultTest = (val, course_data) => {
-    var firstAttempt = "0";
-    if (val.state == "") {
-      firstAttempt = "1";
-    }
+    var firstAttempt = "1";
+    // if (val.state == "") {
+    //   firstAttempt = "1";
+    // }
     // // else if (App.Server_Time.ToUnixTimeSeconds() > long.Parse(Current_Selected_Resource.end_date)){
     // //   firstAttempt = "0";
     // // }
-    else if (compareWithCurrentTime(val.is_reattempt)) {
+    if (compareWithCurrentTime(val.is_reattempt)) {
       firstAttempt = "0";
     }
     const formData = {
@@ -356,7 +356,7 @@ const Notification = () => {
     // Router.push(`https://educryptnetlify.videocrypt.in/webstaging/web/LiveTest/learn_result_window?data=${encryptData}`)
     if (typeof window !== 'undefined') {
       window.open(
-        `${BaseURL}/web/LiveTest/learn_result_window?data=${encryptData}`,
+        `${BaseURL}/web/LiveTest/result?inshow_result=${encryptData}`,
         "popupWindow",
         `width=${windowSize.width},height=${windowSize.height},scrollbars=yes,resizable=no`
       );
