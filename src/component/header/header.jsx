@@ -185,9 +185,11 @@ const Header = ({ search,IsHome }) => {
 
   return (
     <nav
-      className={`${IsHome ? "_IsHome_" : " "} px-0 px-sm-5 px-md-5 navbar navbar-expand bg-white fixed-top `}
+      className={`${
+        IsHome ? "_IsHome_" : "mainNavShadow fixed-top"
+      } px-0 px-sm-5 px-md-5 navbar navbar-expand bg-white `}
       id="eduNav"
-      style={{zIndex: '9'}}
+      style={{ zIndex: "9" }}
     >
       <LoginModal
         show={modalShow}
@@ -208,7 +210,7 @@ const Header = ({ search,IsHome }) => {
             src={logo ? logo : state.logo}
             alt=""
             onClick={handleRedirect}
-            style={{ cursor: "pointer"}}
+            style={{ cursor: "pointer" }}
           />
         </div>
         {!router.pathname.startsWith("/private") && search !== "disable" && (
@@ -255,34 +257,48 @@ const Header = ({ search,IsHome }) => {
                 />
               )}
             </span>
-            {(isVisible && searchInputValue) &&
-              <ul ref={searchRef} className="px-2 py-3 list-unstyled searchDropDown" >
-                {!loading ?
-                  searchCourseList.length > 0
-                    ? searchCourseList.map((item, index) => {
-                      return <li className="mb-2 d-flex align-items-center" key={index} onClick={() => handleSearchCourseDetail(item)} style={{cursor: 'pointer'}}>
-                        <img className="listImg" src={item.cover_image && item.cover_image} alt="" />
-                        <p className="m-0 list_Title">{item.title}</p>
-                        <img
-                          className="ms-4 my-3 redirectImg"
-                          src="/assets/images/redirectLogo.png"
-                          alt=""
-                        />
-                        <div className="clearfix"></div>
-                      </li>
+            {isVisible && searchInputValue && (
+              <ul
+                ref={searchRef}
+                className="px-2 py-3 list-unstyled searchDropDown"
+              >
+                {!loading ? (
+                  searchCourseList.length > 0 ? (
+                    searchCourseList.map((item, index) => {
+                      return (
+                        <li
+                          className="mb-2 d-flex align-items-center"
+                          key={index}
+                          onClick={() => handleSearchCourseDetail(item)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <img
+                            className="listImg"
+                            src={item.cover_image && item.cover_image}
+                            alt=""
+                          />
+                          <p className="m-0 list_Title">{item.title}</p>
+                          <img
+                            className="ms-4 my-3 redirectImg"
+                            src="/assets/images/redirectLogo.png"
+                            alt=""
+                          />
+                          <div className="clearfix"></div>
+                        </li>
+                      );
                     })
-                  : (
+                  ) : (
                     <>
                       <p className="m-0">No Course Found</p>
                     </>
                   )
-                : (
+                ) : (
                   <div className="row align-items-center justify-content-center sldr_container">
                     <div className="spinner-border" role="status" />
                   </div>
                 )}
               </ul>
-            }
+            )}
           </div>
         )}
         {!isLoggedIn ? (
@@ -294,7 +310,6 @@ const Header = ({ search,IsHome }) => {
             </ul>
           </div>
         ) : (
-          
           <div className="profile_cont d-flex">
             {userName.name && (
               <p className="headerUserName mb-0" title={userName.name}>

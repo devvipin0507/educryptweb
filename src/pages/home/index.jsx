@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef, Suspense, lazy } from "react";
+import React, { useEffect, useState, Suspense,useRef, lazy } from "react";
+
 // import Header from '@/component/header/header'
 // import Banner from '@/component/banner/banner'
 // import TrendingCourses from '@/component/trendingCourses/trendingCourses'
@@ -8,6 +9,7 @@ import React, { useEffect, useState, useRef, Suspense, lazy } from "react";
 // import Testimonial from '@/component/testimonial/testimonial'
 // import GetInTouch from '@/component/getInTouch/getInTouch'
 // import Footer from '@/component/footer/footer'
+
 import LoaderAfterLogin from "@/component/loaderAfterLogin";
 import Loader from "@/component/loader";
 import { getCourse_Catergory_Service, getCourse_service, getCurrentAffair_service, getMyCourseService } from '@/services'
@@ -17,7 +19,8 @@ import { all_CategoryAction, all_CourseAction, all_CurrentAffair } from '@/store
 // import Achievement from '@/component/achievement/achievement';
 import { useRouter } from 'next/router'
 
-const DownloadSlide = lazy(() => import("@/component/downloadSlide/downloadSlide"))
+const DownloadSlide = lazy(() => import("@/component/downloadSlide/downloadSlide"));
+const Bottom_banner = lazy(() => import("@/component/bottom_banner/bottom_banner"));
 const Header = lazy(() => import("@/component/header/header"));
 const Banner = lazy(() => import("@/component/banner/banner"));
 const TrendingCourses = lazy(() => import("@/component/trendingCourses/trendingCourses"));
@@ -122,7 +125,7 @@ const index = () => {
     <>
       <Suspense fallback={<Loader />}>
         <div className="nav_container fixed-top">
-          <DownloadSlide scrollToGetInTouch={scrollToGetInTouch}/>
+          <DownloadSlide  scrollToGetInTouch={scrollToGetInTouch}/>
           <Header IsHome={true} />
         </div>
         <Banner />
@@ -131,6 +134,7 @@ const index = () => {
         <OurProduct value="product" />
         <Achievement />
         <Blogs />
+        <Bottom_banner />
         <Testimonial />
         <GetInTouch ref={getInTouchRef} />
         <Footer />
@@ -164,7 +168,7 @@ const index = () => {
         <Footer />
       </Suspense> */}
     </>
-  )
+  );
 }
 
 const msg =

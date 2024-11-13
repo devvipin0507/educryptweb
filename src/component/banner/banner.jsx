@@ -39,7 +39,7 @@ const Banner = ({IsMargin}) => {
 
     // console.log(courseType.filter(item => item.id == 27))
 
-
+    
     return (
         <div className={`${IsMargin ? "m-0 mb-5" : " " } banner_container`}>
             <div className="row align-items-center ">
