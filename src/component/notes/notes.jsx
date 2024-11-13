@@ -314,13 +314,13 @@ const Notes = ({
     if (!isLoggedIn) {
       setModalShow(true);
     } else {
-      if (onlineCourseAry.is_purchased == 1) {
+      // if (onlineCourseAry.is_purchased == 1) {
         if (typeof window !== "undefined") {
           window.open(value.file_url, "_blank");
         }
-      } else {
-        toast.error("Please, purchase the course");
-      }
+      // } else {
+      //   toast.error("Please, purchase the course");
+      // }
     }
   };
 

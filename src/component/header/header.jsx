@@ -189,7 +189,7 @@ const Header = ({ search,IsHome }) => {
         IsHome ? "_IsHome_" : "mainNavShadow fixed-top"
       } px-0 px-sm-5 px-md-5 navbar navbar-expand bg-white `}
       id="eduNav"
-      style={{ zIndex: "9" }}
+      style={{ zIndex: "999" }}
     >
       <LoginModal
         show={modalShow}
