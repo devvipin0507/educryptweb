@@ -379,7 +379,10 @@ nav #eduNav {
 }
 #eduNav {
   /* box-shadow: 0px 1px 4px 0px #00000021 !important; */
-  margin-top: 0px !important;
+  margin-top: 0px;
+}
+._IsHome_{
+  margin-top: 50px !important;
 }
 
 #eduNav ul.navbar-nav {

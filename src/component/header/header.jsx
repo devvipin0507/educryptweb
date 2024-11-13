@@ -12,7 +12,7 @@ import { Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { all_CategoryAction, all_version, profile_data } from "@/store/sliceContainer/masterContentSlice";
 
-const Header = ({ search }) => {
+const Header = ({ search,IsHome }) => {
   const [modalShow, setModalShow] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [logoutShow, setLogoutShow] = useState(false);
@@ -185,7 +185,7 @@ const Header = ({ search }) => {
 
   return (
     <nav
-      className="px-0 px-sm-5 px-md-5 navbar navbar-expand bg-white fixed-top"
+      className={`${IsHome ? "_IsHome_" : " "} px-0 px-sm-5 px-md-5 navbar navbar-expand bg-white fixed-top `}
       id="eduNav"
       style={{zIndex: '9'}}
     >

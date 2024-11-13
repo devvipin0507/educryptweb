@@ -140,7 +140,7 @@ const index = () => {
       <Suspense fallback={<Loader />}>
       <div className="nav_container fixed-top">
         <DownloadSlide />
-        <Header />
+        <Header IsHome={true}/>
       </div>
         <Banner />
         <TrendingCourses />
