@@ -50,8 +50,8 @@ const LiveTest = ({ title }) => {
   const { data: liveTests, isLoading } = useQuery({
     queryKey: ["liveTests", key],
     queryFn: () => fetchLiveTest(key === "LIVE" ? 0 : key === "UPCOMING" ? 1 : 2),
-    // cacheTime: 1000 * 60 * 60 * 24,
-    // staleTime: 1000 * 60 * 60,
+    cacheTime: 1000 * 60 * 60 * 24,
+    staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: false,
     enabled: true,
     onError: () => updateShowError(key, true),

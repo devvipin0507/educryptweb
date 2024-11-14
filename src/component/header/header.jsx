@@ -45,6 +45,10 @@ const Header = ({ search,IsHome }) => {
     setIsVisible(false)
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('userName', userName.name)
+  }, [userName])
+
   const UserLoggedIn = () => {
     const login = localStorage.getItem("jwt");
     return login;
