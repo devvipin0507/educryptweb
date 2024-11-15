@@ -4,10 +4,13 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 import 'shaka-player/dist/controls.css';
 
+
 const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, videoMetaData, title, start_date, video_type }) => {
+
   // console.log("NonDRMVideourl", NonDRMVideourl)
   // console.log("start_date", start_date)
   // console.log("video_type", video_type)
+
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const playerRef = useRef(null);
@@ -137,6 +140,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
       playerRef.current = player;
       const ui = new shaka.ui.Overlay(player, videoContainer, videoElement);
       const controls = ui.getControls();
+
       const container = controls.getServerSideAdContainer();
       const netEngine = player.getNetworkingEngine();
       const adManager = player.getAdManager();
@@ -145,7 +149,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
       const config = {
         'enableTooltips': true,
         'overflowMenuButtons': ['quality', 'caption', 'language'],
-        // 'controlPanelElements': ['backward', 'play_pause', 'forward', 'spacer', 'mute', 'overflow_menu', 'fullscreen']
+        //'controlPanelElements': ['backward', 'play_pause', 'forward', 'spacer', 'mute', 'overflow_menu', 'fullscreen']
       }
       ui.configure(config);
       videoRef.current.addEventListener("loadeddata", handleLoaded);
@@ -271,6 +275,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
 
         }
       } catch (error) {
+
       }
 
     };
@@ -361,7 +366,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
       <div className="__player__">
         <div className="container-fluid player_top_back_">
           <div className="row m-0">
-            <div className="col-lg-11 mx-auto">
+            <div className="mx-auto">
               <div className="helpHead d-flex align-items-center audio-player__top" style={{ cursor: 'pointer', zIndex: "9999" }}>
                 {/* <MdOutlineChevronLeft onClick={() => router.back()} /> */}
                 <svg onClick={() => router.back()} width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -383,7 +388,7 @@ const VideoJsPlayer = ({ source, dType, poster, keySystem, NonDRMVideourl, video
           <video
             ref={videoRef}
             autoPlay
-            muted
+            // muted={VolumeButton}
             controls
             poster={poster}
             style={{ width: "100%" }}

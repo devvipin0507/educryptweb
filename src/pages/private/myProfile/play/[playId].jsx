@@ -12,13 +12,11 @@ const PlayId = () => {
         height: 0,
     });
     const [isLoading, setIsLoading] = useState(true); 
-    const [pubicChat, setPublicChat] = useState(null);
     const router = useRouter();
     // console.log("router",router)
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            fetchContentMeta();
             setWindowSize({
                 width: window.innerWidth,
                 height: window.innerHeight,
@@ -48,29 +46,6 @@ const PlayId = () => {
         }
     }, [router.isReady]);
 
-    const fetchContentMeta = async () => {
-        try {
-            const userId = localStorage.getItem('user_id') 
-            const token = get_token();
-            const formData = {
-                token : router.query.video_id,
-                user_id: userId
-            }
-            const response_contentMeta_service = await getContentMeta(encrypt(JSON.stringify(formData), token));
-            const response_contentMeta_data = decrypt(response_contentMeta_service.data, token);
-            console.log('response_contentMeta_data', response_contentMeta_data)
-            if(response_contentMeta_data.status){
-                const data = response_contentMeta_data?.data?.video
-                setPublicChat(data?.extra_params?.public_chat)
-            }
-            else{
-                setPublicChat(0)
-            }
-        } catch (error) {
-            console.log('error found: ', error)
-        }
-    }
-
     const renderPlayer = () => {
         const videoType = parseInt(router?.query?.video_type);
 
@@ -96,7 +71,7 @@ const PlayId = () => {
                 );
             case 8:
                 return (
-                    <div className="container-fluid mt-5">
+                    <div className="container-fluid live-main-container">
                         <div className="row">
                             <div className="col-md-8">
                                 <VideoPlayerDRM
@@ -116,7 +91,7 @@ const PlayId = () => {
                                 <Chat 
                                     chat_node = {router.query.chat_node}
                                     course_id={router.query.course_id}
-                                    isPublic = {pubicChat}
+                                    video_id = {router.query.video_id}
                                 />
                             </div>
                     </div>
@@ -124,41 +99,44 @@ const PlayId = () => {
                 );
             case 1:
                 return (
-                    <iframe
-                        id="youtubePlayer"
-                        width={windowSize.width}
-                        height={windowSize.height - 10}
-                        src={`https://www.youtube.com/embed/${router?.query?.file_url}`}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
+                  <iframe
+                    id="youtubePlayer"
+                    className="youtubePlayer"
+                    width={windowSize.width}
+                    height={windowSize.height - 10}
+                    src={`https://www.youtube.com/embed/${router?.query?.file_url}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 );
             case 4:
-                return (<div className="container-fluid mt-5">
-                        <div className="row">
-                            <div className="col-md-8">
-                                <iframe
-                                    id="youtubePlayer"
-                                    width="100%"
-                                    height="100%"
-                                    // height={windowSize.height - 10}
-                                    src={`https://www.youtube.com/embed/${router?.query?.file_url}`}
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
-                            </div>
-                            
-                            <div className="col-md-4">
-                                <Chat 
-                                    chat_node = {router.query.chat_node}
-                                    course_id={router.query.course_id}
-                                    isPublic = {pubicChat}
-                                />
-                            </div>
-                        </div>
+                return (
+                  <div className="container-fluid live-main-container">
+                    <div className="row">
+                      <div className="col-md-8">
+                        <iframe
+                          id="youtubePlayer"
+                          className="youtubePlayer"
+                          width="100%"
+                          height="100%"
+                          // height={windowSize.height - 10}
+                          src={`https://www.youtube.com/embed/${router?.query?.file_url}`}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+
+                      <div className="col-md-4">
+                        <Chat
+                          chat_node={router.query.chat_node}
+                          course_id={router.query.course_id}
+                          video_id={router.query.video_id}
+                        />
+                      </div>
                     </div>
+                  </div>
                 );
             default:
                 return <p>No supported video format found.</p>;
