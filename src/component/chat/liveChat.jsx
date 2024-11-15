@@ -36,7 +36,7 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
   const [type, setType] = useState("text");
   const fileInputRef = useRef(null);
 
-//   console.log('isPublic', isPublic)
+  console.log('isPublic', isPublic)
 
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app); // Get Firebase Realtime Database instance
@@ -54,7 +54,11 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
   });
 
   useEffect(() => {
-    // console.log("chat_node",chat_node)
+    getChatData()
+  }, [isPublic]);
+
+  const getChatData = () => {
+    // console.log("chat_node",isPublic)
     const app_id = localStorage.getItem("appId");
     setUserId(localStorage.getItem("user_id"));
     const chatRef = ref(
@@ -75,7 +79,7 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
 
     // Cleanup listener on unmount
     return () => unsubscribe();
-  }, [chat_node, chatData]);
+  }
 
   useEffect(() => {
     // Scroll to the bottom when chatData changes
@@ -87,7 +91,7 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
 
   const handleUpdateStatus = async (e) => {
     e.preventDefault();
-    console.log("file978798", file);
+    // console.log("file978798", file);
 
     try {
       const uploadedUrl = type != "text" ? await uploadFile(input) : input; // Wait for uploadFile to complete
@@ -95,10 +99,10 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
       const app_id = localStorage.getItem("appId");
       const userName = localStorage.getItem("userName");
       const curr_date = new Date();
-      console.log(convertToTimestamp(curr_date));
+      // console.log(convertToTimestamp(curr_date));
 
       if (uploadedUrl) {
-        console.log("Uploaded URL:", uploadedUrl, type);
+        // console.log("Uploaded URL:", uploadedUrl, type);
         const statusRef = ref(
           database,
           `${app_id}/chat_master/${chat_node}/${isPublic ? "1TOM" : "1TO1"}`
@@ -117,6 +121,7 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
         })
           .then(() => {
             console.log("Status updated successfully");
+            getChatData()
             setInput("");
             setImagePreviews([]);
             setFile(null);
