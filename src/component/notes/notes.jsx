@@ -198,9 +198,6 @@ const Notes = ({
   };
 
   const getLayer3Data = async (index, title) => {
-    console.log("index", index)
-    console.log("title",title)
-    console.log("isApiCalled",isApiCalled)
     if (title == undefined && isApiCalled.current) return;
     isApiCalled.current = true;
     setBreadcrumbData2(title);
