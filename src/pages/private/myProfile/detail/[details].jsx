@@ -468,6 +468,7 @@ const Details = ({ value }) => {
                           (item.type !== "content" &&
                             item.type !== "faq" &&
                             item.type !== "overview" &&
+                            item.type !== "image" &&
                             item.type !== "concept") &&
                           !(
                             item.type == "content" &&
