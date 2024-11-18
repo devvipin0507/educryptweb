@@ -68,8 +68,31 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
   const [scrollY, setScrollY] = useState(0);
   const OverView = tiles.find((item) => (item.type == "overview"));
 
+
+  // console.log("initialData", initialData)
+
+  // useEffect(() => {
+    
+  //   const handleScroll = () => {
+  //     if (typeof window !== 'undefined') {
+  //       const currentScrollY = window.scrollY;
+  //       setClass(currentScrollY > 0);
+  //     }
+  //   };
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener("scroll", handleScroll);
+  //   }
+  //   return () => {
+  //     if (typeof window !== 'undefined') {
+  //       window.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, []);
+
   useEffect(() => {
     // Getting the heights of the elements once after the component mounts
+    // console.log("pageSection1", pageSection1);
+    // console.log("offset1", offset1);
     const handleScroll = () => {
       let pageSection1 = document.querySelector(".page-section-1")?.offsetHeight;
       let offset1 = document.querySelector(".offset--1")?.offsetHeight || 0;
@@ -406,6 +429,7 @@ const ViewOnlineCourseDetail = ({ initialData, onlineCourseDetailID, IsTranding 
                       </Suspense>
                     </Tab>
                   )}
+                  {console.log('tiles', tiles, versionData.same_content_view)}
                   {tiles?.map(
                     (item, index) =>
                       // item.type !== "content" &&
@@ -492,7 +516,8 @@ export async function getServerSideProps(context) {
       onlineCourseDetailID?.indexOf("parent:") + 7,
       onlineCourseDetailID?.length
     );
-
+    // console.log("courseCombo", courseCombo)
+    // console.log("onlineCourseDetailID", onlineCourseDetailID)
     const courseID = onlineCourseDetailID?.slice(
       onlineCourseDetailID.indexOf(":") + 1,
       onlineCourseDetailID.indexOf("&")
