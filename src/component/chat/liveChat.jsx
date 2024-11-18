@@ -366,7 +366,6 @@ const LiveChat = ({ chat_node, course_id, isPublic }) => {
           </div>
         </div>
       </div>
-      
       {/* <pre>{JSON.stringify(chatData, null, 2)}</pre> */}
       <form className="chat_input pt-1 pb-0 p-0" onSubmit={handleUpdateStatus}>
         <div class="input-group">
